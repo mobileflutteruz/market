@@ -1,0 +1,103 @@
+name: karmango
+
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.6
+  # get it singleton
+  injectable: ^2.1.0
+  get_it: ^7.2.0
+  # interceptor
+  pretty_http_logger: ^1.0.3
+  http: ^1.2.0
+  # no sql database
+  shared_preferences: ^2.0.18
+  # code generator for data classes
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+  # state manager
+  flutter_bloc: ^8.1.5
+  # cached image
+  cached_network_image: ^3.3.0
+  gap: ^3.0.1
+  flutter_svg: ^2.0.9
+  badges: ^3.1.2
+  carousel_slider: ^4.2.1
+  photo_view: ^0.14.0
+  mask_text_input_formatter: ^2.7.0
+  pinput: ^4.0.0
+  step_progress_indicator: ^1.0.2
+  url_launcher: ^6.2.3
+  image_picker: ^1.0.7
+  equatable: ^2.0.5
+  hive_flutter: ^1.1.0
+  lottie: ^3.0.0
+  dio: ^5.4.1
+  rotated_corner_decoration: ^2.1.0+1
+
+  card_swiper: ^3.0.1
+  share_it: ^0.7.0
+  share: ^2.0.4
+  share_plus: ^8.0.2
+  path_provider: ^2.1.2
+  file_picker_writable: ^2.1.0+1
+  modal_bottom_sheet: ^3.0.0
+  bloc: ^8.1.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.8
+  freezed: ^2.4.6
+  injectable_generator: ^2.1.4
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/icons/
+    - assets/images/
+    - assets/animation/
+    - assets/fonts/manrope/
+
+
+    #foods
+    - assets/images/food/
+    - assets/icons/food/
+
+
+
+
+  fonts:
+    - family: Manrope
+      fonts:
+        - asset: assets/fonts/manrope/Manrope-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/manrope/Manrope-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/manrope/Manrope-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/manrope/Manrope-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/manrope/Manrope-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/manrope/Manrope-Light.ttf
+          weight: 300
+        - asset: assets/fonts/manrope/Manrope-ExtraLight.ttf
+          weight: 200
