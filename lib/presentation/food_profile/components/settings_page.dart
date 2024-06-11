@@ -1,4 +1,5 @@
 
+import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/presentation/food_profile/cubit/food_profile_cubit.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import '../../../../core/utils/utils.dart';

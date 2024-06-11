@@ -84,7 +84,7 @@ class _FoodPickCardWidgetState extends State<FoodPickCardWidget> {
         ),
         AppUtils.kGap8,
         GestureDetector(
-          onTap: () => Navigator.pushNamed(context, NavigatorConst.profileCard),
+          onTap: () => Navigator.pushNamed(context, FoodNavigatorConst.foodProfileCard),
           child: Container(
             padding: AppUtils.kPaddingVertical16,
             decoration: ShapeDecoration(

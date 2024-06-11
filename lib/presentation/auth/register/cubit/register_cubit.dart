@@ -1,3 +1,4 @@
+
 import 'package:karmango/presentation/components/buildable_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -5,20 +6,20 @@ import 'package:injectable/injectable.dart';
 import '../../../../domain/repository/auth_repository.dart';
 
 part 'register_state.dart';
-
 part 'register_cubit.freezed.dart';
 
 @Injectable()
 class RegisterCubit
     extends BuildableCubit<RegisterState, RegisterBuildableState> {
   RegisterCubit(this.authRepo) : super(const RegisterBuildableState());
+
   final AuthRepository authRepo;
 
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
-  register() async {
+  Future<void> register() async {
     build(
       (buildable) => buildable.copyWith(
         loading: true,
@@ -27,9 +28,10 @@ class RegisterCubit
     );
     try {
       await authRepo.register(
-          name: nameController.text,
-          phone: phoneController.text,
-          password: passwordController.text);
+        name: nameController.text,
+        phone: phoneController.text,
+        password: passwordController.text,
+      );
       build(
         (buildable) => buildable.copyWith(
           success: true,
@@ -45,10 +47,14 @@ class RegisterCubit
           error: e.toString(),
         ),
       );
-    } finally {
-      build(
-        (buildable) => buildable.copyWith(loading: false),
-      );
     }
+  }
+
+  @override
+  Future<void> close() {
+    nameController.dispose();
+    passwordController.dispose();
+    phoneController.dispose();
+    return super.close();
   }
 }

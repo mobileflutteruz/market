@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/core/constants/constants.dart';
+import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/core/utils/utils.dart';
 import 'package:karmango/domain/repository/auth_repository.dart';

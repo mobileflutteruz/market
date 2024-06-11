@@ -5,6 +5,8 @@ sealed class AppKeys {
 
   static const String currentTransactionKey = 'current_transaction';
   static const String accessToken = 'access_token';
+  static const String token = 'token';
+
   static const String refreshToken = 'refresh_token';
   static const String languageCode = 'language_code';
   static const String themeMode = 'theme_mode';
@@ -18,5 +20,5 @@ sealed class AppKeys {
   static const String email = 'email';
   static const String langSelected = 'langSelected';
 
-  static String platform = '';
+  // static String platform = '';
 }

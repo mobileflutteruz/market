@@ -1,5 +1,6 @@
 import 'package:karmango/core/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:karmango/core/constants/navigator_const.dart';
 
 class FoodHomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const FoodHomeAppBarWidget({super.key});

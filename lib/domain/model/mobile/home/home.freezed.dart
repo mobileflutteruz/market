@@ -908,9 +908,10 @@ mixin _$MobileProduct {
   String? get name_ru => throw _privateConstructorUsedError;
   String? get name_en => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
-  double? get discount => throw _privateConstructorUsedError;
+  int? get discount => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
+  String? get product_type => throw _privateConstructorUsedError;
   int? get price_to_pay => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -931,9 +932,10 @@ abstract class $MobileProductCopyWith<$Res> {
       String? name_ru,
       String? name_en,
       String? status,
-      double? discount,
+      int? discount,
       int? price,
       String? image,
+      String? product_type,
       int? price_to_pay});
 }
 
@@ -958,6 +960,7 @@ class _$MobileProductCopyWithImpl<$Res, $Val extends MobileProduct>
     Object? discount = freezed,
     Object? price = freezed,
     Object? image = freezed,
+    Object? product_type = freezed,
     Object? price_to_pay = freezed,
   }) {
     return _then(_value.copyWith(
@@ -984,7 +987,7 @@ class _$MobileProductCopyWithImpl<$Res, $Val extends MobileProduct>
       discount: freezed == discount
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -992,6 +995,10 @@ class _$MobileProductCopyWithImpl<$Res, $Val extends MobileProduct>
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      product_type: freezed == product_type
+          ? _value.product_type
+          : product_type // ignore: cast_nullable_to_non_nullable
               as String?,
       price_to_pay: freezed == price_to_pay
           ? _value.price_to_pay
@@ -1015,9 +1022,10 @@ abstract class _$$MobileProductImplCopyWith<$Res>
       String? name_ru,
       String? name_en,
       String? status,
-      double? discount,
+      int? discount,
       int? price,
       String? image,
+      String? product_type,
       int? price_to_pay});
 }
 
@@ -1040,6 +1048,7 @@ class __$$MobileProductImplCopyWithImpl<$Res>
     Object? discount = freezed,
     Object? price = freezed,
     Object? image = freezed,
+    Object? product_type = freezed,
     Object? price_to_pay = freezed,
   }) {
     return _then(_$MobileProductImpl(
@@ -1066,7 +1075,7 @@ class __$$MobileProductImplCopyWithImpl<$Res>
       discount: freezed == discount
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as int?,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -1074,6 +1083,10 @@ class __$$MobileProductImplCopyWithImpl<$Res>
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      product_type: freezed == product_type
+          ? _value.product_type
+          : product_type // ignore: cast_nullable_to_non_nullable
               as String?,
       price_to_pay: freezed == price_to_pay
           ? _value.price_to_pay
@@ -1095,6 +1108,7 @@ class _$MobileProductImpl implements _MobileProduct {
       this.discount,
       this.price,
       this.image,
+      this.product_type,
       this.price_to_pay});
 
   factory _$MobileProductImpl.fromJson(Map<String, dynamic> json) =>
@@ -1111,17 +1125,19 @@ class _$MobileProductImpl implements _MobileProduct {
   @override
   final String? status;
   @override
-  final double? discount;
+  final int? discount;
   @override
   final int? price;
   @override
   final String? image;
   @override
+  final String? product_type;
+  @override
   final int? price_to_pay;
 
   @override
   String toString() {
-    return 'MobileProduct(id: $id, name_uz: $name_uz, name_ru: $name_ru, name_en: $name_en, status: $status, discount: $discount, price: $price, image: $image, price_to_pay: $price_to_pay)';
+    return 'MobileProduct(id: $id, name_uz: $name_uz, name_ru: $name_ru, name_en: $name_en, status: $status, discount: $discount, price: $price, image: $image, product_type: $product_type, price_to_pay: $price_to_pay)';
   }
 
   @override
@@ -1138,6 +1154,8 @@ class _$MobileProductImpl implements _MobileProduct {
                 other.discount == discount) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.image, image) || other.image == image) &&
+            (identical(other.product_type, product_type) ||
+                other.product_type == product_type) &&
             (identical(other.price_to_pay, price_to_pay) ||
                 other.price_to_pay == price_to_pay));
   }
@@ -1145,7 +1163,7 @@ class _$MobileProductImpl implements _MobileProduct {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name_uz, name_ru, name_en,
-      status, discount, price, image, price_to_pay);
+      status, discount, price, image, product_type, price_to_pay);
 
   @JsonKey(ignore: true)
   @override
@@ -1168,9 +1186,10 @@ abstract class _MobileProduct implements MobileProduct {
       final String? name_ru,
       final String? name_en,
       final String? status,
-      final double? discount,
+      final int? discount,
       final int? price,
       final String? image,
+      final String? product_type,
       final int? price_to_pay}) = _$MobileProductImpl;
 
   factory _MobileProduct.fromJson(Map<String, dynamic> json) =
@@ -1187,11 +1206,13 @@ abstract class _MobileProduct implements MobileProduct {
   @override
   String? get status;
   @override
-  double? get discount;
+  int? get discount;
   @override
   int? get price;
   @override
   String? get image;
+  @override
+  String? get product_type;
   @override
   int? get price_to_pay;
   @override

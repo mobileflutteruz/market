@@ -20,14 +20,14 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  int? get userId => throw _privateConstructorUsedError;
-  String? get userName => throw _privateConstructorUsedError;
-  String? get userStatus => throw _privateConstructorUsedError;
+  int? get user_id => throw _privateConstructorUsedError;
+  String? get user_name => throw _privateConstructorUsedError;
+  String? get user_status => throw _privateConstructorUsedError;
   bool? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  String? get accessToken => throw _privateConstructorUsedError;
-  String? get refreshToken => throw _privateConstructorUsedError;
-  String? get tokenType => throw _privateConstructorUsedError;
+  String? get access_token => throw _privateConstructorUsedError;
+  String? get refresh_token => throw _privateConstructorUsedError;
+  String? get token_type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,14 +41,14 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {int? userId,
-      String? userName,
-      String? userStatus,
+      {int? user_id,
+      String? user_name,
+      String? user_status,
       bool? status,
       String? message,
-      String? accessToken,
-      String? refreshToken,
-      String? tokenType});
+      String? access_token,
+      String? refresh_token,
+      String? token_type});
 }
 
 /// @nodoc
@@ -64,27 +64,27 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = freezed,
-    Object? userName = freezed,
-    Object? userStatus = freezed,
+    Object? user_id = freezed,
+    Object? user_name = freezed,
+    Object? user_status = freezed,
     Object? status = freezed,
     Object? message = freezed,
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
-    Object? tokenType = freezed,
+    Object? access_token = freezed,
+    Object? refresh_token = freezed,
+    Object? token_type = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      user_id: freezed == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
               as int?,
-      userName: freezed == userName
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      user_name: freezed == user_name
+          ? _value.user_name
+          : user_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      userStatus: freezed == userStatus
-          ? _value.userStatus
-          : userStatus // ignore: cast_nullable_to_non_nullable
+      user_status: freezed == user_status
+          ? _value.user_status
+          : user_status // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
@@ -94,17 +94,17 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      accessToken: freezed == accessToken
-          ? _value.accessToken
-          : accessToken // ignore: cast_nullable_to_non_nullable
+      access_token: freezed == access_token
+          ? _value.access_token
+          : access_token // ignore: cast_nullable_to_non_nullable
               as String?,
-      refreshToken: freezed == refreshToken
-          ? _value.refreshToken
-          : refreshToken // ignore: cast_nullable_to_non_nullable
+      refresh_token: freezed == refresh_token
+          ? _value.refresh_token
+          : refresh_token // ignore: cast_nullable_to_non_nullable
               as String?,
-      tokenType: freezed == tokenType
-          ? _value.tokenType
-          : tokenType // ignore: cast_nullable_to_non_nullable
+      token_type: freezed == token_type
+          ? _value.token_type
+          : token_type // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -119,14 +119,14 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? userId,
-      String? userName,
-      String? userStatus,
+      {int? user_id,
+      String? user_name,
+      String? user_status,
       bool? status,
       String? message,
-      String? accessToken,
-      String? refreshToken,
-      String? tokenType});
+      String? access_token,
+      String? refresh_token,
+      String? token_type});
 }
 
 /// @nodoc
@@ -140,27 +140,27 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = freezed,
-    Object? userName = freezed,
-    Object? userStatus = freezed,
+    Object? user_id = freezed,
+    Object? user_name = freezed,
+    Object? user_status = freezed,
     Object? status = freezed,
     Object? message = freezed,
-    Object? accessToken = freezed,
-    Object? refreshToken = freezed,
-    Object? tokenType = freezed,
+    Object? access_token = freezed,
+    Object? refresh_token = freezed,
+    Object? token_type = freezed,
   }) {
     return _then(_$UserModelImpl(
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      user_id: freezed == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
               as int?,
-      userName: freezed == userName
-          ? _value.userName
-          : userName // ignore: cast_nullable_to_non_nullable
+      user_name: freezed == user_name
+          ? _value.user_name
+          : user_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      userStatus: freezed == userStatus
-          ? _value.userStatus
-          : userStatus // ignore: cast_nullable_to_non_nullable
+      user_status: freezed == user_status
+          ? _value.user_status
+          : user_status // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
@@ -170,17 +170,17 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      accessToken: freezed == accessToken
-          ? _value.accessToken
-          : accessToken // ignore: cast_nullable_to_non_nullable
+      access_token: freezed == access_token
+          ? _value.access_token
+          : access_token // ignore: cast_nullable_to_non_nullable
               as String?,
-      refreshToken: freezed == refreshToken
-          ? _value.refreshToken
-          : refreshToken // ignore: cast_nullable_to_non_nullable
+      refresh_token: freezed == refresh_token
+          ? _value.refresh_token
+          : refresh_token // ignore: cast_nullable_to_non_nullable
               as String?,
-      tokenType: freezed == tokenType
-          ? _value.tokenType
-          : tokenType // ignore: cast_nullable_to_non_nullable
+      token_type: freezed == token_type
+          ? _value.token_type
+          : token_type // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -191,38 +191,38 @@ class __$$UserModelImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$UserModelImpl implements _UserModel {
   const _$UserModelImpl(
-      {required this.userId,
-      required this.userName,
-      required this.userStatus,
+      {required this.user_id,
+      required this.user_name,
+      required this.user_status,
       required this.status,
       required this.message,
-      required this.accessToken,
-      required this.refreshToken,
-      required this.tokenType});
+      required this.access_token,
+      required this.refresh_token,
+      required this.token_type});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
 
   @override
-  final int? userId;
+  final int? user_id;
   @override
-  final String? userName;
+  final String? user_name;
   @override
-  final String? userStatus;
+  final String? user_status;
   @override
   final bool? status;
   @override
   final String? message;
   @override
-  final String? accessToken;
+  final String? access_token;
   @override
-  final String? refreshToken;
+  final String? refresh_token;
   @override
-  final String? tokenType;
+  final String? token_type;
 
   @override
   String toString() {
-    return 'UserModel(userId: $userId, userName: $userName, userStatus: $userStatus, status: $status, message: $message, accessToken: $accessToken, refreshToken: $refreshToken, tokenType: $tokenType)';
+    return 'UserModel(user_id: $user_id, user_name: $user_name, user_status: $user_status, status: $status, message: $message, access_token: $access_token, refresh_token: $refresh_token, token_type: $token_type)';
   }
 
   @override
@@ -230,25 +230,25 @@ class _$UserModelImpl implements _UserModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserModelImpl &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.userName, userName) ||
-                other.userName == userName) &&
-            (identical(other.userStatus, userStatus) ||
-                other.userStatus == userStatus) &&
+            (identical(other.user_id, user_id) || other.user_id == user_id) &&
+            (identical(other.user_name, user_name) ||
+                other.user_name == user_name) &&
+            (identical(other.user_status, user_status) ||
+                other.user_status == user_status) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.accessToken, accessToken) ||
-                other.accessToken == accessToken) &&
-            (identical(other.refreshToken, refreshToken) ||
-                other.refreshToken == refreshToken) &&
-            (identical(other.tokenType, tokenType) ||
-                other.tokenType == tokenType));
+            (identical(other.access_token, access_token) ||
+                other.access_token == access_token) &&
+            (identical(other.refresh_token, refresh_token) ||
+                other.refresh_token == refresh_token) &&
+            (identical(other.token_type, token_type) ||
+                other.token_type == token_type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, userName, userStatus,
-      status, message, accessToken, refreshToken, tokenType);
+  int get hashCode => Object.hash(runtimeType, user_id, user_name, user_status,
+      status, message, access_token, refresh_token, token_type);
 
   @JsonKey(ignore: true)
   @override
@@ -266,34 +266,34 @@ class _$UserModelImpl implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
-      {required final int? userId,
-      required final String? userName,
-      required final String? userStatus,
+      {required final int? user_id,
+      required final String? user_name,
+      required final String? user_status,
       required final bool? status,
       required final String? message,
-      required final String? accessToken,
-      required final String? refreshToken,
-      required final String? tokenType}) = _$UserModelImpl;
+      required final String? access_token,
+      required final String? refresh_token,
+      required final String? token_type}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
 
   @override
-  int? get userId;
+  int? get user_id;
   @override
-  String? get userName;
+  String? get user_name;
   @override
-  String? get userStatus;
+  String? get user_status;
   @override
   bool? get status;
   @override
   String? get message;
   @override
-  String? get accessToken;
+  String? get access_token;
   @override
-  String? get refreshToken;
+  String? get refresh_token;
   @override
-  String? get tokenType;
+  String? get token_type;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

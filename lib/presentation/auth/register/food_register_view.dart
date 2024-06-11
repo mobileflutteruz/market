@@ -10,18 +10,9 @@ class FoodRegisterView extends StatefulWidget {
 class _RegisterViewState extends State<FoodRegisterView> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController phoneController = TextEditingController(); 
-
-
-
-
-
+  TextEditingController phoneController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
-
-
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +34,6 @@ class _RegisterViewState extends State<FoodRegisterView> {
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.end,
-
                       children: [
                         FoodLogoWidget(),
                         Text(
@@ -65,7 +54,7 @@ class _RegisterViewState extends State<FoodRegisterView> {
                           textEditingController:
                               context.read<RegisterCubit>().nameController,
                           validator: (p0) =>
-                              locator<AuthRepository>().emailValidator(p0!),
+                              locator<AuthRepository>().nameValidator(p0!),
                         ),
                         AppUtils.kGap16,
                         Text(
@@ -75,7 +64,6 @@ class _RegisterViewState extends State<FoodRegisterView> {
                           ),
                         ),
                         PhoneInputWidget(
-                          // textEditingController: phoneController,
                           hintText: context.l10n.enterPhoneNumber,
                           textEditingController:
                               context.read<RegisterCubit>().phoneController,
@@ -84,13 +72,12 @@ class _RegisterViewState extends State<FoodRegisterView> {
                         ),
                         AppUtils.kGap16,
                         PasswordInputWidget(
-                          // textEditingController: passwordController,
                           title: context.l10n.password,
                           hintText: context.l10n.enterPassword,
                           textEditingController:
-                              context.read<RegisterCubit>().nameController,
-                          validtor: (p0) =>
-                              locator<AuthRepository>().emailValidator(p0!),
+                              context.read<RegisterCubit>().passwordController,
+                          validator: (p0) =>
+                              locator<AuthRepository>().passWordvalidator(p0!),
                         ),
                         AppUtils.kGap16,
                         const FoodCheckBoxWidget(),
@@ -101,10 +88,9 @@ class _RegisterViewState extends State<FoodRegisterView> {
                             if (formKey.currentState!.validate()) {
                               context.read<RegisterCubit>().register();
                               Navigator.pushNamed(
-                                  context, FoodNavigatorConst.foodOtpScreen);
+                                  context, FoodNavigatorConst.foodOtpScreen,
+                                  arguments: phoneController.text);
                             }
-
-                            // BlocProvider.of<RegisterCubit>(context).register();
                           },
                         ),
                       ],
@@ -126,12 +112,3 @@ class _RegisterViewState extends State<FoodRegisterView> {
     );
   }
 }
-
-
-// InputWidget(
-//           hintText: context.l10n.enterYourFirstNameAndLastName,
-//           keyboardType: TextInputType.text,
-//           prefixIcon: IconConstants.person,
-//           textEditingController: textEditingController,
-//           validator: validator,
-//         ),

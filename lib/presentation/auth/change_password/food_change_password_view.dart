@@ -44,12 +44,18 @@ class _ChangePasswordViewState extends State<FoodChangePasswordView> {
                         textEditingController: passwordController,
                         title: context.l10n.newPassword,
                         hintText: context.l10n.enterPassword,
+                        validator: (p0) {
+                          
+                        },
                       ),
                       AppUtils.kGap16,
                       PasswordInputWidget(
                         textEditingController: repasswordController,
                         title: context.l10n.reEnterTheNewPassword,
                         hintText: context.l10n.enterPassword,
+                         validator: (p0) {
+                          
+                        },
                       ),
                       AppUtils.kGap24,
                       CommonFoodButtonWidget(

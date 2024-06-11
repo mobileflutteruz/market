@@ -61,10 +61,10 @@ class _FoodLoginView extends State<FoodLoginView> {
                         PasswordInputWidget(
                           textEditingController: passwordController,
                           hintText: context.l10n.enterPassword,
-                          // validtor: (value) {
-                          //   return locator<AuthRepository>()
-                          //       .passWordvalidator(value!);
-                          // },
+                          validator: (value) {
+                            return locator<AuthRepository>()
+                                .passWordvalidator(value!);
+                          },
                           title: context.l10n.password,
                         ),
                         AppUtils.kGap16,
@@ -90,30 +90,41 @@ class _FoodLoginView extends State<FoodLoginView> {
                         CommonFoodButtonWidget(
                           title: context.l10n.enter,
                           onTap: () {
-                            print(
-                                "phoneController.text.trim():------------${phoneController.text.trim()}");
-                            print(
-                                "passwordController.text.trim():------------${passwordController.text.trim()}");
+                            // print(
+                            //     "phoneController.text.trim():------------${phoneController.text.trim()}");
+                            // print(
+                            //     "passwordController.text.trim():------------${passwordController.text.trim()}");
 
-                            // if (formKey.currentState!.validate()) {
-                            context.read<LoginCubit>().login(
-                                  phone: phoneController.text.trim(),
-                                  password: passwordController.text.trim(),
-                                );
-
-                            // }
+                            if (formKey.currentState!.validate()) {
+                              context.read<LoginCubit>().login(
+                                    phone: phoneController.text.trim(),
+                                    password: passwordController.text.trim(),
+                                  );
+                            }
                           },
                         ),
                       ],
                     ),
-                    FoodCoupleTextWidget(
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          FoodNavigatorConst.foodRegisterScreen,
-                        );
-                      },
-                      text: context.l10n.signUp,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        FoodCoupleTextWidget(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              FoodNavigatorConst.foodRegisterScreen,
+                            );
+                          },
+                          text: context.l10n.signUp,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            context.read<LoginCubit>().loginAsGuest();
+                          },
+                          child: Text(context.l10n.next),
+                        ),
+                      ],
                     ),
                   ],
                 ),

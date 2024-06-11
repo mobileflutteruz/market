@@ -1,5 +1,9 @@
+import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/data/preferences/locale_data_source.dart';
 import 'package:karmango/presentation/auth/login/cubit/login_cubit.dart';
+import 'package:karmango/presentation/auth/otp/cubit/otp_cubit.dart';
+import 'package:karmango/presentation/auth/register/cubit/register_cubit.dart';
+import 'package:karmango/presentation/auth/splash/cubit/splash_cubit.dart';
 import 'package:karmango/presentation/details/cubit/details_cubit.dart';
 import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 import 'package:karmango/presentation/food_basket/cubit/food_basket_cubit.dart';
@@ -23,7 +27,8 @@ class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
 
@@ -46,6 +51,9 @@ Future<void> main() async {
         BlocProvider(create: (context) => locator<FavouritesCubit>()),
         BlocProvider(create: (context) => locator<CategoryCubit>()),
         BlocProvider(create: (context) => locator<DetailsCubit>()),
+        BlocProvider(create: (context) => locator<SplashCubit>()),
+        BlocProvider(create: (context) => locator<OtpCubit>()),
+        BlocProvider(create: (context) => locator<RegisterCubit>())
       ],
       child: const MyApp(),
     ),
@@ -77,12 +85,10 @@ class MyApp extends StatelessWidget {
           theme: MainTheme.light,
           themeMode: ThemeMode.light,
           onGenerateRoute: OngenerateRoutes.instance.routeGenerator,
-          initialRoute: FoodNavigatorConst.foodHome,
+          initialRoute: FoodNavigatorConst.foodSplash,
           builder: (context, child) {
             return MediaQuery(
-              data: MediaQuery.of(context).copyWith(
-                  // textScaler: const TextScaler.linear(1.0),
-              ),
+              data: MediaQuery.of(context).copyWith(),
               child: child ?? const SizedBox.shrink(), // Ensure child is not null
             );
           },
@@ -91,12 +97,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-/// flutter run -d windows
-/// flutter build apk --release
-/// flutter build apk --split-per-abi
-/// flutter build appbundle --release
-/// flutter pub run build_runner watch --delete-conflicting-outputs
-/// flutter pub run build_runner build --delete-conflicting-outputs
-/// flutter pub ipa
-/// flutter gen-l10n

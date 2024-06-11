@@ -1,8 +1,9 @@
-import 'package:karmango/core/constants/constants.dart';
+
 import 'package:karmango/config/di/injection.dart';
+import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/data/locale_db/food_db.dart';
 import 'package:karmango/domain/model/user/card/card_model.dart';
-import 'package:karmango/domain/model/user/card/plastik_card.dart';
+
 import 'package:karmango/domain/repository/auth_repository.dart';
 import 'package:karmango/presentation/auth/widgets/common_food_button.dart';
 import 'package:karmango/presentation/components/card_input.dart';

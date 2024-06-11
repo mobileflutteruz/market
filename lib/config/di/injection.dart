@@ -1,6 +1,7 @@
-import 'package:karmango/config/di/injection.config.dart';
+
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:karmango/config/di/injection.config.dart';
 
 
 final locator = GetIt.instance;

@@ -2,8 +2,8 @@
 part of '../widgets/all_components.dart';
 
 class FoodOtpScreen extends StatefulWidget {
-  const FoodOtpScreen({super.key});
-
+  const FoodOtpScreen({super.key, required this.phoneNumber});
+final String phoneNumber;
   @override
   State<FoodOtpScreen> createState() => _FoodOtpScreenState();
 }
@@ -64,9 +64,9 @@ class _FoodOtpScreenState extends State<FoodOtpScreen> {
 
   Widget _customPin() {
     return FoodCustomPin(
-      controller: controller,
+       controller: controller,
       otpFocusNode: otpFocusNode,
-      phone: "",
+      phone: widget.phoneNumber,
     );
   }
 }

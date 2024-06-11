@@ -8,14 +8,14 @@ part 'user.g.dart';
 class UserModel with _$UserModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory UserModel({
-    required int? userId,
-    required String? userName,
-    required String? userStatus,
+    required int? user_id,
+    required String? user_name,
+    required String? user_status,
     required bool? status,
     required String? message,
-    required String? accessToken,
-    required String? refreshToken,
-    required String? tokenType,
+    required String? access_token,
+    required String? refresh_token,
+    required String? token_type,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

@@ -20,8 +20,13 @@ mixin _$FavouritesBuildableState {
   int get cardProductCount => throw _privateConstructorUsedError;
   List<String> get likeIds => throw _privateConstructorUsedError;
   int get infoTabIndex => throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
+  bool get success => throw _privateConstructorUsedError;
+  bool get failure => throw _privateConstructorUsedError;
   bool get descriptionIsExpandable => throw _privateConstructorUsedError;
   bool get characteristicsIsExpandable => throw _privateConstructorUsedError;
+  List<MobileProduct>? get favourites => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FavouritesBuildableStateCopyWith<FavouritesBuildableState> get copyWith =>
@@ -39,8 +44,13 @@ abstract class $FavouritesBuildableStateCopyWith<$Res> {
       int cardProductCount,
       List<String> likeIds,
       int infoTabIndex,
+      bool loading,
+      bool success,
+      bool failure,
       bool descriptionIsExpandable,
-      bool characteristicsIsExpandable});
+      bool characteristicsIsExpandable,
+      List<MobileProduct>? favourites,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -61,8 +71,13 @@ class _$FavouritesBuildableStateCopyWithImpl<$Res,
     Object? cardProductCount = null,
     Object? likeIds = null,
     Object? infoTabIndex = null,
+    Object? loading = null,
+    Object? success = null,
+    Object? failure = null,
     Object? descriptionIsExpandable = null,
     Object? characteristicsIsExpandable = null,
+    Object? favourites = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       imageIndex: null == imageIndex
@@ -81,6 +96,18 @@ class _$FavouritesBuildableStateCopyWithImpl<$Res,
           ? _value.infoTabIndex
           : infoTabIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
+      failure: null == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as bool,
       descriptionIsExpandable: null == descriptionIsExpandable
           ? _value.descriptionIsExpandable
           : descriptionIsExpandable // ignore: cast_nullable_to_non_nullable
@@ -89,6 +116,14 @@ class _$FavouritesBuildableStateCopyWithImpl<$Res,
           ? _value.characteristicsIsExpandable
           : characteristicsIsExpandable // ignore: cast_nullable_to_non_nullable
               as bool,
+      favourites: freezed == favourites
+          ? _value.favourites
+          : favourites // ignore: cast_nullable_to_non_nullable
+              as List<MobileProduct>?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -107,8 +142,13 @@ abstract class _$$FavouritesBuildableStateImplCopyWith<$Res>
       int cardProductCount,
       List<String> likeIds,
       int infoTabIndex,
+      bool loading,
+      bool success,
+      bool failure,
       bool descriptionIsExpandable,
-      bool characteristicsIsExpandable});
+      bool characteristicsIsExpandable,
+      List<MobileProduct>? favourites,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -128,8 +168,13 @@ class __$$FavouritesBuildableStateImplCopyWithImpl<$Res>
     Object? cardProductCount = null,
     Object? likeIds = null,
     Object? infoTabIndex = null,
+    Object? loading = null,
+    Object? success = null,
+    Object? failure = null,
     Object? descriptionIsExpandable = null,
     Object? characteristicsIsExpandable = null,
+    Object? favourites = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$FavouritesBuildableStateImpl(
       imageIndex: null == imageIndex
@@ -148,6 +193,18 @@ class __$$FavouritesBuildableStateImplCopyWithImpl<$Res>
           ? _value.infoTabIndex
           : infoTabIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      success: null == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool,
+      failure: null == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as bool,
       descriptionIsExpandable: null == descriptionIsExpandable
           ? _value.descriptionIsExpandable
           : descriptionIsExpandable // ignore: cast_nullable_to_non_nullable
@@ -156,6 +213,14 @@ class __$$FavouritesBuildableStateImplCopyWithImpl<$Res>
           ? _value.characteristicsIsExpandable
           : characteristicsIsExpandable // ignore: cast_nullable_to_non_nullable
               as bool,
+      favourites: freezed == favourites
+          ? _value._favourites
+          : favourites // ignore: cast_nullable_to_non_nullable
+              as List<MobileProduct>?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -168,9 +233,15 @@ class _$FavouritesBuildableStateImpl implements _FavouritesBuildableState {
       this.cardProductCount = 0,
       final List<String> likeIds = const [],
       this.infoTabIndex = 0,
+      this.loading = false,
+      this.success = false,
+      this.failure = false,
       this.descriptionIsExpandable = false,
-      this.characteristicsIsExpandable = false})
-      : _likeIds = likeIds;
+      this.characteristicsIsExpandable = false,
+      final List<MobileProduct>? favourites,
+      this.errorMessage})
+      : _likeIds = likeIds,
+        _favourites = favourites;
 
   @override
   @JsonKey()
@@ -192,14 +263,35 @@ class _$FavouritesBuildableStateImpl implements _FavouritesBuildableState {
   final int infoTabIndex;
   @override
   @JsonKey()
+  final bool loading;
+  @override
+  @JsonKey()
+  final bool success;
+  @override
+  @JsonKey()
+  final bool failure;
+  @override
+  @JsonKey()
   final bool descriptionIsExpandable;
   @override
   @JsonKey()
   final bool characteristicsIsExpandable;
+  final List<MobileProduct>? _favourites;
+  @override
+  List<MobileProduct>? get favourites {
+    final value = _favourites;
+    if (value == null) return null;
+    if (_favourites is EqualUnmodifiableListView) return _favourites;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'FavouritesBuildableState(imageIndex: $imageIndex, cardProductCount: $cardProductCount, likeIds: $likeIds, infoTabIndex: $infoTabIndex, descriptionIsExpandable: $descriptionIsExpandable, characteristicsIsExpandable: $characteristicsIsExpandable)';
+    return 'FavouritesBuildableState(imageIndex: $imageIndex, cardProductCount: $cardProductCount, likeIds: $likeIds, infoTabIndex: $infoTabIndex, loading: $loading, success: $success, failure: $failure, descriptionIsExpandable: $descriptionIsExpandable, characteristicsIsExpandable: $characteristicsIsExpandable, favourites: $favourites, errorMessage: $errorMessage)';
   }
 
   @override
@@ -214,13 +306,20 @@ class _$FavouritesBuildableStateImpl implements _FavouritesBuildableState {
             const DeepCollectionEquality().equals(other._likeIds, _likeIds) &&
             (identical(other.infoTabIndex, infoTabIndex) ||
                 other.infoTabIndex == infoTabIndex) &&
+            (identical(other.loading, loading) || other.loading == loading) &&
+            (identical(other.success, success) || other.success == success) &&
+            (identical(other.failure, failure) || other.failure == failure) &&
             (identical(
                     other.descriptionIsExpandable, descriptionIsExpandable) ||
                 other.descriptionIsExpandable == descriptionIsExpandable) &&
             (identical(other.characteristicsIsExpandable,
                     characteristicsIsExpandable) ||
                 other.characteristicsIsExpandable ==
-                    characteristicsIsExpandable));
+                    characteristicsIsExpandable) &&
+            const DeepCollectionEquality()
+                .equals(other._favourites, _favourites) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
@@ -230,8 +329,13 @@ class _$FavouritesBuildableStateImpl implements _FavouritesBuildableState {
       cardProductCount,
       const DeepCollectionEquality().hash(_likeIds),
       infoTabIndex,
+      loading,
+      success,
+      failure,
       descriptionIsExpandable,
-      characteristicsIsExpandable);
+      characteristicsIsExpandable,
+      const DeepCollectionEquality().hash(_favourites),
+      errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -247,8 +351,13 @@ abstract class _FavouritesBuildableState implements FavouritesBuildableState {
       final int cardProductCount,
       final List<String> likeIds,
       final int infoTabIndex,
+      final bool loading,
+      final bool success,
+      final bool failure,
       final bool descriptionIsExpandable,
-      final bool characteristicsIsExpandable}) = _$FavouritesBuildableStateImpl;
+      final bool characteristicsIsExpandable,
+      final List<MobileProduct>? favourites,
+      final String? errorMessage}) = _$FavouritesBuildableStateImpl;
 
   @override
   int get imageIndex;
@@ -259,9 +368,19 @@ abstract class _FavouritesBuildableState implements FavouritesBuildableState {
   @override
   int get infoTabIndex;
   @override
+  bool get loading;
+  @override
+  bool get success;
+  @override
+  bool get failure;
+  @override
   bool get descriptionIsExpandable;
   @override
   bool get characteristicsIsExpandable;
+  @override
+  List<MobileProduct>? get favourites;
+  @override
+  String? get errorMessage;
   @override
   @JsonKey(ignore: true)
   _$$FavouritesBuildableStateImplCopyWith<_$FavouritesBuildableStateImpl>

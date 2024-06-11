@@ -16,7 +16,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
   late final PageController pageController;
 
   // late final DemoProductModel product;
-  late List<DemoProductModel> products;
+  // late List<DemoProductModel> products;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
           ],
           builder: (context, state) {
             if (state.loading) {
-              return LoaderWidget();
+              return const LoaderWidget();
             }
             if (state.failed) {
               return Padding(
@@ -101,6 +101,26 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                 FoodBannerViewWidget(
                   banners: banners![0],
                 ),
+                // ListView.separated(
+                //   separatorBuilder: (context, index) => FoodBannerViewWidget(
+                //     banners: banners![index],
+                //   ),
+                //   itemCount: 20,
+                //   itemBuilder: (context, index) => FoodProductsViewWidget(
+                //       title: products[index].name ?? "",
+                //       smallButton: () {},
+                //       leftBtnTapped: () {
+                //         Navigator.push(
+                //           context,
+                //           MaterialPageRoute(
+                //             builder: (context) => AllProdact(
+                //               products[0],
+                //             ),
+                //           ),
+                //         );
+                //       },
+                //       products: products[index].products!),
+                // ),
 
                 AppUtils.kGap20,
                 ...List.generate(
@@ -126,7 +146,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                       : AppUtils.kGap,
                 ),
 
-                // AppUtils.kGap24,
+                AppUtils.kGap24,
                 // FoodProductsViewWidget(
                 //   title: products[1].name ?? "",
                 //   smallButton: () {},
@@ -164,7 +184,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                   banners: banners![1],
                 ),
 
-                // AppUtils.kGap24,
+                AppUtils.kGap24,
               ],
             );
           },

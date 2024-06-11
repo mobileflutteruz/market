@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:injectable/injectable.dart';
+import 'package:karmango/domain/model/mobile/cart_product/cart_product.dart';
 import '../../core/constants/constants.dart';
 import '../../data/api/api.dart';
 import '../model/mobile/category/category.dart';
@@ -25,6 +26,15 @@ class DataRepository {
     return  CategoryModel.fromJson(data);
   }
 
+ Future getCategoryProduct(int id) async {
+    final response = await api.getWithToken(path: Urls.productsByCategory(id));
+    var data = jsonDecode(response.body);
+    return  CategoryModel .fromJson(data);
+  }
+
+
+
+
 
   /// Product
    Future getProduct(int id) async {
@@ -34,7 +44,7 @@ class DataRepository {
     return
       ProductDataModel.fromJson(data);
   }
-
+    
   /// Favorites
   Future<List<MobileProduct>?> getFavorites() async {
     final response = await api.getWithToken(path: Urls.favorite);

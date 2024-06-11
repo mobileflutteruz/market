@@ -131,8 +131,8 @@ class FoodProductItemWidget extends StatelessWidget {
             ),
             // AppUtils.kGap8,
             Text(
-                "product_type",
-              //! product_type ni qoshish kerak
+                 product!.product_type ?? '',
+             
               // '${product.}',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,

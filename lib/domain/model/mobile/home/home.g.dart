@@ -94,9 +94,10 @@ _$MobileProductImpl _$$MobileProductImplFromJson(Map<String, dynamic> json) =>
       name_ru: json['name_ru'] as String?,
       name_en: json['name_en'] as String?,
       status: json['status'] as String?,
-      discount: (json['discount'] as num?)?.toDouble(),
+      discount: (json['discount'] as num?)?.toInt(),
       price: (json['price'] as num?)?.toInt(),
       image: json['image'] as String?,
+      product_type: json['product_type'] as String?,
       price_to_pay: (json['price_to_pay'] as num?)?.toInt(),
     );
 
@@ -110,5 +111,6 @@ Map<String, dynamic> _$$MobileProductImplToJson(_$MobileProductImpl instance) =>
       'discount': instance.discount,
       'price': instance.price,
       'image': instance.image,
+      'product_type': instance.product_type,
       'price_to_pay': instance.price_to_pay,
     };

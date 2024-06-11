@@ -1,4 +1,3 @@
-import '../review/review_model.dart';
 
 class DemoProductModel {
   final int id;
@@ -11,7 +10,7 @@ class DemoProductModel {
   final int avialableProductCount;
   String description;
   final Map<String, String> characteristicsProduct;
-  final ReviewsModel reviews;
+
   final int? discountPercent;
   final bool isNew;
 
@@ -27,7 +26,7 @@ class DemoProductModel {
     this.avialableProductCount = 0,
     required this.description,
     this.characteristicsProduct = const {},
-    this.reviews = const  ReviewsModel(),
+
     this.discountPercent,
     this.isNew=false,
 
@@ -55,7 +54,7 @@ class DemoProductModel {
       avialableProductCount: json['availableProductCount'],
       description: json['description'],
       characteristicsProduct: characteristicsProduct,
-      reviews: ReviewsModel.fromJson(json['reviews']),
+
       discountPercent: json['discountPercent'],
       isNew: json['isNew'],
     );
@@ -73,7 +72,7 @@ class DemoProductModel {
       'availableProductCount': avialableProductCount,
       'description': description,
       'characteristicsProduct': characteristicsProduct,
-      'reviews': reviews.toJson(),
+
       'discountPercent': discountPercent,
       'isNew': isNew,
     };

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:karmango/domain/model/mobile/home/home.dart';
+import 'package:karmango/domain/repository/data_repository.dart';
 import '../../../domain/repository/main_repository.dart';
 import '../../components/buildable_cubit.dart';
 
@@ -8,19 +10,37 @@ part 'favourites_state.dart';
 part 'favourites_cubit.freezed.dart';
 
 @Injectable()
-class FavouritesCubit
-    extends BuildableCubit<FavouritesState, FavouritesBuildableState> {
-  FavouritesCubit(this._repository) : super(const FavouritesBuildableState()) {
-    getLikeIds();
+class FavouritesCubit extends BuildableCubit<FavouritesState, FavouritesBuildableState> {
+  FavouritesCubit(this._repository, this._dataRepository) : super(const FavouritesBuildableState()) {
+    init();
   }
 
   final MainRepository _repository;
+  final DataRepository _dataRepository;
 
-  init() async {
+  Future<void> init() async {
     await getLikeIds();
+    await fetchFavorites();
   }
 
-  changeImageIndex(int index) {
+  Future<void> fetchFavorites() async {
+    try {
+      final favourites = await _dataRepository.getFavorites();
+      build(
+        (buildable) => buildable.copyWith(
+          favourites: favourites,
+        ),
+      );
+    } catch (e) {
+      build(
+        (buildable) => buildable.copyWith(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
+  void changeImageIndex(int index) {
     build(
       (buildable) => buildable.copyWith(
         imageIndex: index,
@@ -28,25 +48,7 @@ class FavouritesCubit
     );
   }
 
-  cardAddProduct() {
-    build(
-      (buildable) => buildable.copyWith(
-          cardProductCount: buildable.cardProductCount == 5
-              ? 5
-              : buildable.cardProductCount + 1),
-    );
-  }
-
-  cardReduceProduct() {
-    build(
-      (buildable) => buildable.copyWith(
-          cardProductCount: buildable.cardProductCount == 0
-              ? 0
-              : buildable.cardProductCount - 1),
-    );
-  }
-
-  setLikeId(int likeId) async {
+   setLikeId(int likeId) async {
     List<String> ids = await _repository.getLikeIds() ?? [];
     debugPrint("List<String> ids = await _repository.getLikeIds() ?? [] $ids");
 
@@ -65,7 +67,7 @@ class FavouritesCubit
     debugPrint("$ids");
   }
 
-  getLikeIds() async {
+  Future<void> getLikeIds() async {
     List<String> ids = await _repository.getLikeIds() ?? [];
 
     build(
@@ -76,27 +78,11 @@ class FavouritesCubit
     debugPrint("$ids");
   }
 
-  changeTabIndex(int index) {
+  void changeTabIndex(int index) {
     build(
       (buildable) => buildable.copyWith(
         infoTabIndex: index,
       ),
     );
-  }
-
-  changeDescriptionExpandable() {
-    build(
-      (buildable) => buildable.copyWith(
-          descriptionIsExpandable: !buildable.descriptionIsExpandable),
-    );
-  }
-
-  changeCharacteristicsExpandable() {
-    build(
-      (buildable) => buildable.copyWith(
-          characteristicsIsExpandable: !buildable.characteristicsIsExpandable),
-    );
-    print(
-        "characteristicsIsExpandable: ${buildable.characteristicsIsExpandable}");
   }
 }

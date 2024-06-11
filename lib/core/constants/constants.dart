@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 part 'text_styles.dart';
 
-part 'navigator_const.dart';
+
 
 part 'icon_constants.dart';
 
@@ -17,8 +17,8 @@ sealed class Constants {
   Constants._();
 
   /// test
-  static const baseUrl = 'http://karmango.shop.dukan.uz/api/';
-  static const imageUrl = 'http://karmango.shop.dukan.uz/api/';
+  static const baseUrl = 'karmango.shop.dukan.uz/api';
+  static const imageUrl = 'karmango.shop.dukan.uz/api/';
 
   // static const authUrl = 'https://api.auth.u-code.io';
 
@@ -48,24 +48,46 @@ sealed class Urls {
   static const String changePassword = "/change-password";
   static const String logout = "/logout";
   static const String resendActivation = "/resend-activation";
-  static const String getCode = "/get-code";
+  static const String getCode = "/insert-code";
   static const String guestEnters = "/guest/enters";
+  static const String sendSms = "/Send-sms";
+  static const String refreshToken = "/refresh/token";
+  static const String insertCode = "/insert-code";
 
   /// Product
   static const String home = '/HomePage';
   static const String categories = '/category';
-  static  String productsByCategory(int categoryId) => '/productsByCategory/$categoryId';
+  static String productsByCategory(int categoryId) =>
+      '/productsByCategory/$categoryId';
   static const String favorite = '/favorite';
   static const String createFavorite = '/favorite/create';
 
   static String deleteFavorite(int productId) => '/favorite/delete/$productId';
 
   static String product(int productId) => '/productPage/$productId';
+  static String topProduct(int productId) => '/topProduct/$productId';
   static String allCarts = '/cart';
   static String createCart = '/cart/store';
   static String deleteCart({
     required int productId,
     required int attributeId,
   }) =>
-      '/cart/delete/$productId/$attributeId';
+      '/cart/delete/$productId';
+
+  static String search() => '/search';
+  static String searchCreate() => '/search/create';
+  static String addCard() => '/add/Card';
+  static String cardDetails() => '/card/Details';
+  static String myCards() => '/myCards';
+  static String changePersonalInfo() => '/change-personal-info';
+  static String completeUserInfo(int number) => '/complete-user-info/$number';
+  static String myOrders() => '/myOrder';
+  static String myOrderDetail(int orderId) => '/my-order-detail/$orderId';
+  static String orderCreate() => '/order/create';
+  static String paymentCreateTransaction() => '/payment/create/transaction';
+  static String paymentCompleteTransaction() => '/payment/complete/transaction';
+  static String orderHistory() => '/order-history';
+  static String orderDetail(int orderDetailId) =>
+      '/order-detail/$orderDetailId';
+  // static String
 }

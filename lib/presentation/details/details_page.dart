@@ -4,18 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/core/extension/context_extension.dart';
-import 'package:karmango/domain/model/mobile/product/product.dart';
 import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/presentation/components/image_view.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
 import 'package:karmango/presentation/details/cubit/details_cubit.dart';
-import 'package:karmango/presentation/home/components/food_similar.dart';
-import 'package:karmango/presentation/home/cubit/food_home_cubit.dart';
 import 'package:share/share.dart';
 import '../../core/constants/constants.dart';
 import '../../core/utils/app_layouts.dart';
 import '../../core/utils/utils.dart';
-import '../home/components/food_products_similar_widget .dart';
+
 
 class DetailsPage extends StatefulWidget {
   final int? productId;
@@ -246,9 +243,9 @@ class _DetailsPageState extends State<DetailsPage> {
                                       children: [
                                         GestureDetector(
                                           onTap: () {
-                                            BlocProvider.of<FoodHomeCubit>(
-                                                    context)
-                                                .decrement();
+                                            // BlocProvider.of<FoodHomeCubit>(
+                                            //         context)
+                                            //     .decrement();
                                           },
                                           child: buildIconButton(
                                             context,
@@ -281,9 +278,9 @@ class _DetailsPageState extends State<DetailsPage> {
                                     )
                                   : GestureDetector(
                                       onTap: () {
-                                        context
-                                            .read<FoodHomeCubit>()
-                                            .decrement();
+                                        // context
+                                        //     .read<FoodHomeCubit>()
+                                        //     .decrement();
 
                                         // Navigator.push(
                                         //   context,

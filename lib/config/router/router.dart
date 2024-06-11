@@ -1,5 +1,8 @@
+import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
 import 'package:karmango/presentation/auth/change_password/components/const_comp.dart';
+import 'package:karmango/presentation/auth/login/food_login_page.dart';
+import 'package:karmango/presentation/auth/splash/food_splash_view.dart';
 import 'package:karmango/presentation/auth/widgets/all_components.dart';
 import 'package:karmango/presentation/favourites/food_favourites_page.dart';
 import 'package:karmango/presentation/food_basket/food_basket_page.dart';
@@ -22,8 +25,6 @@ import 'package:karmango/presentation/notification/notification_page.dart';
 import 'package:karmango/presentation/order/food_order_view.dart';
 import 'package:karmango/presentation/search/food_search_page.dart';
 import 'package:flutter/material.dart';
-import '../../core/constants/constants.dart';
-
 
 
 class OngenerateRoutes {
@@ -36,15 +37,18 @@ class OngenerateRoutes {
   Route? routeGenerator(RouteSettings settings) {
     var args = settings.arguments;
     switch (settings.name) {
-                      
-
       ///Food
       case FoodNavigatorConst.foodLoginScreen:
-        return sampleRoute(const FoodLoginPage());
+        return sampleRoute(FoodLoginPage());
       case FoodNavigatorConst.foodPhoneInput:
         return sampleRoute(const FoodPhoneInput());
       case FoodNavigatorConst.foodOtpScreen:
-        return sampleRoute(const FoodOtpScreen());
+       final phoneNumber = settings.arguments as String;
+        return sampleRoute(
+          FoodOtpScreen(
+            phoneNumber: phoneNumber,
+          ),
+        );
       case FoodNavigatorConst.foodRegisterScreen:
         return sampleRoute(const FoodRegisterPage());
       case FoodNavigatorConst.foodReOtpScreen:
@@ -52,7 +56,7 @@ class OngenerateRoutes {
       case FoodNavigatorConst.foodChangePassword:
         return sampleRoute(const FoodChangePasswordPage());
       case FoodNavigatorConst.foodSplash:
-        return sampleRoute(const FoodSplashView());
+        return sampleRoute(FoodSplashView());
       case FoodNavigatorConst.foodHome:
         return sampleRoute(const FoodHomePage());
       case FoodNavigatorConst.foodSearchPage:
@@ -92,7 +96,7 @@ class OngenerateRoutes {
       case FoodNavigatorConst.foodProfileView:
         return sampleRoute(const FoodProfileView());
       case FoodNavigatorConst.allProducts:
-        return sampleRoute( AllProdact((args  as MobileDashBoard) ));
+        return sampleRoute(AllProdact((args as MobileDashBoard)));
     }
     return null;
   }

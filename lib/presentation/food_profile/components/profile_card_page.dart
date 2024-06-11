@@ -1,6 +1,7 @@
 
 
 import 'package:karmango/core/constants/constants.dart';
+import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/presentation/auth/widgets/common_food_button.dart';
 
 import 'package:karmango/presentation/components/buildable.dart';

@@ -21,103 +21,98 @@ class TokenPreference {
   final String _furnitureInitScreen = "furnitureInitScreen";
 
   Future<bool> setGuestUser(String value) async {
-    final result = await localeDb.setString(_guest, value);
-    return result;
+    return await localeDb.setString(_guest, value);
   }
 
-  getGuestUser() async {
+  Future<String?> getGuestUser() async {
     return localeDb.getString(_guest);
   }
 
-  setUser(Map<String, dynamic> json) async {
+  Future<void> setUser(Map<String, dynamic> json) async {
     String user = jsonEncode(UserModel.fromJson(json));
-    localeDb.setString(_user, user);
+    await localeDb.setString(_user, user);
   }
 
-  getUser() async {
-    Map<String, dynamic> json =
-    jsonDecode(localeDb.getString(_user)!);
-    var user = UserModel.fromJson(json);
-
-    return user;
+  Future<UserModel?> getUser() async {
+    String? userString = localeDb.getString(_user);
+    if (userString != null) {
+      Map<String, dynamic> json = jsonDecode(userString);
+      return UserModel.fromJson(json);
+    }
+    return null;
   }
 
-  set(String value) async {
+  Future<void> set(String value) async {
     await localeDb.setString(_key, value);
   }
 
-  get() async {
+  Future<String?> get() async {
     return localeDb.getString(_key);
   }
 
-
   /// Mobile Shop Product Favourites
-  getFavourites() async {
+  Future<List<String>?> getFavourites() async {
     return localeDb.getStringList(_favourites);
   }
 
-  setFavourites({required List<String> values}) async {
+  Future<void> setFavourites({required List<String> values}) async {
     await localeDb.setStringList(_favourites, values);
   }
 
-  clearFavourites() async {
+  Future<void> clearFavourites() async {
     await localeDb.remove(_favourites);
   }
 
   /// Furniture Shop Product Favourites
-  getFurnitureFavourites() async {
+  Future<List<String>?> getFurnitureFavourites() async {
     return localeDb.getStringList(_furnitureFavourites);
   }
 
-  setFurnitureFavourites({required List<String> values}) async {
+  Future<void> setFurnitureFavourites({required List<String> values}) async {
     await localeDb.setStringList(_furnitureFavourites, values);
   }
 
-  clearFurnitureFavourites() async {
+  Future<void> clearFurnitureFavourites() async {
     await localeDb.remove(_furnitureFavourites);
   }
 
-
-
-
-
-  setBaskets({required String value}) async {
+  Future<void> setBaskets({required String value}) async {
     await localeDb.setString(_baskets, value);
   }
 
-  getBaskets() async {
+  Future<String?> getBaskets() async {
     return localeDb.getString(_baskets);
   }
 
-  setMyOrder({required String value}) async {
+  Future<void> setMyOrder({required String value}) async {
     await localeDb.setString(_baskets, value);
   }
 
-  getMyOrder() async {
+  Future<String?> getMyOrder() async {
     return localeDb.getString(_baskets);
   }
 
-  clear() async {
+  Future<void> clear() async {
     await localeDb.remove(_key);
   }
 
-  clearUser() async {
+  Future<void> clearUser() async {
     await localeDb.remove(_user);
   }
 
-  setMobileInitScreen(bool value) async {
+  Future<void> setMobileInitScreen(bool value) async {
     await localeDb.setBool(_mobileInitScreen, value);
   }
 
-  getMobileInitScreen() async {
+  Future<bool?> getMobileInitScreen() async {
     return localeDb.getBool(_mobileInitScreen);
   }
 
-  setFurnitureInitScreen(bool value) async {
+  Future<void> setFurnitureInitScreen(bool value) async {
     await localeDb.setBool(_furnitureInitScreen, value);
   }
 
-  getFurnitureInitScreen() async {
+  Future<bool?> getFurnitureInitScreen() async {
     return localeDb.getBool(_furnitureInitScreen);
   }
 }

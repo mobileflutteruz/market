@@ -1,10 +1,10 @@
-import 'package:karmango/domain/repository/auth_repository.dart';
-import 'package:karmango/presentation/components/buildable_cubit.dart';
+import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:karmango/domain/repository/auth_repository.dart';
+import 'package:karmango/presentation/components/buildable_cubit.dart';
 
 part 'login_state.dart';
-
 part 'login_cubit.freezed.dart';
 
 @Injectable()
@@ -20,7 +20,6 @@ class LoginCubit extends BuildableCubit<LoginState, LoginBuildableState> {
       (buildable) => buildable.copyWith(loading: true, failure: false),
     );
     try {
-
       await repo.login(
         phone: phone,
         password: password,
@@ -47,4 +46,31 @@ class LoginCubit extends BuildableCubit<LoginState, LoginBuildableState> {
   }
 
   logout() async {}
+
+
+  loginAsGuest() {
+    build(
+      (buildable) => buildable.copyWith(
+        loading: true,
+      ),
+    );
+    try {
+      repo.login(phone: "998977731573", password: "123456");
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          success: true,
+          message:"Success"
+        ),
+      );
+    } catch (e) {
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          failure: true,
+          message:"Error"
+        ),
+      );
+    }
+  }
 }

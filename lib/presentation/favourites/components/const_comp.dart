@@ -19,5 +19,5 @@ import 'package:flutter/material.dart';
 import '../../../core/constants/constants.dart';
 import '../../../../core/utils/utils.dart';
 
-part "../food_favourites_view.dart";
+// part "../food_favourites_view.dart";
 

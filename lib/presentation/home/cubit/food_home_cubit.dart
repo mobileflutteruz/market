@@ -25,13 +25,7 @@ class FoodHomeCubit
 
   final MainRepository _repository;
 
-  increment() {
-    build((state) => FoodHomeBuildableState(count: state.count + 1));
-  }
 
-  decrement() {
-    build((state) => FoodHomeBuildableState(count: state.count - 1));
-  }
 
   // shareProduct(CategoryModel product) {
   //   final String text = 'Check out this amazing product: ${product.name}!';
