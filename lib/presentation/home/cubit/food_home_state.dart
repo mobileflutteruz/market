@@ -29,9 +29,3 @@ class FoodHomeBuildableState extends FoodHomeState
 
   }) = _FoodHomeBuildableState;
 }
-
-class Counter extends FoodHomeState{
-    final int count;
-
-  Counter({required this.count});
-}

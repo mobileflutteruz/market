@@ -101,9 +101,11 @@ class AuthRepository {
       "uuid": uid,
       "model": uid,
     };
-    //  print("Sending request with params: $params");
 
-    final response = await _api.post(path: 'guest/enters', body: params);
+    log.logDebug("Sending request with params: $params");
+
+    final response =
+        await _api.postWithToken(path: Urls.guestEnters, body: params);
     await _onAuthResponseGuest(response);
   }
 
@@ -113,9 +115,9 @@ class AuthRepository {
     if (response.statusCode == 200 && body["token"] != null) {
       // Handle the token (save it, use it, etc.)
 
-      log.logDebug("Token: ${body["token"]}");
+      // log.logDebug("Token: ${body["token"]}");
     } else {
-      log.logDebug(body["message"] ?? 'Unknown error');
+      // log.logDebug(body["message"] ?? 'Unknown error');
       // throw Exception(body["message"] ?? 'Unknown error');
     }
   }
@@ -124,8 +126,6 @@ class AuthRepository {
     final response = await _authApi.verfy(removePlus(phone), code);
     await _onAuthResponse(response);
   }
-
-  
 
   // _onAuthResponse(http.Response response) async {
   //   final body = jsonDecode(response.body);

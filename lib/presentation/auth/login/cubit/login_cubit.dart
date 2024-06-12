@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/domain/repository/auth_repository.dart';
 import 'package:karmango/presentation/components/buildable_cubit.dart';
 
@@ -48,27 +50,21 @@ class LoginCubit extends BuildableCubit<LoginState, LoginBuildableState> {
   logout() async {}
 
 
-  loginAsGuest() {
-    build(
-      (buildable) => buildable.copyWith(
-        loading: true,
-      ),
-    );
+Future<void> createGuest(BuildContext context) async {
+    build((buildable) =>
+        buildable.copyWith(loading: true, failure: false, success: false));
     try {
-      repo.login(phone: "998977731573", password: "123456");
-      build(
-        (buildable) => buildable.copyWith(
-          loading: false,
-          success: true,
-          message:"Success"
-        ),
-      );
+      await repo.loginAsGuest();
+      Navigator.pushNamedAndRemoveUntil(
+          context, FoodNavigatorConst.foodHome, (route) => false);
+      build((buildable) =>
+          buildable.copyWith(loading: false, success: true, failure: false));
     } catch (e) {
       build(
         (buildable) => buildable.copyWith(
           loading: false,
-          failure: true,
-          message:"Error"
+          failure: true, // Ensure failure is set to true on error
+          error: e.toString(), // Capture the error message
         ),
       );
     }

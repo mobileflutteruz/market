@@ -120,7 +120,7 @@ class _FoodLoginView extends State<FoodLoginView> {
                         ),
                         TextButton(
                           onPressed: () {
-                            context.read<LoginCubit>().loginAsGuest();
+                            context.read<LoginCubit>().createGuest(context);
                           },
                           child: Text(context.l10n.next),
                         ),

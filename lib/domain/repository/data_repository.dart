@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:injectable/injectable.dart';
-import 'package:karmango/domain/model/mobile/cart_product/cart_product.dart';
 import '../../core/constants/constants.dart';
 import '../../data/api/api.dart';
 import '../model/mobile/category/category.dart';
@@ -18,7 +17,7 @@ class DataRepository {
     var data = jsonDecode(response.body);
     return MobileHomeProducts.fromJson(data);
   }
-  
+
 
   Future getCategories() async {
     final response = await api.getWithToken(path: Urls.categories);

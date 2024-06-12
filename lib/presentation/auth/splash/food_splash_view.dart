@@ -53,7 +53,7 @@ class _FoodSplashViewState extends State<FoodSplashView> {
       child: BlocBuilder<SplashCubit, SplashState>(
         builder: (context, state) {
           if (state.loading) {
-            return Scaffold(
+            return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
               ),

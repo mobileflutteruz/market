@@ -1,4 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:karmango/config/di/injection.dart';
+import 'package:karmango/config/router/router.dart';
+import 'package:karmango/config/theme/main_theme.dart';
 import 'package:karmango/core/constants/navigator_const.dart';
+import 'package:karmango/core/l10n/app_localizations.dart';
+import 'package:karmango/core/utils/app_options.dart';
 import 'package:karmango/data/preferences/locale_data_source.dart';
 import 'package:karmango/presentation/auth/login/cubit/login_cubit.dart';
 import 'package:karmango/presentation/auth/otp/cubit/otp_cubit.dart';
@@ -11,15 +19,6 @@ import 'package:karmango/presentation/food_category/cubit/category_cubit.dart';
 import 'package:karmango/presentation/food_profile/cubit/food_profile_cubit.dart';
 import 'package:karmango/presentation/home/cubit/food_home_cubit.dart';
 import 'package:karmango/presentation/my_order/cubit/food_my_order_cubit.dart';
-import 'package:karmango/core/utils/app_options.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:karmango/config/di/injection.dart';
-import 'package:karmango/config/router/router.dart';
-import 'package:karmango/config/theme/main_theme.dart';
-import 'core/constants/constants.dart';
-import 'core/l10n/app_localizations.dart';
 
 import 'dart:io';
 
@@ -53,7 +52,7 @@ Future<void> main() async {
         BlocProvider(create: (context) => locator<DetailsCubit>()),
         BlocProvider(create: (context) => locator<SplashCubit>()),
         BlocProvider(create: (context) => locator<OtpCubit>()),
-        BlocProvider(create: (context) => locator<RegisterCubit>())
+        BlocProvider(create: (context) => locator<RegisterCubit>()),
       ],
       child: const MyApp(),
     ),
