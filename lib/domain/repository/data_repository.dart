@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:injectable/injectable.dart';
+import 'package:karmango/core/constants/logger_service.dart';
+
 import '../../core/constants/constants.dart';
 import '../../data/api/api.dart';
 import '../model/mobile/category/category.dart';
@@ -11,39 +13,42 @@ class DataRepository {
   final Api api;
 
   DataRepository(this.api);
+  LoggingService log = LoggingService();
 
   Future getHomeProducts() async {
-    final response = await api.getWithToken(path: Urls.home);
+    final response = await api.post(path: Urls.home);
     var data = jsonDecode(response.body);
+    log.logDebug("GET HOME PRODUCTS: $data");
     return MobileHomeProducts.fromJson(data);
   }
 
+  // fetchProducts(int page, int size) async {
+  //   final response = await api.getProducts(page, size);
+  //   var data = jsonDecode(response.body);
+  //   return HomeProductModel.fromJson(data);
+  // }
 
   Future getCategories() async {
-    final response = await api.getWithToken(path: Urls.categories);
+    final response = await api.get(path: "category");
     var data = jsonDecode(response.body);
-    return  CategoryModel.fromJson(data);
+    log.logDebug("GET CATEGORY PRODUCTS: $data");
+    return CategoryModel.fromJson(data);
   }
 
- Future getCategoryProduct(int id) async {
+  Future getCategoryProduct(int id) async {
     final response = await api.getWithToken(path: Urls.productsByCategory(id));
     var data = jsonDecode(response.body);
-    return  CategoryModel .fromJson(data);
+    return CategoryModel.fromJson(data);
   }
 
-
-
-
-
   /// Product
-   Future getProduct(int id) async {
+  Future getProduct(int id) async {
     final response = await api.getWithToken(path: Urls.product(id));
     var data = jsonDecode(response.body);
 
-    return
-      ProductDataModel.fromJson(data);
+    return ProductDataModel.fromJson(data);
   }
-    
+
   /// Favorites
   Future<List<MobileProduct>?> getFavorites() async {
     final response = await api.getWithToken(path: Urls.favorite);
@@ -78,6 +83,7 @@ class DataRepository {
         .map((e) => MobileProduct.fromJson(e))
         .toList();
   }
+
   createCart({
     required int productId,
     required int attributeId,
@@ -100,6 +106,4 @@ class DataRepository {
     var data = jsonDecode(response.body);
     return data["status"];
   }
-
-
 }

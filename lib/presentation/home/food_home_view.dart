@@ -36,7 +36,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
           ],
           builder: (context, state) {
             if (state.loading) {
-              return const LoaderWidget();
+              return Center(child: const LoaderWidget());
             }
             if (state.failed) {
               return Padding(

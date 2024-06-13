@@ -10,7 +10,6 @@ import 'package:karmango/presentation/home/cubit/food_home_cubit.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../../../../core/utils/utils.dart';
 
-
 class AllProdact extends StatelessWidget {
   const AllProdact(
     this.products, {
@@ -22,14 +21,9 @@ class AllProdact extends StatelessWidget {
   Widget build(BuildContext context) {
     int crossAxisCount = (AppLayout.getScreenWidth(context) / 187.5).floor();
 
-    return Buildable<FoodHomeCubit, FoodHomeState,
-        FoodHomeBuildableState>(
-      properties: (buildable) => [
-        buildable.likeIds,
-        buildable.homeProducts
-      ],
+    return Buildable<FoodHomeCubit, FoodHomeState, FoodHomeBuildableState>(
+      properties: (buildable) => [buildable.likeIds, buildable.homeProducts],
       builder: (context, state) {
-      
         return SafeArea(
           child: Scaffold(
             appBar: CommonAppBar(
@@ -64,17 +58,17 @@ class AllProdact extends StatelessWidget {
                           isLiked: false,
                           //  state.likeIds
                           //     .contains(products[index].id.toString()),
-                          product:  products?.products![index],
+                          product: products?.products![index],
                           onTap: () {
                             showModalView(
                               context,
-                               products!.products![index],
+                              products!.products![index],
                             );
                           },
                         ),
                       );
                     },
-                    itemCount:  products?.products!.length,
+                    itemCount: products?.products!.length,
                   ),
                 )
               ],
@@ -85,11 +79,11 @@ class AllProdact extends StatelessWidget {
     );
   }
 
-  Future<dynamic> showModalView(
-      BuildContext context, MobileProduct? product) {
+  Future<dynamic> showModalView(BuildContext context, MobileProduct? product) {
     return showCupertinoModalBottomSheet(
-        expand: true,
-        context: context,
-        builder: (context) => DetailsPage(productId: product!.id!),);
+      expand: true,
+      context: context,
+      builder: (context) => DetailsPage(productId: product!.id!),
+    );
   }
 }

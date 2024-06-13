@@ -19,9 +19,9 @@ mixin _$CategoryBuildable {
   bool get loading => throw _privateConstructorUsedError;
   bool get success => throw _privateConstructorUsedError;
   bool get failed => throw _privateConstructorUsedError;
-  CategoryModel? get category => throw _privateConstructorUsedError;
-  CartProductModel? get cartProductModel => throw _privateConstructorUsedError;
-  Product? get product => throw _privateConstructorUsedError;
+  List<CategoryModel>? get category =>
+      throw _privateConstructorUsedError; // CartProductModel? cartProductModel,
+// Product? product,
   dynamic get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -39,14 +39,8 @@ abstract class $CategoryBuildableCopyWith<$Res> {
       {bool loading,
       bool success,
       bool failed,
-      CategoryModel? category,
-      CartProductModel? cartProductModel,
-      Product? product,
+      List<CategoryModel>? category,
       dynamic error});
-
-  $CategoryModelCopyWith<$Res>? get category;
-  $CartProductModelCopyWith<$Res>? get cartProductModel;
-  $ProductCopyWith<$Res>? get product;
 }
 
 /// @nodoc
@@ -66,8 +60,6 @@ class _$CategoryBuildableCopyWithImpl<$Res, $Val extends CategoryBuildable>
     Object? success = null,
     Object? failed = null,
     Object? category = freezed,
-    Object? cartProductModel = freezed,
-    Object? product = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -86,56 +78,12 @@ class _$CategoryBuildableCopyWithImpl<$Res, $Val extends CategoryBuildable>
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as CategoryModel?,
-      cartProductModel: freezed == cartProductModel
-          ? _value.cartProductModel
-          : cartProductModel // ignore: cast_nullable_to_non_nullable
-              as CartProductModel?,
-      product: freezed == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as Product?,
+              as List<CategoryModel>?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as dynamic,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CategoryModelCopyWith<$Res>? get category {
-    if (_value.category == null) {
-      return null;
-    }
-
-    return $CategoryModelCopyWith<$Res>(_value.category!, (value) {
-      return _then(_value.copyWith(category: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CartProductModelCopyWith<$Res>? get cartProductModel {
-    if (_value.cartProductModel == null) {
-      return null;
-    }
-
-    return $CartProductModelCopyWith<$Res>(_value.cartProductModel!, (value) {
-      return _then(_value.copyWith(cartProductModel: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ProductCopyWith<$Res>? get product {
-    if (_value.product == null) {
-      return null;
-    }
-
-    return $ProductCopyWith<$Res>(_value.product!, (value) {
-      return _then(_value.copyWith(product: value) as $Val);
-    });
   }
 }
 
@@ -151,17 +99,8 @@ abstract class _$$CategoryBuildableImplCopyWith<$Res>
       {bool loading,
       bool success,
       bool failed,
-      CategoryModel? category,
-      CartProductModel? cartProductModel,
-      Product? product,
+      List<CategoryModel>? category,
       dynamic error});
-
-  @override
-  $CategoryModelCopyWith<$Res>? get category;
-  @override
-  $CartProductModelCopyWith<$Res>? get cartProductModel;
-  @override
-  $ProductCopyWith<$Res>? get product;
 }
 
 /// @nodoc
@@ -179,8 +118,6 @@ class __$$CategoryBuildableImplCopyWithImpl<$Res>
     Object? success = null,
     Object? failed = null,
     Object? category = freezed,
-    Object? cartProductModel = freezed,
-    Object? product = freezed,
     Object? error = freezed,
   }) {
     return _then(_$CategoryBuildableImpl(
@@ -197,17 +134,9 @@ class __$$CategoryBuildableImplCopyWithImpl<$Res>
           : failed // ignore: cast_nullable_to_non_nullable
               as bool,
       category: freezed == category
-          ? _value.category
+          ? _value._category
           : category // ignore: cast_nullable_to_non_nullable
-              as CategoryModel?,
-      cartProductModel: freezed == cartProductModel
-          ? _value.cartProductModel
-          : cartProductModel // ignore: cast_nullable_to_non_nullable
-              as CartProductModel?,
-      product: freezed == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as Product?,
+              as List<CategoryModel>?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -223,10 +152,9 @@ class _$CategoryBuildableImpl implements _CategoryBuildable {
       {this.loading = false,
       this.success = false,
       this.failed = false,
-      this.category,
-      this.cartProductModel,
-      this.product,
-      this.error});
+      final List<CategoryModel>? category,
+      this.error})
+      : _category = category;
 
   @override
   @JsonKey()
@@ -237,18 +165,24 @@ class _$CategoryBuildableImpl implements _CategoryBuildable {
   @override
   @JsonKey()
   final bool failed;
+  final List<CategoryModel>? _category;
   @override
-  final CategoryModel? category;
-  @override
-  final CartProductModel? cartProductModel;
-  @override
-  final Product? product;
+  List<CategoryModel>? get category {
+    final value = _category;
+    if (value == null) return null;
+    if (_category is EqualUnmodifiableListView) return _category;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+// CartProductModel? cartProductModel,
+// Product? product,
   @override
   final dynamic error;
 
   @override
   String toString() {
-    return 'CategoryBuildable(loading: $loading, success: $success, failed: $failed, category: $category, cartProductModel: $cartProductModel, product: $product, error: $error)';
+    return 'CategoryBuildable(loading: $loading, success: $success, failed: $failed, category: $category, error: $error)';
   }
 
   @override
@@ -259,11 +193,7 @@ class _$CategoryBuildableImpl implements _CategoryBuildable {
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.success, success) || other.success == success) &&
             (identical(other.failed, failed) || other.failed == failed) &&
-            (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.cartProductModel, cartProductModel) ||
-                other.cartProductModel == cartProductModel) &&
-            (identical(other.product, product) || other.product == product) &&
+            const DeepCollectionEquality().equals(other._category, _category) &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
@@ -273,9 +203,7 @@ class _$CategoryBuildableImpl implements _CategoryBuildable {
       loading,
       success,
       failed,
-      category,
-      cartProductModel,
-      product,
+      const DeepCollectionEquality().hash(_category),
       const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
@@ -291,9 +219,7 @@ abstract class _CategoryBuildable implements CategoryBuildable {
       {final bool loading,
       final bool success,
       final bool failed,
-      final CategoryModel? category,
-      final CartProductModel? cartProductModel,
-      final Product? product,
+      final List<CategoryModel>? category,
       final dynamic error}) = _$CategoryBuildableImpl;
 
   @override
@@ -303,12 +229,9 @@ abstract class _CategoryBuildable implements CategoryBuildable {
   @override
   bool get failed;
   @override
-  CategoryModel? get category;
-  @override
-  CartProductModel? get cartProductModel;
-  @override
-  Product? get product;
-  @override
+  List<CategoryModel>? get category;
+  @override // CartProductModel? cartProductModel,
+// Product? product,
   dynamic get error;
   @override
   @JsonKey(ignore: true)

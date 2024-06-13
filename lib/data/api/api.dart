@@ -13,7 +13,7 @@ class Api {
 
   Api(this._token);
 
-  final _host = "karmango.shop.dukan.uz";
+  final _host = "https://karmango.shop.dukan.uz";
   final _root = "/api";
     final _timeout = const Duration(seconds: 15);
 

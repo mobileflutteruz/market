@@ -17,7 +17,7 @@ class FoodBannerViewWidget extends StatelessWidget {
       itemCount: banners!.banners!.length,
       itemBuilder: (BuildContext context, int index, int pageViewIndex) =>
           FoodBannerItemWidget(
-        imageUrl: banners!.banners![index].image??"",
+        imageUrl: banners!.banners![index].banner??"",
         itemTapped: () {
           print("FoodBannerViewWidget");
         },

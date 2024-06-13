@@ -1,4 +1,4 @@
-import 'package:karmango/domain/model/category/category_model.dart';
+
 import 'package:karmango/domain/model/product/product_model.dart';
 import 'package:karmango/domain/model/user/user_model.dart';
 

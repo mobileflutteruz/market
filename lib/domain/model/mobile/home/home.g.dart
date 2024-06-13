@@ -58,14 +58,14 @@ Map<String, dynamic> _$$MobileBannersImplToJson(_$MobileBannersImpl instance) =>
 _$BannerModelImpl _$$BannerModelImplFromJson(Map<String, dynamic> json) =>
     _$BannerModelImpl(
       id: (json['id'] as num?)?.toInt(),
-      image: json['image'] as String?,
+      banner: json['banner'] as String?,
       alternative_text: json['alternative_text'] as String?,
     );
 
 Map<String, dynamic> _$$BannerModelImplToJson(_$BannerModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'image': instance.image,
+      'banner': instance.banner,
       'alternative_text': instance.alternative_text,
     };
 
@@ -90,9 +90,7 @@ Map<String, dynamic> _$$MobileDashBoardImplToJson(
 _$MobileProductImpl _$$MobileProductImplFromJson(Map<String, dynamic> json) =>
     _$MobileProductImpl(
       id: (json['id'] as num?)?.toInt(),
-      name_uz: json['name_uz'] as String?,
-      name_ru: json['name_ru'] as String?,
-      name_en: json['name_en'] as String?,
+      name: json['name'] as String?,
       status: json['status'] as String?,
       discount: (json['discount'] as num?)?.toInt(),
       price: (json['price'] as num?)?.toInt(),
@@ -104,9 +102,7 @@ _$MobileProductImpl _$$MobileProductImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$MobileProductImplToJson(_$MobileProductImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name_uz': instance.name_uz,
-      'name_ru': instance.name_ru,
-      'name_en': instance.name_en,
+      'name': instance.name,
       'status': instance.status,
       'discount': instance.discount,
       'price': instance.price,

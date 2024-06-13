@@ -105,7 +105,7 @@ class AuthRepository {
     log.logDebug("Sending request with params: $params");
 
     final response =
-        await _api.postWithToken(path: Urls.guestEnters, body: params);
+        await _api.post(path: Urls.guestEnters, body: params);
     await _onAuthResponseGuest(response);
   }
 

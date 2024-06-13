@@ -49,7 +49,7 @@ sealed class Urls {
   static const String logout = "/logout";
   static const String resendActivation = "/resend-activation";
   static const String getCode = "/insert-code";
-  static const String guestEnters = "/guest/enters";
+  static const String guestEnters = "guest/enters";
   static const String sendSms = "/Send-sms";
   static const String refreshToken = "/refresh/token";
   static const String insertCode = "/insert-code";

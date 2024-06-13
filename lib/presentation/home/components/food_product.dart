@@ -122,7 +122,7 @@ class FoodProductItemWidget extends StatelessWidget {
             ),
             AppUtils.kGap8,
             Text(
-              product!.name_en ?? "",
+              product!.name ?? "",
               style: Styles.manropeMedium12.copyWith(
                 color: FoodColors.c0E1923,
               ),

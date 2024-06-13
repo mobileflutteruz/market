@@ -28,15 +28,9 @@ class Result with _$Result {
 class Product with _$Product {
     const factory Product({
         int? id,
-        String? name_uz,
-        String? name_ru,
-        String? name_en,
-        String? description_uz,
-        String? description_ru,
-        String? description_en,
-        dynamic details_of_product_uz,
-        dynamic details_of_product_ru,
-        dynamic details_of_product_en,
+        String? name,
+        String? description,
+        dynamic details_of_product,
         int? price,
         int? quantity,
         dynamic quantity_rest,
@@ -58,14 +52,13 @@ class Product with _$Product {
 class SimilarProduct with _$SimilarProduct {
     const factory SimilarProduct({
         int? id,
-        String? nameUz,
-        String? nameRu,
-        String? nameEn,
+        String? name,  
         String? status,
         int? discount,
         int? price,
         String? image,
-        int? priceToPay,
+        String? product_type,
+        int? price_to_pay,
     }) = _SimilarProduct;
 
     factory SimilarProduct.fromJson(Map<String, dynamic> json) => _$SimilarProductFromJson(json);

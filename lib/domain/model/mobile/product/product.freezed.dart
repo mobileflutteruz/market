@@ -372,15 +372,9 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Product {
   int? get id => throw _privateConstructorUsedError;
-  String? get name_uz => throw _privateConstructorUsedError;
-  String? get name_ru => throw _privateConstructorUsedError;
-  String? get name_en => throw _privateConstructorUsedError;
-  String? get description_uz => throw _privateConstructorUsedError;
-  String? get description_ru => throw _privateConstructorUsedError;
-  String? get description_en => throw _privateConstructorUsedError;
-  dynamic get details_of_product_uz => throw _privateConstructorUsedError;
-  dynamic get details_of_product_ru => throw _privateConstructorUsedError;
-  dynamic get details_of_product_en => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  dynamic get details_of_product => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
   int? get quantity => throw _privateConstructorUsedError;
   dynamic get quantity_rest => throw _privateConstructorUsedError;
@@ -406,15 +400,9 @@ abstract class $ProductCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      String? name_uz,
-      String? name_ru,
-      String? name_en,
-      String? description_uz,
-      String? description_ru,
-      String? description_en,
-      dynamic details_of_product_uz,
-      dynamic details_of_product_ru,
-      dynamic details_of_product_en,
+      String? name,
+      String? description,
+      dynamic details_of_product,
       int? price,
       int? quantity,
       dynamic quantity_rest,
@@ -443,15 +431,9 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name_uz = freezed,
-    Object? name_ru = freezed,
-    Object? name_en = freezed,
-    Object? description_uz = freezed,
-    Object? description_ru = freezed,
-    Object? description_en = freezed,
-    Object? details_of_product_uz = freezed,
-    Object? details_of_product_ru = freezed,
-    Object? details_of_product_en = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? details_of_product = freezed,
     Object? price = freezed,
     Object? quantity = freezed,
     Object? quantity_rest = freezed,
@@ -470,41 +452,17 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name_uz: freezed == name_uz
-          ? _value.name_uz
-          : name_uz // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      name_ru: freezed == name_ru
-          ? _value.name_ru
-          : name_ru // ignore: cast_nullable_to_non_nullable
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      name_en: freezed == name_en
-          ? _value.name_en
-          : name_en // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description_uz: freezed == description_uz
-          ? _value.description_uz
-          : description_uz // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description_ru: freezed == description_ru
-          ? _value.description_ru
-          : description_ru // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description_en: freezed == description_en
-          ? _value.description_en
-          : description_en // ignore: cast_nullable_to_non_nullable
-              as String?,
-      details_of_product_uz: freezed == details_of_product_uz
-          ? _value.details_of_product_uz
-          : details_of_product_uz // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      details_of_product_ru: freezed == details_of_product_ru
-          ? _value.details_of_product_ru
-          : details_of_product_ru // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      details_of_product_en: freezed == details_of_product_en
-          ? _value.details_of_product_en
-          : details_of_product_en // ignore: cast_nullable_to_non_nullable
+      details_of_product: freezed == details_of_product
+          ? _value.details_of_product
+          : details_of_product // ignore: cast_nullable_to_non_nullable
               as dynamic,
       price: freezed == price
           ? _value.price
@@ -567,15 +525,9 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      String? name_uz,
-      String? name_ru,
-      String? name_en,
-      String? description_uz,
-      String? description_ru,
-      String? description_en,
-      dynamic details_of_product_uz,
-      dynamic details_of_product_ru,
-      dynamic details_of_product_en,
+      String? name,
+      String? description,
+      dynamic details_of_product,
       int? price,
       int? quantity,
       dynamic quantity_rest,
@@ -602,15 +554,9 @@ class __$$ProductImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name_uz = freezed,
-    Object? name_ru = freezed,
-    Object? name_en = freezed,
-    Object? description_uz = freezed,
-    Object? description_ru = freezed,
-    Object? description_en = freezed,
-    Object? details_of_product_uz = freezed,
-    Object? details_of_product_ru = freezed,
-    Object? details_of_product_en = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+    Object? details_of_product = freezed,
     Object? price = freezed,
     Object? quantity = freezed,
     Object? quantity_rest = freezed,
@@ -629,41 +575,17 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name_uz: freezed == name_uz
-          ? _value.name_uz
-          : name_uz // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
-      name_ru: freezed == name_ru
-          ? _value.name_ru
-          : name_ru // ignore: cast_nullable_to_non_nullable
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      name_en: freezed == name_en
-          ? _value.name_en
-          : name_en // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description_uz: freezed == description_uz
-          ? _value.description_uz
-          : description_uz // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description_ru: freezed == description_ru
-          ? _value.description_ru
-          : description_ru // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description_en: freezed == description_en
-          ? _value.description_en
-          : description_en // ignore: cast_nullable_to_non_nullable
-              as String?,
-      details_of_product_uz: freezed == details_of_product_uz
-          ? _value.details_of_product_uz
-          : details_of_product_uz // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      details_of_product_ru: freezed == details_of_product_ru
-          ? _value.details_of_product_ru
-          : details_of_product_ru // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      details_of_product_en: freezed == details_of_product_en
-          ? _value.details_of_product_en
-          : details_of_product_en // ignore: cast_nullable_to_non_nullable
+      details_of_product: freezed == details_of_product
+          ? _value.details_of_product
+          : details_of_product // ignore: cast_nullable_to_non_nullable
               as dynamic,
       price: freezed == price
           ? _value.price
@@ -722,15 +644,9 @@ class __$$ProductImplCopyWithImpl<$Res>
 class _$ProductImpl implements _Product {
   const _$ProductImpl(
       {this.id,
-      this.name_uz,
-      this.name_ru,
-      this.name_en,
-      this.description_uz,
-      this.description_ru,
-      this.description_en,
-      this.details_of_product_uz,
-      this.details_of_product_ru,
-      this.details_of_product_en,
+      this.name,
+      this.description,
+      this.details_of_product,
       this.price,
       this.quantity,
       this.quantity_rest,
@@ -750,23 +666,11 @@ class _$ProductImpl implements _Product {
   @override
   final int? id;
   @override
-  final String? name_uz;
+  final String? name;
   @override
-  final String? name_ru;
+  final String? description;
   @override
-  final String? name_en;
-  @override
-  final String? description_uz;
-  @override
-  final String? description_ru;
-  @override
-  final String? description_en;
-  @override
-  final dynamic details_of_product_uz;
-  @override
-  final dynamic details_of_product_ru;
-  @override
-  final dynamic details_of_product_en;
+  final dynamic details_of_product;
   @override
   final int? price;
   @override
@@ -794,7 +698,7 @@ class _$ProductImpl implements _Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, name_uz: $name_uz, name_ru: $name_ru, name_en: $name_en, description_uz: $description_uz, description_ru: $description_ru, description_en: $description_en, details_of_product_uz: $details_of_product_uz, details_of_product_ru: $details_of_product_ru, details_of_product_en: $details_of_product_en, price: $price, quantity: $quantity, quantity_rest: $quantity_rest, discount: $discount, image: $image, status: $status, product_type: $product_type, category_id: $category_id, created_at: $created_at, updated_at: $updated_at, rest_products: $rest_products, price_to_pay: $price_to_pay)';
+    return 'Product(id: $id, name: $name, description: $description, details_of_product: $details_of_product, price: $price, quantity: $quantity, quantity_rest: $quantity_rest, discount: $discount, image: $image, status: $status, product_type: $product_type, category_id: $category_id, created_at: $created_at, updated_at: $updated_at, rest_products: $rest_products, price_to_pay: $price_to_pay)';
   }
 
   @override
@@ -803,21 +707,11 @@ class _$ProductImpl implements _Product {
         (other.runtimeType == runtimeType &&
             other is _$ProductImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name_uz, name_uz) || other.name_uz == name_uz) &&
-            (identical(other.name_ru, name_ru) || other.name_ru == name_ru) &&
-            (identical(other.name_en, name_en) || other.name_en == name_en) &&
-            (identical(other.description_uz, description_uz) ||
-                other.description_uz == description_uz) &&
-            (identical(other.description_ru, description_ru) ||
-                other.description_ru == description_ru) &&
-            (identical(other.description_en, description_en) ||
-                other.description_en == description_en) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             const DeepCollectionEquality()
-                .equals(other.details_of_product_uz, details_of_product_uz) &&
-            const DeepCollectionEquality()
-                .equals(other.details_of_product_ru, details_of_product_ru) &&
-            const DeepCollectionEquality()
-                .equals(other.details_of_product_en, details_of_product_en) &&
+                .equals(other.details_of_product, details_of_product) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
@@ -843,31 +737,24 @@ class _$ProductImpl implements _Product {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        id,
-        name_uz,
-        name_ru,
-        name_en,
-        description_uz,
-        description_ru,
-        description_en,
-        const DeepCollectionEquality().hash(details_of_product_uz),
-        const DeepCollectionEquality().hash(details_of_product_ru),
-        const DeepCollectionEquality().hash(details_of_product_en),
-        price,
-        quantity,
-        const DeepCollectionEquality().hash(quantity_rest),
-        discount,
-        image,
-        status,
-        product_type,
-        category_id,
-        created_at,
-        const DeepCollectionEquality().hash(updated_at),
-        rest_products,
-        price_to_pay
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      description,
+      const DeepCollectionEquality().hash(details_of_product),
+      price,
+      quantity,
+      const DeepCollectionEquality().hash(quantity_rest),
+      discount,
+      image,
+      status,
+      product_type,
+      category_id,
+      created_at,
+      const DeepCollectionEquality().hash(updated_at),
+      rest_products,
+      price_to_pay);
 
   @JsonKey(ignore: true)
   @override
@@ -886,15 +773,9 @@ class _$ProductImpl implements _Product {
 abstract class _Product implements Product {
   const factory _Product(
       {final int? id,
-      final String? name_uz,
-      final String? name_ru,
-      final String? name_en,
-      final String? description_uz,
-      final String? description_ru,
-      final String? description_en,
-      final dynamic details_of_product_uz,
-      final dynamic details_of_product_ru,
-      final dynamic details_of_product_en,
+      final String? name,
+      final String? description,
+      final dynamic details_of_product,
       final int? price,
       final int? quantity,
       final dynamic quantity_rest,
@@ -913,23 +794,11 @@ abstract class _Product implements Product {
   @override
   int? get id;
   @override
-  String? get name_uz;
+  String? get name;
   @override
-  String? get name_ru;
+  String? get description;
   @override
-  String? get name_en;
-  @override
-  String? get description_uz;
-  @override
-  String? get description_ru;
-  @override
-  String? get description_en;
-  @override
-  dynamic get details_of_product_uz;
-  @override
-  dynamic get details_of_product_ru;
-  @override
-  dynamic get details_of_product_en;
+  dynamic get details_of_product;
   @override
   int? get price;
   @override
@@ -967,14 +836,13 @@ SimilarProduct _$SimilarProductFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SimilarProduct {
   int? get id => throw _privateConstructorUsedError;
-  String? get nameUz => throw _privateConstructorUsedError;
-  String? get nameRu => throw _privateConstructorUsedError;
-  String? get nameEn => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   int? get discount => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
-  int? get priceToPay => throw _privateConstructorUsedError;
+  String? get product_type => throw _privateConstructorUsedError;
+  int? get price_to_pay => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -990,14 +858,13 @@ abstract class $SimilarProductCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      String? nameUz,
-      String? nameRu,
-      String? nameEn,
+      String? name,
       String? status,
       int? discount,
       int? price,
       String? image,
-      int? priceToPay});
+      String? product_type,
+      int? price_to_pay});
 }
 
 /// @nodoc
@@ -1014,31 +881,22 @@ class _$SimilarProductCopyWithImpl<$Res, $Val extends SimilarProduct>
   @override
   $Res call({
     Object? id = freezed,
-    Object? nameUz = freezed,
-    Object? nameRu = freezed,
-    Object? nameEn = freezed,
+    Object? name = freezed,
     Object? status = freezed,
     Object? discount = freezed,
     Object? price = freezed,
     Object? image = freezed,
-    Object? priceToPay = freezed,
+    Object? product_type = freezed,
+    Object? price_to_pay = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      nameUz: freezed == nameUz
-          ? _value.nameUz
-          : nameUz // ignore: cast_nullable_to_non_nullable
-              as String?,
-      nameRu: freezed == nameRu
-          ? _value.nameRu
-          : nameRu // ignore: cast_nullable_to_non_nullable
-              as String?,
-      nameEn: freezed == nameEn
-          ? _value.nameEn
-          : nameEn // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
@@ -1056,9 +914,13 @@ class _$SimilarProductCopyWithImpl<$Res, $Val extends SimilarProduct>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      priceToPay: freezed == priceToPay
-          ? _value.priceToPay
-          : priceToPay // ignore: cast_nullable_to_non_nullable
+      product_type: freezed == product_type
+          ? _value.product_type
+          : product_type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price_to_pay: freezed == price_to_pay
+          ? _value.price_to_pay
+          : price_to_pay // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
   }
@@ -1074,14 +936,13 @@ abstract class _$$SimilarProductImplCopyWith<$Res>
   @useResult
   $Res call(
       {int? id,
-      String? nameUz,
-      String? nameRu,
-      String? nameEn,
+      String? name,
       String? status,
       int? discount,
       int? price,
       String? image,
-      int? priceToPay});
+      String? product_type,
+      int? price_to_pay});
 }
 
 /// @nodoc
@@ -1096,31 +957,22 @@ class __$$SimilarProductImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? nameUz = freezed,
-    Object? nameRu = freezed,
-    Object? nameEn = freezed,
+    Object? name = freezed,
     Object? status = freezed,
     Object? discount = freezed,
     Object? price = freezed,
     Object? image = freezed,
-    Object? priceToPay = freezed,
+    Object? product_type = freezed,
+    Object? price_to_pay = freezed,
   }) {
     return _then(_$SimilarProductImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      nameUz: freezed == nameUz
-          ? _value.nameUz
-          : nameUz // ignore: cast_nullable_to_non_nullable
-              as String?,
-      nameRu: freezed == nameRu
-          ? _value.nameRu
-          : nameRu // ignore: cast_nullable_to_non_nullable
-              as String?,
-      nameEn: freezed == nameEn
-          ? _value.nameEn
-          : nameEn // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
@@ -1138,9 +990,13 @@ class __$$SimilarProductImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      priceToPay: freezed == priceToPay
-          ? _value.priceToPay
-          : priceToPay // ignore: cast_nullable_to_non_nullable
+      product_type: freezed == product_type
+          ? _value.product_type
+          : product_type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      price_to_pay: freezed == price_to_pay
+          ? _value.price_to_pay
+          : price_to_pay // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -1151,14 +1007,13 @@ class __$$SimilarProductImplCopyWithImpl<$Res>
 class _$SimilarProductImpl implements _SimilarProduct {
   const _$SimilarProductImpl(
       {this.id,
-      this.nameUz,
-      this.nameRu,
-      this.nameEn,
+      this.name,
       this.status,
       this.discount,
       this.price,
       this.image,
-      this.priceToPay});
+      this.product_type,
+      this.price_to_pay});
 
   factory _$SimilarProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$SimilarProductImplFromJson(json);
@@ -1166,11 +1021,7 @@ class _$SimilarProductImpl implements _SimilarProduct {
   @override
   final int? id;
   @override
-  final String? nameUz;
-  @override
-  final String? nameRu;
-  @override
-  final String? nameEn;
+  final String? name;
   @override
   final String? status;
   @override
@@ -1180,11 +1031,13 @@ class _$SimilarProductImpl implements _SimilarProduct {
   @override
   final String? image;
   @override
-  final int? priceToPay;
+  final String? product_type;
+  @override
+  final int? price_to_pay;
 
   @override
   String toString() {
-    return 'SimilarProduct(id: $id, nameUz: $nameUz, nameRu: $nameRu, nameEn: $nameEn, status: $status, discount: $discount, price: $price, image: $image, priceToPay: $priceToPay)';
+    return 'SimilarProduct(id: $id, name: $name, status: $status, discount: $discount, price: $price, image: $image, product_type: $product_type, price_to_pay: $price_to_pay)';
   }
 
   @override
@@ -1193,22 +1046,22 @@ class _$SimilarProductImpl implements _SimilarProduct {
         (other.runtimeType == runtimeType &&
             other is _$SimilarProductImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.nameUz, nameUz) || other.nameUz == nameUz) &&
-            (identical(other.nameRu, nameRu) || other.nameRu == nameRu) &&
-            (identical(other.nameEn, nameEn) || other.nameEn == nameEn) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.image, image) || other.image == image) &&
-            (identical(other.priceToPay, priceToPay) ||
-                other.priceToPay == priceToPay));
+            (identical(other.product_type, product_type) ||
+                other.product_type == product_type) &&
+            (identical(other.price_to_pay, price_to_pay) ||
+                other.price_to_pay == price_to_pay));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, nameUz, nameRu, nameEn,
-      status, discount, price, image, priceToPay);
+  int get hashCode => Object.hash(runtimeType, id, name, status, discount,
+      price, image, product_type, price_to_pay);
 
   @JsonKey(ignore: true)
   @override
@@ -1228,14 +1081,13 @@ class _$SimilarProductImpl implements _SimilarProduct {
 abstract class _SimilarProduct implements SimilarProduct {
   const factory _SimilarProduct(
       {final int? id,
-      final String? nameUz,
-      final String? nameRu,
-      final String? nameEn,
+      final String? name,
       final String? status,
       final int? discount,
       final int? price,
       final String? image,
-      final int? priceToPay}) = _$SimilarProductImpl;
+      final String? product_type,
+      final int? price_to_pay}) = _$SimilarProductImpl;
 
   factory _SimilarProduct.fromJson(Map<String, dynamic> json) =
       _$SimilarProductImpl.fromJson;
@@ -1243,11 +1095,7 @@ abstract class _SimilarProduct implements SimilarProduct {
   @override
   int? get id;
   @override
-  String? get nameUz;
-  @override
-  String? get nameRu;
-  @override
-  String? get nameEn;
+  String? get name;
   @override
   String? get status;
   @override
@@ -1257,7 +1105,9 @@ abstract class _SimilarProduct implements SimilarProduct {
   @override
   String? get image;
   @override
-  int? get priceToPay;
+  String? get product_type;
+  @override
+  int? get price_to_pay;
   @override
   @JsonKey(ignore: true)
   _$$SimilarProductImplCopyWith<_$SimilarProductImpl> get copyWith =>

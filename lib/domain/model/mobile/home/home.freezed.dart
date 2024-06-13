@@ -550,7 +550,7 @@ BannerModel _$BannerModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BannerModel {
   int? get id => throw _privateConstructorUsedError;
-  String? get image => throw _privateConstructorUsedError;
+  String? get banner => throw _privateConstructorUsedError;
   String? get alternative_text => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -565,7 +565,7 @@ abstract class $BannerModelCopyWith<$Res> {
           BannerModel value, $Res Function(BannerModel) then) =
       _$BannerModelCopyWithImpl<$Res, BannerModel>;
   @useResult
-  $Res call({int? id, String? image, String? alternative_text});
+  $Res call({int? id, String? banner, String? alternative_text});
 }
 
 /// @nodoc
@@ -582,7 +582,7 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
   @override
   $Res call({
     Object? id = freezed,
-    Object? image = freezed,
+    Object? banner = freezed,
     Object? alternative_text = freezed,
   }) {
     return _then(_value.copyWith(
@@ -590,9 +590,9 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      banner: freezed == banner
+          ? _value.banner
+          : banner // ignore: cast_nullable_to_non_nullable
               as String?,
       alternative_text: freezed == alternative_text
           ? _value.alternative_text
@@ -610,7 +610,7 @@ abstract class _$$BannerModelImplCopyWith<$Res>
       __$$BannerModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? image, String? alternative_text});
+  $Res call({int? id, String? banner, String? alternative_text});
 }
 
 /// @nodoc
@@ -625,7 +625,7 @@ class __$$BannerModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? image = freezed,
+    Object? banner = freezed,
     Object? alternative_text = freezed,
   }) {
     return _then(_$BannerModelImpl(
@@ -633,9 +633,9 @@ class __$$BannerModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      banner: freezed == banner
+          ? _value.banner
+          : banner // ignore: cast_nullable_to_non_nullable
               as String?,
       alternative_text: freezed == alternative_text
           ? _value.alternative_text
@@ -648,7 +648,7 @@ class __$$BannerModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BannerModelImpl implements _BannerModel {
-  const _$BannerModelImpl({this.id, this.image, this.alternative_text});
+  const _$BannerModelImpl({this.id, this.banner, this.alternative_text});
 
   factory _$BannerModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BannerModelImplFromJson(json);
@@ -656,13 +656,13 @@ class _$BannerModelImpl implements _BannerModel {
   @override
   final int? id;
   @override
-  final String? image;
+  final String? banner;
   @override
   final String? alternative_text;
 
   @override
   String toString() {
-    return 'BannerModel(id: $id, image: $image, alternative_text: $alternative_text)';
+    return 'BannerModel(id: $id, banner: $banner, alternative_text: $alternative_text)';
   }
 
   @override
@@ -671,14 +671,14 @@ class _$BannerModelImpl implements _BannerModel {
         (other.runtimeType == runtimeType &&
             other is _$BannerModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.image, image) || other.image == image) &&
+            (identical(other.banner, banner) || other.banner == banner) &&
             (identical(other.alternative_text, alternative_text) ||
                 other.alternative_text == alternative_text));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, image, alternative_text);
+  int get hashCode => Object.hash(runtimeType, id, banner, alternative_text);
 
   @JsonKey(ignore: true)
   @override
@@ -697,7 +697,7 @@ class _$BannerModelImpl implements _BannerModel {
 abstract class _BannerModel implements BannerModel {
   const factory _BannerModel(
       {final int? id,
-      final String? image,
+      final String? banner,
       final String? alternative_text}) = _$BannerModelImpl;
 
   factory _BannerModel.fromJson(Map<String, dynamic> json) =
@@ -706,7 +706,7 @@ abstract class _BannerModel implements BannerModel {
   @override
   int? get id;
   @override
-  String? get image;
+  String? get banner;
   @override
   String? get alternative_text;
   @override
@@ -904,9 +904,7 @@ MobileProduct _$MobileProductFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MobileProduct {
   int? get id => throw _privateConstructorUsedError;
-  String? get name_uz => throw _privateConstructorUsedError;
-  String? get name_ru => throw _privateConstructorUsedError;
-  String? get name_en => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   int? get discount => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
@@ -928,9 +926,7 @@ abstract class $MobileProductCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      String? name_uz,
-      String? name_ru,
-      String? name_en,
+      String? name,
       String? status,
       int? discount,
       int? price,
@@ -953,9 +949,7 @@ class _$MobileProductCopyWithImpl<$Res, $Val extends MobileProduct>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name_uz = freezed,
-    Object? name_ru = freezed,
-    Object? name_en = freezed,
+    Object? name = freezed,
     Object? status = freezed,
     Object? discount = freezed,
     Object? price = freezed,
@@ -968,17 +962,9 @@ class _$MobileProductCopyWithImpl<$Res, $Val extends MobileProduct>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name_uz: freezed == name_uz
-          ? _value.name_uz
-          : name_uz // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name_ru: freezed == name_ru
-          ? _value.name_ru
-          : name_ru // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name_en: freezed == name_en
-          ? _value.name_en
-          : name_en // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
@@ -1018,9 +1004,7 @@ abstract class _$$MobileProductImplCopyWith<$Res>
   @useResult
   $Res call(
       {int? id,
-      String? name_uz,
-      String? name_ru,
-      String? name_en,
+      String? name,
       String? status,
       int? discount,
       int? price,
@@ -1041,9 +1025,7 @@ class __$$MobileProductImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name_uz = freezed,
-    Object? name_ru = freezed,
-    Object? name_en = freezed,
+    Object? name = freezed,
     Object? status = freezed,
     Object? discount = freezed,
     Object? price = freezed,
@@ -1056,17 +1038,9 @@ class __$$MobileProductImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name_uz: freezed == name_uz
-          ? _value.name_uz
-          : name_uz // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name_ru: freezed == name_ru
-          ? _value.name_ru
-          : name_ru // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name_en: freezed == name_en
-          ? _value.name_en
-          : name_en // ignore: cast_nullable_to_non_nullable
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
@@ -1101,9 +1075,7 @@ class __$$MobileProductImplCopyWithImpl<$Res>
 class _$MobileProductImpl implements _MobileProduct {
   const _$MobileProductImpl(
       {this.id,
-      this.name_uz,
-      this.name_ru,
-      this.name_en,
+      this.name,
       this.status,
       this.discount,
       this.price,
@@ -1117,11 +1089,7 @@ class _$MobileProductImpl implements _MobileProduct {
   @override
   final int? id;
   @override
-  final String? name_uz;
-  @override
-  final String? name_ru;
-  @override
-  final String? name_en;
+  final String? name;
   @override
   final String? status;
   @override
@@ -1137,7 +1105,7 @@ class _$MobileProductImpl implements _MobileProduct {
 
   @override
   String toString() {
-    return 'MobileProduct(id: $id, name_uz: $name_uz, name_ru: $name_ru, name_en: $name_en, status: $status, discount: $discount, price: $price, image: $image, product_type: $product_type, price_to_pay: $price_to_pay)';
+    return 'MobileProduct(id: $id, name: $name, status: $status, discount: $discount, price: $price, image: $image, product_type: $product_type, price_to_pay: $price_to_pay)';
   }
 
   @override
@@ -1146,9 +1114,7 @@ class _$MobileProductImpl implements _MobileProduct {
         (other.runtimeType == runtimeType &&
             other is _$MobileProductImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name_uz, name_uz) || other.name_uz == name_uz) &&
-            (identical(other.name_ru, name_ru) || other.name_ru == name_ru) &&
-            (identical(other.name_en, name_en) || other.name_en == name_en) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
@@ -1162,8 +1128,8 @@ class _$MobileProductImpl implements _MobileProduct {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name_uz, name_ru, name_en,
-      status, discount, price, image, product_type, price_to_pay);
+  int get hashCode => Object.hash(runtimeType, id, name, status, discount,
+      price, image, product_type, price_to_pay);
 
   @JsonKey(ignore: true)
   @override
@@ -1182,9 +1148,7 @@ class _$MobileProductImpl implements _MobileProduct {
 abstract class _MobileProduct implements MobileProduct {
   const factory _MobileProduct(
       {final int? id,
-      final String? name_uz,
-      final String? name_ru,
-      final String? name_en,
+      final String? name,
       final String? status,
       final int? discount,
       final int? price,
@@ -1198,11 +1162,7 @@ abstract class _MobileProduct implements MobileProduct {
   @override
   int? get id;
   @override
-  String? get name_uz;
-  @override
-  String? get name_ru;
-  @override
-  String? get name_en;
+  String? get name;
   @override
   String? get status;
   @override

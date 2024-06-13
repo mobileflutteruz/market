@@ -40,15 +40,9 @@ Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
 _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
     _$ProductImpl(
       id: (json['id'] as num?)?.toInt(),
-      name_uz: json['name_uz'] as String?,
-      name_ru: json['name_ru'] as String?,
-      name_en: json['name_en'] as String?,
-      description_uz: json['description_uz'] as String?,
-      description_ru: json['description_ru'] as String?,
-      description_en: json['description_en'] as String?,
-      details_of_product_uz: json['details_of_product_uz'],
-      details_of_product_ru: json['details_of_product_ru'],
-      details_of_product_en: json['details_of_product_en'],
+      name: json['name'] as String?,
+      description: json['description'] as String?,
+      details_of_product: json['details_of_product'],
       price: (json['price'] as num?)?.toInt(),
       quantity: (json['quantity'] as num?)?.toInt(),
       quantity_rest: json['quantity_rest'],
@@ -68,15 +62,9 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name_uz': instance.name_uz,
-      'name_ru': instance.name_ru,
-      'name_en': instance.name_en,
-      'description_uz': instance.description_uz,
-      'description_ru': instance.description_ru,
-      'description_en': instance.description_en,
-      'details_of_product_uz': instance.details_of_product_uz,
-      'details_of_product_ru': instance.details_of_product_ru,
-      'details_of_product_en': instance.details_of_product_en,
+      'name': instance.name,
+      'description': instance.description,
+      'details_of_product': instance.details_of_product,
       'price': instance.price,
       'quantity': instance.quantity,
       'quantity_rest': instance.quantity_rest,
@@ -94,26 +82,24 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
 _$SimilarProductImpl _$$SimilarProductImplFromJson(Map<String, dynamic> json) =>
     _$SimilarProductImpl(
       id: (json['id'] as num?)?.toInt(),
-      nameUz: json['nameUz'] as String?,
-      nameRu: json['nameRu'] as String?,
-      nameEn: json['nameEn'] as String?,
+      name: json['name'] as String?,
       status: json['status'] as String?,
       discount: (json['discount'] as num?)?.toInt(),
       price: (json['price'] as num?)?.toInt(),
       image: json['image'] as String?,
-      priceToPay: (json['priceToPay'] as num?)?.toInt(),
+      product_type: json['product_type'] as String?,
+      price_to_pay: (json['price_to_pay'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$SimilarProductImplToJson(
         _$SimilarProductImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'nameUz': instance.nameUz,
-      'nameRu': instance.nameRu,
-      'nameEn': instance.nameEn,
+      'name': instance.name,
       'status': instance.status,
       'discount': instance.discount,
       'price': instance.price,
       'image': instance.image,
-      'priceToPay': instance.priceToPay,
+      'product_type': instance.product_type,
+      'price_to_pay': instance.price_to_pay,
     };

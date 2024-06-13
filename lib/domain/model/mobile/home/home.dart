@@ -110,7 +110,7 @@ class MobileBanners with _$MobileBanners {
 class BannerModel with _$BannerModel {
     const factory BannerModel({
         int? id,
-        String? image,
+        String? banner,
         String? alternative_text,
     }) = _BannerModel;
 
@@ -132,9 +132,7 @@ class MobileDashBoard with _$MobileDashBoard {
 class MobileProduct with _$MobileProduct {
     const factory MobileProduct({
         int? id,
-        String? name_uz,
-        String? name_ru,
-        String? name_en,
+        String? name,      
         String? status,
         int? discount,
         int? price,
@@ -145,3 +143,4 @@ class MobileProduct with _$MobileProduct {
 
     factory MobileProduct.fromJson(Map<String, dynamic> json) => _$MobileProductFromJson(json);
 }
+

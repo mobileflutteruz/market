@@ -139,7 +139,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             children: [
                               Center(
                                 child: Text(
-                                  state.product!.result!.product!.name_en
+                                  state.product!.result!.product!.name
                                       .toString(),
                                   maxLines: 2,
                                   style: Styles.manropeMedium16.copyWith(
@@ -180,7 +180,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
                             ),
                             Text(
-                              state.product!.result!.product!.name_en ?? "",
+                              state.product!.result!.product!.name ?? "",
                               style: Styles.manropeMedium14.copyWith(
                                 color: FoodColors.cA6AEBF,
                                 overflow: TextOverflow.visible,

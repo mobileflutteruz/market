@@ -15,60 +15,30 @@ class CategoryCubit extends BuildableCubit<CategoryState, CategoryBuildable> {
       : super(const CategoryBuildable()) {
     fetchCategory();
   }
+
   final MainRepository _mainRepository;
   final DataRepository repo;
 
-  
-  Future<void> fetchCategoryProducts(int categoryId) async {
+  Future<void> fetchCategory() async {
     build((buildable) => buildable.copyWith(loading: true));
-
     try {
-      final CartProductModel products = await repo.getCategoryProduct(categoryId);
-      build((buildable) => buildable.copyWith(
-            loading: false,
-            success: true,
-            cartProductModel: products,
-          ));
-    } catch (e) {
-      print("fetchCategoryProducts error: ${e.toString()}");
-
-      build((buildable) => buildable.copyWith(
-            loading: false,
-            failed: true,
-            error: e.toString(),
-          ));
-    }
-  }
-
-
-
- Future fetchCategory() async {
-    build(
-      (buildable) => buildable.copyWith(
-        loading: true,
-      ),
-    );
-    try {
-      final CategoryModel category = await repo.getCategories();
-
+      final categories = await repo.getCategories();
       build(
         (buildable) => buildable.copyWith(
           loading: false,
           success: true,
-          category: category,
+          failed: false,
+          category: categories,
         ),
       );
     } catch (e) {
-      print("fetchProducts error---------------${e.toString()}");
-    
       build(
         (buildable) => buildable.copyWith(
           loading: false,
+          success: false,
           failed: true,
           error: e.toString(),
-          
         ),
-  
       );
     }
   }
