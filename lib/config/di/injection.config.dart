@@ -13,6 +13,7 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i3;
 
+import '../../core/constants/logger_service.dart' as _i27;
 import '../../data/api/api.dart' as _i12;
 import '../../data/api/auth_api.dart' as _i19;
 import '../../data/api/main_api.dart' as _i20;
@@ -35,7 +36,7 @@ import '../../presentation/home/cubit/food_home_cubit.dart' as _i24;
 import '../../presentation/my_order/cubit/food_my_order_cubit.dart' as _i18;
 import '../token_data_source.dart' as _i9;
 import '../user_data_source.dart' as _i5;
-import 'data_module.dart' as _i27;
+import 'data_module.dart' as _i28;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -107,10 +108,12 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i21.AuthRepository>(),
           gh<_i8.TokenPreference>(),
         ));
-    gh.factory<_i26.LoginCubit>(
-        () => _i26.LoginCubit(gh<_i21.AuthRepository>()));
+    gh.factory<_i26.LoginCubit>(() => _i26.LoginCubit(
+          gh<_i21.AuthRepository>(),
+          gh<_i27.LoggingService>(),
+        ));
     return this;
   }
 }
 
-class _$DataModule extends _i27.DataModule {}
+class _$DataModule extends _i28.DataModule {}

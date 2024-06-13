@@ -55,7 +55,7 @@ sealed class Urls {
   static const String insertCode = "/insert-code";
 
   /// Product
-  static const String home = '/HomePage';
+  static const String home = 'HomePage';
   static const String categories = '/category';
   static String productsByCategory(int categoryId) =>
       '/productsByCategory/$categoryId';

@@ -95,7 +95,8 @@ class AuthRepository {
         await _api.postWithToken(path: Urls.resendActivation, body: body);
   }
 
-  Future loginAsGuest() async {
+ 
+  Future<void> loginAsGuest() async {
     String uid = const Uuid().v1();
     final Map<String, Object> params = {
       "uuid": uid,
@@ -104,10 +105,15 @@ class AuthRepository {
 
     log.logDebug("Sending request with params: $params");
 
-    final response =
-        await _api.post(path: Urls.guestEnters, body: params);
-    await _onAuthResponseGuest(response);
+    try {
+      final response = await _api.post(path: Urls.guestEnters, body: params);
+      await _onAuthResponseGuest(response);
+    } catch (e) {
+      log.logError("Error logging in as guest", error: e);
+      rethrow;
+    }
   }
+
 
   Future<void> _onAuthResponse(http.Response response) async {
     final body = jsonDecode(response.body);
@@ -115,9 +121,9 @@ class AuthRepository {
     if (response.statusCode == 200 && body["token"] != null) {
       // Handle the token (save it, use it, etc.)
 
-      // log.logDebug("Token: ${body["token"]}");
+      log.logDebug("Token: ${body["token"]}");
     } else {
-      // log.logDebug(body["message"] ?? 'Unknown error');
+      log.logDebug(body["message"] ?? 'Unknown error');
       // throw Exception(body["message"] ?? 'Unknown error');
     }
   }
@@ -152,7 +158,7 @@ class AuthRepository {
     final body = jsonDecode(response.body);
     if (body["access_token"] == null) {
       // throw Exception(body);
-      log.logDebug(body);
+      log.logDebug("ACCESS_TOKEN: $body");
     } else {
       await _token.set(body["access_token"]);
       await _token.setGuestUser(body["access_token"]);

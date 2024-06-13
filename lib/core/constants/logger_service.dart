@@ -1,44 +1,50 @@
 import 'package:logger/logger.dart';
 
 class LoggingService {
-  late Logger _logger;
+  late final Logger _logger;
 
+  // Private constructor for singleton pattern
   LoggingService._internal() {
     _logger = Logger(
       printer: PrettyPrinter(
-        methodCount: 2, // Ko'rsatiladigan metodlar soni
-        errorMethodCount: 8, // Stacktrace bilan ko'rsatiladigan metodlar soni
-        lineLength: 120, // Chiqariladigan qator uzunligi
-        colors: true, // Rangli log xabarlar
-        printEmojis: true, // Emoji qo'shish
-        printTime: true, // Vaqtni ko'rsatish
+        methodCount: 2, // Number of method calls to be displayed
+        errorMethodCount: 8, // Number of method calls if stacktrace is provided
+        lineLength: 120, // Width of the output
+        colors: true, // Colorful log messages
+        printEmojis: true, // Print an emoji for each log message
+        printTime: true, // Should each log print contain a timestamp
       ),
     );
   }
 
+  // Singleton instance
   static final LoggingService _instance = LoggingService._internal();
 
+  // Factory constructor to return the singleton instance
   factory LoggingService() => _instance;
 
-  void logDebug(String message, [dynamic error, StackTrace? stackTrace]) {
+  // Log debug messages
+  void logDebug(String message, {dynamic error, StackTrace? stackTrace}) {
     _logger.d(message, error: error, stackTrace: stackTrace);
   }
 
-  void logInfo(String message, [dynamic error, StackTrace? stackTrace]) {
+  // Log info messages
+  void logInfo(String message, {dynamic error, StackTrace? stackTrace}) {
     _logger.i(message, error: error, stackTrace: stackTrace);
   }
 
-  void logWarning(String message, [dynamic error, StackTrace? stackTrace]) {
+  // Log warning messages
+  void logWarning(String message, {dynamic error, StackTrace? stackTrace}) {
     _logger.w(message, error: error, stackTrace: stackTrace);
   }
 
-  void logError(String message, [dynamic error, StackTrace? stackTrace]) {
+  // Log error messages
+  void logError(String message, {dynamic error, StackTrace? stackTrace}) {
     _logger.e(message, error: error, stackTrace: stackTrace);
   }
 
-  void logVerbose(String message, [dynamic error, StackTrace? stackTrace]) {
+  // Log verbose messages
+  void logVerbose(String message, {dynamic error, StackTrace? stackTrace}) {
     _logger.v(message, error: error, stackTrace: stackTrace);
   }
-
- 
 }

@@ -29,11 +29,13 @@ class DataRepository {
   // }
 
   Future getCategories() async {
-    final response = await api.get(path: "category");
+    final response = await api.get(path: "/category");
     var data = jsonDecode(response.body);
     log.logDebug("GET CATEGORY PRODUCTS: $data");
     return CategoryModel.fromJson(data);
   }
+
+  
 
   Future getCategoryProduct(int id) async {
     final response = await api.getWithToken(path: Urls.productsByCategory(id));
