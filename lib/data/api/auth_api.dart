@@ -9,6 +9,7 @@ class AuthApi {
   final Api _api;
 
   AuthApi(this._api);
+  
   register( String password, String phone, String email) async {
     final body = {
    
@@ -48,12 +49,26 @@ class AuthApi {
     var data = await _api.postWithToken(path: Urls.changePassword, body: body);
     return data;
   }
-
-  Future<Response> forgetPassword(String phone) async {
+   Future<Response> forgetPassword(String phone) async {
     final body = {"phone": phone};
     var data = await _api.post(path: Urls.forgotPassword, body: body);
     return data;
   }
+
+  Future<Response> createGuestLogin(var uuid) async {
+    final Map<String, Object> params = {
+      "uuid": [1],
+      "model": [1],
+    };
+    var data = await _api.post(path: 'guest/login', body: params);
+    return data;
+  }
+  Future getUserInfo() async {
+    final response = await _api.getWithToken(path: 'client/profile/info');
+    return response;
+  }
+
+ 
 
   
 }

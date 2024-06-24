@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class FoodBannerViewWidget extends StatelessWidget {
   const FoodBannerViewWidget({super.key, required this.banners});
 
-  final MobileBanners? banners;
+  final MobileHomeData? banners;
 
   @override
   Widget build(BuildContext context) {

@@ -20,11 +20,11 @@ class TokenPreference {
   final String _mobileInitScreen = "mobileInitScreen";
   final String _furnitureInitScreen = "furnitureInitScreen";
 
-  Future<bool> setGuestUser(String value) async {
-    return await localeDb.setString(_guest, value);
+ setGuestUser(String value) async {
+    await localeDb.setString(_guest, value);
   }
 
-  Future<String?> getGuestUser() async {
+  getGuestUser() async {
     return localeDb.getString(_guest);
   }
 

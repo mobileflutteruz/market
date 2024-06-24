@@ -121,7 +121,7 @@ class AuthRepository {
     if (response.statusCode == 200 && body["token"] != null) {
       // Handle the token (save it, use it, etc.)
 
-      log.logDebug("Token: ${body["token"]}");
+      // log.logDebug("Token: ${body["token"]}");
     } else {
       log.logDebug(body["message"] ?? 'Unknown error');
       // throw Exception(body["message"] ?? 'Unknown error');

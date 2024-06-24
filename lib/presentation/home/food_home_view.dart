@@ -81,15 +81,17 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                 ),
               );
             }
-            final List<MobileBanners>? banners =
-                state.homeProducts?.result?.banner;
-            // final MobileDashBoard dashboards =
-            //     state.homeProducts?.result?.product as MobileDashBoard;
+            // final List<MobileHomeData>? banners = state.
+              final List<MobileHomeData> banner =
+                state.x
+                
+            final MobileDashBoard dashboards =
+                state.homeProducts?.result?.product as MobileDashBoard;
 
             final List<MobileDashBoard> products =
                 state.homeProducts?.result!.product ?? [];
 
-            print(banners?.toString() ?? 'banners is null');
+           
 
             return Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -181,7 +183,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                 // ),
                 AppUtils.kGap24,
                 FoodBannerViewWidget(
-                  banners: banners![1],
+                  banners: banners[1],
                 ),
 
                 AppUtils.kGap24,

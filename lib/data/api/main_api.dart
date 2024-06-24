@@ -1,27 +1,57 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart' as dio;
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'package:karmango/data/api/api.dart';
+import 'package:karmango/data/api/example.dart';
 import 'package:logger/logger.dart';
+import 'package:http_parser/http_parser.dart';
+
 
 @Injectable()
 class MainApi {
   final Api _api;
 
-  MainApi(this._api);
+  MainApi(this._api, this._api2);
   Logger log = Logger();
-  Future<Response> getMobileHomeProducts() async {
-    try {
-      var data = await _api.get(path: 'productsInHomePage');
-       log.d(data.toString());
-      
-
-      return data;
-    } catch (e) {
-
-      log.e('Error fetching mobile home products: $e');
-      rethrow;
-    }
+   final ServiceApiExample _api2;
+   Future<Response> getMobileHomeProducts(int page, int size) async {
+    final Map<String, Object> params = {'page': page, 'size': size};
+    var data = await _api.get(path: '/HomePage', params: params);
+    return data;
   }
+   Future<Response> fetchProductDetails(int productID) async {
+    var data = await _api.get(
+      path: 'productPage/$productID',
+    );
+    return data;
+  }
+
+  Future<dio.Response> updateProfile(
+      {File? photo, String? name, String? phone, int? gender}) async {
+    var image = photo != null
+        ? await dio.MultipartFile.fromFile(photo!.path,
+            filename: photo.path.split('/').last,
+            contentType: MediaType('image', 'jpg'))
+        : null;
+
+    final dio.FormData formData = dio.FormData.fromMap({
+      "photo": image,
+      "name": name,
+      "phone": phone,
+      "gender": gender,
+    });
+    var data = await _api2.uploadmultipleimage(
+      path: "client/profile/update",
+      formData: formData,
+    );
+    return data;
+  }
+
+
 
   Future<Response> getCategory() async {
     try {
@@ -34,7 +64,7 @@ class MainApi {
     }
   }
 
-// Agar boshqa metodlarni ishlatmoqchi bo'lsangiz, ularni ham to'g'ri formatda va exception handling bilan ishlating
+
 
 // Future<Response> getProducts() async {
 //   try {
@@ -46,48 +76,8 @@ class MainApi {
 //   }
 // }
 
-// Future<Response> getSearchCategories() async {
-//   try {
-//     var data = await _api.getWithToken(path: 'category/public-list');
-//     return data;
-//   } catch (e) {
-//     print('Error fetching search categories: $e');
-//     rethrow;
-//   }
-// }
 
-// Future<Response> getBookCategoryProducts(int id) async {
-//   try {
-//     var data = await _api.getWithToken(path: 'book-group/public-list/$id');
-//     return data;
-//   } catch (e) {
-//     print('Error fetching book category products: $e');
-//     rethrow;
-//   }
-// }
 
-// Future<Response> fetchBookInfo(int id) async {
-//   try {
-//     var data = await _api.getWithToken(path: 'book/public-list/$id');
-//     return data;
-//   } catch (e) {
-//     print('Error fetching book info: $e');
-//     rethrow;
-//   }
-// }
-
-// Future<Response> createCheckout(var books) async {
-//   final Map<String, Object?> request = {
-//     'books': books,
-//   };
-//   try {
-//     var data = await _api.postWithToken(path: 'checkout', body: request);
-//     return data;
-//   } catch (e) {
-//     print('Error creating checkout: $e');
-//     rethrow;
-//   }
-// }
 
 // Future<Response> fetchCategories(int id) async {
 //   try {
@@ -99,28 +89,7 @@ class MainApi {
 //   }
 // }
 
-// Future<Response> fetchSavedBooks() async {
-//   try {
-//     var data = await _api.getWithToken(path: 'bookmark');
-//     return data;
-//   } catch (e) {
-//     print('Error fetching saved books: $e');
-//     rethrow;
-//   }
-// }
 
-// Future<Response> getBooks(int page, int id) {
-//   final Map<String, Object> params = {
-//     "category_id": id,
-//     'page': page,
-//   };
-//   try {
-//     return _api.getWithToken(path: 'book/public-list', params: params);
-//   } catch (e) {
-//     print('Error getting books: $e');
-//     rethrow;
-//   }
-// }
 
 // Future<Response> fetchSearch(String query) async {
 //   final Map<String, Object> params = {'name': query};
@@ -155,20 +124,6 @@ class MainApi {
 //   }
 // }
 
-// Future<Response> postComments(String comments, int bookId, int rating) async {
-//   final Map<String, Object> params = {
-//     "comment": comments,
-//     "rating": rating.toString(),
-//     'book_id': bookId.toString()
-//   };
-//   try {
-//     var data = await _api.postWithToken(path: 'review/store', body: params);
-//     return data;
-//   } catch (e) {
-//     print('Error posting comments: $e');
-//     rethrow;
-//   }
-// }
 
 // Future<Response> fetchPayemntCards() async {
 //   try {
@@ -212,19 +167,19 @@ class MainApi {
 //   }
 // }
 
-// Future<Response> createGuestLogin() async {
-//   final Map<String, Object> params = {
-//     "uuid": "some-uuid",
-//     "model": "some-model",
-//   };
-//   try {
-//     var data = await _api.postWithToken(path: 'guest/login', body: params);
-//     return data;
-//   } catch (e) {
-//     print('Error creating guest login: $e');
-//     rethrow;
-//   }
-// }
+Future<Response> createGuestLogin() async {
+  final Map<String, Object> params = {
+    "uuid": "some-uuid",
+    "model": "some-model",
+  };
+  try {
+    var data = await _api.postWithToken(path: 'guest/login', body: params);
+    return data;
+  } catch (e) {
+    debugPrint('Error creating guest login: $e');
+    rethrow;
+  }
+}
 
 // Future<Response> getStats(int page, int size) async {
 //   final params = {'page': page, 'size': size};

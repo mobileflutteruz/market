@@ -25,6 +25,7 @@ class FoodHomeBuildableState extends FoodHomeState
     @Default([]) List data,
     @Default(0 ) int count,
     MobileHomeProducts? homeProducts,
+    BannerModel? banner,
     ProductDataModel? product,
 
   }) = _FoodHomeBuildableState;

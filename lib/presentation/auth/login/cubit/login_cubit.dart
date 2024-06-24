@@ -12,9 +12,9 @@ part 'login_cubit.freezed.dart';
 
 @Injectable()
 class LoginCubit extends BuildableCubit<LoginState, LoginBuildableState> {
-  LoginCubit(this.repo, this.log) : super(LoginBuildableState());
+  LoginCubit(this.repo, ) : super(LoginBuildableState());
   final AuthRepository repo;
-  final LoggingService log;
+
   login({
     required String phone,
     required String password,
@@ -66,13 +66,12 @@ class LoginCubit extends BuildableCubit<LoginState, LoginBuildableState> {
 
       build((buildable) =>
           buildable.copyWith(loading: false, success: true, failure: false));
-      log.logInfo(
+      debugPrint(
         "SUCESS createGuest",
       );
     } catch (e) {
 
-      log.logError("Error in createGuest",
-          error: e, stackTrace: StackTrace.current);
+      debugPrint("Error in createGuest",);
 
   
       build(

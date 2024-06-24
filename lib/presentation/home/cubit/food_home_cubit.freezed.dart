@@ -33,6 +33,7 @@ mixin _$FoodHomeBuildableState {
   List<dynamic> get data => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
   MobileHomeProducts? get homeProducts => throw _privateConstructorUsedError;
+  BannerModel? get banner => throw _privateConstructorUsedError;
   ProductDataModel? get product => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -64,9 +65,11 @@ abstract class $FoodHomeBuildableStateCopyWith<$Res> {
       List<dynamic> data,
       int count,
       MobileHomeProducts? homeProducts,
+      BannerModel? banner,
       ProductDataModel? product});
 
   $MobileHomeProductsCopyWith<$Res>? get homeProducts;
+  $BannerModelCopyWith<$Res>? get banner;
   $ProductDataModelCopyWith<$Res>? get product;
 }
 
@@ -101,6 +104,7 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
     Object? data = null,
     Object? count = null,
     Object? homeProducts = freezed,
+    Object? banner = freezed,
     Object? product = freezed,
   }) {
     return _then(_value.copyWith(
@@ -172,6 +176,10 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
           ? _value.homeProducts
           : homeProducts // ignore: cast_nullable_to_non_nullable
               as MobileHomeProducts?,
+      banner: freezed == banner
+          ? _value.banner
+          : banner // ignore: cast_nullable_to_non_nullable
+              as BannerModel?,
       product: freezed == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
@@ -188,6 +196,18 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
 
     return $MobileHomeProductsCopyWith<$Res>(_value.homeProducts!, (value) {
       return _then(_value.copyWith(homeProducts: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BannerModelCopyWith<$Res>? get banner {
+    if (_value.banner == null) {
+      return null;
+    }
+
+    return $BannerModelCopyWith<$Res>(_value.banner!, (value) {
+      return _then(_value.copyWith(banner: value) as $Val);
     });
   }
 
@@ -231,10 +251,13 @@ abstract class _$$FoodHomeBuildableStateImplCopyWith<$Res>
       List<dynamic> data,
       int count,
       MobileHomeProducts? homeProducts,
+      BannerModel? banner,
       ProductDataModel? product});
 
   @override
   $MobileHomeProductsCopyWith<$Res>? get homeProducts;
+  @override
+  $BannerModelCopyWith<$Res>? get banner;
   @override
   $ProductDataModelCopyWith<$Res>? get product;
 }
@@ -269,6 +292,7 @@ class __$$FoodHomeBuildableStateImplCopyWithImpl<$Res>
     Object? data = null,
     Object? count = null,
     Object? homeProducts = freezed,
+    Object? banner = freezed,
     Object? product = freezed,
   }) {
     return _then(_$FoodHomeBuildableStateImpl(
@@ -340,6 +364,10 @@ class __$$FoodHomeBuildableStateImplCopyWithImpl<$Res>
           ? _value.homeProducts
           : homeProducts // ignore: cast_nullable_to_non_nullable
               as MobileHomeProducts?,
+      banner: freezed == banner
+          ? _value.banner
+          : banner // ignore: cast_nullable_to_non_nullable
+              as BannerModel?,
       product: freezed == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
@@ -369,6 +397,7 @@ class _$FoodHomeBuildableStateImpl implements _FoodHomeBuildableState {
       final List<dynamic> data = const [],
       this.count = 0,
       this.homeProducts,
+      this.banner,
       this.product})
       : _likeIds = likeIds,
         _data = data;
@@ -435,11 +464,13 @@ class _$FoodHomeBuildableStateImpl implements _FoodHomeBuildableState {
   @override
   final MobileHomeProducts? homeProducts;
   @override
+  final BannerModel? banner;
+  @override
   final ProductDataModel? product;
 
   @override
   String toString() {
-    return 'FoodHomeBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, imageIndex: $imageIndex, cardProductCount: $cardProductCount, likeIds: $likeIds, infoTabIndex: $infoTabIndex, descriptionIsExpandable: $descriptionIsExpandable, characteristicsIsExpandable: $characteristicsIsExpandable, isSuccess: $isSuccess, isUser: $isUser, currentIndex: $currentIndex, data: $data, count: $count, homeProducts: $homeProducts, product: $product)';
+    return 'FoodHomeBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, imageIndex: $imageIndex, cardProductCount: $cardProductCount, likeIds: $likeIds, infoTabIndex: $infoTabIndex, descriptionIsExpandable: $descriptionIsExpandable, characteristicsIsExpandable: $characteristicsIsExpandable, isSuccess: $isSuccess, isUser: $isUser, currentIndex: $currentIndex, data: $data, count: $count, homeProducts: $homeProducts, banner: $banner, product: $product)';
   }
 
   @override
@@ -476,30 +507,33 @@ class _$FoodHomeBuildableStateImpl implements _FoodHomeBuildableState {
             (identical(other.count, count) || other.count == count) &&
             (identical(other.homeProducts, homeProducts) ||
                 other.homeProducts == homeProducts) &&
+            (identical(other.banner, banner) || other.banner == banner) &&
             (identical(other.product, product) || other.product == product));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      loading,
-      isModal_hud,
-      success,
-      failed,
-      const DeepCollectionEquality().hash(error),
-      imageIndex,
-      cardProductCount,
-      const DeepCollectionEquality().hash(_likeIds),
-      infoTabIndex,
-      descriptionIsExpandable,
-      characteristicsIsExpandable,
-      isSuccess,
-      isUser,
-      currentIndex,
-      const DeepCollectionEquality().hash(_data),
-      count,
-      homeProducts,
-      product);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        loading,
+        isModal_hud,
+        success,
+        failed,
+        const DeepCollectionEquality().hash(error),
+        imageIndex,
+        cardProductCount,
+        const DeepCollectionEquality().hash(_likeIds),
+        infoTabIndex,
+        descriptionIsExpandable,
+        characteristicsIsExpandable,
+        isSuccess,
+        isUser,
+        currentIndex,
+        const DeepCollectionEquality().hash(_data),
+        count,
+        homeProducts,
+        banner,
+        product
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -528,6 +562,7 @@ abstract class _FoodHomeBuildableState implements FoodHomeBuildableState {
       final List<dynamic> data,
       final int count,
       final MobileHomeProducts? homeProducts,
+      final BannerModel? banner,
       final ProductDataModel? product}) = _$FoodHomeBuildableStateImpl;
 
   @override
@@ -564,6 +599,8 @@ abstract class _FoodHomeBuildableState implements FoodHomeBuildableState {
   int get count;
   @override
   MobileHomeProducts? get homeProducts;
+  @override
+  BannerModel? get banner;
   @override
   ProductDataModel? get product;
   @override

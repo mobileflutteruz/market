@@ -192,7 +192,7 @@ MobileHomeData _$MobileHomeDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MobileHomeData {
-  List<MobileBanners>? get banner => throw _privateConstructorUsedError;
+  List<BannerModel>? get banners => throw _privateConstructorUsedError;
   List<MobileDashBoard>? get product => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -207,7 +207,7 @@ abstract class $MobileHomeDataCopyWith<$Res> {
           MobileHomeData value, $Res Function(MobileHomeData) then) =
       _$MobileHomeDataCopyWithImpl<$Res, MobileHomeData>;
   @useResult
-  $Res call({List<MobileBanners>? banner, List<MobileDashBoard>? product});
+  $Res call({List<BannerModel>? banners, List<MobileDashBoard>? product});
 }
 
 /// @nodoc
@@ -223,14 +223,14 @@ class _$MobileHomeDataCopyWithImpl<$Res, $Val extends MobileHomeData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? banner = freezed,
+    Object? banners = freezed,
     Object? product = freezed,
   }) {
     return _then(_value.copyWith(
-      banner: freezed == banner
-          ? _value.banner
-          : banner // ignore: cast_nullable_to_non_nullable
-              as List<MobileBanners>?,
+      banners: freezed == banners
+          ? _value.banners
+          : banners // ignore: cast_nullable_to_non_nullable
+              as List<BannerModel>?,
       product: freezed == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
@@ -247,7 +247,7 @@ abstract class _$$MobileHomeDataImplCopyWith<$Res>
       __$$MobileHomeDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<MobileBanners>? banner, List<MobileDashBoard>? product});
+  $Res call({List<BannerModel>? banners, List<MobileDashBoard>? product});
 }
 
 /// @nodoc
@@ -261,14 +261,14 @@ class __$$MobileHomeDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? banner = freezed,
+    Object? banners = freezed,
     Object? product = freezed,
   }) {
     return _then(_$MobileHomeDataImpl(
-      banner: freezed == banner
-          ? _value._banner
-          : banner // ignore: cast_nullable_to_non_nullable
-              as List<MobileBanners>?,
+      banners: freezed == banners
+          ? _value._banners
+          : banners // ignore: cast_nullable_to_non_nullable
+              as List<BannerModel>?,
       product: freezed == product
           ? _value._product
           : product // ignore: cast_nullable_to_non_nullable
@@ -281,19 +281,19 @@ class __$$MobileHomeDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MobileHomeDataImpl implements _MobileHomeData {
   const _$MobileHomeDataImpl(
-      {final List<MobileBanners>? banner, final List<MobileDashBoard>? product})
-      : _banner = banner,
+      {final List<BannerModel>? banners, final List<MobileDashBoard>? product})
+      : _banners = banners,
         _product = product;
 
   factory _$MobileHomeDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$MobileHomeDataImplFromJson(json);
 
-  final List<MobileBanners>? _banner;
+  final List<BannerModel>? _banners;
   @override
-  List<MobileBanners>? get banner {
-    final value = _banner;
+  List<BannerModel>? get banners {
+    final value = _banners;
     if (value == null) return null;
-    if (_banner is EqualUnmodifiableListView) return _banner;
+    if (_banners is EqualUnmodifiableListView) return _banners;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -310,7 +310,7 @@ class _$MobileHomeDataImpl implements _MobileHomeData {
 
   @override
   String toString() {
-    return 'MobileHomeData(banner: $banner, product: $product)';
+    return 'MobileHomeData(banners: $banners, product: $product)';
   }
 
   @override
@@ -318,7 +318,7 @@ class _$MobileHomeDataImpl implements _MobileHomeData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MobileHomeDataImpl &&
-            const DeepCollectionEquality().equals(other._banner, _banner) &&
+            const DeepCollectionEquality().equals(other._banners, _banners) &&
             const DeepCollectionEquality().equals(other._product, _product));
   }
 
@@ -326,7 +326,7 @@ class _$MobileHomeDataImpl implements _MobileHomeData {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_banner),
+      const DeepCollectionEquality().hash(_banners),
       const DeepCollectionEquality().hash(_product));
 
   @JsonKey(ignore: true)
@@ -346,200 +346,19 @@ class _$MobileHomeDataImpl implements _MobileHomeData {
 
 abstract class _MobileHomeData implements MobileHomeData {
   const factory _MobileHomeData(
-      {final List<MobileBanners>? banner,
+      {final List<BannerModel>? banners,
       final List<MobileDashBoard>? product}) = _$MobileHomeDataImpl;
 
   factory _MobileHomeData.fromJson(Map<String, dynamic> json) =
       _$MobileHomeDataImpl.fromJson;
 
   @override
-  List<MobileBanners>? get banner;
+  List<BannerModel>? get banners;
   @override
   List<MobileDashBoard>? get product;
   @override
   @JsonKey(ignore: true)
   _$$MobileHomeDataImplCopyWith<_$MobileHomeDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-MobileBanners _$MobileBannersFromJson(Map<String, dynamic> json) {
-  return _MobileBanners.fromJson(json);
-}
-
-/// @nodoc
-mixin _$MobileBanners {
-  int? get top_id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  List<BannerModel>? get banners => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $MobileBannersCopyWith<MobileBanners> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MobileBannersCopyWith<$Res> {
-  factory $MobileBannersCopyWith(
-          MobileBanners value, $Res Function(MobileBanners) then) =
-      _$MobileBannersCopyWithImpl<$Res, MobileBanners>;
-  @useResult
-  $Res call({int? top_id, String? name, List<BannerModel>? banners});
-}
-
-/// @nodoc
-class _$MobileBannersCopyWithImpl<$Res, $Val extends MobileBanners>
-    implements $MobileBannersCopyWith<$Res> {
-  _$MobileBannersCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? top_id = freezed,
-    Object? name = freezed,
-    Object? banners = freezed,
-  }) {
-    return _then(_value.copyWith(
-      top_id: freezed == top_id
-          ? _value.top_id
-          : top_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      banners: freezed == banners
-          ? _value.banners
-          : banners // ignore: cast_nullable_to_non_nullable
-              as List<BannerModel>?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$MobileBannersImplCopyWith<$Res>
-    implements $MobileBannersCopyWith<$Res> {
-  factory _$$MobileBannersImplCopyWith(
-          _$MobileBannersImpl value, $Res Function(_$MobileBannersImpl) then) =
-      __$$MobileBannersImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int? top_id, String? name, List<BannerModel>? banners});
-}
-
-/// @nodoc
-class __$$MobileBannersImplCopyWithImpl<$Res>
-    extends _$MobileBannersCopyWithImpl<$Res, _$MobileBannersImpl>
-    implements _$$MobileBannersImplCopyWith<$Res> {
-  __$$MobileBannersImplCopyWithImpl(
-      _$MobileBannersImpl _value, $Res Function(_$MobileBannersImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? top_id = freezed,
-    Object? name = freezed,
-    Object? banners = freezed,
-  }) {
-    return _then(_$MobileBannersImpl(
-      top_id: freezed == top_id
-          ? _value.top_id
-          : top_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      banners: freezed == banners
-          ? _value._banners
-          : banners // ignore: cast_nullable_to_non_nullable
-              as List<BannerModel>?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$MobileBannersImpl implements _MobileBanners {
-  const _$MobileBannersImpl(
-      {this.top_id, this.name, final List<BannerModel>? banners})
-      : _banners = banners;
-
-  factory _$MobileBannersImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MobileBannersImplFromJson(json);
-
-  @override
-  final int? top_id;
-  @override
-  final String? name;
-  final List<BannerModel>? _banners;
-  @override
-  List<BannerModel>? get banners {
-    final value = _banners;
-    if (value == null) return null;
-    if (_banners is EqualUnmodifiableListView) return _banners;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  String toString() {
-    return 'MobileBanners(top_id: $top_id, name: $name, banners: $banners)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MobileBannersImpl &&
-            (identical(other.top_id, top_id) || other.top_id == top_id) &&
-            (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other._banners, _banners));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, top_id, name, const DeepCollectionEquality().hash(_banners));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MobileBannersImplCopyWith<_$MobileBannersImpl> get copyWith =>
-      __$$MobileBannersImplCopyWithImpl<_$MobileBannersImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MobileBannersImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _MobileBanners implements MobileBanners {
-  const factory _MobileBanners(
-      {final int? top_id,
-      final String? name,
-      final List<BannerModel>? banners}) = _$MobileBannersImpl;
-
-  factory _MobileBanners.fromJson(Map<String, dynamic> json) =
-      _$MobileBannersImpl.fromJson;
-
-  @override
-  int? get top_id;
-  @override
-  String? get name;
-  @override
-  List<BannerModel>? get banners;
-  @override
-  @JsonKey(ignore: true)
-  _$$MobileBannersImplCopyWith<_$MobileBannersImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
