@@ -8,20 +8,18 @@ import 'package:flutter/material.dart';
 class FoodBannerViewWidget extends StatelessWidget {
   const FoodBannerViewWidget({super.key, required this.banners});
 
-  final MobileHomeData? banners;
+  final List<HomeBanner> banners;
 
   @override
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
-      // itemCount: banners.banners!.length, 
-      itemCount: banners!.banners!.length,
+      itemCount: banners.length,
       itemBuilder: (BuildContext context, int index, int pageViewIndex) =>
           FoodBannerItemWidget(
-        imageUrl: banners!.banners![index].banner??"",
+        imageUrl: banners[index].banner ?? "",
         itemTapped: () {
           print("FoodBannerViewWidget");
         },
-
       ),
       options: CarouselOptions(
         height: AppLayout.getHeight(180, context),

@@ -58,7 +58,7 @@ class OngenerateRoutes {
       case FoodNavigatorConst.foodSplash:
         return sampleRoute(FoodSplashView());
       case FoodNavigatorConst.foodHome:
-        return sampleRoute(const FoodHomePage());
+        return sampleRoute( FoodHomePage());
       case FoodNavigatorConst.foodSearchPage:
         return sampleRoute(const FoodSearchPage());
       case FoodNavigatorConst.foodProfileCard:
@@ -96,7 +96,7 @@ class OngenerateRoutes {
       case FoodNavigatorConst.foodProfileView:
         return sampleRoute(const FoodProfileView());
       case FoodNavigatorConst.allProducts:
-        return sampleRoute(AllProdact((args as MobileDashBoard)));
+        return sampleRoute(AllProdact((args as TopProduct)));
     }
     return null;
   }

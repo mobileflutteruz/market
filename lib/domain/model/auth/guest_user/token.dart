@@ -4,16 +4,16 @@ import 'dart:convert';
 part 'token.freezed.dart';
 part 'token.g.dart';
 
-@freezed
-class TokenResponse with _$TokenResponse {
-    const factory TokenResponse({
-        String? access_token,
-        String? refresh_token,
-        String? token_type,
-        User? user,
-    }) = _TokenResponse;
 
-    factory TokenResponse.fromJson(Map<String, dynamic> json) => _$TokenResponseFromJson(json);
+@freezed
+class AccessToken with _$AccessToken {
+    const factory AccessToken({
+        String? accessToken,
+        String? tokenType,
+        User? user,
+    }) = _AccessToken;
+
+    factory AccessToken.fromJson(Map<String, dynamic> json) => _$AccessTokenFromJson(json);
 }
 
 @freezed

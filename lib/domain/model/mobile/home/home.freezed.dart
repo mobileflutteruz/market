@@ -20,8 +20,8 @@ MobileHomeProducts _$MobileHomeProductsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MobileHomeProducts {
-  bool? get status => throw _privateConstructorUsedError;
-  MobileHomeData? get result => throw _privateConstructorUsedError;
+  bool get status => throw _privateConstructorUsedError;
+  MobileHomeData get result => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,9 +35,9 @@ abstract class $MobileHomeProductsCopyWith<$Res> {
           MobileHomeProducts value, $Res Function(MobileHomeProducts) then) =
       _$MobileHomeProductsCopyWithImpl<$Res, MobileHomeProducts>;
   @useResult
-  $Res call({bool? status, MobileHomeData? result});
+  $Res call({bool status, MobileHomeData result});
 
-  $MobileHomeDataCopyWith<$Res>? get result;
+  $MobileHomeDataCopyWith<$Res> get result;
 }
 
 /// @nodoc
@@ -53,29 +53,25 @@ class _$MobileHomeProductsCopyWithImpl<$Res, $Val extends MobileHomeProducts>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? result = freezed,
+    Object? status = null,
+    Object? result = null,
   }) {
     return _then(_value.copyWith(
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      result: freezed == result
+              as bool,
+      result: null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
-              as MobileHomeData?,
+              as MobileHomeData,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $MobileHomeDataCopyWith<$Res>? get result {
-    if (_value.result == null) {
-      return null;
-    }
-
-    return $MobileHomeDataCopyWith<$Res>(_value.result!, (value) {
+  $MobileHomeDataCopyWith<$Res> get result {
+    return $MobileHomeDataCopyWith<$Res>(_value.result, (value) {
       return _then(_value.copyWith(result: value) as $Val);
     });
   }
@@ -89,10 +85,10 @@ abstract class _$$MobileHomeProductsImplCopyWith<$Res>
       __$$MobileHomeProductsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool? status, MobileHomeData? result});
+  $Res call({bool status, MobileHomeData result});
 
   @override
-  $MobileHomeDataCopyWith<$Res>? get result;
+  $MobileHomeDataCopyWith<$Res> get result;
 }
 
 /// @nodoc
@@ -106,18 +102,18 @@ class __$$MobileHomeProductsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? result = freezed,
+    Object? status = null,
+    Object? result = null,
   }) {
     return _then(_$MobileHomeProductsImpl(
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      result: freezed == result
+              as bool,
+      result: null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
-              as MobileHomeData?,
+              as MobileHomeData,
     ));
   }
 }
@@ -125,15 +121,15 @@ class __$$MobileHomeProductsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$MobileHomeProductsImpl implements _MobileHomeProducts {
-  const _$MobileHomeProductsImpl({this.status, this.result});
+  const _$MobileHomeProductsImpl({required this.status, required this.result});
 
   factory _$MobileHomeProductsImpl.fromJson(Map<String, dynamic> json) =>
       _$$MobileHomeProductsImplFromJson(json);
 
   @override
-  final bool? status;
+  final bool status;
   @override
-  final MobileHomeData? result;
+  final MobileHomeData result;
 
   @override
   String toString() {
@@ -170,16 +166,16 @@ class _$MobileHomeProductsImpl implements _MobileHomeProducts {
 
 abstract class _MobileHomeProducts implements MobileHomeProducts {
   const factory _MobileHomeProducts(
-      {final bool? status,
-      final MobileHomeData? result}) = _$MobileHomeProductsImpl;
+      {required final bool status,
+      required final MobileHomeData result}) = _$MobileHomeProductsImpl;
 
   factory _MobileHomeProducts.fromJson(Map<String, dynamic> json) =
       _$MobileHomeProductsImpl.fromJson;
 
   @override
-  bool? get status;
+  bool get status;
   @override
-  MobileHomeData? get result;
+  MobileHomeData get result;
   @override
   @JsonKey(ignore: true)
   _$$MobileHomeProductsImplCopyWith<_$MobileHomeProductsImpl> get copyWith =>
@@ -192,8 +188,14 @@ MobileHomeData _$MobileHomeDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MobileHomeData {
-  List<BannerModel>? get banners => throw _privateConstructorUsedError;
-  List<MobileDashBoard>? get product => throw _privateConstructorUsedError;
+  @JsonKey(name: 'top_banner')
+  List<HomeBanner> get topBanner => throw _privateConstructorUsedError;
+  @JsonKey(name: 'top_product')
+  List<TopProduct> get topProduct => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bottom_banner')
+  List<HomeBanner> get bottomBanner => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bottom_product')
+  List<TopProduct> get bottomProduct => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -207,7 +209,11 @@ abstract class $MobileHomeDataCopyWith<$Res> {
           MobileHomeData value, $Res Function(MobileHomeData) then) =
       _$MobileHomeDataCopyWithImpl<$Res, MobileHomeData>;
   @useResult
-  $Res call({List<BannerModel>? banners, List<MobileDashBoard>? product});
+  $Res call(
+      {@JsonKey(name: 'top_banner') List<HomeBanner> topBanner,
+      @JsonKey(name: 'top_product') List<TopProduct> topProduct,
+      @JsonKey(name: 'bottom_banner') List<HomeBanner> bottomBanner,
+      @JsonKey(name: 'bottom_product') List<TopProduct> bottomProduct});
 }
 
 /// @nodoc
@@ -223,18 +229,28 @@ class _$MobileHomeDataCopyWithImpl<$Res, $Val extends MobileHomeData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? banners = freezed,
-    Object? product = freezed,
+    Object? topBanner = null,
+    Object? topProduct = null,
+    Object? bottomBanner = null,
+    Object? bottomProduct = null,
   }) {
     return _then(_value.copyWith(
-      banners: freezed == banners
-          ? _value.banners
-          : banners // ignore: cast_nullable_to_non_nullable
-              as List<BannerModel>?,
-      product: freezed == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as List<MobileDashBoard>?,
+      topBanner: null == topBanner
+          ? _value.topBanner
+          : topBanner // ignore: cast_nullable_to_non_nullable
+              as List<HomeBanner>,
+      topProduct: null == topProduct
+          ? _value.topProduct
+          : topProduct // ignore: cast_nullable_to_non_nullable
+              as List<TopProduct>,
+      bottomBanner: null == bottomBanner
+          ? _value.bottomBanner
+          : bottomBanner // ignore: cast_nullable_to_non_nullable
+              as List<HomeBanner>,
+      bottomProduct: null == bottomProduct
+          ? _value.bottomProduct
+          : bottomProduct // ignore: cast_nullable_to_non_nullable
+              as List<TopProduct>,
     ) as $Val);
   }
 }
@@ -247,7 +263,11 @@ abstract class _$$MobileHomeDataImplCopyWith<$Res>
       __$$MobileHomeDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<BannerModel>? banners, List<MobileDashBoard>? product});
+  $Res call(
+      {@JsonKey(name: 'top_banner') List<HomeBanner> topBanner,
+      @JsonKey(name: 'top_product') List<TopProduct> topProduct,
+      @JsonKey(name: 'bottom_banner') List<HomeBanner> bottomBanner,
+      @JsonKey(name: 'bottom_product') List<TopProduct> bottomProduct});
 }
 
 /// @nodoc
@@ -261,18 +281,28 @@ class __$$MobileHomeDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? banners = freezed,
-    Object? product = freezed,
+    Object? topBanner = null,
+    Object? topProduct = null,
+    Object? bottomBanner = null,
+    Object? bottomProduct = null,
   }) {
     return _then(_$MobileHomeDataImpl(
-      banners: freezed == banners
-          ? _value._banners
-          : banners // ignore: cast_nullable_to_non_nullable
-              as List<BannerModel>?,
-      product: freezed == product
-          ? _value._product
-          : product // ignore: cast_nullable_to_non_nullable
-              as List<MobileDashBoard>?,
+      topBanner: null == topBanner
+          ? _value._topBanner
+          : topBanner // ignore: cast_nullable_to_non_nullable
+              as List<HomeBanner>,
+      topProduct: null == topProduct
+          ? _value._topProduct
+          : topProduct // ignore: cast_nullable_to_non_nullable
+              as List<TopProduct>,
+      bottomBanner: null == bottomBanner
+          ? _value._bottomBanner
+          : bottomBanner // ignore: cast_nullable_to_non_nullable
+              as List<HomeBanner>,
+      bottomProduct: null == bottomProduct
+          ? _value._bottomProduct
+          : bottomProduct // ignore: cast_nullable_to_non_nullable
+              as List<TopProduct>,
     ));
   }
 }
@@ -281,36 +311,59 @@ class __$$MobileHomeDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MobileHomeDataImpl implements _MobileHomeData {
   const _$MobileHomeDataImpl(
-      {final List<BannerModel>? banners, final List<MobileDashBoard>? product})
-      : _banners = banners,
-        _product = product;
+      {@JsonKey(name: 'top_banner') required final List<HomeBanner> topBanner,
+      @JsonKey(name: 'top_product') required final List<TopProduct> topProduct,
+      @JsonKey(name: 'bottom_banner')
+      required final List<HomeBanner> bottomBanner,
+      @JsonKey(name: 'bottom_product')
+      required final List<TopProduct> bottomProduct})
+      : _topBanner = topBanner,
+        _topProduct = topProduct,
+        _bottomBanner = bottomBanner,
+        _bottomProduct = bottomProduct;
 
   factory _$MobileHomeDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$MobileHomeDataImplFromJson(json);
 
-  final List<BannerModel>? _banners;
+  final List<HomeBanner> _topBanner;
   @override
-  List<BannerModel>? get banners {
-    final value = _banners;
-    if (value == null) return null;
-    if (_banners is EqualUnmodifiableListView) return _banners;
+  @JsonKey(name: 'top_banner')
+  List<HomeBanner> get topBanner {
+    if (_topBanner is EqualUnmodifiableListView) return _topBanner;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_topBanner);
   }
 
-  final List<MobileDashBoard>? _product;
+  final List<TopProduct> _topProduct;
   @override
-  List<MobileDashBoard>? get product {
-    final value = _product;
-    if (value == null) return null;
-    if (_product is EqualUnmodifiableListView) return _product;
+  @JsonKey(name: 'top_product')
+  List<TopProduct> get topProduct {
+    if (_topProduct is EqualUnmodifiableListView) return _topProduct;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_topProduct);
+  }
+
+  final List<HomeBanner> _bottomBanner;
+  @override
+  @JsonKey(name: 'bottom_banner')
+  List<HomeBanner> get bottomBanner {
+    if (_bottomBanner is EqualUnmodifiableListView) return _bottomBanner;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bottomBanner);
+  }
+
+  final List<TopProduct> _bottomProduct;
+  @override
+  @JsonKey(name: 'bottom_product')
+  List<TopProduct> get bottomProduct {
+    if (_bottomProduct is EqualUnmodifiableListView) return _bottomProduct;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_bottomProduct);
   }
 
   @override
   String toString() {
-    return 'MobileHomeData(banners: $banners, product: $product)';
+    return 'MobileHomeData(topBanner: $topBanner, topProduct: $topProduct, bottomBanner: $bottomBanner, bottomProduct: $bottomProduct)';
   }
 
   @override
@@ -318,16 +371,24 @@ class _$MobileHomeDataImpl implements _MobileHomeData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MobileHomeDataImpl &&
-            const DeepCollectionEquality().equals(other._banners, _banners) &&
-            const DeepCollectionEquality().equals(other._product, _product));
+            const DeepCollectionEquality()
+                .equals(other._topBanner, _topBanner) &&
+            const DeepCollectionEquality()
+                .equals(other._topProduct, _topProduct) &&
+            const DeepCollectionEquality()
+                .equals(other._bottomBanner, _bottomBanner) &&
+            const DeepCollectionEquality()
+                .equals(other._bottomProduct, _bottomProduct));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_banners),
-      const DeepCollectionEquality().hash(_product));
+      const DeepCollectionEquality().hash(_topBanner),
+      const DeepCollectionEquality().hash(_topProduct),
+      const DeepCollectionEquality().hash(_bottomBanner),
+      const DeepCollectionEquality().hash(_bottomProduct));
 
   @JsonKey(ignore: true)
   @override
@@ -346,51 +407,67 @@ class _$MobileHomeDataImpl implements _MobileHomeData {
 
 abstract class _MobileHomeData implements MobileHomeData {
   const factory _MobileHomeData(
-      {final List<BannerModel>? banners,
-      final List<MobileDashBoard>? product}) = _$MobileHomeDataImpl;
+      {@JsonKey(name: 'top_banner') required final List<HomeBanner> topBanner,
+      @JsonKey(name: 'top_product') required final List<TopProduct> topProduct,
+      @JsonKey(name: 'bottom_banner')
+      required final List<HomeBanner> bottomBanner,
+      @JsonKey(name: 'bottom_product')
+      required final List<TopProduct> bottomProduct}) = _$MobileHomeDataImpl;
 
   factory _MobileHomeData.fromJson(Map<String, dynamic> json) =
       _$MobileHomeDataImpl.fromJson;
 
   @override
-  List<BannerModel>? get banners;
+  @JsonKey(name: 'top_banner')
+  List<HomeBanner> get topBanner;
   @override
-  List<MobileDashBoard>? get product;
+  @JsonKey(name: 'top_product')
+  List<TopProduct> get topProduct;
+  @override
+  @JsonKey(name: 'bottom_banner')
+  List<HomeBanner> get bottomBanner;
+  @override
+  @JsonKey(name: 'bottom_product')
+  List<TopProduct> get bottomProduct;
   @override
   @JsonKey(ignore: true)
   _$$MobileHomeDataImplCopyWith<_$MobileHomeDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-BannerModel _$BannerModelFromJson(Map<String, dynamic> json) {
-  return _BannerModel.fromJson(json);
+HomeBanner _$HomeBannerFromJson(Map<String, dynamic> json) {
+  return _HomeBanner.fromJson(json);
 }
 
 /// @nodoc
-mixin _$BannerModel {
-  int? get id => throw _privateConstructorUsedError;
-  String? get banner => throw _privateConstructorUsedError;
-  String? get alternative_text => throw _privateConstructorUsedError;
+mixin _$HomeBanner {
+  int get id => throw _privateConstructorUsedError;
+  String get banner => throw _privateConstructorUsedError;
+  @JsonKey(name: 'alternative_text')
+  String get alternativeText => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $BannerModelCopyWith<BannerModel> get copyWith =>
+  $HomeBannerCopyWith<HomeBanner> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $BannerModelCopyWith<$Res> {
-  factory $BannerModelCopyWith(
-          BannerModel value, $Res Function(BannerModel) then) =
-      _$BannerModelCopyWithImpl<$Res, BannerModel>;
+abstract class $HomeBannerCopyWith<$Res> {
+  factory $HomeBannerCopyWith(
+          HomeBanner value, $Res Function(HomeBanner) then) =
+      _$HomeBannerCopyWithImpl<$Res, HomeBanner>;
   @useResult
-  $Res call({int? id, String? banner, String? alternative_text});
+  $Res call(
+      {int id,
+      String banner,
+      @JsonKey(name: 'alternative_text') String alternativeText});
 }
 
 /// @nodoc
-class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
-    implements $BannerModelCopyWith<$Res> {
-  _$BannerModelCopyWithImpl(this._value, this._then);
+class _$HomeBannerCopyWithImpl<$Res, $Val extends HomeBanner>
+    implements $HomeBannerCopyWith<$Res> {
+  _$HomeBannerCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -400,169 +477,182 @@ class _$BannerModelCopyWithImpl<$Res, $Val extends BannerModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? banner = freezed,
-    Object? alternative_text = freezed,
+    Object? id = null,
+    Object? banner = null,
+    Object? alternativeText = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      banner: freezed == banner
+              as int,
+      banner: null == banner
           ? _value.banner
           : banner // ignore: cast_nullable_to_non_nullable
-              as String?,
-      alternative_text: freezed == alternative_text
-          ? _value.alternative_text
-          : alternative_text // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      alternativeText: null == alternativeText
+          ? _value.alternativeText
+          : alternativeText // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$BannerModelImplCopyWith<$Res>
-    implements $BannerModelCopyWith<$Res> {
-  factory _$$BannerModelImplCopyWith(
-          _$BannerModelImpl value, $Res Function(_$BannerModelImpl) then) =
-      __$$BannerModelImplCopyWithImpl<$Res>;
+abstract class _$$HomeBannerImplCopyWith<$Res>
+    implements $HomeBannerCopyWith<$Res> {
+  factory _$$HomeBannerImplCopyWith(
+          _$HomeBannerImpl value, $Res Function(_$HomeBannerImpl) then) =
+      __$$HomeBannerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? banner, String? alternative_text});
+  $Res call(
+      {int id,
+      String banner,
+      @JsonKey(name: 'alternative_text') String alternativeText});
 }
 
 /// @nodoc
-class __$$BannerModelImplCopyWithImpl<$Res>
-    extends _$BannerModelCopyWithImpl<$Res, _$BannerModelImpl>
-    implements _$$BannerModelImplCopyWith<$Res> {
-  __$$BannerModelImplCopyWithImpl(
-      _$BannerModelImpl _value, $Res Function(_$BannerModelImpl) _then)
+class __$$HomeBannerImplCopyWithImpl<$Res>
+    extends _$HomeBannerCopyWithImpl<$Res, _$HomeBannerImpl>
+    implements _$$HomeBannerImplCopyWith<$Res> {
+  __$$HomeBannerImplCopyWithImpl(
+      _$HomeBannerImpl _value, $Res Function(_$HomeBannerImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? banner = freezed,
-    Object? alternative_text = freezed,
+    Object? id = null,
+    Object? banner = null,
+    Object? alternativeText = null,
   }) {
-    return _then(_$BannerModelImpl(
-      id: freezed == id
+    return _then(_$HomeBannerImpl(
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      banner: freezed == banner
+              as int,
+      banner: null == banner
           ? _value.banner
           : banner // ignore: cast_nullable_to_non_nullable
-              as String?,
-      alternative_text: freezed == alternative_text
-          ? _value.alternative_text
-          : alternative_text // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      alternativeText: null == alternativeText
+          ? _value.alternativeText
+          : alternativeText // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$BannerModelImpl implements _BannerModel {
-  const _$BannerModelImpl({this.id, this.banner, this.alternative_text});
+class _$HomeBannerImpl implements _HomeBanner {
+  const _$HomeBannerImpl(
+      {required this.id,
+      required this.banner,
+      @JsonKey(name: 'alternative_text') required this.alternativeText});
 
-  factory _$BannerModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BannerModelImplFromJson(json);
+  factory _$HomeBannerImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HomeBannerImplFromJson(json);
 
   @override
-  final int? id;
+  final int id;
   @override
-  final String? banner;
+  final String banner;
   @override
-  final String? alternative_text;
+  @JsonKey(name: 'alternative_text')
+  final String alternativeText;
 
   @override
   String toString() {
-    return 'BannerModel(id: $id, banner: $banner, alternative_text: $alternative_text)';
+    return 'HomeBanner(id: $id, banner: $banner, alternativeText: $alternativeText)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$BannerModelImpl &&
+            other is _$HomeBannerImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.banner, banner) || other.banner == banner) &&
-            (identical(other.alternative_text, alternative_text) ||
-                other.alternative_text == alternative_text));
+            (identical(other.alternativeText, alternativeText) ||
+                other.alternativeText == alternativeText));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, banner, alternative_text);
+  int get hashCode => Object.hash(runtimeType, id, banner, alternativeText);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BannerModelImplCopyWith<_$BannerModelImpl> get copyWith =>
-      __$$BannerModelImplCopyWithImpl<_$BannerModelImpl>(this, _$identity);
+  _$$HomeBannerImplCopyWith<_$HomeBannerImpl> get copyWith =>
+      __$$HomeBannerImplCopyWithImpl<_$HomeBannerImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BannerModelImplToJson(
+    return _$$HomeBannerImplToJson(
       this,
     );
   }
 }
 
-abstract class _BannerModel implements BannerModel {
-  const factory _BannerModel(
-      {final int? id,
-      final String? banner,
-      final String? alternative_text}) = _$BannerModelImpl;
+abstract class _HomeBanner implements HomeBanner {
+  const factory _HomeBanner(
+      {required final int id,
+      required final String banner,
+      @JsonKey(name: 'alternative_text')
+      required final String alternativeText}) = _$HomeBannerImpl;
 
-  factory _BannerModel.fromJson(Map<String, dynamic> json) =
-      _$BannerModelImpl.fromJson;
+  factory _HomeBanner.fromJson(Map<String, dynamic> json) =
+      _$HomeBannerImpl.fromJson;
 
   @override
-  int? get id;
+  int get id;
   @override
-  String? get banner;
+  String get banner;
   @override
-  String? get alternative_text;
+  @JsonKey(name: 'alternative_text')
+  String get alternativeText;
   @override
   @JsonKey(ignore: true)
-  _$$BannerModelImplCopyWith<_$BannerModelImpl> get copyWith =>
+  _$$HomeBannerImplCopyWith<_$HomeBannerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-MobileDashBoard _$MobileDashBoardFromJson(Map<String, dynamic> json) {
-  return _MobileDashBoard.fromJson(json);
+TopProduct _$TopProductFromJson(Map<String, dynamic> json) {
+  return _TopProduct.fromJson(json);
 }
 
 /// @nodoc
-mixin _$MobileDashBoard {
-  int? get top_id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  List<MobileProduct>? get products => throw _privateConstructorUsedError;
+mixin _$TopProduct {
+  @JsonKey(name: 'top_id')
+  int get topId => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  List<MobileProduct> get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MobileDashBoardCopyWith<MobileDashBoard> get copyWith =>
+  $TopProductCopyWith<TopProduct> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MobileDashBoardCopyWith<$Res> {
-  factory $MobileDashBoardCopyWith(
-          MobileDashBoard value, $Res Function(MobileDashBoard) then) =
-      _$MobileDashBoardCopyWithImpl<$Res, MobileDashBoard>;
+abstract class $TopProductCopyWith<$Res> {
+  factory $TopProductCopyWith(
+          TopProduct value, $Res Function(TopProduct) then) =
+      _$TopProductCopyWithImpl<$Res, TopProduct>;
   @useResult
-  $Res call({int? top_id, String? name, List<MobileProduct>? products});
+  $Res call(
+      {@JsonKey(name: 'top_id') int topId,
+      String name,
+      List<MobileProduct> products});
 }
 
 /// @nodoc
-class _$MobileDashBoardCopyWithImpl<$Res, $Val extends MobileDashBoard>
-    implements $MobileDashBoardCopyWith<$Res> {
-  _$MobileDashBoardCopyWithImpl(this._value, this._then);
+class _$TopProductCopyWithImpl<$Res, $Val extends TopProduct>
+    implements $TopProductCopyWith<$Res> {
+  _$TopProductCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -572,147 +662,151 @@ class _$MobileDashBoardCopyWithImpl<$Res, $Val extends MobileDashBoard>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? top_id = freezed,
-    Object? name = freezed,
-    Object? products = freezed,
+    Object? topId = null,
+    Object? name = null,
+    Object? products = null,
   }) {
     return _then(_value.copyWith(
-      top_id: freezed == top_id
-          ? _value.top_id
-          : top_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
+      topId: null == topId
+          ? _value.topId
+          : topId // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      products: freezed == products
+              as String,
+      products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<MobileProduct>?,
+              as List<MobileProduct>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$MobileDashBoardImplCopyWith<$Res>
-    implements $MobileDashBoardCopyWith<$Res> {
-  factory _$$MobileDashBoardImplCopyWith(_$MobileDashBoardImpl value,
-          $Res Function(_$MobileDashBoardImpl) then) =
-      __$$MobileDashBoardImplCopyWithImpl<$Res>;
+abstract class _$$TopProductImplCopyWith<$Res>
+    implements $TopProductCopyWith<$Res> {
+  factory _$$TopProductImplCopyWith(
+          _$TopProductImpl value, $Res Function(_$TopProductImpl) then) =
+      __$$TopProductImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? top_id, String? name, List<MobileProduct>? products});
+  $Res call(
+      {@JsonKey(name: 'top_id') int topId,
+      String name,
+      List<MobileProduct> products});
 }
 
 /// @nodoc
-class __$$MobileDashBoardImplCopyWithImpl<$Res>
-    extends _$MobileDashBoardCopyWithImpl<$Res, _$MobileDashBoardImpl>
-    implements _$$MobileDashBoardImplCopyWith<$Res> {
-  __$$MobileDashBoardImplCopyWithImpl(
-      _$MobileDashBoardImpl _value, $Res Function(_$MobileDashBoardImpl) _then)
+class __$$TopProductImplCopyWithImpl<$Res>
+    extends _$TopProductCopyWithImpl<$Res, _$TopProductImpl>
+    implements _$$TopProductImplCopyWith<$Res> {
+  __$$TopProductImplCopyWithImpl(
+      _$TopProductImpl _value, $Res Function(_$TopProductImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? top_id = freezed,
-    Object? name = freezed,
-    Object? products = freezed,
+    Object? topId = null,
+    Object? name = null,
+    Object? products = null,
   }) {
-    return _then(_$MobileDashBoardImpl(
-      top_id: freezed == top_id
-          ? _value.top_id
-          : top_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
+    return _then(_$TopProductImpl(
+      topId: null == topId
+          ? _value.topId
+          : topId // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      products: freezed == products
+              as String,
+      products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<MobileProduct>?,
+              as List<MobileProduct>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$MobileDashBoardImpl implements _MobileDashBoard {
-  const _$MobileDashBoardImpl(
-      {this.top_id, this.name, final List<MobileProduct>? products})
+class _$TopProductImpl implements _TopProduct {
+  const _$TopProductImpl(
+      {@JsonKey(name: 'top_id') required this.topId,
+      required this.name,
+      required final List<MobileProduct> products})
       : _products = products;
 
-  factory _$MobileDashBoardImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MobileDashBoardImplFromJson(json);
+  factory _$TopProductImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TopProductImplFromJson(json);
 
   @override
-  final int? top_id;
+  @JsonKey(name: 'top_id')
+  final int topId;
   @override
-  final String? name;
-  final List<MobileProduct>? _products;
+  final String name;
+  final List<MobileProduct> _products;
   @override
-  List<MobileProduct>? get products {
-    final value = _products;
-    if (value == null) return null;
+  List<MobileProduct> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_products);
   }
 
   @override
   String toString() {
-    return 'MobileDashBoard(top_id: $top_id, name: $name, products: $products)';
+    return 'TopProduct(topId: $topId, name: $name, products: $products)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MobileDashBoardImpl &&
-            (identical(other.top_id, top_id) || other.top_id == top_id) &&
+            other is _$TopProductImpl &&
+            (identical(other.topId, topId) || other.topId == topId) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, top_id, name,
-      const DeepCollectionEquality().hash(_products));
+  int get hashCode => Object.hash(
+      runtimeType, topId, name, const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MobileDashBoardImplCopyWith<_$MobileDashBoardImpl> get copyWith =>
-      __$$MobileDashBoardImplCopyWithImpl<_$MobileDashBoardImpl>(
-          this, _$identity);
+  _$$TopProductImplCopyWith<_$TopProductImpl> get copyWith =>
+      __$$TopProductImplCopyWithImpl<_$TopProductImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MobileDashBoardImplToJson(
+    return _$$TopProductImplToJson(
       this,
     );
   }
 }
 
-abstract class _MobileDashBoard implements MobileDashBoard {
-  const factory _MobileDashBoard(
-      {final int? top_id,
-      final String? name,
-      final List<MobileProduct>? products}) = _$MobileDashBoardImpl;
+abstract class _TopProduct implements TopProduct {
+  const factory _TopProduct(
+      {@JsonKey(name: 'top_id') required final int topId,
+      required final String name,
+      required final List<MobileProduct> products}) = _$TopProductImpl;
 
-  factory _MobileDashBoard.fromJson(Map<String, dynamic> json) =
-      _$MobileDashBoardImpl.fromJson;
+  factory _TopProduct.fromJson(Map<String, dynamic> json) =
+      _$TopProductImpl.fromJson;
 
   @override
-  int? get top_id;
+  @JsonKey(name: 'top_id')
+  int get topId;
   @override
-  String? get name;
+  String get name;
   @override
-  List<MobileProduct>? get products;
+  List<MobileProduct> get products;
   @override
   @JsonKey(ignore: true)
-  _$$MobileDashBoardImplCopyWith<_$MobileDashBoardImpl> get copyWith =>
+  _$$TopProductImplCopyWith<_$TopProductImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -722,14 +816,16 @@ MobileProduct _$MobileProductFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MobileProduct {
-  int? get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get status => throw _privateConstructorUsedError;
-  int? get discount => throw _privateConstructorUsedError;
-  int? get price => throw _privateConstructorUsedError;
-  String? get image => throw _privateConstructorUsedError;
-  String? get product_type => throw _privateConstructorUsedError;
-  int? get price_to_pay => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  int get discount => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
+  @JsonKey(name: 'product_type')
+  String get productType => throw _privateConstructorUsedError;
+  @JsonKey(name: 'price_to_pay')
+  double get priceToPay => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -744,14 +840,14 @@ abstract class $MobileProductCopyWith<$Res> {
       _$MobileProductCopyWithImpl<$Res, MobileProduct>;
   @useResult
   $Res call(
-      {int? id,
-      String? name,
-      String? status,
-      int? discount,
-      int? price,
-      String? image,
-      String? product_type,
-      int? price_to_pay});
+      {int id,
+      String name,
+      String status,
+      int discount,
+      double price,
+      String image,
+      @JsonKey(name: 'product_type') String productType,
+      @JsonKey(name: 'price_to_pay') double priceToPay});
 }
 
 /// @nodoc
@@ -767,48 +863,48 @@ class _$MobileProductCopyWithImpl<$Res, $Val extends MobileProduct>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? status = freezed,
-    Object? discount = freezed,
-    Object? price = freezed,
-    Object? image = freezed,
-    Object? product_type = freezed,
-    Object? price_to_pay = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? status = null,
+    Object? discount = null,
+    Object? price = null,
+    Object? image = null,
+    Object? productType = null,
+    Object? priceToPay = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
+              as int,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
+              as String,
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      discount: freezed == discount
+              as String,
+      discount: null == discount
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      price: freezed == price
+              as int,
+      price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int?,
-      image: freezed == image
+              as double,
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      product_type: freezed == product_type
-          ? _value.product_type
-          : product_type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      price_to_pay: freezed == price_to_pay
-          ? _value.price_to_pay
-          : price_to_pay // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String,
+      productType: null == productType
+          ? _value.productType
+          : productType // ignore: cast_nullable_to_non_nullable
+              as String,
+      priceToPay: null == priceToPay
+          ? _value.priceToPay
+          : priceToPay // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -822,14 +918,14 @@ abstract class _$$MobileProductImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      String? name,
-      String? status,
-      int? discount,
-      int? price,
-      String? image,
-      String? product_type,
-      int? price_to_pay});
+      {int id,
+      String name,
+      String status,
+      int discount,
+      double price,
+      String image,
+      @JsonKey(name: 'product_type') String productType,
+      @JsonKey(name: 'price_to_pay') double priceToPay});
 }
 
 /// @nodoc
@@ -843,48 +939,48 @@ class __$$MobileProductImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? status = freezed,
-    Object? discount = freezed,
-    Object? price = freezed,
-    Object? image = freezed,
-    Object? product_type = freezed,
-    Object? price_to_pay = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? status = null,
+    Object? discount = null,
+    Object? price = null,
+    Object? image = null,
+    Object? productType = null,
+    Object? priceToPay = null,
   }) {
     return _then(_$MobileProductImpl(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
+              as int,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      status: freezed == status
+              as String,
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-      discount: freezed == discount
+              as String,
+      discount: null == discount
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
-              as int?,
-      price: freezed == price
+              as int,
+      price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as int?,
-      image: freezed == image
+              as double,
+      image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      product_type: freezed == product_type
-          ? _value.product_type
-          : product_type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      price_to_pay: freezed == price_to_pay
-          ? _value.price_to_pay
-          : price_to_pay // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String,
+      productType: null == productType
+          ? _value.productType
+          : productType // ignore: cast_nullable_to_non_nullable
+              as String,
+      priceToPay: null == priceToPay
+          ? _value.priceToPay
+          : priceToPay // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -893,38 +989,40 @@ class __$$MobileProductImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MobileProductImpl implements _MobileProduct {
   const _$MobileProductImpl(
-      {this.id,
-      this.name,
-      this.status,
-      this.discount,
-      this.price,
-      this.image,
-      this.product_type,
-      this.price_to_pay});
+      {required this.id,
+      required this.name,
+      required this.status,
+      required this.discount,
+      required this.price,
+      required this.image,
+      @JsonKey(name: 'product_type') required this.productType,
+      @JsonKey(name: 'price_to_pay') required this.priceToPay});
 
   factory _$MobileProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$MobileProductImplFromJson(json);
 
   @override
-  final int? id;
+  final int id;
   @override
-  final String? name;
+  final String name;
   @override
-  final String? status;
+  final String status;
   @override
-  final int? discount;
+  final int discount;
   @override
-  final int? price;
+  final double price;
   @override
-  final String? image;
+  final String image;
   @override
-  final String? product_type;
+  @JsonKey(name: 'product_type')
+  final String productType;
   @override
-  final int? price_to_pay;
+  @JsonKey(name: 'price_to_pay')
+  final double priceToPay;
 
   @override
   String toString() {
-    return 'MobileProduct(id: $id, name: $name, status: $status, discount: $discount, price: $price, image: $image, product_type: $product_type, price_to_pay: $price_to_pay)';
+    return 'MobileProduct(id: $id, name: $name, status: $status, discount: $discount, price: $price, image: $image, productType: $productType, priceToPay: $priceToPay)';
   }
 
   @override
@@ -939,16 +1037,16 @@ class _$MobileProductImpl implements _MobileProduct {
                 other.discount == discount) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.image, image) || other.image == image) &&
-            (identical(other.product_type, product_type) ||
-                other.product_type == product_type) &&
-            (identical(other.price_to_pay, price_to_pay) ||
-                other.price_to_pay == price_to_pay));
+            (identical(other.productType, productType) ||
+                other.productType == productType) &&
+            (identical(other.priceToPay, priceToPay) ||
+                other.priceToPay == priceToPay));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, status, discount,
-      price, image, product_type, price_to_pay);
+      price, image, productType, priceToPay);
 
   @JsonKey(ignore: true)
   @override
@@ -966,34 +1064,37 @@ class _$MobileProductImpl implements _MobileProduct {
 
 abstract class _MobileProduct implements MobileProduct {
   const factory _MobileProduct(
-      {final int? id,
-      final String? name,
-      final String? status,
-      final int? discount,
-      final int? price,
-      final String? image,
-      final String? product_type,
-      final int? price_to_pay}) = _$MobileProductImpl;
+          {required final int id,
+          required final String name,
+          required final String status,
+          required final int discount,
+          required final double price,
+          required final String image,
+          @JsonKey(name: 'product_type') required final String productType,
+          @JsonKey(name: 'price_to_pay') required final double priceToPay}) =
+      _$MobileProductImpl;
 
   factory _MobileProduct.fromJson(Map<String, dynamic> json) =
       _$MobileProductImpl.fromJson;
 
   @override
-  int? get id;
+  int get id;
   @override
-  String? get name;
+  String get name;
   @override
-  String? get status;
+  String get status;
   @override
-  int? get discount;
+  int get discount;
   @override
-  int? get price;
+  double get price;
   @override
-  String? get image;
+  String get image;
   @override
-  String? get product_type;
+  @JsonKey(name: 'product_type')
+  String get productType;
   @override
-  int? get price_to_pay;
+  @JsonKey(name: 'price_to_pay')
+  double get priceToPay;
   @override
   @JsonKey(ignore: true)
   _$$MobileProductImplCopyWith<_$MobileProductImpl> get copyWith =>

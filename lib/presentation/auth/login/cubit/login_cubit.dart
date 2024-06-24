@@ -12,7 +12,9 @@ part 'login_cubit.freezed.dart';
 
 @Injectable()
 class LoginCubit extends BuildableCubit<LoginState, LoginBuildableState> {
-  LoginCubit(this.repo, ) : super(LoginBuildableState());
+  LoginCubit(
+    this.repo,
+  ) : super(LoginBuildableState());
   final AuthRepository repo;
 
   login({
@@ -23,10 +25,7 @@ class LoginCubit extends BuildableCubit<LoginState, LoginBuildableState> {
       (buildable) => buildable.copyWith(loading: true, failure: false),
     );
     try {
-      await repo.login(
-        phone: phone,
-        password: password,
-      );
+      await repo.login(password: password, phone: phone);
       build(
         (buildable) => buildable.copyWith(
           success: true,
@@ -51,36 +50,32 @@ class LoginCubit extends BuildableCubit<LoginState, LoginBuildableState> {
   logout() async {}
 
   Future<void> createGuest(BuildContext context) async {
-
+    // Update UI to show loading state
     build((buildable) =>
         buildable.copyWith(loading: true, failure: false, success: false));
 
     try {
- 
+      // Perform guest login
       await repo.loginAsGuest();
 
-
+      // Navigate to home page on success
       Navigator.pushNamedAndRemoveUntil(
           context, FoodNavigatorConst.foodHome, (route) => false);
 
-
+      // Update UI to show success state
       build((buildable) =>
           buildable.copyWith(loading: false, success: true, failure: false));
-      debugPrint(
-        "SUCESS createGuest",
-      );
+
+      debugPrint("SUCCESS createGuest");
     } catch (e) {
+      debugPrint("Error in createGuest");
 
-      debugPrint("Error in createGuest",);
-
-  
-      build(
-        (buildable) => buildable.copyWith(
-          loading: false,
-          failure: true, 
-          error: e.toString(), 
-        ),
-      );
+      // Update UI to show failure state and log the error
+      build((buildable) => buildable.copyWith(
+            loading: false,
+            failure: true,
+            error: e.toString(),
+          ));
     }
   }
 }

@@ -33,7 +33,7 @@ mixin _$FoodHomeBuildableState {
   List<dynamic> get data => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
   MobileHomeProducts? get homeProducts => throw _privateConstructorUsedError;
-  BannerModel? get banner => throw _privateConstructorUsedError;
+  MobileHomeProducts? get banner => throw _privateConstructorUsedError;
   ProductDataModel? get product => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -65,11 +65,11 @@ abstract class $FoodHomeBuildableStateCopyWith<$Res> {
       List<dynamic> data,
       int count,
       MobileHomeProducts? homeProducts,
-      BannerModel? banner,
+      MobileHomeProducts? banner,
       ProductDataModel? product});
 
   $MobileHomeProductsCopyWith<$Res>? get homeProducts;
-  $BannerModelCopyWith<$Res>? get banner;
+  $MobileHomeProductsCopyWith<$Res>? get banner;
   $ProductDataModelCopyWith<$Res>? get product;
 }
 
@@ -179,7 +179,7 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
       banner: freezed == banner
           ? _value.banner
           : banner // ignore: cast_nullable_to_non_nullable
-              as BannerModel?,
+              as MobileHomeProducts?,
       product: freezed == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
@@ -201,12 +201,12 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $BannerModelCopyWith<$Res>? get banner {
+  $MobileHomeProductsCopyWith<$Res>? get banner {
     if (_value.banner == null) {
       return null;
     }
 
-    return $BannerModelCopyWith<$Res>(_value.banner!, (value) {
+    return $MobileHomeProductsCopyWith<$Res>(_value.banner!, (value) {
       return _then(_value.copyWith(banner: value) as $Val);
     });
   }
@@ -251,13 +251,13 @@ abstract class _$$FoodHomeBuildableStateImplCopyWith<$Res>
       List<dynamic> data,
       int count,
       MobileHomeProducts? homeProducts,
-      BannerModel? banner,
+      MobileHomeProducts? banner,
       ProductDataModel? product});
 
   @override
   $MobileHomeProductsCopyWith<$Res>? get homeProducts;
   @override
-  $BannerModelCopyWith<$Res>? get banner;
+  $MobileHomeProductsCopyWith<$Res>? get banner;
   @override
   $ProductDataModelCopyWith<$Res>? get product;
 }
@@ -367,7 +367,7 @@ class __$$FoodHomeBuildableStateImplCopyWithImpl<$Res>
       banner: freezed == banner
           ? _value.banner
           : banner // ignore: cast_nullable_to_non_nullable
-              as BannerModel?,
+              as MobileHomeProducts?,
       product: freezed == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
@@ -464,7 +464,7 @@ class _$FoodHomeBuildableStateImpl implements _FoodHomeBuildableState {
   @override
   final MobileHomeProducts? homeProducts;
   @override
-  final BannerModel? banner;
+  final MobileHomeProducts? banner;
   @override
   final ProductDataModel? product;
 
@@ -562,7 +562,7 @@ abstract class _FoodHomeBuildableState implements FoodHomeBuildableState {
       final List<dynamic> data,
       final int count,
       final MobileHomeProducts? homeProducts,
-      final BannerModel? banner,
+      final MobileHomeProducts? banner,
       final ProductDataModel? product}) = _$FoodHomeBuildableStateImpl;
 
   @override
@@ -600,7 +600,7 @@ abstract class _FoodHomeBuildableState implements FoodHomeBuildableState {
   @override
   MobileHomeProducts? get homeProducts;
   @override
-  BannerModel? get banner;
+  MobileHomeProducts? get banner;
   @override
   ProductDataModel? get product;
   @override

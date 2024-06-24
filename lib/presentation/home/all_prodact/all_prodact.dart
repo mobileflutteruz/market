@@ -15,7 +15,7 @@ class AllProdact extends StatelessWidget {
     this.products, {
     super.key,
   });
-  final MobileDashBoard? products;
+  final TopProduct? products;
 
   @override
   Widget build(BuildContext context) {

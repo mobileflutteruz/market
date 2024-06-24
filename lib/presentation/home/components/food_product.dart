@@ -131,7 +131,7 @@ class FoodProductItemWidget extends StatelessWidget {
             ),
             // AppUtils.kGap8,
             Text(
-                 product!.product_type ?? '',
+                 product!.productType ?? '',
              
               // '${product.}',
               maxLines: 2,

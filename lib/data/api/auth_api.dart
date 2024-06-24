@@ -21,10 +21,10 @@ class AuthApi {
     return data.body;
   }
 
-  Future<Response> login(String name, String password, String email) async {
-    final body = { "password": password, "email": email};
+  Future<Response> login( String password, String phone) async {
+    final body = { "password": password, "phone": phone};
    
-    var data = await _api.post(path: Urls.login, body: body);
+    var data = await _api.post(path: "/login-mblp", body: body);
     return data;
   }
 

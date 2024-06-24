@@ -9,10 +9,8 @@ part of 'home.dart';
 _$MobileHomeProductsImpl _$$MobileHomeProductsImplFromJson(
         Map<String, dynamic> json) =>
     _$MobileHomeProductsImpl(
-      status: json['status'] as bool?,
-      result: json['result'] == null
-          ? null
-          : MobileHomeData.fromJson(json['result'] as Map<String, dynamic>),
+      status: json['status'] as bool,
+      result: MobileHomeData.fromJson(json['result'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$MobileHomeProductsImplToJson(
@@ -24,63 +22,69 @@ Map<String, dynamic> _$$MobileHomeProductsImplToJson(
 
 _$MobileHomeDataImpl _$$MobileHomeDataImplFromJson(Map<String, dynamic> json) =>
     _$MobileHomeDataImpl(
-      banners: (json['banners'] as List<dynamic>?)
-          ?.map((e) => BannerModel.fromJson(e as Map<String, dynamic>))
+      topBanner: (json['top_banner'] as List<dynamic>)
+          .map((e) => HomeBanner.fromJson(e as Map<String, dynamic>))
           .toList(),
-      product: (json['product'] as List<dynamic>?)
-          ?.map((e) => MobileDashBoard.fromJson(e as Map<String, dynamic>))
+      topProduct: (json['top_product'] as List<dynamic>)
+          .map((e) => TopProduct.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      bottomBanner: (json['bottom_banner'] as List<dynamic>)
+          .map((e) => HomeBanner.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      bottomProduct: (json['bottom_product'] as List<dynamic>)
+          .map((e) => TopProduct.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$$MobileHomeDataImplToJson(
         _$MobileHomeDataImpl instance) =>
     <String, dynamic>{
-      'banners': instance.banners,
-      'product': instance.product,
+      'top_banner': instance.topBanner,
+      'top_product': instance.topProduct,
+      'bottom_banner': instance.bottomBanner,
+      'bottom_product': instance.bottomProduct,
     };
 
-_$BannerModelImpl _$$BannerModelImplFromJson(Map<String, dynamic> json) =>
-    _$BannerModelImpl(
-      id: (json['id'] as num?)?.toInt(),
-      banner: json['banner'] as String?,
-      alternative_text: json['alternative_text'] as String?,
+_$HomeBannerImpl _$$HomeBannerImplFromJson(Map<String, dynamic> json) =>
+    _$HomeBannerImpl(
+      id: (json['id'] as num).toInt(),
+      banner: json['banner'] as String,
+      alternativeText: json['alternative_text'] as String,
     );
 
-Map<String, dynamic> _$$BannerModelImplToJson(_$BannerModelImpl instance) =>
+Map<String, dynamic> _$$HomeBannerImplToJson(_$HomeBannerImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'banner': instance.banner,
-      'alternative_text': instance.alternative_text,
+      'alternative_text': instance.alternativeText,
     };
 
-_$MobileDashBoardImpl _$$MobileDashBoardImplFromJson(
-        Map<String, dynamic> json) =>
-    _$MobileDashBoardImpl(
-      top_id: (json['top_id'] as num?)?.toInt(),
-      name: json['name'] as String?,
-      products: (json['products'] as List<dynamic>?)
-          ?.map((e) => MobileProduct.fromJson(e as Map<String, dynamic>))
+_$TopProductImpl _$$TopProductImplFromJson(Map<String, dynamic> json) =>
+    _$TopProductImpl(
+      topId: (json['top_id'] as num).toInt(),
+      name: json['name'] as String,
+      products: (json['products'] as List<dynamic>)
+          .map((e) => MobileProduct.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$MobileDashBoardImplToJson(
-        _$MobileDashBoardImpl instance) =>
+Map<String, dynamic> _$$TopProductImplToJson(_$TopProductImpl instance) =>
     <String, dynamic>{
-      'top_id': instance.top_id,
+      'top_id': instance.topId,
       'name': instance.name,
       'products': instance.products,
     };
 
 _$MobileProductImpl _$$MobileProductImplFromJson(Map<String, dynamic> json) =>
     _$MobileProductImpl(
-      id: (json['id'] as num?)?.toInt(),
-      name: json['name'] as String?,
-      status: json['status'] as String?,
-      discount: (json['discount'] as num?)?.toInt(),
-      price: (json['price'] as num?)?.toInt(),
-      image: json['image'] as String?,
-      product_type: json['product_type'] as String?,
-      price_to_pay: (json['price_to_pay'] as num?)?.toInt(),
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      status: json['status'] as String,
+      discount: (json['discount'] as num).toInt(),
+      price: (json['price'] as num).toDouble(),
+      image: json['image'] as String,
+      productType: json['product_type'] as String,
+      priceToPay: (json['price_to_pay'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$MobileProductImplToJson(_$MobileProductImpl instance) =>
@@ -91,6 +95,6 @@ Map<String, dynamic> _$$MobileProductImplToJson(_$MobileProductImpl instance) =>
       'discount': instance.discount,
       'price': instance.price,
       'image': instance.image,
-      'product_type': instance.product_type,
-      'price_to_pay': instance.price_to_pay,
+      'product_type': instance.productType,
+      'price_to_pay': instance.priceToPay,
     };

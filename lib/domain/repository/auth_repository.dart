@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:karmango/core/constants/logger_service.dart';
 import 'package:karmango/data/api/auth_api.dart';
+import 'package:karmango/domain/model/mobile/auth_response.dart';
 import 'package:uuid/uuid.dart';
 import '../../core/constants/constants.dart';
 import '../../data/api/api.dart';
@@ -17,14 +18,20 @@ class AuthRepository {
   final TokenPreference _token;
   final LoggingService log = LoggingService();
 
-  login({required String phone, required String password}) async {
-    final body = {
-      "phone": phone,
-      "password": password,
-    };
-    final response = await _api.post(path: Urls.login, body: body);
-    await _onAuthResponse(response);
+   login({required String password, required String phone,}) async {
+    final response = await _authApi.login(password, phone);
+    var decodedData = jsonDecode(response.body);
+    return AuthResponse.fromJson(decodedData);
   }
+
+  // login({required String phone, required String password}) async {
+  //   final body = {
+  //     "phone": phone,
+  //     "password": password,
+  //   };
+  //   final response = await _api.post(path: '/login-mblp', body: body);
+  //   await _onAuthResponse(response);
+  // }
 
   Future<http.Response> register({
     required String name,
@@ -97,28 +104,28 @@ class AuthRepository {
 
  
   Future<void> loginAsGuest() async {
-    String uid = const Uuid().v1();
-    final Map<String, Object> params = {
-      "uuid": uid,
-      "model": uid,
-    };
+  String uid = const Uuid().v1();
+  final Map<String, Object> params = {
+    "uuid": uid,
+    "model": uid, // Assuming model is same as uuid for this example
+  };
 
-    log.logDebug("Sending request with params: $params");
+  log.logDebug("Sending request with params: $params");
 
-    try {
-      final response = await _api.post(path: Urls.guestEnters, body: params);
-      await _onAuthResponseGuest(response);
-    } catch (e) {
-      log.logError("Error logging in as guest", error: e);
-      rethrow;
-    }
+  try {
+    final response = await _api.post(path: Urls.guestEnters, body: params);
+    await _onAuthResponseGuest(response);
+  } catch (e) {
+    log.logError("Error logging in as guest", error: e);
+    rethrow;
   }
+}
 
 
   Future<void> _onAuthResponse(http.Response response) async {
     final body = jsonDecode(response.body);
 
-    if (response.statusCode == 200 && body["token"] != null) {
+    if (response.statusCode == 200 && body["access_token"] != null) {
       // Handle the token (save it, use it, etc.)
 
       // log.logDebug("Token: ${body["token"]}");
@@ -154,16 +161,15 @@ class AuthRepository {
     }
   }
 
-  _onAuthResponseGuest(http.Response response) async {
-    final body = jsonDecode(response.body);
-    if (body["access_token"] == null) {
-      // throw Exception(body);
-      log.logDebug("ACCESS_TOKEN: $body");
-    } else {
-      await _token.set(body["access_token"]);
-      await _token.setGuestUser(body["access_token"]);
-    }
+ _onAuthResponseGuest(http.Response response) async {
+  final body = jsonDecode(response.body);
+  if (body["access_token"] == null) {
+    log.logDebug("ACCESS_TOKEN: $body");
+  } else {
+    await _token.set(body["access_token"]);
+    await _token.setGuestUser(body["access_token"]);
   }
+}
 
   passWordvalidator(String p0) {
     if (p0.length < 6) {
