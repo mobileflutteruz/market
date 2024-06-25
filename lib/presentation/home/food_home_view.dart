@@ -4,7 +4,7 @@ part of '../home/components/food_home_components.dart';
 
 
 class FoodHomeView extends StatefulWidget {
-  const FoodHomeView({super.key});
+  const FoodHomeView({Key? key}) : super(key: key);
 
   @override
   State<FoodHomeView> createState() => _FoodHomeViewState();
@@ -27,16 +27,16 @@ class _FoodHomeViewState extends State<FoodHomeView> {
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       appBar: const FoodHomeAppBarWidget(),
-      body:  Buildable<FoodHomeCubit, FoodHomeState, FoodHomeBuildableState>(
-          properties: (buildable) => [
-            buildable.cardProductCount,
-            buildable.loading,
-            buildable.success,
-            buildable.failed,
-            buildable.homeProducts,
-            buildable.product,
-          ],
-          builder: (context, state) {
+      body: Buildable<FoodHomeCubit, FoodHomeState, FoodHomeBuildableState>(
+        properties: (buildable) => [
+          buildable.cardProductCount,
+          buildable.loading,
+          buildable.success,
+          buildable.failed,
+          buildable.homeProducts,
+          buildable.product,
+        ],
+        builder: (context, state) {
           if (state.loading) {
             return const Center(child: LoaderWidget());
           }
@@ -85,10 +85,10 @@ class _FoodHomeViewState extends State<FoodHomeView> {
             );
           }
 
-          final List<HomeBanner> topBanner = state.homeProducts?.result.topBanner ?? [];
-          final List<HomeBanner> bottomBanner = state.homeProducts?.result.bottomBanner ?? [];
-          final List<TopProduct> topProduct = state.homeProducts?.result.topProduct ?? [];
-          final List<TopProduct> bottomProduct = state.homeProducts?.result.bottomProduct ?? [];
+          final List<HomeBanner> topBanner = state.homeProducts?.result!.topBanner ?? [];
+          final List<HomeBanner> bottomBanner = state.homeProducts?.result!.bottomBanner ?? [];
+          final List<TopProduct> topProduct = state.homeProducts?.result!.topProduct ?? [];
+          final List<TopProduct> bottomProduct = state.homeProducts?.result!.bottomProduct ?? [];
 
           return SingleChildScrollView(
             child: Column(
@@ -101,11 +101,11 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                 FoodBannerViewWidget(banners: topBanner),
                 const SizedBox(height: 20),
                 ...topProduct.map((product) {
-                  return product.products.isNotEmpty
+                  return product.products!.isNotEmpty
                       ? Padding(
                           padding: const EdgeInsets.only(bottom: 24),
                           child: FoodProductsViewWidget(
-                            title: product.name,
+                            title: product.name!,
                             smallButton: () {},
                             leftBtnTapped: () {
                               Navigator.push(
@@ -115,7 +115,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                                 ),
                               );
                             },
-                            products: product.products,
+                            products: product!.products!,
                           ),
                         )
                       : const SizedBox.shrink();
@@ -124,11 +124,11 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                 FoodBannerViewWidget(banners: bottomBanner),
                 const SizedBox(height: 24),
                 ...bottomProduct.map((product) {
-                  return product.products.isNotEmpty
+                  return product.products!.isNotEmpty
                       ? Padding(
                           padding: const EdgeInsets.only(bottom: 24),
                           child: FoodProductsViewWidget(
-                            title: product.name,
+                            title: product!.name!,
                             smallButton: () {},
                             leftBtnTapped: () {
                               Navigator.push(
@@ -138,7 +138,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                                 ),
                               );
                             },
-                            products: product.products,
+                            products: product.products!,
                           ),
                         )
                       : const SizedBox.shrink();

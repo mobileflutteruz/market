@@ -85,7 +85,8 @@ class MyApp extends StatelessWidget {
           theme: MainTheme.light,
           themeMode: ThemeMode.light,
           onGenerateRoute: OngenerateRoutes.instance.routeGenerator,
-          initialRoute: FoodNavigatorConst.foodSplash,
+          // initialRoute: FoodNavigatorConst.foodSplash, 
+          initialRoute: FoodNavigatorConst.foodHome,
           builder: (context, child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(),

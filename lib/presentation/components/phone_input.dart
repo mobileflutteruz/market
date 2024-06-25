@@ -20,6 +20,7 @@ class PhoneInputWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: textEditingController,
+      keyboardType: TextInputType.number,
       decoration: InputDecoration(
         hintText: hintText,
         

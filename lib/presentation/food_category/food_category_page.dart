@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/core/extension/context_extension.dart';
+import 'package:karmango/presentation/components/common_app_bar.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
 import 'package:karmango/presentation/food_category/components/category_item_widget.dart';
 import 'package:karmango/presentation/food_category/cubit/category_cubit.dart';
@@ -19,27 +20,15 @@ class FoodCategoryPage extends StatelessWidget {
       },
       child: BlocBuilder<CategoryCubit, CategoryState>(
         builder: (context, state) {
-          if (state is CategoryBuildable) {
-            if (state.loading) {
-              return const LoaderWidget();
-            }
-            if (state.failed) {
-              return Center(
-                child: ElevatedButton(
-                  onPressed: () => context.read<CategoryCubit>().fetchCategory(),
-                  child: const Text("Retry"),
-                ),
-              );
-            }
-
-            final categories = state.category ?? [];
-
-            return Scaffold(
-              appBar: AppBar(
-                title: Text(context.l10n.categories),
-                automaticallyImplyLeading: false, // Remove the back arrow
-              ),
-              body: GridView.builder(
+          return Scaffold(
+            appBar: CommonAppBar(
+               title: context.l10n.categories,
+              // automaticallyImplyLeading: false,
+            ),
+            body: state.when(
+              initial: () => Container(),
+              loading: () => const LoaderWidget(),
+              success: (categories) => GridView.builder(
                 padding: const EdgeInsets.all(16),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 164 / 128,
@@ -54,21 +43,20 @@ class FoodCategoryPage extends StatelessWidget {
                     imageLink: category.image ?? '',
                     categoryItemName: category.name ?? '',
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (_) =>
-                      //         CategoryItemView(categoryId: category.id!),
-                      //   ),
-                      // );
+                      // Handle category item tap
                     },
                     smallButton: () {},
                   );
                 },
               ),
-            );
-          }
-          return Container(); 
+              failure: (error) => Center(
+                child: ElevatedButton(
+                  onPressed: () => context.read<CategoryCubit>().fetchCategory(),
+                  child: const Text("Retry"),
+                ),
+              ),
+            ),
+          );
         },
       ),
     );

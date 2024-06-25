@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:injectable/injectable.dart';
+
+import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/model/user/user_model.dart';
@@ -33,11 +35,11 @@ class TokenPreference {
     await localeDb.setString(_user, user);
   }
 
-  Future<UserModel?> getUser() async {
+  Future<AuthResponse?> getUser() async {
     String? userString = localeDb.getString(_user);
     if (userString != null) {
       Map<String, dynamic> json = jsonDecode(userString);
-      return UserModel.fromJson(json);
+      return AuthResponse.fromJson(json);
     }
     return null;
   }

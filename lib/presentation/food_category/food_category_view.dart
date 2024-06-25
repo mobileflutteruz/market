@@ -13,9 +13,9 @@ class FoodCategoryView extends StatelessWidget {
     // return Scaffold();
 
     return Scaffold(
-      appBar: CommonAppBar(
-        title: context.l10n.categories,
-      ),
+      // appBar: CommonAppBar(
+      //   title: context.l10n.categories,
+      // ),
       body: FoodCategoryPage(),
     );
   }

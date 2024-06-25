@@ -80,26 +80,26 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildableState> {
     );
   }
 
-  setLikeId(int likeId) async {
-    List<String> ids = await mainRepo.getLikeIds() ?? [];
-    // List<String> ids = await mainRepo.getLikeIds() ?? [];
-    debugPrint("List<String> ids = await _repository.getLikeIds() ?? [] $ids");
+  // setLikeId(int likeId) async {
+  //   List<String> ids = await mainRepo.getLikeIds() ?? [];
+  //   // List<String> ids = await mainRepo.getLikeIds() ?? [];
+  //   debugPrint("List<String> ids = await _repository.getLikeIds() ?? [] $ids");
 
-    if (!ids.contains(likeId.toString())) {
-      ids.add(likeId.toString());
-    } else {
-      ids.removeWhere((p) => p == likeId.toString());
-    }
-    await mainRepo.setLikeIds(ids);
-    await repo.createFavorite(productId: likeId);
+  //   if (!ids.contains(likeId.toString())) {
+  //     ids.add(likeId.toString());
+  //   } else {
+  //     ids.removeWhere((p) => p == likeId.toString());
+  //   }
+  //   await mainRepo.setLikeIds(ids);
+  //   await repo.createFavorite(productId: likeId);
 
-    build(
-      (buildable) => buildable.copyWith(
-        likeIds: ids,
-      ),
-    );
-    debugPrint("$ids");
-  }
+  //   build(
+  //     (buildable) => buildable.copyWith(
+  //       likeIds: ids,
+  //     ),
+  //   );
+  //   debugPrint("$ids");
+  // }
 
   getLikeIds() async {
     List<String> ids = await mainRepo.getLikeIds() ?? [];

@@ -50,6 +50,7 @@ class _FoodLoginView extends State<FoodLoginView> {
                         ),
                         PhoneInputWidget(
                           textEditingController: phoneController,
+                          
                           hintText: context.l10n.enterPhoneNumber,
                           validator: (value) {
                             return locator<AuthRepository>()
@@ -122,7 +123,7 @@ class _FoodLoginView extends State<FoodLoginView> {
                           onPressed: () {
                             context.read<LoginCubit>().createGuest(context);
                           },
-                          child: Text(context.l10n.next),
+                          child: Text('Continue as Guest'),
                         ),
                       ],
                     ),

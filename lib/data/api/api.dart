@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
 import 'package:karmango/domain/expections/invalid_credentials_exceptions.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
-
 import '../preferences/token_preferences.dart';
 
 @Injectable()
@@ -13,7 +11,7 @@ class Api {
 
   Api(this._token);
 
-  final _host = "karmango.shop.dukan.uz";
+  final _host = "karmango.shop.dukan.uz";  // Removed https://
   final _root = "/api";
   final _timeout = const Duration(seconds: 15);
 
@@ -25,98 +23,77 @@ class Api {
     required String path,
     Map<String, Object>? params,
   }) async {
-    final uri = Uri.https(_host, "$_root$path", _convertParams(params));
-    final headers = await _headers;
-    final result = await _httpClient.get(uri, headers: headers);
-    return propagateErrors(result);
+    try {
+      final uri = Uri.https(_host, "$_root$path", _convertParams(params));
+      final headers = await _headers;
+      final result = await _httpClient.get(uri, headers: headers).timeout(_timeout);
+      return propagateErrors(result);
+    } catch (e) {
+      print('ClientException: $e');
+      rethrow;
+    }
   }
 
   Future<Response> getWithToken({
     required String path,
     Map<String, Object>? params,
   }) async {
-    final uri = Uri.https(_host, "$_root/$path",
-        params?.map((key, value) => MapEntry(key, value.toString())));
-    final headerv = await _headersWithToken;
-    final result =
-        await _httpClient.get(uri, headers: headerv).timeout(_timeout);
-    return propagateErrors(result);
+    try {
+      final uri = Uri.https(_host, "$_root$path", _convertParams(params));
+      final headers = await _headersWithToken;
+      final result = await _httpClient.get(uri, headers: headers).timeout(_timeout);
+      return propagateErrors(result);
+    } catch (e) {
+      print('ClientException: $e');
+      rethrow;
+    }
   }
 
   Future<Response> deleteWithToken({
     required String path,
     Map<String, Object>? params,
   }) async {
-    final uri = Uri.https(_host, "$_root$path", _convertParams(params));
-    final headers = await _headersWithToken;
-    final result = await _httpClient.delete(uri, headers: headers);
-    return propagateErrors(result);
+    try {
+      final uri = Uri.https(_host, "$_root$path", _convertParams(params));
+      final headers = await _headersWithToken;
+      final result = await _httpClient.delete(uri, headers: headers).timeout(_timeout);
+      return propagateErrors(result);
+    } catch (e) {
+      print('ClientException: $e');
+      rethrow;
+    }
   }
 
-  Future<http.Response> postWithToken({
+  Future<Response> postWithToken({
     required String path,
     Map<String, dynamic>? body,
     Map<String, Object>? params,
   }) async {
-    final uri = Uri.https(_host, path, params);
-    final headers = {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer $_token',
-    };
-    final result =
-        await http.post(uri, headers: headers, body: jsonEncode(body));
-    return propagateErrors(result);
+    try {
+      final uri = Uri.https(_host, "$_root$path", _convertParams(params));
+      final headers = await _headersWithToken;
+      final result = await _httpClient.post(uri, headers: headers, body: jsonEncode(body)).timeout(_timeout);
+      return propagateErrors(result);
+    } catch (e) {
+      print('ClientException: $e');
+      rethrow;
+    }
   }
-
-  // Future<Response> postWithToken({
-  //   required String path,
-  //   Map<String, dynamic>? body,
-  //   Map<String, Object>? params,
-  // }) async {
-  //   final uri = Uri.https(_host, "$_root$path", _convertParams(params));
-  //   final headers = await _headersWithToken;
-  //   final result =
-  //       await _httpClient.post(uri, headers: headers, body: jsonEncode(body));
-  //   return _propagateErrors(result);
-  // }
 
   Future<Response> post({
     required String path,
     Map<String, dynamic>? body,
     Map<String, Object>? params,
   }) async {
-    final uri = Uri.https(_host, "$_root/$path", params);
-    final headers = await _headers;
-    final result = await _httpClient
-        .post(uri, headers: headers, body: jsonEncode(body))
-        .timeout(_timeout);
-    return propagateErrors(result);
-  }
-
-  Future<Map<String, String>> get _headersWithToken async {
-    final token = await _token.get() ?? "";
-    final headers = <String, String>{
-      "Accept": "application/json",
-      "Content-Type": "application/json",
-      "Authorization": "Bearer $token"
-    };
-
-    // if (token != null) {
-    //   headers["Authorization"] = "Bearer $token";
-    // }
-
-    return headers;
-  }
-
-  gettokens() async {
-    var token = await _token.get();
-    if (token == null) {
-      print("ifni ichida ----------->>>>>>>>>");
-      var guesttoken = await _token.getGuestUser();
-      print("guesttttoken-------->>>>>>>>>$guesttoken");
-      return guesttoken;
+    try {
+      final uri = Uri.https(_host, "$_root$path", _convertParams(params));
+      final headers = await _headers;
+      final result = await _httpClient.post(uri, headers: headers, body: jsonEncode(body)).timeout(_timeout);
+      return propagateErrors(result);
+    } catch (e) {
+      print('ClientException: $e');
+      rethrow;
     }
-    return token;
   }
 
   Future<Response> put({
@@ -124,11 +101,34 @@ class Api {
     Map<String, dynamic>? body,
     Map<String, Object>? params,
   }) async {
-    final uri = Uri.https(_host, "$_root$path", _convertParams(params));
-    final headers = await _headers;
-    final result =
-        await _httpClient.put(uri, headers: headers, body: jsonEncode(body));
-    return propagateErrors(result);
+    try {
+      final uri = Uri.https(_host, "$_root$path", _convertParams(params));
+      final headers = await _headers;
+      final result = await _httpClient.put(uri, headers: headers, body: jsonEncode(body)).timeout(_timeout);
+      return propagateErrors(result);
+    } catch (e) {
+      print('ClientException: $e');
+      rethrow;
+    }
+  }
+
+  Future<Map<String, String>> get _headersWithToken async {
+    final token = await gettokens();
+    final headers = <String, String>{
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      "Authorization": "Bearer $token"
+    };
+    return headers;
+  }
+
+  Future<String?> gettokens() async {
+    var token = await _token.get();
+    if (token == null) {
+      var guestToken = await _token.getGuestUser();
+      return guestToken;
+    }
+    return token;
   }
 
   Future<Map<String, String>> get _headers async {
@@ -152,6 +152,7 @@ class Api {
       case 402:
         throw NameUnavailableException();
       default:
+        print('Unexpected error: ${response.statusCode} - ${response.body}');
         throw Exception('Unexpected error: ${response.statusCode}');
     }
   }
