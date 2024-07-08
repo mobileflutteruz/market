@@ -29,7 +29,7 @@ class Api {
       final result = await _httpClient.get(uri, headers: headers).timeout(_timeout);
       return propagateErrors(result);
     } catch (e) {
-      print('ClientException: $e');
+      print(' GET  ClientException: $e');
       rethrow;
     }
   }
@@ -44,7 +44,7 @@ class Api {
       final result = await _httpClient.get(uri, headers: headers).timeout(_timeout);
       return propagateErrors(result);
     } catch (e) {
-      print('ClientException: $e');
+      print('GetWithToken  ClientException: $e');
       rethrow;
     }
   }
@@ -59,10 +59,11 @@ class Api {
       final result = await _httpClient.delete(uri, headers: headers).timeout(_timeout);
       return propagateErrors(result);
     } catch (e) {
-      print('ClientException: $e');
+      print('DeleteWithToken ClientException: $e');
       rethrow;
     }
   }
+  
 
   Future<Response> postWithToken({
     required String path,
@@ -75,7 +76,7 @@ class Api {
       final result = await _httpClient.post(uri, headers: headers, body: jsonEncode(body)).timeout(_timeout);
       return propagateErrors(result);
     } catch (e) {
-      print('ClientException: $e');
+      print('PostWithToken ClientException: $e');
       rethrow;
     }
   }
@@ -91,7 +92,7 @@ class Api {
       final result = await _httpClient.post(uri, headers: headers, body: jsonEncode(body)).timeout(_timeout);
       return propagateErrors(result);
     } catch (e) {
-      print('ClientException: $e');
+      print('Post ClientException: $e');
       rethrow;
     }
   }
@@ -107,7 +108,7 @@ class Api {
       final result = await _httpClient.put(uri, headers: headers, body: jsonEncode(body)).timeout(_timeout);
       return propagateErrors(result);
     } catch (e) {
-      print('ClientException: $e');
+      print('Put ClientException: $e');
       rethrow;
     }
   }

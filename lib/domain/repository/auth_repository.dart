@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:injectable/injectable.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -32,6 +35,25 @@ class AuthRepository {
       log.logError("Error registering user", error: e);
     }
   }
+
+ /// Logs in a user with the given phone number and password.
+  Future<void> login({
+    required String phone,
+    required String password,
+  }) async {
+    final body = {
+      "phone": phone,
+      "password": password,
+    };
+
+    try {
+      final response = await _api.post(path: '/login', body: body);
+      await _onAuthResponse(response);
+    } catch (e) {
+      log.logError("Error logging in", error: e);
+    }
+  }
+
 
   /// Logs out the current user and clears the token.
   Future<void> logout() async {
@@ -77,10 +99,35 @@ class AuthRepository {
   /// Logs in as a guest user.
   Future<void> loginAsGuest() async {
     try {
-      final response = await _authApi.createGuestLogin(const Uuid().v1());
+      // Get device info
+      final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
+      String uuid;
+      String model;
+
+      if (Platform.isAndroid) {
+        AndroidDeviceInfo androidInfo = await deviceInfoPlugin.androidInfo;
+        uuid = androidInfo.id ?? const Uuid().v1(); // Fallback if id is null
+        model = androidInfo.model ?? "Unknown Android Model";
+      } else if (Platform.isIOS) {
+        IosDeviceInfo iosInfo = await deviceInfoPlugin.iosInfo;
+        uuid = iosInfo.identifierForVendor ??
+            const Uuid().v1(); // Fallback if identifierForVendor is null
+        model = iosInfo.utsname.machine ?? "Unknown iOS Model";
+      } else {
+        // Handle other platforms or set defaults
+        uuid = const Uuid().v1();
+        model = "Unknown Model";
+      }
+
+      // Call the API to create a guest login
+      final response = await _authApi.createGuestLogin(uuid, model);
+
+      // Handle the authentication response
       await _onAuthResponseGuest(response);
-    } catch (e) {
-      log.logError("Error logging in as guest", error: e);
+    } catch (e, stackTrace) {
+      // Log the error with stack trace for better debugging
+      log.logError("Error logging in as guest",
+          error: e, stackTrace: stackTrace);
     }
   }
 
@@ -94,23 +141,6 @@ class AuthRepository {
     }
   }
 
-  /// Logs in a user with the given phone number and password.
-  Future<void> login({
-    required String phone,
-    required String password,
-  }) async {
-    final body = {
-      "phone": phone,
-      "password": password,
-    };
-
-    try {
-      final response = await _api.post(path: '/login-mblp', body: body);
-      await _onAuthResponse(response);
-    } catch (e) {
-      log.logError("Error logging in", error: e);
-    }
-  }
 
   /// Activates a user with the given phone number and code.
   Future<void> activateUser({
@@ -123,7 +153,8 @@ class AuthRepository {
     };
 
     try {
-      final response = await _api.postWithToken(path: Urls.activateUser, body: body);
+      final response =
+          await _api.postWithToken(path: Urls.activateUser, body: body);
       await _onAuthResponse(response);
     } catch (e) {
       log.logError("Error activating user", error: e);
@@ -143,7 +174,8 @@ class AuthRepository {
     };
 
     try {
-      final response = await _api.postWithToken(path: Urls.changePassword, body: body);
+      final response =
+          await _api.postWithToken(path: Urls.changePassword, body: body);
       await _onAuthResponse(response);
     } catch (e) {
       log.logError("Error changing password", error: e);
@@ -176,26 +208,25 @@ class AuthRepository {
   }
 
   /// Handles the authentication response and saves the token if available.
-  Future<void> _onAuthResponse(http.Response response) async {
+  _onAuthResponse(http.Response response) async {
     final body = jsonDecode(response.body);
 
-    if (response.statusCode == 200 && body["access_token"] != null) {
-      await _token.set(body["access_token"]);
-      await _token.setUser(body);
+    if (body["token"] == null) {
+       log.logDebug("TOKEN: $body");
+      
     } else {
-      log.logDebug(body["message"] ?? 'Unknown error');
-      throw Exception(body["message"] ?? 'Unknown error');
+      await _token.set(body["token"]);
     }
   }
 
   /// Handles the guest login response and saves the guest token.
   Future<void> _onAuthResponseGuest(http.Response response) async {
     final body = jsonDecode(response.body);
-    if (body["access_token"] == null) {
+    if (body["token"] == null) {
       log.logDebug("ACCESS_TOKEN: $body");
     } else {
-      await _token.set(body["access_token"]);
-      await _token.setGuestUser(body["access_token"]);
+      await _token.set(body["token"]);
+      await _token.setGuestUser(body["token"]);
     }
   }
 

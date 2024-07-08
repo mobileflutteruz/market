@@ -85,10 +85,10 @@ class _FoodHomeViewState extends State<FoodHomeView> {
             );
           }
 
-          final List<HomeBanner> topBanner = state.homeProducts?.result!.topBanner ?? [];
-          final List<HomeBanner> bottomBanner = state.homeProducts?.result!.bottomBanner ?? [];
-          final List<TopProduct> topProduct = state.homeProducts?.result!.topProduct ?? [];
-          final List<TopProduct> bottomProduct = state.homeProducts?.result!.bottomProduct ?? [];
+          final List<HomeBanner> topBanner = state.homeProducts?.result!.top_banner ?? [];
+          final List<HomeBanner> bottomBanner = state.homeProducts?.result!.bottom_banner ?? [];
+          final List<TopProduct> topProduct = state.homeProducts?.result!.top_product ?? [];
+          final List<TopProduct> bottomProduct = state.homeProducts?.result!.bottom_product ?? [];
 
           return SingleChildScrollView(
             child: Column(

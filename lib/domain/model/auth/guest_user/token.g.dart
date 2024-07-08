@@ -6,19 +6,21 @@ part of 'token.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AccessTokenImpl _$$AccessTokenImplFromJson(Map<String, dynamic> json) =>
-    _$AccessTokenImpl(
-      accessToken: json['accessToken'] as String?,
-      tokenType: json['tokenType'] as String?,
+_$GuestModelImpl _$$GuestModelImplFromJson(Map<String, dynamic> json) =>
+    _$GuestModelImpl(
+      status: json['status'] as bool?,
+      token: json['token'] as String?,
+      token_type: json['token_type'] as String?,
       user: json['user'] == null
           ? null
           : User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$AccessTokenImplToJson(_$AccessTokenImpl instance) =>
+Map<String, dynamic> _$$GuestModelImplToJson(_$GuestModelImpl instance) =>
     <String, dynamic>{
-      'accessToken': instance.accessToken,
-      'tokenType': instance.tokenType,
+      'status': instance.status,
+      'token': instance.token,
+      'token_type': instance.token_type,
       'user': instance.user,
     };
 

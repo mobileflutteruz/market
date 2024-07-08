@@ -22,9 +22,9 @@ AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) {
 mixin _$AuthResponse {
   bool? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  int? get user_id => throw _privateConstructorUsedError;
+  int? get user_d => throw _privateConstructorUsedError;
   String? get user_name => throw _privateConstructorUsedError;
-  String? get access_token => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
   String? get token_type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,9 +42,9 @@ abstract class $AuthResponseCopyWith<$Res> {
   $Res call(
       {bool? status,
       String? message,
-      int? user_id,
+      int? user_d,
       String? user_name,
-      String? access_token,
+      String? token,
       String? token_type});
 }
 
@@ -63,9 +63,9 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
   $Res call({
     Object? status = freezed,
     Object? message = freezed,
-    Object? user_id = freezed,
+    Object? user_d = freezed,
     Object? user_name = freezed,
-    Object? access_token = freezed,
+    Object? token = freezed,
     Object? token_type = freezed,
   }) {
     return _then(_value.copyWith(
@@ -77,17 +77,17 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      user_id: freezed == user_id
-          ? _value.user_id
-          : user_id // ignore: cast_nullable_to_non_nullable
+      user_d: freezed == user_d
+          ? _value.user_d
+          : user_d // ignore: cast_nullable_to_non_nullable
               as int?,
       user_name: freezed == user_name
           ? _value.user_name
           : user_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      access_token: freezed == access_token
-          ? _value.access_token
-          : access_token // ignore: cast_nullable_to_non_nullable
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String?,
       token_type: freezed == token_type
           ? _value.token_type
@@ -108,9 +108,9 @@ abstract class _$$AuthResponseImplCopyWith<$Res>
   $Res call(
       {bool? status,
       String? message,
-      int? user_id,
+      int? user_d,
       String? user_name,
-      String? access_token,
+      String? token,
       String? token_type});
 }
 
@@ -127,9 +127,9 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? message = freezed,
-    Object? user_id = freezed,
+    Object? user_d = freezed,
     Object? user_name = freezed,
-    Object? access_token = freezed,
+    Object? token = freezed,
     Object? token_type = freezed,
   }) {
     return _then(_$AuthResponseImpl(
@@ -141,17 +141,17 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      user_id: freezed == user_id
-          ? _value.user_id
-          : user_id // ignore: cast_nullable_to_non_nullable
+      user_d: freezed == user_d
+          ? _value.user_d
+          : user_d // ignore: cast_nullable_to_non_nullable
               as int?,
       user_name: freezed == user_name
           ? _value.user_name
           : user_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      access_token: freezed == access_token
-          ? _value.access_token
-          : access_token // ignore: cast_nullable_to_non_nullable
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String?,
       token_type: freezed == token_type
           ? _value.token_type
@@ -167,9 +167,9 @@ class _$AuthResponseImpl implements _AuthResponse {
   const _$AuthResponseImpl(
       {this.status,
       this.message,
-      this.user_id,
+      this.user_d,
       this.user_name,
-      this.access_token,
+      this.token,
       this.token_type});
 
   factory _$AuthResponseImpl.fromJson(Map<String, dynamic> json) =>
@@ -180,17 +180,17 @@ class _$AuthResponseImpl implements _AuthResponse {
   @override
   final String? message;
   @override
-  final int? user_id;
+  final int? user_d;
   @override
   final String? user_name;
   @override
-  final String? access_token;
+  final String? token;
   @override
   final String? token_type;
 
   @override
   String toString() {
-    return 'AuthResponse(status: $status, message: $message, user_id: $user_id, user_name: $user_name, access_token: $access_token, token_type: $token_type)';
+    return 'AuthResponse(status: $status, message: $message, user_d: $user_d, user_name: $user_name, token: $token, token_type: $token_type)';
   }
 
   @override
@@ -200,19 +200,18 @@ class _$AuthResponseImpl implements _AuthResponse {
             other is _$AuthResponseImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.user_id, user_id) || other.user_id == user_id) &&
+            (identical(other.user_d, user_d) || other.user_d == user_d) &&
             (identical(other.user_name, user_name) ||
                 other.user_name == user_name) &&
-            (identical(other.access_token, access_token) ||
-                other.access_token == access_token) &&
+            (identical(other.token, token) || other.token == token) &&
             (identical(other.token_type, token_type) ||
                 other.token_type == token_type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, user_id,
-      user_name, access_token, token_type);
+  int get hashCode => Object.hash(
+      runtimeType, status, message, user_d, user_name, token, token_type);
 
   @JsonKey(ignore: true)
   @override
@@ -232,9 +231,9 @@ abstract class _AuthResponse implements AuthResponse {
   const factory _AuthResponse(
       {final bool? status,
       final String? message,
-      final int? user_id,
+      final int? user_d,
       final String? user_name,
-      final String? access_token,
+      final String? token,
       final String? token_type}) = _$AuthResponseImpl;
 
   factory _AuthResponse.fromJson(Map<String, dynamic> json) =
@@ -245,11 +244,11 @@ abstract class _AuthResponse implements AuthResponse {
   @override
   String? get message;
   @override
-  int? get user_id;
+  int? get user_d;
   @override
   String? get user_name;
   @override
-  String? get access_token;
+  String? get token;
   @override
   String? get token_type;
   @override

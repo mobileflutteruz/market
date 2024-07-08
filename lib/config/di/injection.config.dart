@@ -23,10 +23,10 @@ import '../../domain/repository/auth_repository.dart' as _i22;
 import '../../domain/repository/data_repository.dart' as _i13;
 import '../../domain/repository/main_repository.dart' as _i11;
 import '../../domain/service/main_serivce.dart' as _i21;
-import '../../presentation/auth/login/cubit/login_cubit.dart' as _i27;
+import '../../presentation/auth/login/cubit/login_cubit.dart' as _i26;
 import '../../presentation/auth/otp/cubit/otp_cubit.dart' as _i24;
 import '../../presentation/auth/register/cubit/register_cubit.dart' as _i23;
-import '../../presentation/auth/splash/cubit/splash_cubit.dart' as _i26;
+import '../../presentation/auth/splash/cubit/splash_cubit.dart' as _i27;
 import '../../presentation/details/cubit/details_cubit.dart' as _i16;
 import '../../presentation/favourites/cubit/favourites_cubit.dart' as _i15;
 import '../../presentation/food_basket/cubit/food_basket_cubit.dart' as _i17;
@@ -103,12 +103,15 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i13.DataRepository>(),
           gh<_i22.AuthRepository>(),
         ));
-    gh.factory<_i26.SplashCubit>(() => _i26.SplashCubit(
+    gh.factory<_i26.LoginCubit>(() => _i26.LoginCubit(
+          gh<_i19.AuthApi>(),
           gh<_i22.AuthRepository>(),
           gh<_i8.TokenPreference>(),
         ));
-    gh.factory<_i27.LoginCubit>(
-        () => _i27.LoginCubit(gh<_i22.AuthRepository>()));
+    gh.factory<_i27.SplashCubit>(() => _i27.SplashCubit(
+          gh<_i22.AuthRepository>(),
+          gh<_i8.TokenPreference>(),
+        ));
     return this;
   }
 }

@@ -25,7 +25,8 @@ mixin _$DetailsBuildableState {
   bool get loading => throw _privateConstructorUsedError;
   bool get success => throw _privateConstructorUsedError;
   bool get failure => throw _privateConstructorUsedError;
-  ProductDataModel? get product => throw _privateConstructorUsedError;
+  ProductDataModel? get product =>
+      throw _privateConstructorUsedError; // List<SimilarProduct>? similarProduct,
   String? get message => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -294,6 +295,7 @@ class _$DetailsBuildableStateImpl implements _DetailsBuildableState {
   @override
   @JsonKey()
   final ProductDataModel? product;
+// List<SimilarProduct>? similarProduct,
   @override
   @JsonKey()
   final String? message;
@@ -386,7 +388,7 @@ abstract class _DetailsBuildableState implements DetailsBuildableState {
   bool get failure;
   @override
   ProductDataModel? get product;
-  @override
+  @override // List<SimilarProduct>? similarProduct,
   String? get message;
   @override
   @JsonKey(ignore: true)

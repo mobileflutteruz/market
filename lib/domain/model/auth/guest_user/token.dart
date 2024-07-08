@@ -5,15 +5,17 @@ part 'token.freezed.dart';
 part 'token.g.dart';
 
 
-@freezed
-class AccessToken with _$AccessToken {
-    const factory AccessToken({
-        String? accessToken,
-        String? tokenType,
-        User? user,
-    }) = _AccessToken;
 
-    factory AccessToken.fromJson(Map<String, dynamic> json) => _$AccessTokenFromJson(json);
+@freezed
+class GuestModel with _$GuestModel {
+    const factory GuestModel({
+        bool? status,
+        String? token,
+        String? token_type,
+        User? user,
+    }) = _GuestModel;
+
+    factory GuestModel.fromJson(Map<String, dynamic> json) => _$GuestModelFromJson(json);
 }
 
 @freezed

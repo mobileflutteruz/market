@@ -1,43 +1,42 @@
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/domain/model/mobile/product/product.dart';
+import 'package:karmango/presentation/details/cubit/details_cubit.dart';
 import 'package:karmango/presentation/home/components/food_similar.dart';
-import 'package:karmango/presentation/home/cubit/food_home_cubit.dart';
 import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/core/utils/app_layouts.dart';
-import 'package:karmango/core/extension/context_extension.dart';
 import '../../../../core/utils/utils.dart';
 import 'package:flutter/material.dart';
-
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-
 import '../../details/details_page.dart';
 
-class FoodProductsViewWidget extends StatefulWidget {
-  FoodProductsViewWidget({
+class FoodProductsSimilarViewWidget extends StatefulWidget {
+  FoodProductsSimilarViewWidget({
     super.key,
     this.title = "",
-    this.similarProduct,
-    this.product,
+    required this.similarProduct,
+    // this.product,
     this.leftBtnTapped,
     required this.smallButton,
   });
 
   final void Function()? leftBtnTapped;
   final void Function() smallButton;
-  final Product? product;
-  final List<ProductDataModel>? similarProduct;
+  // final Product? product;
+  final ProductDataModel similarProduct;
+
   final String title;
 
   @override
-  State<FoodProductsViewWidget> createState() => _FoodProductsViewWidgetState();
+  State<FoodProductsSimilarViewWidget> createState() => _FoodProductsViewWidgetState();
 }
 
-class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
+class _FoodProductsViewWidgetState extends State<FoodProductsSimilarViewWidget> {
   @override
   Widget build(BuildContext context) {
-    return Buildable<FoodHomeCubit, FoodHomeState, FoodHomeBuildableState>(
+    return Buildable<DetailsCubit, DetailsState, DetailsBuildableState>(
       properties: (buildable) => [
         buildable.likeIds,
+        // buildable.similarProduct
       ],
       builder: (context, state) {
         return Column(
@@ -45,7 +44,7 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
             Padding(
               padding: AppUtils.kPaddingHorizontal16,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
                     child: Text(widget.title,
@@ -53,15 +52,15 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
                             color: FoodColors.c0E1923,
                             overflow: TextOverflow.ellipsis)),
                   ),
-                  GestureDetector(
-                    onTap: widget.leftBtnTapped,
-                    child: Text(
-                      context.l10n.all,
-                      style: Styles.manropeRegular14.copyWith(
-                        color: FoodColors.c0E1923,
-                      ),
-                    ),
-                  )
+                  // GestureDetector(
+                  //   onTap: widget.leftBtnTapped,
+                  //   child: Text(
+                  //     context.l10n.all,
+                  //     style: Styles.manropeRegular14.copyWith(
+                  //       color: FoodColors.c0E1923,
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             ),
@@ -71,12 +70,12 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  final product = widget.product!;
+                  // final product = widget.similarProduct!;
                   return Padding(
                     padding: EdgeInsets.only(
-                        left: 16.0, right: index == widget.product! ? 16 : 0),
+                        left: 16.0, right: index == widget.similarProduct! ? 16 : 0),
                     child: FoodSimilarItemWidget(
-                      similarProduct:  widget.similarProduct![index],
+                      similarProduct:  state.product!.result!.similar_products![index],
                       likeTapped: () {
                         // context.read<FoodHomeCubit>().setLikeId(product.id);
                       },
@@ -86,14 +85,14 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
                       onTap: () {
                         showModalView(
                           context,
-                           widget.similarProduct![index],
+                            state.product!.result!.similar_products![index],
                         );
                       },
                       smallButton: widget.smallButton,
                     ),
                   );
                 },
-                itemCount: widget.similarProduct!.length,
+                itemCount: widget.similarProduct.result!.similar_products!.length,
               ),
             ),
             AppUtils.kGap24,
@@ -103,12 +102,12 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
     );
   }
 
-  showModalView(BuildContext context, ProductDataModel products) {
+  showModalView(BuildContext context, SimilarProduct? products) {
     return showCupertinoModalBottomSheet(
       expand: true,
       context: context,
       builder: (homeContext) =>
-          DetailsPage(productId: products.result!.product!.id),
+          DetailsPage(productId: products!.id),
     );
   }
 }

@@ -1,18 +1,19 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/core/extension/context_extension.dart';
+import 'package:karmango/domain/model/mobile/product/product.dart';
 import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/presentation/components/image_view.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
 import 'package:karmango/presentation/details/cubit/details_cubit.dart';
+import 'package:karmango/presentation/home/components/food_products_similar_widget%20.dart';
+
 import 'package:share/share.dart';
 import '../../core/constants/constants.dart';
 import '../../core/utils/app_layouts.dart';
 import '../../core/utils/utils.dart';
-
 
 class DetailsPage extends StatefulWidget {
   final int? productId;
@@ -96,38 +97,33 @@ class _DetailsPageState extends State<DetailsPage> {
                                   ),
                                 ],
                               ),
-                              CarouselSlider(
-                                items: [
-                                  ...List.generate(
-                                    state.product!.result!.product!.image
-                                            ?.length ??
-                                        1,
-                                    (index) => ImageViewWidget(
-                                      isNetImg: true,
-                                      imageLink: state
-                                          .product!.result!.product!.image!,
-                                    ),
-                                  ),
-                                ],
-                                options: CarouselOptions(
-                                  onPageChanged: (index, reason) {
-                                    context
-                                        .read<DetailsCubit>()
-                                        .changeImageIndex(index);
-                                    setState(() {});
-                                  },
+                              SizedBox(
+                                height: AppLayout.getHeight(200, context),
+                                width: AppLayout.getHeight(200, context),
+                                child: ImageViewWidget(
+                                  isNetImg: true,
+                                  imageLink:
+                                      state.product!.result!.product!.image!,
                                 ),
                               ),
-                              const SizedBox(height: 10),
-                              // const SizedBox(height: 10),
-                              // Row(
-                              //   mainAxisAlignment: MainAxisAlignment.center,
-                              //   children: _buildIndicators(
-                              //       count:  state.product!.result!.product!.image?.length ?? 1,
-                              //       state: state),
-                              //   _buildIndicators(product.images.length, state);
-                              // ),
-                              const SizedBox(height: 10),
+                              AppUtils.kGap20,
+                              Center(
+                                child: SizedBox(
+                                  width: AppLayout.getWidth(110, context),
+                                  child: Text(
+                                    state.product!.result!.product!.name
+                                        .toString(),
+                                    maxLines: 2,
+                                    textAlign: TextAlign.center,
+                                    style: Styles.manropeMedium16.copyWith(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                      color: FoodColors.c0E1A23,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              AppUtils.kGap16,
                             ],
                           ),
                         ),
@@ -137,34 +133,18 @@ class _DetailsPageState extends State<DetailsPage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Center(
-                                child: Text(
-                                  state.product!.result!.product!.name
-                                      .toString(),
-                                  maxLines: 2,
-                                  style: Styles.manropeMedium16.copyWith(
-                                    color: FoodColors.c212121,
-                                  ),
-                                ),
-                              ),
                               Text(
-                                context.l10n.description,
+                                context.l10n.description ?? "",
                                 textAlign: TextAlign.center,
                                 style: Styles.manropeMedium16,
                               ),
-                              Text(
-                                // widget.product.description,
-                                state.product!.result!.product!.discount!
-                                    .toString(),
-                                style: Styles.manropeMedium14.copyWith(
-                                    color: FoodColors.cA6AEBF,
-                                    overflow: TextOverflow.visible),
-                              ),
+
                               // AppUtils.kGap12,
                             ],
                           ),
                         ),
                         ExpansionTile(
+                          shape: Border.all(color: FoodColors.cE3E3E3),
                           childrenPadding:
                               const EdgeInsets.only(left: 16, right: 16),
                           title: Text(
@@ -174,16 +154,23 @@ class _DetailsPageState extends State<DetailsPage> {
                           children: [
                             Align(
                               alignment: Alignment.centerLeft,
-                              child: Text(
-                                context.l10n.composition,
-                                style: Styles.manropeMedium16,
-                              ),
-                            ),
-                            Text(
-                              state.product!.result!.product!.name ?? "",
-                              style: Styles.manropeMedium14.copyWith(
-                                color: FoodColors.cA6AEBF,
-                                overflow: TextOverflow.visible,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    context.l10n.composition,
+                                    style: Styles.manropeMedium16,
+                                  ),
+                                  AppUtils.kGap20,
+                                  Text(
+                                    state.product!.result!.product!.name ?? "",
+                                    style: Styles.manropeMedium14.copyWith(
+                                      color: FoodColors.cA6AEBF,
+                                      overflow: TextOverflow.visible,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             AppUtils.kGap16,
@@ -191,19 +178,21 @@ class _DetailsPageState extends State<DetailsPage> {
                         ),
                         AppUtils.kGap16,
                         // FoodSimilarViewWidget(smallButton: (){}, result:  widget!.productId![index])
-                        // FoodSimilarItemWidget(
-                        //   similarProduct: state.similarProduct,
-                        //   onTap: () {},
-                        //   likeTapped: () {},
-                        //   isLiked: true,
-                        //   smallButton: () {},
-                        // ),
-                        
+
+                        FoodProductsSimilarViewWidget(
+                          smallButton: () {},
+                          // product: state.similarProduct,
+                          title: context.l10n.similarProducts,
+                          leftBtnTapped: () {},
+                          similarProduct:   state.product!
+                        )
                       ],
                     ),
                   ),
                 ),
                 Container(
+                  height: AppLayout.getHeight(80, context),
+                  width: AppLayout.getHeight(376, context),
                   padding: AppUtils.kPaddingAll16,
                   decoration: BoxDecoration(
                     color: FoodColors.cffffff,
@@ -219,12 +208,18 @@ class _DetailsPageState extends State<DetailsPage> {
                   child: SafeArea(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Expanded(
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.end,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Text(
+                                context.l10n.all,
+                                style: Styles.interSemiBold20.copyWith(
+                                    color: FoodColors.cA6AEBF, fontSize: 12),
+                              ),
                               Text('14 000 sum', style: Styles.interSemiBold20),
                             ],
                           ),
@@ -325,24 +320,6 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                   ),
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.only(bottom: 24),
-                //   child: FoodProductsViewWidget(
-                //       title: "",
-                //       smallButton: () {},
-                //       leftBtnTapped: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => AllProdact(
-                        //       products[0],
-                        //     ),
-                        //   ),
-                        // );
-                //       },
-
-                //       product: state!.similarProduct!),
-                // )
               ],
             ),
           );
@@ -359,28 +336,6 @@ class _DetailsPageState extends State<DetailsPage> {
   //     builder: (context) => DetailsPage(product: ),
   //   );
   // }
-
-  List<Widget> _buildIndicators({required int count, state}) {
-    List<Widget> indicators = [];
-    for (int i = 0; i < count - 1; i++) {
-      // print(state.currentIndex);
-      indicators.add(
-        Container(
-          width: 10,
-          height: 4,
-          margin: const EdgeInsets.symmetric(horizontal: 2.0),
-          decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.circular(8),
-            color: state.imageIndex == i
-                ? FoodColors.primaryColor
-                : FoodColors.cffffff,
-          ),
-        ),
-      );
-    }
-    return indicators;
-  }
 
   Container buildIconButton(BuildContext context, IconData icon) {
     return Container(

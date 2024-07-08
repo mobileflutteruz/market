@@ -7,7 +7,6 @@ import 'package:karmango/presentation/components/buildable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class FoodHomePage extends StatelessWidget {
   const FoodHomePage({super.key});
 
@@ -28,27 +27,20 @@ class FoodHomePage extends StatelessWidget {
           },
         ),
       ),
-      bottomNavigationBar:
-
-
-
-      Container(
+      bottomNavigationBar: Container(
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: FoodColors.c8D909B
-                  .withOpacity(0.3),
+              color: FoodColors.c8D909B.withOpacity(0.3),
               spreadRadius: 1,
               blurRadius: 10,
               offset: const Offset(0, -3),
             ),
           ],
-          borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(20.0)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20.0)),
         ),
         child: ClipRRect(
-          borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(20.0)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20.0)),
           child: builtBottomBar(),
         ),
       ),

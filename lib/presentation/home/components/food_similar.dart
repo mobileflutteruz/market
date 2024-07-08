@@ -19,7 +19,7 @@ class FoodSimilarItemWidget extends StatelessWidget {
     this.isNew = false,
   });
 
-  final ProductDataModel? similarProduct;
+  final SimilarProduct? similarProduct;
   final void Function() onTap;
   final void Function() smallButton;
 
@@ -30,7 +30,7 @@ class FoodSimilarItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // print("PROOOOOOOOOOOOODUCT" + similarProduct!.result!.similarProducts!.image!);
-    final product = similarProduct!.result!.product!;
+    final product = similarProduct!;
     return GestureDetector(
       onTap: onTap,
       child: Container(

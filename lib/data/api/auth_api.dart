@@ -21,12 +21,13 @@ class AuthApi {
     return data.body;
   }
 
-  Future<Response> login( String password, String phone) async {
-    final body = { "password": password, "phone": phone};
-   
-    var data = await _api.post(path: "/login-mblp", body: body);
+   Future<Response> login(String phone, String password, ) async {
+    final body = {"phone": phone, "password": password,};
+
+    var data = await _api.post(path: "/login", body: body);
     return data;
   }
+
 
   Future<Response> logOut() async {
     var data = await _api.post(path: Urls.logout);
@@ -55,14 +56,19 @@ class AuthApi {
     return data;
   }
 
-  Future<Response> createGuestLogin(var uuid) async {
-    final Map<String, Object> params = {
-      "uuid": [1],
-      "model": [1],
-    };
-    var data = await _api.post(path: 'guest/login', body: params);
-    return data;
-  }
+
+
+  
+
+Future<Response> createGuestLogin(String uuid, String model) async {
+  final Map<String, dynamic> params = {
+    "uuid": uuid,
+    "model": model,
+  };
+  var data = await _api.post(path: 'guest/login', body: params);
+  return data;
+}
+
   Future getUserInfo() async {
     final response = await _api.getWithToken(path: 'client/profile/info');
     return response;

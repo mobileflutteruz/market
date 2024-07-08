@@ -24,16 +24,16 @@ Map<String, dynamic> _$$MobileHomeProductsImplToJson(
 
 _$MobileHomeDataImpl _$$MobileHomeDataImplFromJson(Map<String, dynamic> json) =>
     _$MobileHomeDataImpl(
-      topBanner: (json['topBanner'] as List<dynamic>?)
+      top_banner: (json['top_banner'] as List<dynamic>?)
           ?.map((e) => HomeBanner.fromJson(e as Map<String, dynamic>))
           .toList(),
-      topProduct: (json['topProduct'] as List<dynamic>?)
+      top_product: (json['top_product'] as List<dynamic>?)
           ?.map((e) => TopProduct.fromJson(e as Map<String, dynamic>))
           .toList(),
-      bottomBanner: (json['bottomBanner'] as List<dynamic>?)
+      bottom_banner: (json['bottom_banner'] as List<dynamic>?)
           ?.map((e) => HomeBanner.fromJson(e as Map<String, dynamic>))
           .toList(),
-      bottomProduct: (json['bottomProduct'] as List<dynamic>?)
+      bottom_product: (json['bottom_product'] as List<dynamic>?)
           ?.map((e) => TopProduct.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -41,24 +41,24 @@ _$MobileHomeDataImpl _$$MobileHomeDataImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$MobileHomeDataImplToJson(
         _$MobileHomeDataImpl instance) =>
     <String, dynamic>{
-      'topBanner': instance.topBanner,
-      'topProduct': instance.topProduct,
-      'bottomBanner': instance.bottomBanner,
-      'bottomProduct': instance.bottomProduct,
+      'top_banner': instance.top_banner,
+      'top_product': instance.top_product,
+      'bottom_banner': instance.bottom_banner,
+      'bottom_product': instance.bottom_product,
     };
 
 _$HomeBannerImpl _$$HomeBannerImplFromJson(Map<String, dynamic> json) =>
     _$HomeBannerImpl(
       id: (json['id'] as num?)?.toInt(),
       banner: json['banner'] as String?,
-      alternativeText: json['alternativeText'] as String?,
+      alternative_text: json['alternative_text'] as String?,
     );
 
 Map<String, dynamic> _$$HomeBannerImplToJson(_$HomeBannerImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'banner': instance.banner,
-      'alternativeText': instance.alternativeText,
+      'alternative_text': instance.alternative_text,
     };
 
 _$TopProductImpl _$$TopProductImplFromJson(Map<String, dynamic> json) =>

@@ -54,6 +54,11 @@ Future<void> main() async {
         BlocProvider(create: (context) => locator<SplashCubit>()),
         BlocProvider(create: (context) => locator<OtpCubit>()),
         BlocProvider(create: (context) => locator<RegisterCubit>()),
+        BlocProvider(create: (context) => locator<CategoryCubit>()),
+        // BlocProvider(create: (context) => locator<CategoryProductsCubit>()), 
+ 
+
+
       ],
       child: const MyApp(),
     ),
@@ -85,8 +90,8 @@ class MyApp extends StatelessWidget {
           theme: MainTheme.light,
           themeMode: ThemeMode.light,
           onGenerateRoute: OngenerateRoutes.instance.routeGenerator,
-          // initialRoute: FoodNavigatorConst.foodSplash, 
-          initialRoute: FoodNavigatorConst.foodHome,
+          initialRoute: FoodNavigatorConst.foodSplash, 
+          // initialRoute: FoodNavigatorConst.foodHome,
           builder: (context, child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(),

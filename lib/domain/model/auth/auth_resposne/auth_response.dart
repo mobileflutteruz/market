@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'dart:convert';
+
 
 part 'auth_response.freezed.dart';
 part 'auth_response.g.dart';
@@ -9,9 +9,9 @@ class AuthResponse with _$AuthResponse {
     const factory AuthResponse({
         bool? status,
         String? message,
-        int? user_id,
+        int? user_d,
         String? user_name,
-        String? access_token,
+        String? token,
         String? token_type,
     }) = _AuthResponse;
 

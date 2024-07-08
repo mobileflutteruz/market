@@ -126,6 +126,7 @@ class ColorConstants {
 
 sealed class FurnitureColors {
   // mebel
+  
   static Color c53BB9E = const Color(0xff53BB9E);
   static Color cE6E6E6 = const Color(0xffE6E6E6);
   static Color c99F3F3F6 = const Color(0x99F3F3F6);
@@ -223,6 +224,7 @@ sealed class FurnitureColors {
 }
 
 class FoodColors {
+    static Color cE3E3E3 = const Color(0xffE3E3E3);
   static Color cF9F9FB = const Color(0xffF9F9FB);
   static Color cBFBFBF = const Color(0xffBFBFBF);
   static Color cC4C4C4 = const Color(0xffC4C4C4);

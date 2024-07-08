@@ -192,10 +192,10 @@ MobileHomeData _$MobileHomeDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MobileHomeData {
-  List<HomeBanner>? get topBanner => throw _privateConstructorUsedError;
-  List<TopProduct>? get topProduct => throw _privateConstructorUsedError;
-  List<HomeBanner>? get bottomBanner => throw _privateConstructorUsedError;
-  List<TopProduct>? get bottomProduct => throw _privateConstructorUsedError;
+  List<HomeBanner>? get top_banner => throw _privateConstructorUsedError;
+  List<TopProduct>? get top_product => throw _privateConstructorUsedError;
+  List<HomeBanner>? get bottom_banner => throw _privateConstructorUsedError;
+  List<TopProduct>? get bottom_product => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -210,10 +210,10 @@ abstract class $MobileHomeDataCopyWith<$Res> {
       _$MobileHomeDataCopyWithImpl<$Res, MobileHomeData>;
   @useResult
   $Res call(
-      {List<HomeBanner>? topBanner,
-      List<TopProduct>? topProduct,
-      List<HomeBanner>? bottomBanner,
-      List<TopProduct>? bottomProduct});
+      {List<HomeBanner>? top_banner,
+      List<TopProduct>? top_product,
+      List<HomeBanner>? bottom_banner,
+      List<TopProduct>? bottom_product});
 }
 
 /// @nodoc
@@ -229,27 +229,27 @@ class _$MobileHomeDataCopyWithImpl<$Res, $Val extends MobileHomeData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? topBanner = freezed,
-    Object? topProduct = freezed,
-    Object? bottomBanner = freezed,
-    Object? bottomProduct = freezed,
+    Object? top_banner = freezed,
+    Object? top_product = freezed,
+    Object? bottom_banner = freezed,
+    Object? bottom_product = freezed,
   }) {
     return _then(_value.copyWith(
-      topBanner: freezed == topBanner
-          ? _value.topBanner
-          : topBanner // ignore: cast_nullable_to_non_nullable
+      top_banner: freezed == top_banner
+          ? _value.top_banner
+          : top_banner // ignore: cast_nullable_to_non_nullable
               as List<HomeBanner>?,
-      topProduct: freezed == topProduct
-          ? _value.topProduct
-          : topProduct // ignore: cast_nullable_to_non_nullable
+      top_product: freezed == top_product
+          ? _value.top_product
+          : top_product // ignore: cast_nullable_to_non_nullable
               as List<TopProduct>?,
-      bottomBanner: freezed == bottomBanner
-          ? _value.bottomBanner
-          : bottomBanner // ignore: cast_nullable_to_non_nullable
+      bottom_banner: freezed == bottom_banner
+          ? _value.bottom_banner
+          : bottom_banner // ignore: cast_nullable_to_non_nullable
               as List<HomeBanner>?,
-      bottomProduct: freezed == bottomProduct
-          ? _value.bottomProduct
-          : bottomProduct // ignore: cast_nullable_to_non_nullable
+      bottom_product: freezed == bottom_product
+          ? _value.bottom_product
+          : bottom_product // ignore: cast_nullable_to_non_nullable
               as List<TopProduct>?,
     ) as $Val);
   }
@@ -264,10 +264,10 @@ abstract class _$$MobileHomeDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<HomeBanner>? topBanner,
-      List<TopProduct>? topProduct,
-      List<HomeBanner>? bottomBanner,
-      List<TopProduct>? bottomProduct});
+      {List<HomeBanner>? top_banner,
+      List<TopProduct>? top_product,
+      List<HomeBanner>? bottom_banner,
+      List<TopProduct>? bottom_product});
 }
 
 /// @nodoc
@@ -281,27 +281,27 @@ class __$$MobileHomeDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? topBanner = freezed,
-    Object? topProduct = freezed,
-    Object? bottomBanner = freezed,
-    Object? bottomProduct = freezed,
+    Object? top_banner = freezed,
+    Object? top_product = freezed,
+    Object? bottom_banner = freezed,
+    Object? bottom_product = freezed,
   }) {
     return _then(_$MobileHomeDataImpl(
-      topBanner: freezed == topBanner
-          ? _value._topBanner
-          : topBanner // ignore: cast_nullable_to_non_nullable
+      top_banner: freezed == top_banner
+          ? _value._top_banner
+          : top_banner // ignore: cast_nullable_to_non_nullable
               as List<HomeBanner>?,
-      topProduct: freezed == topProduct
-          ? _value._topProduct
-          : topProduct // ignore: cast_nullable_to_non_nullable
+      top_product: freezed == top_product
+          ? _value._top_product
+          : top_product // ignore: cast_nullable_to_non_nullable
               as List<TopProduct>?,
-      bottomBanner: freezed == bottomBanner
-          ? _value._bottomBanner
-          : bottomBanner // ignore: cast_nullable_to_non_nullable
+      bottom_banner: freezed == bottom_banner
+          ? _value._bottom_banner
+          : bottom_banner // ignore: cast_nullable_to_non_nullable
               as List<HomeBanner>?,
-      bottomProduct: freezed == bottomProduct
-          ? _value._bottomProduct
-          : bottomProduct // ignore: cast_nullable_to_non_nullable
+      bottom_product: freezed == bottom_product
+          ? _value._bottom_product
+          : bottom_product // ignore: cast_nullable_to_non_nullable
               as List<TopProduct>?,
     ));
   }
@@ -311,61 +311,61 @@ class __$$MobileHomeDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MobileHomeDataImpl implements _MobileHomeData {
   const _$MobileHomeDataImpl(
-      {final List<HomeBanner>? topBanner,
-      final List<TopProduct>? topProduct,
-      final List<HomeBanner>? bottomBanner,
-      final List<TopProduct>? bottomProduct})
-      : _topBanner = topBanner,
-        _topProduct = topProduct,
-        _bottomBanner = bottomBanner,
-        _bottomProduct = bottomProduct;
+      {final List<HomeBanner>? top_banner,
+      final List<TopProduct>? top_product,
+      final List<HomeBanner>? bottom_banner,
+      final List<TopProduct>? bottom_product})
+      : _top_banner = top_banner,
+        _top_product = top_product,
+        _bottom_banner = bottom_banner,
+        _bottom_product = bottom_product;
 
   factory _$MobileHomeDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$MobileHomeDataImplFromJson(json);
 
-  final List<HomeBanner>? _topBanner;
+  final List<HomeBanner>? _top_banner;
   @override
-  List<HomeBanner>? get topBanner {
-    final value = _topBanner;
+  List<HomeBanner>? get top_banner {
+    final value = _top_banner;
     if (value == null) return null;
-    if (_topBanner is EqualUnmodifiableListView) return _topBanner;
+    if (_top_banner is EqualUnmodifiableListView) return _top_banner;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
-  final List<TopProduct>? _topProduct;
+  final List<TopProduct>? _top_product;
   @override
-  List<TopProduct>? get topProduct {
-    final value = _topProduct;
+  List<TopProduct>? get top_product {
+    final value = _top_product;
     if (value == null) return null;
-    if (_topProduct is EqualUnmodifiableListView) return _topProduct;
+    if (_top_product is EqualUnmodifiableListView) return _top_product;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
-  final List<HomeBanner>? _bottomBanner;
+  final List<HomeBanner>? _bottom_banner;
   @override
-  List<HomeBanner>? get bottomBanner {
-    final value = _bottomBanner;
+  List<HomeBanner>? get bottom_banner {
+    final value = _bottom_banner;
     if (value == null) return null;
-    if (_bottomBanner is EqualUnmodifiableListView) return _bottomBanner;
+    if (_bottom_banner is EqualUnmodifiableListView) return _bottom_banner;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
-  final List<TopProduct>? _bottomProduct;
+  final List<TopProduct>? _bottom_product;
   @override
-  List<TopProduct>? get bottomProduct {
-    final value = _bottomProduct;
+  List<TopProduct>? get bottom_product {
+    final value = _bottom_product;
     if (value == null) return null;
-    if (_bottomProduct is EqualUnmodifiableListView) return _bottomProduct;
+    if (_bottom_product is EqualUnmodifiableListView) return _bottom_product;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'MobileHomeData(topBanner: $topBanner, topProduct: $topProduct, bottomBanner: $bottomBanner, bottomProduct: $bottomProduct)';
+    return 'MobileHomeData(top_banner: $top_banner, top_product: $top_product, bottom_banner: $bottom_banner, bottom_product: $bottom_product)';
   }
 
   @override
@@ -374,23 +374,23 @@ class _$MobileHomeDataImpl implements _MobileHomeData {
         (other.runtimeType == runtimeType &&
             other is _$MobileHomeDataImpl &&
             const DeepCollectionEquality()
-                .equals(other._topBanner, _topBanner) &&
+                .equals(other._top_banner, _top_banner) &&
             const DeepCollectionEquality()
-                .equals(other._topProduct, _topProduct) &&
+                .equals(other._top_product, _top_product) &&
             const DeepCollectionEquality()
-                .equals(other._bottomBanner, _bottomBanner) &&
+                .equals(other._bottom_banner, _bottom_banner) &&
             const DeepCollectionEquality()
-                .equals(other._bottomProduct, _bottomProduct));
+                .equals(other._bottom_product, _bottom_product));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_topBanner),
-      const DeepCollectionEquality().hash(_topProduct),
-      const DeepCollectionEquality().hash(_bottomBanner),
-      const DeepCollectionEquality().hash(_bottomProduct));
+      const DeepCollectionEquality().hash(_top_banner),
+      const DeepCollectionEquality().hash(_top_product),
+      const DeepCollectionEquality().hash(_bottom_banner),
+      const DeepCollectionEquality().hash(_bottom_product));
 
   @JsonKey(ignore: true)
   @override
@@ -409,22 +409,22 @@ class _$MobileHomeDataImpl implements _MobileHomeData {
 
 abstract class _MobileHomeData implements MobileHomeData {
   const factory _MobileHomeData(
-      {final List<HomeBanner>? topBanner,
-      final List<TopProduct>? topProduct,
-      final List<HomeBanner>? bottomBanner,
-      final List<TopProduct>? bottomProduct}) = _$MobileHomeDataImpl;
+      {final List<HomeBanner>? top_banner,
+      final List<TopProduct>? top_product,
+      final List<HomeBanner>? bottom_banner,
+      final List<TopProduct>? bottom_product}) = _$MobileHomeDataImpl;
 
   factory _MobileHomeData.fromJson(Map<String, dynamic> json) =
       _$MobileHomeDataImpl.fromJson;
 
   @override
-  List<HomeBanner>? get topBanner;
+  List<HomeBanner>? get top_banner;
   @override
-  List<TopProduct>? get topProduct;
+  List<TopProduct>? get top_product;
   @override
-  List<HomeBanner>? get bottomBanner;
+  List<HomeBanner>? get bottom_banner;
   @override
-  List<TopProduct>? get bottomProduct;
+  List<TopProduct>? get bottom_product;
   @override
   @JsonKey(ignore: true)
   _$$MobileHomeDataImplCopyWith<_$MobileHomeDataImpl> get copyWith =>
@@ -439,7 +439,7 @@ HomeBanner _$HomeBannerFromJson(Map<String, dynamic> json) {
 mixin _$HomeBanner {
   int? get id => throw _privateConstructorUsedError;
   String? get banner => throw _privateConstructorUsedError;
-  String? get alternativeText => throw _privateConstructorUsedError;
+  String? get alternative_text => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -453,7 +453,7 @@ abstract class $HomeBannerCopyWith<$Res> {
           HomeBanner value, $Res Function(HomeBanner) then) =
       _$HomeBannerCopyWithImpl<$Res, HomeBanner>;
   @useResult
-  $Res call({int? id, String? banner, String? alternativeText});
+  $Res call({int? id, String? banner, String? alternative_text});
 }
 
 /// @nodoc
@@ -471,7 +471,7 @@ class _$HomeBannerCopyWithImpl<$Res, $Val extends HomeBanner>
   $Res call({
     Object? id = freezed,
     Object? banner = freezed,
-    Object? alternativeText = freezed,
+    Object? alternative_text = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -482,9 +482,9 @@ class _$HomeBannerCopyWithImpl<$Res, $Val extends HomeBanner>
           ? _value.banner
           : banner // ignore: cast_nullable_to_non_nullable
               as String?,
-      alternativeText: freezed == alternativeText
-          ? _value.alternativeText
-          : alternativeText // ignore: cast_nullable_to_non_nullable
+      alternative_text: freezed == alternative_text
+          ? _value.alternative_text
+          : alternative_text // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -498,7 +498,7 @@ abstract class _$$HomeBannerImplCopyWith<$Res>
       __$$HomeBannerImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String? banner, String? alternativeText});
+  $Res call({int? id, String? banner, String? alternative_text});
 }
 
 /// @nodoc
@@ -514,7 +514,7 @@ class __$$HomeBannerImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? banner = freezed,
-    Object? alternativeText = freezed,
+    Object? alternative_text = freezed,
   }) {
     return _then(_$HomeBannerImpl(
       id: freezed == id
@@ -525,9 +525,9 @@ class __$$HomeBannerImplCopyWithImpl<$Res>
           ? _value.banner
           : banner // ignore: cast_nullable_to_non_nullable
               as String?,
-      alternativeText: freezed == alternativeText
-          ? _value.alternativeText
-          : alternativeText // ignore: cast_nullable_to_non_nullable
+      alternative_text: freezed == alternative_text
+          ? _value.alternative_text
+          : alternative_text // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -536,7 +536,7 @@ class __$$HomeBannerImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$HomeBannerImpl implements _HomeBanner {
-  const _$HomeBannerImpl({this.id, this.banner, this.alternativeText});
+  const _$HomeBannerImpl({this.id, this.banner, this.alternative_text});
 
   factory _$HomeBannerImpl.fromJson(Map<String, dynamic> json) =>
       _$$HomeBannerImplFromJson(json);
@@ -546,11 +546,11 @@ class _$HomeBannerImpl implements _HomeBanner {
   @override
   final String? banner;
   @override
-  final String? alternativeText;
+  final String? alternative_text;
 
   @override
   String toString() {
-    return 'HomeBanner(id: $id, banner: $banner, alternativeText: $alternativeText)';
+    return 'HomeBanner(id: $id, banner: $banner, alternative_text: $alternative_text)';
   }
 
   @override
@@ -560,13 +560,13 @@ class _$HomeBannerImpl implements _HomeBanner {
             other is _$HomeBannerImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.banner, banner) || other.banner == banner) &&
-            (identical(other.alternativeText, alternativeText) ||
-                other.alternativeText == alternativeText));
+            (identical(other.alternative_text, alternative_text) ||
+                other.alternative_text == alternative_text));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, banner, alternativeText);
+  int get hashCode => Object.hash(runtimeType, id, banner, alternative_text);
 
   @JsonKey(ignore: true)
   @override
@@ -586,7 +586,7 @@ abstract class _HomeBanner implements HomeBanner {
   const factory _HomeBanner(
       {final int? id,
       final String? banner,
-      final String? alternativeText}) = _$HomeBannerImpl;
+      final String? alternative_text}) = _$HomeBannerImpl;
 
   factory _HomeBanner.fromJson(Map<String, dynamic> json) =
       _$HomeBannerImpl.fromJson;
@@ -596,7 +596,7 @@ abstract class _HomeBanner implements HomeBanner {
   @override
   String? get banner;
   @override
-  String? get alternativeText;
+  String? get alternative_text;
   @override
   @JsonKey(ignore: true)
   _$$HomeBannerImplCopyWith<_$HomeBannerImpl> get copyWith =>

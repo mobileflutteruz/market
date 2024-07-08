@@ -1,26 +1,28 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'dart:convert';
 
-part 'cart_product.freezed.dart';
 part 'cart_product.g.dart';
+part 'cart_product.freezed.dart';
+
 
 @freezed
-class CartProductModel with _$CartProductModel {
-  const factory CartProductModel({
-   int? id,
+class ProductModel with _$ProductModel {
+    const factory ProductModel({
+        int? id,
         String? name,
         String? image,
         DateTime? created_at,
         dynamic updated_at,
         List<Product>? products,
-  }) = _CartProductModel;
+    }) = _ProductModel;
 
-  factory CartProductModel.fromJson(Map<String, dynamic> json) => _$CartProductModelFromJson(json);
+    factory ProductModel.fromJson(Map<String, dynamic> json) => _$ProductModelFromJson(json);
 }
 
 @freezed
 class Product with _$Product {
-  const factory Product({
-    int? id,
+    const factory Product({
+        int? id,
         String? name,
         dynamic description,
         dynamic details_of_product,
@@ -34,7 +36,7 @@ class Product with _$Product {
         int? category_id,
         dynamic created_at,
         dynamic updated_at,
-  }) = _Product;
+    }) = _Product;
 
-  factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
+    factory Product.fromJson(Map<String, dynamic> json) => _$ProductFromJson(json);
 }

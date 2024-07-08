@@ -13,9 +13,13 @@ class ImageViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return isNetImg?Image.network("https://karmango.shop.dukan.uz${imageLink}",fit: BoxFit.cover, ): Image.asset(imageLink);
+    print( "IMAGEEEEEEEEEEEEEe            "+ "https://karmango.shop.dukan.uz${imageLink}");
+    return isNetImg
+        ? Image.network(
+            "https://karmango.shop.dukan.uz${imageLink}",
+            fit: BoxFit.cover,
+          )
+        : Image.asset(imageLink);
     // return isNetImg?Image.network("https://karmango.shop.dukan.uz/backend/public/api${imageLink}",fit: BoxFit.cover, ): Image.asset(imageLink);
-
   }
 }

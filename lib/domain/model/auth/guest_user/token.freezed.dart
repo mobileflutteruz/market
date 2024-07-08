@@ -14,37 +14,38 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-AccessToken _$AccessTokenFromJson(Map<String, dynamic> json) {
-  return _AccessToken.fromJson(json);
+GuestModel _$GuestModelFromJson(Map<String, dynamic> json) {
+  return _GuestModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AccessToken {
-  String? get accessToken => throw _privateConstructorUsedError;
-  String? get tokenType => throw _privateConstructorUsedError;
+mixin _$GuestModel {
+  bool? get status => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
+  String? get token_type => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AccessTokenCopyWith<AccessToken> get copyWith =>
+  $GuestModelCopyWith<GuestModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AccessTokenCopyWith<$Res> {
-  factory $AccessTokenCopyWith(
-          AccessToken value, $Res Function(AccessToken) then) =
-      _$AccessTokenCopyWithImpl<$Res, AccessToken>;
+abstract class $GuestModelCopyWith<$Res> {
+  factory $GuestModelCopyWith(
+          GuestModel value, $Res Function(GuestModel) then) =
+      _$GuestModelCopyWithImpl<$Res, GuestModel>;
   @useResult
-  $Res call({String? accessToken, String? tokenType, User? user});
+  $Res call({bool? status, String? token, String? token_type, User? user});
 
   $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
-class _$AccessTokenCopyWithImpl<$Res, $Val extends AccessToken>
-    implements $AccessTokenCopyWith<$Res> {
-  _$AccessTokenCopyWithImpl(this._value, this._then);
+class _$GuestModelCopyWithImpl<$Res, $Val extends GuestModel>
+    implements $GuestModelCopyWith<$Res> {
+  _$GuestModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -54,18 +55,23 @@ class _$AccessTokenCopyWithImpl<$Res, $Val extends AccessToken>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? tokenType = freezed,
+    Object? status = freezed,
+    Object? token = freezed,
+    Object? token_type = freezed,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
-      accessToken: freezed == accessToken
-          ? _value.accessToken
-          : accessToken // ignore: cast_nullable_to_non_nullable
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      tokenType: freezed == tokenType
-          ? _value.tokenType
-          : tokenType // ignore: cast_nullable_to_non_nullable
+      token_type: freezed == token_type
+          ? _value.token_type
+          : token_type // ignore: cast_nullable_to_non_nullable
               as String?,
       user: freezed == user
           ? _value.user
@@ -88,42 +94,47 @@ class _$AccessTokenCopyWithImpl<$Res, $Val extends AccessToken>
 }
 
 /// @nodoc
-abstract class _$$AccessTokenImplCopyWith<$Res>
-    implements $AccessTokenCopyWith<$Res> {
-  factory _$$AccessTokenImplCopyWith(
-          _$AccessTokenImpl value, $Res Function(_$AccessTokenImpl) then) =
-      __$$AccessTokenImplCopyWithImpl<$Res>;
+abstract class _$$GuestModelImplCopyWith<$Res>
+    implements $GuestModelCopyWith<$Res> {
+  factory _$$GuestModelImplCopyWith(
+          _$GuestModelImpl value, $Res Function(_$GuestModelImpl) then) =
+      __$$GuestModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? accessToken, String? tokenType, User? user});
+  $Res call({bool? status, String? token, String? token_type, User? user});
 
   @override
   $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
-class __$$AccessTokenImplCopyWithImpl<$Res>
-    extends _$AccessTokenCopyWithImpl<$Res, _$AccessTokenImpl>
-    implements _$$AccessTokenImplCopyWith<$Res> {
-  __$$AccessTokenImplCopyWithImpl(
-      _$AccessTokenImpl _value, $Res Function(_$AccessTokenImpl) _then)
+class __$$GuestModelImplCopyWithImpl<$Res>
+    extends _$GuestModelCopyWithImpl<$Res, _$GuestModelImpl>
+    implements _$$GuestModelImplCopyWith<$Res> {
+  __$$GuestModelImplCopyWithImpl(
+      _$GuestModelImpl _value, $Res Function(_$GuestModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = freezed,
-    Object? tokenType = freezed,
+    Object? status = freezed,
+    Object? token = freezed,
+    Object? token_type = freezed,
     Object? user = freezed,
   }) {
-    return _then(_$AccessTokenImpl(
-      accessToken: freezed == accessToken
-          ? _value.accessToken
-          : accessToken // ignore: cast_nullable_to_non_nullable
+    return _then(_$GuestModelImpl(
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
               as String?,
-      tokenType: freezed == tokenType
-          ? _value.tokenType
-          : tokenType // ignore: cast_nullable_to_non_nullable
+      token_type: freezed == token_type
+          ? _value.token_type
+          : token_type // ignore: cast_nullable_to_non_nullable
               as String?,
       user: freezed == user
           ? _value.user
@@ -135,72 +146,77 @@ class __$$AccessTokenImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AccessTokenImpl implements _AccessToken {
-  const _$AccessTokenImpl({this.accessToken, this.tokenType, this.user});
+class _$GuestModelImpl implements _GuestModel {
+  const _$GuestModelImpl({this.status, this.token, this.token_type, this.user});
 
-  factory _$AccessTokenImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AccessTokenImplFromJson(json);
+  factory _$GuestModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GuestModelImplFromJson(json);
 
   @override
-  final String? accessToken;
+  final bool? status;
   @override
-  final String? tokenType;
+  final String? token;
+  @override
+  final String? token_type;
   @override
   final User? user;
 
   @override
   String toString() {
-    return 'AccessToken(accessToken: $accessToken, tokenType: $tokenType, user: $user)';
+    return 'GuestModel(status: $status, token: $token, token_type: $token_type, user: $user)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccessTokenImpl &&
-            (identical(other.accessToken, accessToken) ||
-                other.accessToken == accessToken) &&
-            (identical(other.tokenType, tokenType) ||
-                other.tokenType == tokenType) &&
+            other is _$GuestModelImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.token_type, token_type) ||
+                other.token_type == token_type) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, accessToken, tokenType, user);
+  int get hashCode => Object.hash(runtimeType, status, token, token_type, user);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccessTokenImplCopyWith<_$AccessTokenImpl> get copyWith =>
-      __$$AccessTokenImplCopyWithImpl<_$AccessTokenImpl>(this, _$identity);
+  _$$GuestModelImplCopyWith<_$GuestModelImpl> get copyWith =>
+      __$$GuestModelImplCopyWithImpl<_$GuestModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AccessTokenImplToJson(
+    return _$$GuestModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _AccessToken implements AccessToken {
-  const factory _AccessToken(
-      {final String? accessToken,
-      final String? tokenType,
-      final User? user}) = _$AccessTokenImpl;
+abstract class _GuestModel implements GuestModel {
+  const factory _GuestModel(
+      {final bool? status,
+      final String? token,
+      final String? token_type,
+      final User? user}) = _$GuestModelImpl;
 
-  factory _AccessToken.fromJson(Map<String, dynamic> json) =
-      _$AccessTokenImpl.fromJson;
+  factory _GuestModel.fromJson(Map<String, dynamic> json) =
+      _$GuestModelImpl.fromJson;
 
   @override
-  String? get accessToken;
+  bool? get status;
   @override
-  String? get tokenType;
+  String? get token;
+  @override
+  String? get token_type;
   @override
   User? get user;
   @override
   @JsonKey(ignore: true)
-  _$$AccessTokenImplCopyWith<_$AccessTokenImpl> get copyWith =>
+  _$$GuestModelImplCopyWith<_$GuestModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

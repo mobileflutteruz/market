@@ -40,7 +40,7 @@ class _FoodLoginView extends State<FoodLoginView> {
                             color: FoodColors.c212121,
                           ),
                         ),
-                        AppUtils.kGap16,
+                        AppUtils.kGap24,
                         // NumberInputPhone(controller: phoneController,),
                         Text(
                           context.l10n.phoneNumber,
@@ -48,9 +48,10 @@ class _FoodLoginView extends State<FoodLoginView> {
                             color: FoodColors.c0E1923,
                           ),
                         ),
+                        AppUtils.kGap16,
+
                         PhoneInputWidget(
                           textEditingController: phoneController,
-                          
                           hintText: context.l10n.enterPhoneNumber,
                           validator: (value) {
                             return locator<AuthRepository>()

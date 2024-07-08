@@ -43,7 +43,7 @@ sealed class Urls {
   /// Auth
   static const String register = "/register";
   static const String activateUser = "/activate-user";
-  static const String login = "login";
+  static const String login = "/login";
   static const String forgotPassword = "/forgot-password";
   static const String changePassword = "/change-password";
   static const String logout = "/logout";

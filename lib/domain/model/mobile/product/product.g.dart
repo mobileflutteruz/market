@@ -41,20 +41,20 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
     _$ProductImpl(
       id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String?,
-      description: json['description'] as String?,
+      description: json['description'],
       details_of_product: json['details_of_product'],
       price: (json['price'] as num?)?.toInt(),
       quantity: (json['quantity'] as num?)?.toInt(),
-      quantity_rest: json['quantity_rest'],
+      quantity_rest: (json['quantity_rest'] as num?)?.toInt(),
       discount: (json['discount'] as num?)?.toInt(),
       image: json['image'] as String?,
       status: json['status'] as String?,
       product_type: json['product_type'] as String?,
       category_id: (json['category_id'] as num?)?.toInt(),
-      created_at: json['created_at'] == null
+      created_at: json['created_at'],
+      updated_at: json['updated_at'] == null
           ? null
-          : DateTime.parse(json['created_at'] as String),
-      updated_at: json['updated_at'],
+          : DateTime.parse(json['updated_at'] as String),
       rest_products: (json['rest_products'] as num?)?.toInt(),
       price_to_pay: (json['price_to_pay'] as num?)?.toInt(),
     );
@@ -73,8 +73,8 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'status': instance.status,
       'product_type': instance.product_type,
       'category_id': instance.category_id,
-      'created_at': instance.created_at?.toIso8601String(),
-      'updated_at': instance.updated_at,
+      'created_at': instance.created_at,
+      'updated_at': instance.updated_at?.toIso8601String(),
       'rest_products': instance.rest_products,
       'price_to_pay': instance.price_to_pay,
     };
@@ -88,7 +88,7 @@ _$SimilarProductImpl _$$SimilarProductImplFromJson(Map<String, dynamic> json) =>
       price: (json['price'] as num?)?.toInt(),
       image: json['image'] as String?,
       product_type: json['product_type'] as String?,
-      price_to_pay: (json['price_to_pay'] as num?)?.toInt(),
+      price_to_pay: (json['price_to_pay'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$SimilarProductImplToJson(

@@ -13,7 +13,8 @@ part 'food_home_state.dart';
 part 'food_home_cubit.freezed.dart';
 
 @injectable
-class FoodHomeCubit extends BuildableCubit<FoodHomeState, FoodHomeBuildableState> {
+class FoodHomeCubit
+    extends BuildableCubit<FoodHomeState, FoodHomeBuildableState> {
   FoodHomeCubit(this._repository, this.repo, this.auth)
       : super(const FoodHomeBuildableState()) {
     getLikeIds();
@@ -52,28 +53,55 @@ class FoodHomeCubit extends BuildableCubit<FoodHomeState, FoodHomeBuildableState
   }
 
   void changeDescriptionExpandable() {
-    build((buildable) => buildable.copyWith(descriptionIsExpandable: !buildable.descriptionIsExpandable));
+    build((buildable) => buildable.copyWith(
+        descriptionIsExpandable: !buildable.descriptionIsExpandable));
   }
 
   void changeCharacteristicsExpandable() {
-    build((buildable) => buildable.copyWith(characteristicsIsExpandable: !buildable.characteristicsIsExpandable));
+    build((buildable) => buildable.copyWith(
+        characteristicsIsExpandable: !buildable.characteristicsIsExpandable));
   }
 
   void cardAddProduct() {
-    build((buildable) => buildable.copyWith(cardProductCount: buildable.cardProductCount == 5 ? 5 : buildable.cardProductCount + 1));
+    build((buildable) => buildable.copyWith(
+        cardProductCount: buildable.cardProductCount == 5
+            ? 5
+            : buildable.cardProductCount + 1));
   }
 
   void cardReduceProduct() {
-    build((buildable) => buildable.copyWith(cardProductCount: buildable.cardProductCount == 0 ? 0 : buildable.cardProductCount - 1));
+    build((buildable) => buildable.copyWith(
+        cardProductCount: buildable.cardProductCount == 0
+            ? 0
+            : buildable.cardProductCount - 1));
   }
 
-  Future<void> fetchProducts() async {
-    build((buildable) => buildable.copyWith(loading: true));
+  Future fetchProducts() async {
+    build(
+      (buildable) => buildable.copyWith(
+        loading: true,
+      ),
+    );
     try {
       final MobileHomeProducts products = await repo.getHomeProducts();
-      build((buildable) => buildable.copyWith(loading: false, success: true, homeProducts: products));
+
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          success: true,
+          homeProducts: products,
+        ),
+      );
     } catch (e) {
-      build((buildable) => buildable.copyWith(loading: false, failed: true, error: e.toString()));
+      print("fetchProducts error------------------------------------------");
+      print(e);
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          failed: true,
+          error: e.toString(),
+        ),
+      );
     }
   }
 }

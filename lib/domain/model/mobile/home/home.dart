@@ -16,10 +16,10 @@ class MobileHomeProducts with _$MobileHomeProducts {
 @freezed
 class MobileHomeData with _$MobileHomeData {
     const factory MobileHomeData({
-        List<HomeBanner>? topBanner,
-        List<TopProduct>? topProduct,
-        List<HomeBanner>? bottomBanner,
-        List<TopProduct>? bottomProduct,
+        List<HomeBanner>? top_banner,
+        List<TopProduct>? top_product,
+        List<HomeBanner>? bottom_banner,
+        List<TopProduct>? bottom_product,
     }) = _MobileHomeData;
 
     factory MobileHomeData.fromJson(Map<String, dynamic> json) => _$MobileHomeDataFromJson(json);
@@ -30,7 +30,7 @@ class HomeBanner with _$HomeBanner {
     const factory HomeBanner({
         int? id,
         String? banner,
-        String? alternativeText,
+        String? alternative_text,
     }) = _HomeBanner;
 
     factory HomeBanner.fromJson(Map<String, dynamic> json) => _$HomeBannerFromJson(json);
