@@ -10,8 +10,10 @@ part 'favourites_state.dart';
 part 'favourites_cubit.freezed.dart';
 
 @Injectable()
-class FavouritesCubit extends BuildableCubit<FavouritesState, FavouritesBuildableState> {
-  FavouritesCubit(this._repository, this._dataRepository) : super(const FavouritesBuildableState()) {
+class FavouritesCubit
+    extends BuildableCubit<FavouritesState, FavouritesBuildableState> {
+  FavouritesCubit(this._repository, this._dataRepository)
+      : super(const FavouritesBuildableState()) {
     init();
   }
 
@@ -40,6 +42,45 @@ class FavouritesCubit extends BuildableCubit<FavouritesState, FavouritesBuildabl
     }
   }
 
+  Future setFavouriteId(int productId) async {
+    try {
+      await _dataRepository.createFavorite(productId: productId);
+    } catch (e) {
+      build(
+        (buildable) => buildable.copyWith(
+          failure: true,
+        ),
+      );
+    }
+  }
+
+  Future fetchFavourites() async {
+    build(
+      (buildable) => buildable.copyWith(
+        loading: true,
+      ),
+    );
+    try {
+      final List<MobileProduct>? favourites =
+          await _dataRepository.getFavorites();
+
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          success: true,
+          favourites: favourites,
+        ),
+      );
+    } catch (e) {
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          failure: true,
+        ),
+      );
+    }
+  }
+
   void changeImageIndex(int index) {
     build(
       (buildable) => buildable.copyWith(
@@ -48,7 +89,7 @@ class FavouritesCubit extends BuildableCubit<FavouritesState, FavouritesBuildabl
     );
   }
 
-   setLikeId(int likeId) async {
+  setLikeId(int likeId) async {
     List<String> ids = await _repository.getLikeIds() ?? [];
     debugPrint("List<String> ids = await _repository.getLikeIds() ?? [] $ids");
 

@@ -182,9 +182,8 @@ Result _$ResultFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Result {
   int? get id => throw _privateConstructorUsedError;
-  String? get name_uz => throw _privateConstructorUsedError;
-  String? get name_ru => throw _privateConstructorUsedError;
-  String? get name_en => throw _privateConstructorUsedError;
+  int? get product_id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   int? get discount => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
@@ -203,9 +202,8 @@ abstract class $ResultCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      String? name_uz,
-      String? name_ru,
-      String? name_en,
+      int? product_id,
+      String? name,
       String? status,
       int? discount,
       int? price,
@@ -227,9 +225,8 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name_uz = freezed,
-    Object? name_ru = freezed,
-    Object? name_en = freezed,
+    Object? product_id = freezed,
+    Object? name = freezed,
     Object? status = freezed,
     Object? discount = freezed,
     Object? price = freezed,
@@ -241,17 +238,13 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name_uz: freezed == name_uz
-          ? _value.name_uz
-          : name_uz // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name_ru: freezed == name_ru
-          ? _value.name_ru
-          : name_ru // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name_en: freezed == name_en
-          ? _value.name_en
-          : name_en // ignore: cast_nullable_to_non_nullable
+      product_id: freezed == product_id
+          ? _value.product_id
+          : product_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
@@ -286,9 +279,8 @@ abstract class _$$ResultImplCopyWith<$Res> implements $ResultCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      String? name_uz,
-      String? name_ru,
-      String? name_en,
+      int? product_id,
+      String? name,
       String? status,
       int? discount,
       int? price,
@@ -308,9 +300,8 @@ class __$$ResultImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name_uz = freezed,
-    Object? name_ru = freezed,
-    Object? name_en = freezed,
+    Object? product_id = freezed,
+    Object? name = freezed,
     Object? status = freezed,
     Object? discount = freezed,
     Object? price = freezed,
@@ -322,17 +313,13 @@ class __$$ResultImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      name_uz: freezed == name_uz
-          ? _value.name_uz
-          : name_uz // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name_ru: freezed == name_ru
-          ? _value.name_ru
-          : name_ru // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name_en: freezed == name_en
-          ? _value.name_en
-          : name_en // ignore: cast_nullable_to_non_nullable
+      product_id: freezed == product_id
+          ? _value.product_id
+          : product_id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
@@ -363,9 +350,8 @@ class __$$ResultImplCopyWithImpl<$Res>
 class _$ResultImpl implements _Result {
   const _$ResultImpl(
       {this.id,
-      this.name_uz,
-      this.name_ru,
-      this.name_en,
+      this.product_id,
+      this.name,
       this.status,
       this.discount,
       this.price,
@@ -378,11 +364,9 @@ class _$ResultImpl implements _Result {
   @override
   final int? id;
   @override
-  final String? name_uz;
+  final int? product_id;
   @override
-  final String? name_ru;
-  @override
-  final String? name_en;
+  final String? name;
   @override
   final String? status;
   @override
@@ -396,7 +380,7 @@ class _$ResultImpl implements _Result {
 
   @override
   String toString() {
-    return 'Result(id: $id, name_uz: $name_uz, name_ru: $name_ru, name_en: $name_en, status: $status, discount: $discount, price: $price, image: $image, price_to_pay: $price_to_pay)';
+    return 'Result(id: $id, product_id: $product_id, name: $name, status: $status, discount: $discount, price: $price, image: $image, price_to_pay: $price_to_pay)';
   }
 
   @override
@@ -405,9 +389,9 @@ class _$ResultImpl implements _Result {
         (other.runtimeType == runtimeType &&
             other is _$ResultImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name_uz, name_uz) || other.name_uz == name_uz) &&
-            (identical(other.name_ru, name_ru) || other.name_ru == name_ru) &&
-            (identical(other.name_en, name_en) || other.name_en == name_en) &&
+            (identical(other.product_id, product_id) ||
+                other.product_id == product_id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
@@ -419,8 +403,8 @@ class _$ResultImpl implements _Result {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name_uz, name_ru, name_en,
-      status, discount, price, image, price_to_pay);
+  int get hashCode => Object.hash(runtimeType, id, product_id, name, status,
+      discount, price, image, price_to_pay);
 
   @JsonKey(ignore: true)
   @override
@@ -439,9 +423,8 @@ class _$ResultImpl implements _Result {
 abstract class _Result implements Result {
   const factory _Result(
       {final int? id,
-      final String? name_uz,
-      final String? name_ru,
-      final String? name_en,
+      final int? product_id,
+      final String? name,
       final String? status,
       final int? discount,
       final int? price,
@@ -453,11 +436,9 @@ abstract class _Result implements Result {
   @override
   int? get id;
   @override
-  String? get name_uz;
+  int? get product_id;
   @override
-  String? get name_ru;
-  @override
-  String? get name_en;
+  String? get name;
   @override
   String? get status;
   @override

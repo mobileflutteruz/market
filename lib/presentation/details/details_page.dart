@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/core/extension/context_extension.dart';
-import 'package:karmango/domain/model/mobile/product/product.dart';
 import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/presentation/components/image_view.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
 import 'package:karmango/presentation/details/cubit/details_cubit.dart';
 import 'package:karmango/presentation/home/components/food_products_similar_widget%20.dart';
-
 import 'package:share/share.dart';
 import '../../core/constants/constants.dart';
 import '../../core/utils/app_layouts.dart';
@@ -27,6 +25,13 @@ class DetailsPage extends StatefulWidget {
 class _DetailsPageState extends State<DetailsPage> {
   int currentPage = 0;
   int counter = 1;
+  bool _isLiked = false; // Initialize _isLiked to false
+
+  void _toggleLike() {
+    setState(() {
+      _isLiked = !_isLiked;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +60,6 @@ class _DetailsPageState extends State<DetailsPage> {
               ),
             );
           }
-          print(
-              "PROOOOOOODUCT ITEEEEEEEEM  ${state.product!.result!.product!}");
-
           return Scaffold(
             body: Column(
               children: [
@@ -79,8 +81,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           child: Column(
                             children: [
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   IconButton(
                                     onPressed: () async {
@@ -88,18 +89,28 @@ class _DetailsPageState extends State<DetailsPage> {
                                     },
                                     icon: const Icon(Icons.share_outlined),
                                   ),
+                                  Container(
+                                    width: 48,
+                                    height: 4,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: Color(0xffc4c4c4),
+                                    ),
+                                  ),
                                   InkWell(
-                                    onTap: () {},
-                                    child: const Icon(
-                                      CupertinoIcons.heart_fill,
-                                      color: Colors.red,
+                                    onTap: _toggleLike,
+                                    child: Icon(
+                                      _isLiked
+                                          ? CupertinoIcons.heart_fill
+                                          : CupertinoIcons.heart,
+                                      color: _isLiked ? Colors.red : Colors.black,
                                     ),
                                   ),
                                 ],
                               ),
                               SizedBox(
                                 height: AppLayout.getHeight(200, context),
-                                width: AppLayout.getHeight(200, context),
+                                width: AppLayout.getHeight(220, context),
                                 child: ImageViewWidget(
                                   isNetImg: true,
                                   imageLink:
@@ -138,8 +149,6 @@ class _DetailsPageState extends State<DetailsPage> {
                                 textAlign: TextAlign.center,
                                 style: Styles.manropeMedium16,
                               ),
-
-                              // AppUtils.kGap12,
                             ],
                           ),
                         ),
@@ -177,15 +186,12 @@ class _DetailsPageState extends State<DetailsPage> {
                           ],
                         ),
                         AppUtils.kGap16,
-                        // FoodSimilarViewWidget(smallButton: (){}, result:  widget!.productId![index])
-
                         FoodProductsSimilarViewWidget(
                           smallButton: () {},
-                          // product: state.similarProduct,
                           title: context.l10n.similarProducts,
                           leftBtnTapped: () {},
-                          similarProduct:   state.product!
-                        )
+                          similarProduct: state.product!,
+                        ),
                       ],
                     ),
                   ),
@@ -311,8 +317,6 @@ class _DetailsPageState extends State<DetailsPage> {
                                         ),
                                       ),
                                     ),
-
-                              // AppUtils.kGap16,
                             ],
                           ),
                         ),
@@ -327,15 +331,6 @@ class _DetailsPageState extends State<DetailsPage> {
       ),
     );
   }
-
-  // Future<dynamic> showModalView(
-  //     BuildContext context, ProductDataModel product) {
-  //   return showCupertinoModalBottomSheet(
-  //     expand: true,
-  //     context: context,
-  //     builder: (context) => DetailsPage(product: ),
-  //   );
-  // }
 
   Container buildIconButton(BuildContext context, IconData icon) {
     return Container(

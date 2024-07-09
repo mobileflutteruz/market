@@ -77,10 +77,12 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
                         right: index == widget.products!.length - 1 ? 16 : 0),
                     child: FoodProductItemWidget(
                       likeTapped: () {
-                        context.read<FavouritesCubit>().setLikeId(product .id!);
+                        print("Product to  added to Favorite");
+                        context
+                            .read<FavouritesCubit>()
+                            .setFavouriteId(widget.products![index].id!);
                       },
-                      isLiked: 
-                      state.likeIds.contains(product.id.toString()),
+                      isLiked: state.likeIds.contains(product.id.toString()),
                       product: widget.products![index],
                       onTap: () {
                         showModalView(context, widget.products![index]);

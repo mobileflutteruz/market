@@ -5,6 +5,7 @@ import 'dart:convert';
 part 'favourite.freezed.dart';
 part 'favourite.g.dart';
 
+
 @freezed
 class Favourite with _$Favourite {
     const factory Favourite({
@@ -19,9 +20,8 @@ class Favourite with _$Favourite {
 class Result with _$Result {
     const factory Result({
         int? id,
-        String? name_uz,
-        String? name_ru,
-        String? name_en,
+        int? product_id,
+        String? name,
         String? status,
         int? discount,
         int? price,

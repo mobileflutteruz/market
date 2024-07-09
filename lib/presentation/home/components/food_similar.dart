@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:karmango/core/constants/constants.dart';
 import '../../../../core/utils/utils.dart';
 
-class FoodSimilarItemWidget extends StatelessWidget {
-  FoodSimilarItemWidget({
+class FoodSimilarItemWidget extends StatefulWidget {
+  const FoodSimilarItemWidget({
     super.key,
     required this.similarProduct,
     required this.onTap,
@@ -28,11 +28,32 @@ class FoodSimilarItemWidget extends StatelessWidget {
   final bool isNew;
 
   @override
+  _FoodSimilarItemWidgetState createState() => _FoodSimilarItemWidgetState();
+}
+
+class _FoodSimilarItemWidgetState extends State<FoodSimilarItemWidget> {
+  late bool _isLiked;
+
+  @override
+  void initState() {
+    super.initState();
+    _isLiked = widget.isLiked;
+  }
+
+  void _toggleLike() {
+    setState(() {
+      _isLiked = !_isLiked;
+    });
+    if (widget.likeTapped != null) {
+      widget.likeTapped!();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // print("PROOOOOOOOOOOOODUCT" + similarProduct!.result!.similarProducts!.image!);
-    final product = similarProduct!;
+    final product = widget.similarProduct!;
     return GestureDetector(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
@@ -66,7 +87,7 @@ class FoodSimilarItemWidget extends StatelessWidget {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (isNew)
+                        if (widget.isNew)
                           Container(
                             height: AppLayout.getHeight(24, context),
                             padding: AppUtils.kPaddingHor8Ver2,
@@ -85,7 +106,7 @@ class FoodSimilarItemWidget extends StatelessWidget {
                             ),
                           ),
                         AppUtils.kGap4,
-                        if (product!.discount != null)
+                        if (product.discount != null)
                           Container(
                             padding: AppUtils.kPaddingHor8Ver2,
                             height: AppLayout.getHeight(24, context),
@@ -97,7 +118,7 @@ class FoodSimilarItemWidget extends StatelessWidget {
                               ),
                             ),
                             child: Text(
-                              '-${product!.discount}％',
+                              '-${product.discount}％',
                               style: Styles.manropeMedium13.copyWith(
                                 color: FoodColors.cffffff,
                               ),
@@ -105,8 +126,8 @@ class FoodSimilarItemWidget extends StatelessWidget {
                           ),
                         const Spacer(),
                         InkWell(
-                          onTap: likeTapped,
-                          child: isLiked
+                          onTap: _toggleLike,
+                          child: _isLiked
                               ? Icon(
                                   CupertinoIcons.heart_fill,
                                   color: FoodColors.cF83333,
@@ -130,18 +151,17 @@ class FoodSimilarItemWidget extends StatelessWidget {
               maxLines: 2,
               textAlign: TextAlign.start,
             ),
-            // AppUtils.kGap8,
             Text(
               product.product_type! ?? "",
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: Styles.manropeBold14.copyWith(
-                color: isNew ? FoodColors.primaryColor : FoodColors.cA6AEBF,
+                color: widget.isNew ? FoodColors.primaryColor : FoodColors.cA6AEBF,
               ),
             ),
             AppUtils.kGap4,
             Text(
-              ' ${(product!.price!.toInt())}  ${context.l10n.sum}',
+              ' ${(product.price!.toInt())}  ${context.l10n.sum}',
               style: Styles.interSemiBold14.copyWith(
                 color: FoodColors.c0E1923,
                 fontWeight: FontWeight.w600,
@@ -149,7 +169,7 @@ class FoodSimilarItemWidget extends StatelessWidget {
             ),
             AppUtils.kGap8,
             SmallButton(
-              onTap: smallButton,
+              onTap: widget.smallButton,
             ),
           ],
         ),

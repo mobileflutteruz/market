@@ -22,7 +22,7 @@ class TokenPreference {
   final String _mobileInitScreen = "mobileInitScreen";
   final String _furnitureInitScreen = "furnitureInitScreen";
 
- setGuestUser(String value) async {
+  setGuestUser(String value) async {
     await localeDb.setString(_guest, value);
   }
 

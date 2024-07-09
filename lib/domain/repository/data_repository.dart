@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:karmango/core/constants/logger_service.dart';
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/data/api/api.dart';
+import 'package:karmango/domain/model/favourite/favourite.dart';
 import 'package:karmango/domain/model/mobile/cart_product/cart_product.dart';
 import 'package:karmango/domain/model/mobile/category/category.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
@@ -15,11 +16,12 @@ class DataRepository {
 
   DataRepository(this.api);
 
- Future getHomeProducts() async {
+  Future getHomeProducts() async {
     final response = await api.getWithToken(path: Urls.home);
     var data = jsonDecode(response.body);
     return MobileHomeProducts.fromJson(data);
   }
+
 //  Future getCategories() async {
 //     final response = await api.getWithToken(path: Urls.categories);
 //     var data = jsonDecode(response.body);
@@ -32,69 +34,79 @@ class DataRepository {
 //     return  ProductModel.fromJson(data);
 //   }
 
-Future<List<CategoryModel>> getCategories() async {
-  final response = await api.getWithToken(path: Urls.categories);
-  var data = jsonDecode(response.body) as List;
-  return data.map((json) => CategoryModel.fromJson(json)).toList();
-}
+  Future<List<CategoryModel>> getCategories() async {
+    final response = await api.getWithToken(path: Urls.categories);
+    var data = jsonDecode(response.body) as List;
+    return data.map((json) => CategoryModel.fromJson(json)).toList();
+  }
 
-Future<ProductModel> getCategoryProducts(int id) async {
-  final response = await api.getWithToken(path: Urls.productsByCategory(id));
-  var data = jsonDecode(response.body);
-  return ProductModel.fromJson(data);
-}
+  Future<ProductModel> getCategoryProducts(int id) async {
+    final response = await api.getWithToken(path: Urls.productsByCategory(id));
+    var data = jsonDecode(response.body);
+    return ProductModel.fromJson(data);
+  }
+
   Future<ProductDataModel> getProduct(int id) async {
     final response = await api.getWithToken(path: Urls.product(id));
     final data = jsonDecode(response.body);
     return ProductDataModel.fromJson(data);
   }
 
-  Future<List<MobileProduct>> getFavorites() async {
+  /// Favorites
+  Future<List<MobileProduct>?> getFavorites() async {
     final response = await api.getWithToken(path: Urls.favorite);
-    final data = jsonDecode(response.body);
+    var data = jsonDecode(response.body);
     return (data["data"] as List)
         .map((e) => MobileProduct.fromJson(e))
         .toList();
   }
 
-  Future<bool> createFavorite(int productId) async {
-    final body = {"product_id": productId};
+  Future<bool?> createFavorite({required int productId}) async {
+    final body = {
+      "product_id": productId,
+    };
     final response =
         await api.postWithToken(path: Urls.createFavorite, body: body);
-    final data = jsonDecode(response.body);
+    var data = jsonDecode(response.body);
     return data["status"];
   }
 
-  Future<bool> deleteFavorite(int productId) async {
+  Future<bool?> deleteFavorite({required int productId}) async {
     final response =
         await api.deleteWithToken(path: Urls.deleteFavorite(productId));
-    final data = jsonDecode(response.body);
+    var data = jsonDecode(response.body);
     return data["status"];
   }
 
-  Future<List<MobileProduct>> getAllCarts() async {
+  /// Cart
+  getAllCarts() async {
     final response = await api.getWithToken(path: Urls.favorite);
-    final data = jsonDecode(response.body);
+    var data = jsonDecode(response.body);
     return (data["data"] as List)
         .map((e) => MobileProduct.fromJson(e))
         .toList();
   }
 
-  Future<bool> createCart(int productId, int attributeId) async {
+  createCart({
+    required int productId,
+    required int attributeId,
+  }) async {
     final params = {
       "product_id": "$productId",
       "attribute_id": "$attributeId",
     };
     final response = await api.post(path: Urls.createCart, params: params);
-    final data = jsonDecode(response.body);
+    var data = jsonDecode(response.body);
     return data["status"];
   }
 
-  Future<bool> deleteCart(int productId, int attributeId) async {
+  deleteCart({
+    required int productId,
+    required int attributeId,
+  }) async {
     final response = await api.deleteWithToken(
-      path: Urls.deleteCart(productId: productId, attributeId: attributeId),
-    );
-    final data = jsonDecode(response.body);
+        path: Urls.deleteCart(productId: productId, attributeId: attributeId));
+    var data = jsonDecode(response.body);
     return data["status"];
   }
 }

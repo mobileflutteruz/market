@@ -1,6 +1,8 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/domain/model/mobile/product/product.dart';
 import 'package:karmango/presentation/details/cubit/details_cubit.dart';
+import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 import 'package:karmango/presentation/home/components/food_similar.dart';
 import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/core/utils/app_layouts.dart';
@@ -27,10 +29,12 @@ class FoodProductsSimilarViewWidget extends StatefulWidget {
   final String title;
 
   @override
-  State<FoodProductsSimilarViewWidget> createState() => _FoodProductsViewWidgetState();
+  State<FoodProductsSimilarViewWidget> createState() =>
+      _FoodProductsViewWidgetState();
 }
 
-class _FoodProductsViewWidgetState extends State<FoodProductsSimilarViewWidget> {
+class _FoodProductsViewWidgetState
+    extends State<FoodProductsSimilarViewWidget> {
   @override
   Widget build(BuildContext context) {
     return Buildable<DetailsCubit, DetailsState, DetailsBuildableState>(
@@ -73,11 +77,21 @@ class _FoodProductsViewWidgetState extends State<FoodProductsSimilarViewWidget> 
                   // final product = widget.similarProduct!;
                   return Padding(
                     padding: EdgeInsets.only(
-                        left: 16.0, right: index == widget.similarProduct! ? 16 : 0),
+                        left: 16.0,
+                        right: index == widget.similarProduct! ? 16 : 0),
                     child: FoodSimilarItemWidget(
-                      similarProduct:  state.product!.result!.similar_products![index],
+                      similarProduct:
+                          state.product!.result!.similar_products![index],
                       likeTapped: () {
-                        // context.read<FoodHomeCubit>().setLikeId(product.id);
+                        print("Product to  added to Favorite");
+                        context.read<FavouritesCubit>().setFavouriteId(widget
+                            .similarProduct
+                            .result!
+                            .similar_products![index]
+                            .id!);
+                        // context
+                        //     .read<FavouritesCubit>()
+                        //     .setFavouriteId(widget.similarProduct.result!.similar_products![index].id!);
                       },
                       isLiked:
                           false, //state.likeIds.contains(product.id.toString()),
@@ -85,14 +99,15 @@ class _FoodProductsViewWidgetState extends State<FoodProductsSimilarViewWidget> 
                       onTap: () {
                         showModalView(
                           context,
-                            state.product!.result!.similar_products![index],
+                          state.product!.result!.similar_products![index],
                         );
                       },
                       smallButton: widget.smallButton,
                     ),
                   );
                 },
-                itemCount: widget.similarProduct.result!.similar_products!.length,
+                itemCount:
+                    widget.similarProduct.result!.similar_products!.length,
               ),
             ),
             AppUtils.kGap24,
@@ -106,8 +121,7 @@ class _FoodProductsViewWidgetState extends State<FoodProductsSimilarViewWidget> 
     return showCupertinoModalBottomSheet(
       expand: true,
       context: context,
-      builder: (homeContext) =>
-          DetailsPage(productId: products!.id),
+      builder: (homeContext) => DetailsPage(productId: products!.id),
     );
   }
 }
