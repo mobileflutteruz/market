@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:karmango/domain/model/mobile/home/home.dart';
+import 'package:karmango/domain/model/favourite/favourite.dart';
 import 'package:karmango/domain/repository/data_repository.dart';
 import '../../../domain/repository/main_repository.dart';
 import '../../components/buildable_cubit.dart';
@@ -21,109 +20,75 @@ class FavouritesCubit
   final DataRepository _dataRepository;
 
   Future<void> init() async {
-    await getLikeIds();
-    await fetchFavorites();
+
+    await fetchFavourites();
   }
 
-  Future<void> fetchFavorites() async {
+  Future<void> fetchFavourites() async {
+    build((buildable) => buildable.copyWith(loading: true));
     try {
-      final favourites = await _dataRepository.getFavorites();
-      build(
-        (buildable) => buildable.copyWith(
-          favourites: favourites,
-        ),
-      );
+      final Favourite? favourites = await _dataRepository.getFavorites();
+      if (favourites != null) {
+        build((buildable) => buildable.copyWith(
+              loading: false,
+              success: true,
+              favourites: favourites,
+            ));
+      } else {
+        build((buildable) => buildable.copyWith(
+              loading: false,
+              failure: true,
+              errorMessage: 'No favorites found.',
+            ));
+      }
     } catch (e) {
-      build(
-        (buildable) => buildable.copyWith(
-          errorMessage: e.toString(),
-        ),
-      );
+      build((buildable) => buildable.copyWith(
+            loading: false,
+            failure: true,
+            errorMessage: 'Something went wrong: $e',
+          ));
+      print('Something went wrong: $e');
     }
   }
 
-  Future setFavouriteId(int productId) async {
-    try {
-      await _dataRepository.createFavorite(productId: productId);
-    } catch (e) {
-      build(
-        (buildable) => buildable.copyWith(
-          failure: true,
-        ),
-      );
-    }
+Future<void> toggleFavourite(int productId) async {
+  final state = this.state as FavouritesBuildableState; // Cast state
+  final likeIds = List<String>.from(state.likeIds); // Ensure it's a modifiable list
+  final isLiked = likeIds.contains(productId.toString());
+
+  // 1. Avval lokal holatni yangilash
+  if (isLiked) {
+    likeIds.remove(productId.toString());
+  } else {
+    likeIds.add(productId.toString());
   }
+  build((buildable) => buildable.copyWith(likeIds: likeIds));
 
-  Future fetchFavourites() async {
-    build(
-      (buildable) => buildable.copyWith(
-        loading: true,
-      ),
-    );
-    try {
-      final List<MobileProduct>? favourites =
-          await _dataRepository.getFavorites();
-
-      build(
-        (buildable) => buildable.copyWith(
-          loading: false,
-          success: true,
-          favourites: favourites,
-        ),
-      );
-    } catch (e) {
-      build(
-        (buildable) => buildable.copyWith(
-          loading: false,
-          failure: true,
-        ),
-      );
-    }
-  }
-
-  void changeImageIndex(int index) {
-    build(
-      (buildable) => buildable.copyWith(
-        imageIndex: index,
-      ),
-    );
-  }
-
-  setLikeId(int likeId) async {
-    List<String> ids = await _repository.getLikeIds() ?? [];
-    debugPrint("List<String> ids = await _repository.getLikeIds() ?? [] $ids");
-
-    if (!ids.contains(likeId.toString())) {
-      ids.add(likeId.toString());
+  // 2. Keyin serverga so'rov yuborish
+  try {
+    if (isLiked) {
+      await _dataRepository.deleteFavorite(productId: productId);
     } else {
-      ids.removeWhere((p) => p == likeId.toString());
+      await _dataRepository.createFavorite(productId: productId);
     }
-    await _repository.setLikeIds(ids);
+    await _repository.setLikeIds(likeIds);
+    await fetchFavourites(); // Fetch updated favourites after toggling the favorite status
+  } catch (e) {
+    build((buildable) => buildable.copyWith(failure: true));
+    print('Failed to toggle favorite status: $e');
+  }
+}
 
-    build(
-      (buildable) => buildable.copyWith(
-        likeIds: ids,
-      ),
-    );
-    debugPrint("$ids");
+   void removeFavouriteFromUI(String productId) {
+    final currentState = state as FavouritesBuildableState;
+    final currentFavourites = currentState.favourites;
+    if (currentFavourites != null) {
+      final updatedList = currentFavourites.result!.where((item) => item!.id != productId).toList();
+      emit(currentState.copyWith(
+        favourites: currentFavourites.copyWith(result: updatedList),
+      ));
+    }
   }
 
-  Future<void> getLikeIds() async {
-    List<String> ids = await _repository.getLikeIds() ?? [];
-
-    build(
-      (buildable) => buildable.copyWith(
-        likeIds: ids,
-      ),
-    );
-    debugPrint("$ids");
-  }
-
-  void changeTabIndex(int index) {
-    build(
-      (buildable) => buildable.copyWith(
-        infoTabIndex: index,
-      ),
-    );
-  }
+ 
 }

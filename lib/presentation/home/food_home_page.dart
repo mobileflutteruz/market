@@ -14,7 +14,9 @@ class FoodHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocListener<FoodHomeCubit, FoodHomeState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          
+        },
         child: Buildable<FoodHomeCubit, FoodHomeState, FoodHomeBuildableState>(
           properties: (buildable) => [
             buildable.error,

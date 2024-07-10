@@ -79,8 +79,7 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
                       likeTapped: () {
                         print("Product to  added to Favorite");
                         context
-                            .read<FavouritesCubit>()
-                            .setFavouriteId(widget.products![index].id!);
+                            .read<FavouritesCubit>().toggleFavourite(widget.products![index].id!);
                       },
                       isLiked: state.likeIds.contains(product.id.toString()),
                       product: widget.products![index],

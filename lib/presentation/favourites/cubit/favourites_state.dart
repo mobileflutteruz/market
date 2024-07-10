@@ -16,7 +16,7 @@ class FavouritesBuildableState
     @Default(false) bool failure,
     @Default(false) bool descriptionIsExpandable,
     @Default(false) bool characteristicsIsExpandable,
-    List<MobileProduct>? favourites,
+    Favourite? favourites,
     String? errorMessage,
   }) = _FavouritesBuildableState;
 }

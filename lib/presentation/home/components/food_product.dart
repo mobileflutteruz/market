@@ -1,30 +1,30 @@
-import 'package:karmango/domain/model/mobile/home/home.dart';
-import 'package:karmango/presentation/components/image_view.dart';
-import 'package:karmango/presentation/home/components/small_button.dart';
-import 'package:karmango/core/utils/app_layouts.dart';
-import 'package:karmango/core/extension/context_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:karmango/core/constants/constants.dart';
-import '../../../../core/utils/utils.dart';
+import 'package:karmango/core/utils/app_layouts.dart';
+import 'package:karmango/core/extension/context_extension.dart';
+import 'package:karmango/domain/model/mobile/home/home.dart';
+import 'package:karmango/presentation/components/image_view.dart';
+import 'package:karmango/presentation/home/components/small_button.dart';
+
 
 class FoodProductItemWidget extends StatefulWidget {
   const FoodProductItemWidget({
-    super.key,
+    Key? key,
     required this.product,
     required this.onTap,
     required this.likeTapped,
     required this.isLiked,
     required this.smallButton,
     this.isNew = false,
-  });
+  }) : super(key: key);
 
-  final MobileProduct? product;
+  final MobileProduct ? product;
   final void Function() onTap;
-  final void Function() smallButton;
   final void Function()? likeTapped;
   final bool isLiked;
   final bool isNew;
+  final void Function() smallButton;
 
   @override
   _FoodProductItemWidgetState createState() => _FoodProductItemWidgetState();
@@ -50,6 +50,7 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
 
   @override
   Widget build(BuildContext context) {
+  
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
@@ -69,53 +70,58 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
                 children: [
                   DecoratedBox(
                     decoration: BoxDecoration(
-                      borderRadius: AppUtils.kBorderRadius12,
-                      color: ColorConstants.kGreyOrderBack,
+                      borderRadius: BorderRadius.circular(12),
+                      color: FoodColors.cF5F5F5,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(36),
-                      child: ImageViewWidget(imageLink: widget.product!.image!, isNetImg: true,),
+                      child: ImageViewWidget(
+                        imageLink: widget.product!.image!,
+                        isNetImg: true,
+                      ),
                     ),
                   ),
                   Padding(
-                    padding: AppUtils.kPaddingL8R16B16T16,
+                    padding: const EdgeInsets.fromLTRB(8, 8, 16, 16),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         if (widget.isNew)
                           Container(
                             height: AppLayout.getHeight(24, context),
-                            padding: AppUtils.kPaddingHor8Ver2,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 2),
                             alignment: Alignment.center,
-                            decoration:  ShapeDecoration(
+                            decoration: BoxDecoration(
                               color: FoodColors.c2DCC70,
-                              shape:const RoundedRectangleBorder(
-                                borderRadius: AppUtils.kBorderRadius4,
-                              ),
+                              borderRadius: BorderRadius.circular(4),
                             ),
                             child: Text(
                               'New',
-                              style: Styles.manropeMedium13.copyWith(
-                                 color: FoodColors.cffffff
+                              style: TextStyle(
+                                color: FoodColors.cffffff,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ),
-                        AppUtils.kGap4,
+                        const SizedBox(width: 4),
                         if (widget.product!.discount != null)
                           Container(
-                            padding: AppUtils.kPaddingHor8Ver2,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 2),
                             height: AppLayout.getHeight(24, context),
                             alignment: Alignment.center,
-                            decoration:  ShapeDecoration(
+                            decoration: BoxDecoration(
                               color: FoodColors.cF83333,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: AppUtils.kBorderRadius4,
-                              ),
+                              borderRadius: BorderRadius.circular(4),
                             ),
                             child: Text(
-                              '-${widget.product!.discount}％',
-                              style: Styles.manropeMedium13.copyWith(
+                              '-${widget.product!.discount}%',
+                              style: TextStyle(
                                 color: FoodColors.cffffff,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ),
@@ -123,11 +129,11 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
                         InkWell(
                           onTap: _toggleLike,
                           child: _isLiked
-                              ?  Icon(
+                              ? Icon(
                                   CupertinoIcons.heart_fill,
                                   color: FoodColors.cF83333,
                                 )
-                              : const Icon(
+                              : Icon(
                                   CupertinoIcons.heart,
                                 ),
                         ),
@@ -137,38 +143,42 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
                 ],
               ),
             ),
-            AppUtils.kGap8,
+            SizedBox(height: 8),
             Text(
               widget.product!.name ?? "",
-              style: Styles.manropeMedium12.copyWith(
+              style: TextStyle(
                 color: FoodColors.c0E1923,
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
               ),
-              maxLines: 2,
-              textAlign: TextAlign.start,
-            ),
-            Text(
-                 widget.product!.product_type ?? '',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: Styles.manropeBold14.copyWith(
+            ),
+            Text(
+              widget.product!.product_type ?? '',
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
                 color: widget.isNew ? FoodColors.primaryColor : FoodColors.cA6AEBF,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            AppUtils.kGap4,
+            SizedBox(height: 4),
             Text(
               ' ${(widget.product!.price!.toInt())}  ${context.l10n.sum}',
-              style: Styles.interSemiBold14.copyWith( 
-                 color: FoodColors.c0E1923,
+              style: TextStyle(
+                color: FoodColors.c0E1923,
+                fontSize: 14,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            AppUtils.kGap8,
-            SmallButton(
-              onTap: widget.smallButton,
-            ),
+            SizedBox(height: 8),
+            SmallButton(onTap: widget.smallButton),
           ],
         ),
       ),
     );
   }
 }
+

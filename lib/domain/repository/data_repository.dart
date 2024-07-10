@@ -53,13 +53,13 @@ class DataRepository {
   }
 
   /// Favorites
-  Future<List<MobileProduct>?> getFavorites() async {
-    final response = await api.getWithToken(path: Urls.favorite);
-    var data = jsonDecode(response.body);
-    return (data["data"] as List)
-        .map((e) => MobileProduct.fromJson(e))
-        .toList();
-  }
+Future<Favourite> getFavorites() async {
+  final response = await api.getWithToken(path: Urls.favorite);
+  var data = jsonDecode(response.body);
+  return Favourite.fromJson(data);
+}
+
+
 
   Future<bool?> createFavorite({required int productId}) async {
     final body = {

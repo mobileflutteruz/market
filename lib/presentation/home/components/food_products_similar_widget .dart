@@ -84,7 +84,7 @@ class _FoodProductsViewWidgetState
                           state.product!.result!.similar_products![index],
                       likeTapped: () {
                         print("Product to  added to Favorite");
-                        context.read<FavouritesCubit>().setFavouriteId(widget
+                        context.read<FavouritesCubit>().toggleFavourite(widget
                             .similarProduct
                             .result!
                             .similar_products![index]
