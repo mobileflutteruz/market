@@ -35,7 +35,7 @@ class FoodSearchTextFieldWidget extends StatelessWidget {
             ),
           ),
           focusedBorder:  OutlineInputBorder(
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(4.0),
             ),
             borderSide: BorderSide(

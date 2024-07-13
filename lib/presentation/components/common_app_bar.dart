@@ -25,7 +25,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
           : null,
       elevation: 20,
       surfaceTintColor: FoodColors.cffffff,
-      shadowColor: Color(0x111050505),
+      shadowColor: const Color(0x111050505),
       foregroundColor: ColorConstants.cffffff,
       title: Text(
         title,

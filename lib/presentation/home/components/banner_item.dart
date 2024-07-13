@@ -4,10 +4,10 @@ import 'package:karmango/presentation/components/image_view.dart';
 
 class FoodBannerItemWidget extends StatelessWidget {
   const FoodBannerItemWidget({
-    Key? key,
+    super.key,
     required this.imageUrl,
     this.itemTapped,
-  }) : super(key: key);
+  });
 
   final String imageUrl;
   final void Function()? itemTapped;

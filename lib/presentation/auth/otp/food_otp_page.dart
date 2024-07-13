@@ -42,7 +42,7 @@ class _FoodOtpScreenState extends State<FoodOtpScreen> {
                 children: [
                   Column(
                     children: [
-                      FoodLogoWidget(),
+                      const FoodLogoWidget(),
                       SizedBox(height: AppSizes.getH(context, .07)),
                       _customPin(),
                     ],

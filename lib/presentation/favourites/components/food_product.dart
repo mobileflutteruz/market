@@ -8,53 +8,31 @@ import 'package:karmango/domain/model/favourite/favourite.dart';
 import 'package:karmango/presentation/components/image_view.dart';
 import 'package:karmango/presentation/home/components/small_button.dart';
 
-class FoodFavoriteItemWidget extends StatefulWidget {
+class FoodFavoriteItemWidget extends StatelessWidget {
   const FoodFavoriteItemWidget({
-    Key? key,
+    super.key,
     required this.productList,
     required this.onTap,
     required this.likeTapped,
     required this.isLiked,
     required this.smallButton,
     this.isNew = false,
-  }) : super(key: key);
+  });
 
   final List<Result?> productList;
   final void Function() onTap;
-  final void Function()? likeTapped;
+  final VoidCallback? likeTapped;
   final bool isLiked;
   final bool isNew;
   final void Function() smallButton;
 
   @override
-  _FoodFavoriteItemWidgetState createState() => _FoodFavoriteItemWidgetState();
-}
-
-class _FoodFavoriteItemWidgetState extends State<FoodFavoriteItemWidget> {
-  late bool _isLiked;
-
-  @override
-  void initState() {
-    super.initState();
-    _isLiked = widget.isLiked;
-  }
-
-  void _toggleLike() {
-    setState(() {
-      _isLiked = !_isLiked;
-    });
-    if (widget.likeTapped != null) {
-      widget.likeTapped!();
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: widget.productList.map((product) {
+      children: productList.map((product) {
         return GestureDetector(
-          onTap: widget.onTap,
+          onTap: onTap,
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             margin: const EdgeInsets.symmetric(vertical: 8),
@@ -89,7 +67,7 @@ class _FoodFavoriteItemWidgetState extends State<FoodFavoriteItemWidget> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (widget.isNew)
+                            if (isNew)
                               Container(
                                 height: AppLayout.getHeight(24, context),
                                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -130,13 +108,8 @@ class _FoodFavoriteItemWidgetState extends State<FoodFavoriteItemWidget> {
                               ),
                             const Spacer(),
                             InkWell(
-                              onTap: _toggleLike,
-                              child: _isLiked
-                                  ? const Icon(
-                                      CupertinoIcons.heart,
-                                     
-                                    )
-                                  : Icon(
+                              onTap: likeTapped,
+                              child:  Icon(
                                       CupertinoIcons.heart_fill,
                                        color: FoodColors.cF83333,
                                     ),
@@ -170,7 +143,7 @@ class _FoodFavoriteItemWidgetState extends State<FoodFavoriteItemWidget> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                SmallButton(onTap: widget.smallButton),
+                SmallButton(onTap: smallButton),
                 AppUtils.kGap8,
               ],
             ),

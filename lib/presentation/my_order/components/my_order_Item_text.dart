@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class FoodMyOrderItemText extends StatelessWidget {
   FoodMyOrderItemText({
-    Key? key,
+    super.key,
     required this.text,
     this.onTap,
-  }) : super(key: key);
+  });
   final String text;
   void Function()? onTap;
 

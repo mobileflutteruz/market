@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
 import 'package:karmango/domain/model/mobile/product/product.dart';
 import 'package:karmango/domain/repository/auth_repository.dart';
@@ -10,6 +8,7 @@ import 'package:karmango/domain/repository/data_repository.dart';
 import 'package:karmango/presentation/components/buildable_cubit.dart';
 
 part 'food_home_state.dart';
+
 part 'food_home_cubit.freezed.dart';
 
 @injectable

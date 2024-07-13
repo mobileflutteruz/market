@@ -3,17 +3,21 @@ import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'package:karmango/domain/expections/invalid_credentials_exceptions.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
+import '../../config/user_session_manager.dart';
 import '../preferences/token_preferences.dart';
 
 @Injectable()
 class Api {
   final TokenPreference _token;
+  final UserSessionManager _userSessionManager;
 
-  Api(this._token);
+
+  Api(this._token, this._userSessionManager);
 
   final _host = "karmango.shop.dukan.uz";  // Removed https://
   final _root = "/api";
   final _timeout = const Duration(seconds: 15);
+
 
   static final HttpWithMiddleware _httpClient = HttpWithMiddleware.build(
     middlewares: [HttpLogger(logLevel: LogLevel.BODY)],
@@ -114,17 +118,16 @@ class Api {
   }
 
   Future<Map<String, String>> get _headersWithToken async {
-    final token = await gettokens();
+    final token = await getToken();
     final headers = <String, String>{
       "Accept": "application/json",
-      "Content-Type": "application/json",
       "Authorization": "Bearer $token"
     };
     return headers;
   }
 
-  Future<String?> gettokens() async {
-    var token = await _token.get();
+  Future<String?> getToken() async {
+    var token = await _userSessionManager.getToken();
     if (token == null) {
       var guestToken = await _token.getGuestUser();
       return guestToken;

@@ -13,7 +13,7 @@ class ModalProgressHUD extends StatelessWidget {
       SchedulerBinding.instance.window.platformBrightness == Brightness.dark;
 
   ModalProgressHUD({
-    Key? key,
+    super.key,
     required this.inAsyncCall,
     this.opacity = 0.05,
     this.color = Colors.grey,
@@ -21,9 +21,7 @@ class ModalProgressHUD extends StatelessWidget {
     this.offset,
     this.dismissible = false,
     required this.child,
-  })  : assert(child != null),
-        assert(inAsyncCall != null),
-        super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

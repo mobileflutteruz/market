@@ -22,7 +22,7 @@ AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) {
 mixin _$AuthResponse {
   bool? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  int? get user_d => throw _privateConstructorUsedError;
+  int? get user_id => throw _privateConstructorUsedError;
   String? get user_name => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
   String? get token_type => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $AuthResponseCopyWith<$Res> {
   $Res call(
       {bool? status,
       String? message,
-      int? user_d,
+      int? user_id,
       String? user_name,
       String? token,
       String? token_type});
@@ -63,7 +63,7 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
   $Res call({
     Object? status = freezed,
     Object? message = freezed,
-    Object? user_d = freezed,
+    Object? user_id = freezed,
     Object? user_name = freezed,
     Object? token = freezed,
     Object? token_type = freezed,
@@ -77,9 +77,9 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      user_d: freezed == user_d
-          ? _value.user_d
-          : user_d // ignore: cast_nullable_to_non_nullable
+      user_id: freezed == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
               as int?,
       user_name: freezed == user_name
           ? _value.user_name
@@ -108,7 +108,7 @@ abstract class _$$AuthResponseImplCopyWith<$Res>
   $Res call(
       {bool? status,
       String? message,
-      int? user_d,
+      int? user_id,
       String? user_name,
       String? token,
       String? token_type});
@@ -127,7 +127,7 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? message = freezed,
-    Object? user_d = freezed,
+    Object? user_id = freezed,
     Object? user_name = freezed,
     Object? token = freezed,
     Object? token_type = freezed,
@@ -141,9 +141,9 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      user_d: freezed == user_d
-          ? _value.user_d
-          : user_d // ignore: cast_nullable_to_non_nullable
+      user_id: freezed == user_id
+          ? _value.user_id
+          : user_id // ignore: cast_nullable_to_non_nullable
               as int?,
       user_name: freezed == user_name
           ? _value.user_name
@@ -167,7 +167,7 @@ class _$AuthResponseImpl implements _AuthResponse {
   const _$AuthResponseImpl(
       {this.status,
       this.message,
-      this.user_d,
+      this.user_id,
       this.user_name,
       this.token,
       this.token_type});
@@ -180,7 +180,7 @@ class _$AuthResponseImpl implements _AuthResponse {
   @override
   final String? message;
   @override
-  final int? user_d;
+  final int? user_id;
   @override
   final String? user_name;
   @override
@@ -190,7 +190,7 @@ class _$AuthResponseImpl implements _AuthResponse {
 
   @override
   String toString() {
-    return 'AuthResponse(status: $status, message: $message, user_d: $user_d, user_name: $user_name, token: $token, token_type: $token_type)';
+    return 'AuthResponse(status: $status, message: $message, user_id: $user_id, user_name: $user_name, token: $token, token_type: $token_type)';
   }
 
   @override
@@ -200,7 +200,7 @@ class _$AuthResponseImpl implements _AuthResponse {
             other is _$AuthResponseImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.user_d, user_d) || other.user_d == user_d) &&
+            (identical(other.user_id, user_id) || other.user_id == user_id) &&
             (identical(other.user_name, user_name) ||
                 other.user_name == user_name) &&
             (identical(other.token, token) || other.token == token) &&
@@ -211,7 +211,7 @@ class _$AuthResponseImpl implements _AuthResponse {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, status, message, user_d, user_name, token, token_type);
+      runtimeType, status, message, user_id, user_name, token, token_type);
 
   @JsonKey(ignore: true)
   @override
@@ -231,7 +231,7 @@ abstract class _AuthResponse implements AuthResponse {
   const factory _AuthResponse(
       {final bool? status,
       final String? message,
-      final int? user_d,
+      final int? user_id,
       final String? user_name,
       final String? token,
       final String? token_type}) = _$AuthResponseImpl;
@@ -244,7 +244,7 @@ abstract class _AuthResponse implements AuthResponse {
   @override
   String? get message;
   @override
-  int? get user_d;
+  int? get user_id;
   @override
   String? get user_name;
   @override

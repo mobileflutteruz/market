@@ -53,13 +53,11 @@ class DataRepository {
   }
 
   /// Favorites
-Future<Favourite> getFavorites() async {
-  final response = await api.getWithToken(path: Urls.favorite);
-  var data = jsonDecode(response.body);
-  return Favourite.fromJson(data);
-}
-
-
+  Future<Favourite> getFavorites() async {
+    final response = await api.getWithToken(path: Urls.favorite);
+    var data = jsonDecode(response.body);
+    return Favourite.fromJson(data);
+  }
 
   Future<bool?> createFavorite({required int productId}) async {
     final body = {
@@ -71,11 +69,8 @@ Future<Favourite> getFavorites() async {
     return data["status"];
   }
 
-  Future<bool?> deleteFavorite({required int productId}) async {
-    final response =
-        await api.deleteWithToken(path: Urls.deleteFavorite(productId));
-    var data = jsonDecode(response.body);
-    return data["status"];
+  Future<void> deleteFavorite({required int productId}) async {
+    await api.deleteWithToken(path: Urls.deleteFavorite(productId));
   }
 
   /// Cart
@@ -110,13 +105,13 @@ Future<Favourite> getFavorites() async {
     return data["status"];
   }
 
-  //  Future<List<Sea>> searchProducts(String inputText) async {
-  //   final result = await api.get(
-  //       api: "${Constants.baseUrl}${Urls.searchByProduct(inputText)}");
+//  Future<List<Sea>> searchProducts(String inputText) async {
+//   final result = await api.get(
+//       api: "${Constants.baseUrl}${Urls.searchByProduct(inputText)}");
 
-  //   final SearchProductsData data =
-  //       SearchProductsData.fromJson(result as Map<String, dynamic>);
+//   final SearchProductsData data =
+//       SearchProductsData.fromJson(result as Map<String, dynamic>);
 
-  //   return data.data;
-  // }
+//   return data.data;
+// }
 }

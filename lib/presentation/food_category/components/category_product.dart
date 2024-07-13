@@ -11,14 +11,14 @@ import 'package:karmango/core/utils/utils.dart'; // Import necessary utilities
 
 class CategoryProductItemWidget extends StatelessWidget {
   const CategoryProductItemWidget({
-    Key? key,
+    super.key,
     required this.product,
     required this.onTap,
     required this.smallButton,
     required this.likeTapped,
     required this.isLiked,
     this.isNew = false,
-  }) : super(key: key);
+  });
 
   final Product product; // Ensure it matches your model
   final VoidCallback onTap;

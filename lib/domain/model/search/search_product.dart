@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'dart:convert';
 
 part 'search_product.freezed.dart';
 part 'search_product.g.dart';

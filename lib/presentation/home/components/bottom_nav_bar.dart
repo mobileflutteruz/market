@@ -1,5 +1,6 @@
 
 import 'package:karmango/core/constants/constants.dart';
+import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 
 import 'package:karmango/presentation/home/cubit/food_home_cubit.dart';
 import 'package:karmango/presentation/components/buildable.dart';
@@ -27,6 +28,10 @@ builtBottomBar() {
         ),
         elevation: 10,
         onTap: (value) {
+          if(value==3){
+            context.read<FavouritesCubit>().fetchFavourites();
+
+        }
           BlocProvider.of<FoodHomeCubit>(context, listen: false)
               .changeTabs(value);
         },

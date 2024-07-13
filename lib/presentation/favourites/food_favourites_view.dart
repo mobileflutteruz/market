@@ -5,7 +5,6 @@ import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/presentation/components/common_app_bar.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
-import 'package:karmango/presentation/details/cubit/details_cubit.dart';
 import 'package:karmango/presentation/favourites/components/food_info.dart';
 import 'package:karmango/presentation/favourites/components/food_product.dart';
 import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
@@ -97,13 +96,11 @@ class FavouritesView extends StatelessWidget {
                           productList: [product],
                           onTap: () {},
                           likeTapped: () {
-                            // context.read<FavouritesCubit>().setLikeId(product!.id!);
-                            // context.read<FavouritesCubit>().removeFavouriteFromUI(product.id!.toString());
                             context
-                                .read<DetailsCubit>()
-                                .setLikeId(product!.id!);
+                                .read<FavouritesCubit>()
+                                .deleteLikeId(product.id ?? 0);
                           },
-                          isLiked: state.likeIds.contains(product!.id!),
+                          isLiked: state.likeIds.contains(product.id!),
                           smallButton: () {},
                         );
                       },

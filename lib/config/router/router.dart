@@ -1,3 +1,4 @@
+import 'package:karmango/app_container_screen.dart';
 import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
 import 'package:karmango/presentation/auth/change_password/components/const_comp.dart';
@@ -26,7 +27,6 @@ import 'package:karmango/presentation/order/food_order_view.dart';
 import 'package:karmango/presentation/search/food_search_page.dart';
 import 'package:flutter/material.dart';
 
-
 class OngenerateRoutes {
   static final OngenerateRoutes _instance = OngenerateRoutes._init();
 
@@ -38,12 +38,14 @@ class OngenerateRoutes {
     var args = settings.arguments;
     switch (settings.name) {
       ///Food
+      case FoodNavigatorConst.appContainer:
+        return sampleRoute(const AppContainerScreen());
       case FoodNavigatorConst.foodLoginScreen:
-        return sampleRoute(FoodLoginPage());
+        return sampleRoute(const FoodLoginPage());
       case FoodNavigatorConst.foodPhoneInput:
         return sampleRoute(const FoodPhoneInput());
       case FoodNavigatorConst.foodOtpScreen:
-       final phoneNumber = settings.arguments as String;
+        final phoneNumber = settings.arguments as String;
         return sampleRoute(
           FoodOtpScreen(
             phoneNumber: phoneNumber,
@@ -56,9 +58,9 @@ class OngenerateRoutes {
       case FoodNavigatorConst.foodChangePassword:
         return sampleRoute(const FoodChangePasswordPage());
       case FoodNavigatorConst.foodSplash:
-        return sampleRoute(FoodSplashView());
+        return sampleRoute(const FoodSplashView());
       case FoodNavigatorConst.foodHome:
-        return sampleRoute( FoodHomePage());
+        return sampleRoute(const FoodHomePage());
       case FoodNavigatorConst.foodSearchPage:
         return sampleRoute(const FoodSearchPage());
       case FoodNavigatorConst.foodProfileCard:

@@ -1,5 +1,6 @@
 
 sealed class FoodNavigatorConst {
+  static const String appContainer = "/appContainer";
   static const String foodLoginScreen = "/foodLoginScreen";
   static const String foodHome = "/foodHome";
   static const String foodSplash = "/foodSplash";

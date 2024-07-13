@@ -2,7 +2,7 @@ import 'package:karmango/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class FoodLogoWidget extends StatelessWidget {
-  FoodLogoWidget({super.key});
+  const FoodLogoWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

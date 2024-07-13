@@ -4,7 +4,7 @@ part of '../home/components/food_home_components.dart';
 
 
 class FoodHomeView extends StatefulWidget {
-  const FoodHomeView({Key? key}) : super(key: key);
+  const FoodHomeView({super.key});
 
   @override
   State<FoodHomeView> createState() => _FoodHomeViewState();
@@ -115,11 +115,11 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                                 ),
                               );
                             },
-                            products: product!.products!,
+                            products: product.products!,
                           ),
                         )
                       : const SizedBox.shrink();
-                }).toList(),
+                }),
                 const SizedBox(height: 24),
                 FoodBannerViewWidget(banners: bottomBanner),
                 const SizedBox(height: 24),
@@ -128,7 +128,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                       ? Padding(
                           padding: const EdgeInsets.only(bottom: 24),
                           child: FoodProductsViewWidget(
-                            title: product!.name!,
+                            title: product.name!,
                             smallButton: () {},
                             leftBtnTapped: () {
                               Navigator.push(
@@ -142,7 +142,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                           ),
                         )
                       : const SizedBox.shrink();
-                }).toList(),
+                }),
               ],
             ),
           );

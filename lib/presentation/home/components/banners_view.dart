@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
 import 'package:karmango/presentation/home/components/banner_item.dart';
 import 'package:karmango/core/utils/app_layouts.dart';

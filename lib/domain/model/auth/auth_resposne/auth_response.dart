@@ -9,7 +9,7 @@ class AuthResponse with _$AuthResponse {
     const factory AuthResponse({
         bool? status,
         String? message,
-        int? user_d,
+        int? user_id,
         String? user_name,
         String? token,
         String? token_type,

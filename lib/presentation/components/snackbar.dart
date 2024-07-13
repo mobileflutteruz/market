@@ -10,7 +10,7 @@ class AwesomeTopSnackbar extends StatefulWidget {
   final BoxDecoration? iconWithDecoration;
 
   const AwesomeTopSnackbar({
-    Key? key,
+    super.key,
     required this.message,
     this.onCloseClick,
     this.textStyle = const TextStyle(
@@ -21,7 +21,7 @@ class AwesomeTopSnackbar extends StatefulWidget {
     this.icon,
     this.iconWithDecoration,
     required this.backgroundColor,
-  }) : super(key: key);
+  });
 
   @override
   AwesomeTopSnackbarState createState() => AwesomeTopSnackbarState();
@@ -135,7 +135,6 @@ void mySnackbar(
 
 class _TopSnackBar extends StatefulWidget {
   const _TopSnackBar({
-    Key? key,
     required this.child,
     required this.onDismissed,
     required this.animationDuration,
@@ -149,7 +148,7 @@ class _TopSnackBar extends StatefulWidget {
     this.persistent = false,
     this.onAnimationControllerInit,
     this.dismissType = DismissType.onSwipe,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final VoidCallback onDismissed;

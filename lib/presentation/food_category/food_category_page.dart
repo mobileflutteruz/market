@@ -43,7 +43,7 @@ class FoodCategoryPage extends StatelessWidget {
                     imageLink: category.image ?? '',
                     categoryItemName: category.name ?? '',
                     onTap: () {
-                      // Handle category item tap
+
                     },
                     smallButton: () {},
                   );

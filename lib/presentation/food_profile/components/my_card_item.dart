@@ -11,12 +11,12 @@ class FoodProfileCardWidget extends StatelessWidget {
 
 
   const FoodProfileCardWidget({
-    Key? key,
+    super.key,
     required this.balance,
     required this.cardNumber,
     required this.cardData,
      this.isProfileCard=false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

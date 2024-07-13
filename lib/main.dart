@@ -34,7 +34,7 @@ class MyHttpOverrides extends HttpOverrides {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-  
+
   await init();
   runApp(
     MultiBlocProvider(
@@ -55,10 +55,7 @@ Future<void> main() async {
         BlocProvider(create: (context) => locator<OtpCubit>()),
         BlocProvider(create: (context) => locator<RegisterCubit>()),
         BlocProvider(create: (context) => locator<CategoryCubit>()),
-        // BlocProvider(create: (context) => locator<CategoryProductsCubit>()), 
- 
-
-
+        // BlocProvider(create: (context) => locator<CategoryProductsCubit>()),
       ],
       child: const MyApp(),
     ),
@@ -90,12 +87,13 @@ class MyApp extends StatelessWidget {
           theme: MainTheme.light,
           themeMode: ThemeMode.light,
           onGenerateRoute: OngenerateRoutes.instance.routeGenerator,
-          initialRoute: FoodNavigatorConst.foodSplash, 
+          initialRoute: FoodNavigatorConst.appContainer,
           // initialRoute: FoodNavigatorConst.foodHome,
           builder: (context, child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(),
-              child: child ?? const SizedBox.shrink(), // Ensure child is not null
+              child:
+                  child ?? const SizedBox.shrink(), // Ensure child is not null
             );
           },
         );

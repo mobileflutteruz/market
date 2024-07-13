@@ -50,7 +50,7 @@ class FoodBasketCubit
     Map<int, int> ids = await _repository.getBasketIds();
 
     // Ensure that values is not null and is not empty before proceeding
-    if (values != null && values.isNotEmpty) {
+    if (values.isNotEmpty) {
       // Check if the ids map does not already contain the key from values
       if (!ids.containsKey(values.keys.first)) {
         // Merge the values map into the ids map

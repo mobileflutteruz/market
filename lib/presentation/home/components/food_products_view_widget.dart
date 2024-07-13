@@ -69,11 +69,11 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  final product = widget.products![index];
+                  final product = widget.products[index];
                   return Padding(
                     padding: EdgeInsets.only(
                         left: 16.0,
-                        right: index == widget.products!.length - 1 ? 16 : 0),
+                        right: index == widget.products.length - 1 ? 16 : 0),
                     child: FoodProductItemWidget(
                       likeTapped: () {
                         print("Product to  added to Favorite");
@@ -81,19 +81,19 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
                         //     .read<FavouritesCubit>().setLikeId(widget.products![index].id!);
                           context
                                     .read<DetailsCubit>()
-                                    .setLikeId(widget.products![index].id!);
+                                    .setLikeId(widget.products[index].id!);
                         
                       },
                       isLiked: state.likeIds.contains(product.id.toString()),
-                      product: widget.products![index],
+                      product: widget.products[index],
                       onTap: () {
-                        showModalView(context, widget.products![index]);
+                        showModalView(context, widget.products[index]);
                       },
                       smallButton: widget.smallButton,
                     ),
                   );
                 },
-                itemCount: widget.products!.length,
+                itemCount: widget.products.length,
               ),
             ),
             AppUtils.kGap24,

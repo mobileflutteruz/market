@@ -6,6 +6,7 @@ import '../../../domain/repository/main_repository.dart';
 import '../../components/buildable_cubit.dart';
 
 part 'favourites_state.dart';
+
 part 'favourites_cubit.freezed.dart';
 
 @Injectable()
@@ -20,27 +21,18 @@ class FavouritesCubit
   final DataRepository _dataRepository;
 
   Future<void> init() async {
-
     await fetchFavourites();
   }
 
   Future<void> fetchFavourites() async {
     build((buildable) => buildable.copyWith(loading: true));
     try {
-      final Favourite? favourites = await _dataRepository.getFavorites();
-      if (favourites != null) {
-        build((buildable) => buildable.copyWith(
-              loading: false,
-              success: true,
-              favourites: favourites,
-            ));
-      } else {
-        build((buildable) => buildable.copyWith(
-              loading: false,
-              failure: true,
-              errorMessage: 'No favorites found.',
-            ));
-      }
+      final Favourite favourites = await _dataRepository.getFavorites();
+      build((buildable) => buildable.copyWith(
+            loading: false,
+            success: true,
+            favourites: favourites,
+          ));
     } catch (e) {
       build((buildable) => buildable.copyWith(
             loading: false,
@@ -79,18 +71,20 @@ class FavouritesCubit
 //   }
 // }
 
-   void removeFavouriteFromUI(String productId) {
+  void removeFavouriteFromUI(String productId) {
     final currentState = state as FavouritesBuildableState;
     final currentFavourites = currentState.favourites;
     if (currentFavourites != null) {
-      final updatedList = currentFavourites.result!.where((item) => item!.id != productId).toList();
+      final updatedList = currentFavourites.result!
+          .where((item) => item.id != productId)
+          .toList();
       emit(currentState.copyWith(
         favourites: currentFavourites.copyWith(result: updatedList),
       ));
     }
   }
 
-    setLikeId(int likeId) async {
+  setLikeId(int likeId) async {
     List<String> ids = await _repository.getLikeIds() ?? [];
     print("List<String> ids = await _repository.getLikeIds() ?? [] $ids");
 
@@ -109,6 +103,28 @@ class FavouritesCubit
     print("$ids");
   }
 
+  deleteLikeId(int productId) async {
+    try {
+      print("deleteLikeId -------------------------------${productId.toString()}");
 
- 
+      build((buildable) => buildable.copyWith(
+            loading: true,
+            success: false,
+          ));
+
+      await _dataRepository.deleteFavorite(productId: productId);
+      print("deleteLike-------------------------------");
+
+
+    } catch (e) {
+      print("deleteLikeId error-------------------------------${e.toString()}");
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          failure: true,
+          errorMessage: 'Something went wrong: $e',
+        ),
+      );
+    }
+  }
 }

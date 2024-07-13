@@ -11,12 +11,12 @@ class FoodCategoryItemWidget extends StatelessWidget {
   final String? categoryItemName;
 
   const FoodCategoryItemWidget({
-    Key? key,
+    super.key,
     this.onTap,
     this.smallButton,
     required this.imageLink,
     required this.categoryItemName,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class FoodCategoryItemWidget extends StatelessWidget {
             ),
             if (smallButton != null)
               IconButton(
-                icon: Icon(Icons.more_vert),
+                icon: const Icon(Icons.more_vert),
                 onPressed: smallButton,
               ),
             Expanded(

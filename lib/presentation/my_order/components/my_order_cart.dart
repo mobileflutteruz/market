@@ -44,7 +44,7 @@ class FoodMyOrderCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(
-                  color: const Color(0x26A2AAB8),
+                  color: Color(0x26A2AAB8),
                   blurRadius: 6,
                   offset: Offset(0, 4),
                   spreadRadius: 0,
@@ -61,7 +61,7 @@ class FoodMyOrderCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: const [
                     BoxShadow(
-                      color: const Color(0x26A2AAB8),
+                      color: Color(0x26A2AAB8),
                       blurRadius: 6,
                       offset: Offset(0, 4),
                       spreadRadius: 0,
@@ -104,7 +104,7 @@ class FoodMyOrderCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(
-                  color: const Color(0x26A2AAB8),
+                  color: Color(0x26A2AAB8),
                   blurRadius: 6,
                   offset: Offset(0, 4),
                   spreadRadius: 0,
@@ -153,7 +153,7 @@ class FoodMyOrderCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               boxShadow: const [
                 BoxShadow(
-                  color: const Color(0x26A2AAB8),
+                  color: Color(0x26A2AAB8),
                   blurRadius: 6,
                   offset: Offset(0, 4),
                   spreadRadius: 0,
@@ -190,7 +190,7 @@ class FoodMyOrderCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
              boxShadow: const [
                   BoxShadow(
-                    color: const Color(0x26A2AAB8),
+                    color: Color(0x26A2AAB8),
                     blurRadius: 6,
                     offset: Offset(0, 4),
                     spreadRadius: 0,
@@ -217,7 +217,7 @@ class FoodMyOrderCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
              boxShadow: const [
                   BoxShadow(
-                    color: const Color(0x26A2AAB8),
+                    color: Color(0x26A2AAB8),
                     blurRadius: 6,
                     offset: Offset(0, 4),
                     spreadRadius: 0,

@@ -33,7 +33,7 @@ class _FoodLoginView extends State<FoodLoginView> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        FoodLogoWidget(),
+                        const FoodLogoWidget(),
                         Text(
                           context.l10n.signIn,
                           style: Styles.manropeBold20.copyWith(
@@ -124,7 +124,7 @@ class _FoodLoginView extends State<FoodLoginView> {
                           onPressed: () {
                             context.read<LoginCubit>().createGuest(context);
                           },
-                          child: Text('Continue as Guest'),
+                          child: const Text('Continue as Guest'),
                         ),
                       ],
                     ),

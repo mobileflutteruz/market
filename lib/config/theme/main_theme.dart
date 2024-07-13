@@ -56,7 +56,7 @@ class MainTheme {
         indicatorColor: Colors.white,
         labelColor: const Color(0xFF2472F2),
         indicatorSize: TabBarIndicatorSize.tab,
-        overlayColor: MaterialStateColor.resolveWith(
+        overlayColor: WidgetStateColor.resolveWith(
           (states) => Colors.transparent,
         ),
         indicator: BoxDecoration(

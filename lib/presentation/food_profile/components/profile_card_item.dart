@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 
 class FoodProfileCardItemWidget extends StatelessWidget {
   const FoodProfileCardItemWidget({
-    Key? key,
+    super.key,
     required this.icon,
     required this.text,
     this.onTap,
-  }) : super(key: key);
+  });
   final Widget icon;
   final String text;
   final void Function()? onTap;

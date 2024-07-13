@@ -32,7 +32,7 @@ class _ChangePasswordViewState extends State<FoodChangePasswordView> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       FoodLogoWidget(),
+                       const FoodLogoWidget(),
                       Text(
                         context.l10n.passwordUpdate,
                         style: Styles.manropeBold20.copyWith(
@@ -45,6 +45,8 @@ class _ChangePasswordViewState extends State<FoodChangePasswordView> {
                         title: context.l10n.newPassword,
                         hintText: context.l10n.enterPassword,
                         validator: (p0) {
+                          return null;
+                        
                           
                         },
                       ),
@@ -54,6 +56,8 @@ class _ChangePasswordViewState extends State<FoodChangePasswordView> {
                         title: context.l10n.reEnterTheNewPassword,
                         hintText: context.l10n.enterPassword,
                          validator: (p0) {
+                           return null;
+                         
                           
                         },
                       ),

@@ -37,21 +37,42 @@ class AuthRepository {
   }
 
  /// Logs in a user with the given phone number and password.
-  Future<void> login({
+  ///
+  ///
+  // Future<void> login({
+  //   required String phone,
+  //   required String password,
+  // }) async {
+  //   final body = {
+  //     "phone": phone,
+  //     "password": password,
+  //   };
+  //
+  //   try {
+  //     final  AuthResponse response = await _api.post(path: '/login', body: body);
+  //     await _onAuthResponse(response);
+  //   } catch (e) {
+  //     log.logError("Error logging in", error: e);
+  //   }
+  // }
+
+  Future<AuthResponse> login({
     required String phone,
     required String password,
   }) async {
-    final body = {
+    final query = {
       "phone": phone,
       "password": password,
     };
 
-    try {
-      final response = await _api.post(path: '/login', body: body);
-      await _onAuthResponse(response);
-    } catch (e) {
-      log.logError("Error logging in", error: e);
-    }
+
+    final response =   await _api.post(path: '/login', body: query);
+    final result = jsonDecode(response.body);
+
+    final AuthResponse data =
+    AuthResponse.fromJson(result as Map<String, dynamic>);
+
+    return data;
   }
 
 

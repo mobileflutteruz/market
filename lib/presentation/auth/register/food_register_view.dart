@@ -35,7 +35,7 @@ class _RegisterViewState extends State<FoodRegisterView> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        FoodLogoWidget(),
+                        const FoodLogoWidget(),
                         Text(
                           context.l10n.signUp,
                           style: Styles.manropeBold20.copyWith(

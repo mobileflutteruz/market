@@ -1,12 +1,12 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:karmango/presentation/food_category/cubit/category_cubit.dart';
-
+//
 // class CategoryProductScreen extends StatelessWidget {
 //   final String categoryName;
-
+//
 //   CategoryProductScreen(this.categoryName);
-
+//
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(

@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/domain/model/mobile/product/product.dart';
 import 'package:karmango/presentation/details/cubit/details_cubit.dart';
-import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 import 'package:karmango/presentation/home/components/food_similar.dart';
 import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/core/utils/app_layouts.dart';
@@ -12,7 +11,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../../details/details_page.dart';
 
 class FoodProductsSimilarViewWidget extends StatefulWidget {
-  FoodProductsSimilarViewWidget({
+  const FoodProductsSimilarViewWidget({
     super.key,
     this.title = "",
     required this.similarProduct,
@@ -78,7 +77,7 @@ class _FoodProductsViewWidgetState
                   return Padding(
                     padding: EdgeInsets.only(
                         left: 16.0,
-                        right: index == widget.similarProduct! ? 16 : 0),
+                        right: index == widget.similarProduct ? 16 : 0),
                     child: FoodSimilarItemWidget(
                       similarProduct:
                           state.product!.result!.similar_products![index],
