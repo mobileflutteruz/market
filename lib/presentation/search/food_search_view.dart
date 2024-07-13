@@ -1,8 +1,10 @@
-import 'package:karmango/data/preferences/temporary_db.dart';
-import 'package:karmango/presentation/search/components/search_components.dart';
+
+import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/core/extension/context_extension.dart';
+import 'package:karmango/presentation/search/components/search_components.dart';
+
 import 'package:flutter/material.dart';
-import '../../../core/constants/constants.dart';
+
 import '../../../../core/utils/utils.dart';
 
 class FoodSearchView extends StatefulWidget {
@@ -83,40 +85,40 @@ class _SearchViewState extends State<FoodSearchView> {
             //   ),
             // ),
 
-            // AppUtils.kGap24,
+            AppUtils.kGap24,
 
-            // Text(
-            //   context.l10n.popularGoods,
-            //   style: Styles.manropeSemiBold16.copyWith(
-            //     color: FoodColors.c0E1A23,
-            //   ),
-            // ),
-            // AppUtils.kGap20,
+            Text(
+              context.l10n.popularGoods,
+              style: Styles.manropeSemiBold16.copyWith(
+                color: FoodColors.c0E1A23,
+              ),
+            ),
+            AppUtils.kGap20,
 
-            // SizedBox(
-            //   child: Column(
-            //     children: [
-            //       Row(
-            //         children: [
-            //           Text(
-            //             popularSearchesF.first,
-            //             style: Styles.manropeMedium14.copyWith(
-            //               color: FoodColors.c0E1923,
-            //               height: 1.1,
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //       AppUtils.kGap16,
-            //        Divider(
-            //         height: 1,
-            //         color: FoodColors.cEEEEEE,
-            //       )
-            //     ],
-            //   ),
-            // ),
+            SizedBox(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      // Text(
+                      //   popularSearchesF.first,
+                      //   style: Styles.manropeMedium14.copyWith(
+                      //     color: FoodColors.c0E1923,
+                      //     height: 1.1,
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                  AppUtils.kGap16,
+                   Divider(
+                    height: 1,
+                    color: FoodColors.cEEEEEE,
+                  )
+                ],
+              ),
+            ),
 
-            // IconConstants.tick,
+            IconConstants.tick,
           ],
         ),
       ),

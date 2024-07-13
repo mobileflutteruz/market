@@ -84,7 +84,10 @@ class _FoodProductsViewWidgetState
                           state.product!.result!.similar_products![index],
                       likeTapped: () {
                         print("Product to  added to Favorite");
-                        context.read<FavouritesCubit>().toggleFavourite(widget
+                        // context.read<FavouritesCubit>().setLikeId(widget.similarProduct.result!
+                        //           .similar_products![index].id!,);
+
+                        context.read<DetailsCubit>().setLikeId(widget
                             .similarProduct
                             .result!
                             .similar_products![index]
@@ -93,8 +96,11 @@ class _FoodProductsViewWidgetState
                         //     .read<FavouritesCubit>()
                         //     .setFavouriteId(widget.similarProduct.result!.similar_products![index].id!);
                       },
-                      isLiked:
-                          false, //state.likeIds.contains(product.id.toString()),
+                      isLiked:  state.likeIds.contains(widget
+                            .similarProduct
+                            .result!
+                            .similar_products![index]
+                            .id!), //state.likeIds.contains(product.id.toString()),
 
                       onTap: () {
                         showModalView(

@@ -109,4 +109,14 @@ Future<Favourite> getFavorites() async {
     var data = jsonDecode(response.body);
     return data["status"];
   }
+
+  //  Future<List<Sea>> searchProducts(String inputText) async {
+  //   final result = await api.get(
+  //       api: "${Constants.baseUrl}${Urls.searchByProduct(inputText)}");
+
+  //   final SearchProductsData data =
+  //       SearchProductsData.fromJson(result as Map<String, dynamic>);
+
+  //   return data.data;
+  // }
 }

@@ -102,7 +102,7 @@ class FoodBasketCartItem extends StatelessWidget {
                                 return GestureDetector(
                                   onTap: () => context
                                       .read<FavouritesCubit>()
-                                      .toggleFavourite(product.id),
+                                      .setLikeId(product.id),
                                   child: state.likeIds.contains("${product.id}")
                                       ? IconConstants.heartSelect
                                       : IconConstants.heart,

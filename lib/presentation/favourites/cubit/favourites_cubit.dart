@@ -51,33 +51,33 @@ class FavouritesCubit
     }
   }
 
-Future<void> toggleFavourite(int productId) async {
-  final state = this.state as FavouritesBuildableState; // Cast state
-  final likeIds = List<String>.from(state.likeIds); // Ensure it's a modifiable list
-  final isLiked = likeIds.contains(productId.toString());
+// Future<void> toggleFavourite(int productId) async {
+//   final state = this.state as FavouritesBuildableState; // Cast state
+//   final likeIds = List<String>.from(state.likeIds); // Ensure it's a modifiable list
+//   final isLiked = likeIds.contains(productId.toString());
 
-  // 1. Avval lokal holatni yangilash
-  if (isLiked) {
-    likeIds.remove(productId.toString());
-  } else {
-    likeIds.add(productId.toString());
-  }
-  build((buildable) => buildable.copyWith(likeIds: likeIds));
+//   // 1. Avval lokal holatni yangilash
+//   if (isLiked) {
+//     likeIds.remove(productId.toString());
+//   } else {
+//     likeIds.add(productId.toString());
+//   }
+//   build((buildable) => buildable.copyWith(likeIds: likeIds));
 
-  // 2. Keyin serverga so'rov yuborish
-  try {
-    if (isLiked) {
-      await _dataRepository.deleteFavorite(productId: productId);
-    } else {
-      await _dataRepository.createFavorite(productId: productId);
-    }
-    await _repository.setLikeIds(likeIds);
-    await fetchFavourites(); // Fetch updated favourites after toggling the favorite status
-  } catch (e) {
-    build((buildable) => buildable.copyWith(failure: true));
-    print('Failed to toggle favorite status: $e');
-  }
-}
+//   // 2. Keyin serverga so'rov yuborish
+//   try {
+//     if (isLiked) {
+//       await _dataRepository.deleteFavorite(productId: productId);
+//     } else {
+//       await _dataRepository.createFavorite(productId: productId);
+//     }
+//     await _repository.setLikeIds(likeIds);
+//     await fetchFavourites(); // Fetch updated favourites after toggling the favorite status
+//   } catch (e) {
+//     build((buildable) => buildable.copyWith(failure: true));
+//     print('Failed to toggle favorite status: $e');
+//   }
+// }
 
    void removeFavouriteFromUI(String productId) {
     final currentState = state as FavouritesBuildableState;
@@ -89,6 +89,26 @@ Future<void> toggleFavourite(int productId) async {
       ));
     }
   }
+
+    setLikeId(int likeId) async {
+    List<String> ids = await _repository.getLikeIds() ?? [];
+    print("List<String> ids = await _repository.getLikeIds() ?? [] $ids");
+
+    if (!ids.contains(likeId.toString())) {
+      ids.add(likeId.toString());
+    } else {
+      ids.removeWhere((p) => p == likeId.toString());
+    }
+    await _repository.setLikeIds(ids);
+
+    build(
+      (buildable) => buildable.copyWith(
+        likeIds: ids,
+      ),
+    );
+    print("$ids");
+  }
+
 
  
 }

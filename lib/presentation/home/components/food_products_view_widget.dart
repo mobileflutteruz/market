@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
-import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
+import 'package:karmango/presentation/details/cubit/details_cubit.dart';
 import 'package:karmango/presentation/home/components/food_product.dart';
 import 'package:karmango/presentation/home/cubit/food_home_cubit.dart';
 import 'package:karmango/presentation/components/buildable.dart';
@@ -10,7 +10,6 @@ import 'package:karmango/core/extension/context_extension.dart';
 import '../../../../core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-
 import '../../details/details_page.dart';
 
 class FoodProductsViewWidget extends StatefulWidget {
@@ -78,8 +77,12 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
                     child: FoodProductItemWidget(
                       likeTapped: () {
                         print("Product to  added to Favorite");
-                        context
-                            .read<FavouritesCubit>().toggleFavourite(widget.products![index].id!);
+                        // context
+                        //     .read<FavouritesCubit>().setLikeId(widget.products![index].id!);
+                          context
+                                    .read<DetailsCubit>()
+                                    .setLikeId(widget.products![index].id!);
+                        
                       },
                       isLiked: state.likeIds.contains(product.id.toString()),
                       product: widget.products![index],

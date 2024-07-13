@@ -100,6 +100,7 @@ class _FoodFavoriteItemWidgetState extends State<FoodFavoriteItemWidget> {
                                 ),
                                 child: Text(
                                   'New',
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     color: FoodColors.cffffff,
                                     fontSize: 13,
@@ -119,6 +120,7 @@ class _FoodFavoriteItemWidgetState extends State<FoodFavoriteItemWidget> {
                                 ),
                                 child: Text(
                                   '-${product.discount}%',
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     color: FoodColors.cffffff,
                                     fontSize: 13,
@@ -130,12 +132,13 @@ class _FoodFavoriteItemWidgetState extends State<FoodFavoriteItemWidget> {
                             InkWell(
                               onTap: _toggleLike,
                               child: _isLiked
-                                  ? Icon(
-                                      CupertinoIcons.heart_fill,
-                                      color: FoodColors.cF83333,
+                                  ? const Icon(
+                                      CupertinoIcons.heart,
+                                     
                                     )
                                   : Icon(
-                                      CupertinoIcons.heart,
+                                      CupertinoIcons.heart_fill,
+                                       color: FoodColors.cF83333,
                                     ),
                             ),
                           ],
@@ -144,29 +147,31 @@ class _FoodFavoriteItemWidgetState extends State<FoodFavoriteItemWidget> {
                     ],
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   product.name ?? "",
                   style: TextStyle(
                     color: FoodColors.c0E1923,
                     fontSize: 12,
+                    overflow: TextOverflow.ellipsis,
                     fontWeight: FontWeight.w500,
                   ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   '${product.price?.toInt()} ${context.l10n.sum}',
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: FoodColors.c0E1923,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 SmallButton(onTap: widget.smallButton),
-                AppUtils.kGap16,
+                AppUtils.kGap8,
               ],
             ),
           ),

@@ -140,7 +140,7 @@ class Api {
     return params?.map((key, value) => MapEntry(key, value.toString())) ?? {};
   }
 
-  Future<Response> propagateErrors(Response response) async {
+    Future<Response> propagateErrors(Response response) async {
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return response;
     }
@@ -157,4 +157,6 @@ class Api {
         throw Exception('Unexpected error: ${response.statusCode}');
     }
   }
+
+  
 }

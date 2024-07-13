@@ -146,6 +146,7 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
             SizedBox(height: 8),
             Text(
               widget.product!.name ?? "",
+              
               style: TextStyle(
                 color: FoodColors.c0E1923,
                 fontSize: 12,
@@ -175,6 +176,7 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
             ),
             SizedBox(height: 8),
             SmallButton(onTap: widget.smallButton),
+            SizedBox(height: 8,),
           ],
         ),
       ),
