@@ -39,7 +39,7 @@ class OngenerateRoutes {
     switch (settings.name) {
       ///Food
       case FoodNavigatorConst.foodLoginScreen:
-        return sampleRoute(FoodLoginPage());
+        return sampleRoute(const FoodLoginPage());
       case FoodNavigatorConst.foodPhoneInput:
         return sampleRoute(const FoodPhoneInput());
       case FoodNavigatorConst.foodOtpScreen:
@@ -56,9 +56,9 @@ class OngenerateRoutes {
       case FoodNavigatorConst.foodChangePassword:
         return sampleRoute(const FoodChangePasswordPage());
       case FoodNavigatorConst.foodSplash:
-        return sampleRoute(FoodSplashView());
+        return sampleRoute(const FoodSplashView());
       case FoodNavigatorConst.foodHome:
-        return sampleRoute( FoodHomePage());
+        return sampleRoute( const FoodHomePage());
       case FoodNavigatorConst.foodSearchPage:
         return sampleRoute(const FoodSearchPage());
       case FoodNavigatorConst.foodProfileCard:

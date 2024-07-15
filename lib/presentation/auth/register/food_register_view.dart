@@ -88,8 +88,10 @@ class _RegisterViewState extends State<FoodRegisterView> {
                             if (formKey.currentState!.validate()) {
                               context.read<RegisterCubit>().register();
                               Navigator.pushNamed(
-                                  context, FoodNavigatorConst.foodOtpScreen,
-                                  arguments: phoneController.text);
+                                context,
+                                FoodNavigatorConst.foodOtpScreen,
+                                arguments: phoneController.text,
+                              );
                             }
                           },
                         ),

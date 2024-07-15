@@ -102,6 +102,14 @@ class _FoodLoginView extends State<FoodLoginView> {
                                     phone: phoneController.text.trim(),
                                     password: passwordController.text.trim(),
                                   );
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                FoodNavigatorConst.foodHome,
+                                arguments: phoneController.text,
+                                (route) {
+                                  return false;
+                                },
+                              );
                             }
                           },
                         ),
@@ -124,7 +132,7 @@ class _FoodLoginView extends State<FoodLoginView> {
                           onPressed: () {
                             context.read<LoginCubit>().createGuest(context);
                           },
-                          child: Text('Continue as Guest'),
+                          child: Text('next'),
                         ),
                       ],
                     ),
