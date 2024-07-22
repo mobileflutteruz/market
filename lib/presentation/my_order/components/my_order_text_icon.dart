@@ -12,13 +12,13 @@ class FoodMyOrderTextIcon extends StatelessWidget {
   Color backgroundColor;
 
   FoodMyOrderTextIcon({
-    Key? key,
+    super.key,
     required this.text,
     required this.textColor,
     required this.icon,
     required this.iconColor,
     required this.backgroundColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

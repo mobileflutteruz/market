@@ -23,10 +23,10 @@ mixin _$FavouritesBuildableState {
   bool get loading => throw _privateConstructorUsedError;
   bool get success => throw _privateConstructorUsedError;
   bool get failure => throw _privateConstructorUsedError;
+  String get errorMessage => throw _privateConstructorUsedError;
   bool get descriptionIsExpandable => throw _privateConstructorUsedError;
   bool get characteristicsIsExpandable => throw _privateConstructorUsedError;
   Favourite? get favourites => throw _privateConstructorUsedError;
-  String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FavouritesBuildableStateCopyWith<FavouritesBuildableState> get copyWith =>
@@ -47,10 +47,10 @@ abstract class $FavouritesBuildableStateCopyWith<$Res> {
       bool loading,
       bool success,
       bool failure,
+      String errorMessage,
       bool descriptionIsExpandable,
       bool characteristicsIsExpandable,
-      Favourite? favourites,
-      String? errorMessage});
+      Favourite? favourites});
 
   $FavouriteCopyWith<$Res>? get favourites;
 }
@@ -76,10 +76,10 @@ class _$FavouritesBuildableStateCopyWithImpl<$Res,
     Object? loading = null,
     Object? success = null,
     Object? failure = null,
+    Object? errorMessage = null,
     Object? descriptionIsExpandable = null,
     Object? characteristicsIsExpandable = null,
     Object? favourites = freezed,
-    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       imageIndex: null == imageIndex
@@ -110,6 +110,10 @@ class _$FavouritesBuildableStateCopyWithImpl<$Res,
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
       descriptionIsExpandable: null == descriptionIsExpandable
           ? _value.descriptionIsExpandable
           : descriptionIsExpandable // ignore: cast_nullable_to_non_nullable
@@ -122,10 +126,6 @@ class _$FavouritesBuildableStateCopyWithImpl<$Res,
           ? _value.favourites
           : favourites // ignore: cast_nullable_to_non_nullable
               as Favourite?,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 
@@ -159,10 +159,10 @@ abstract class _$$FavouritesBuildableStateImplCopyWith<$Res>
       bool loading,
       bool success,
       bool failure,
+      String errorMessage,
       bool descriptionIsExpandable,
       bool characteristicsIsExpandable,
-      Favourite? favourites,
-      String? errorMessage});
+      Favourite? favourites});
 
   @override
   $FavouriteCopyWith<$Res>? get favourites;
@@ -188,10 +188,10 @@ class __$$FavouritesBuildableStateImplCopyWithImpl<$Res>
     Object? loading = null,
     Object? success = null,
     Object? failure = null,
+    Object? errorMessage = null,
     Object? descriptionIsExpandable = null,
     Object? characteristicsIsExpandable = null,
     Object? favourites = freezed,
-    Object? errorMessage = freezed,
   }) {
     return _then(_$FavouritesBuildableStateImpl(
       imageIndex: null == imageIndex
@@ -222,6 +222,10 @@ class __$$FavouritesBuildableStateImplCopyWithImpl<$Res>
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
       descriptionIsExpandable: null == descriptionIsExpandable
           ? _value.descriptionIsExpandable
           : descriptionIsExpandable // ignore: cast_nullable_to_non_nullable
@@ -234,10 +238,6 @@ class __$$FavouritesBuildableStateImplCopyWithImpl<$Res>
           ? _value.favourites
           : favourites // ignore: cast_nullable_to_non_nullable
               as Favourite?,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -253,10 +253,10 @@ class _$FavouritesBuildableStateImpl implements _FavouritesBuildableState {
       this.loading = false,
       this.success = false,
       this.failure = false,
+      this.errorMessage = '',
       this.descriptionIsExpandable = false,
       this.characteristicsIsExpandable = false,
-      this.favourites,
-      this.errorMessage})
+      this.favourites})
       : _likeIds = likeIds;
 
   @override
@@ -288,18 +288,19 @@ class _$FavouritesBuildableStateImpl implements _FavouritesBuildableState {
   final bool failure;
   @override
   @JsonKey()
+  final String errorMessage;
+  @override
+  @JsonKey()
   final bool descriptionIsExpandable;
   @override
   @JsonKey()
   final bool characteristicsIsExpandable;
   @override
   final Favourite? favourites;
-  @override
-  final String? errorMessage;
 
   @override
   String toString() {
-    return 'FavouritesBuildableState(imageIndex: $imageIndex, cardProductCount: $cardProductCount, likeIds: $likeIds, infoTabIndex: $infoTabIndex, loading: $loading, success: $success, failure: $failure, descriptionIsExpandable: $descriptionIsExpandable, characteristicsIsExpandable: $characteristicsIsExpandable, favourites: $favourites, errorMessage: $errorMessage)';
+    return 'FavouritesBuildableState(imageIndex: $imageIndex, cardProductCount: $cardProductCount, likeIds: $likeIds, infoTabIndex: $infoTabIndex, loading: $loading, success: $success, failure: $failure, errorMessage: $errorMessage, descriptionIsExpandable: $descriptionIsExpandable, characteristicsIsExpandable: $characteristicsIsExpandable, favourites: $favourites)';
   }
 
   @override
@@ -317,6 +318,8 @@ class _$FavouritesBuildableStateImpl implements _FavouritesBuildableState {
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.success, success) || other.success == success) &&
             (identical(other.failure, failure) || other.failure == failure) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage) &&
             (identical(
                     other.descriptionIsExpandable, descriptionIsExpandable) ||
                 other.descriptionIsExpandable == descriptionIsExpandable) &&
@@ -325,9 +328,7 @@ class _$FavouritesBuildableStateImpl implements _FavouritesBuildableState {
                 other.characteristicsIsExpandable ==
                     characteristicsIsExpandable) &&
             (identical(other.favourites, favourites) ||
-                other.favourites == favourites) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+                other.favourites == favourites));
   }
 
   @override
@@ -340,10 +341,10 @@ class _$FavouritesBuildableStateImpl implements _FavouritesBuildableState {
       loading,
       success,
       failure,
+      errorMessage,
       descriptionIsExpandable,
       characteristicsIsExpandable,
-      favourites,
-      errorMessage);
+      favourites);
 
   @JsonKey(ignore: true)
   @override
@@ -362,10 +363,10 @@ abstract class _FavouritesBuildableState implements FavouritesBuildableState {
       final bool loading,
       final bool success,
       final bool failure,
+      final String errorMessage,
       final bool descriptionIsExpandable,
       final bool characteristicsIsExpandable,
-      final Favourite? favourites,
-      final String? errorMessage}) = _$FavouritesBuildableStateImpl;
+      final Favourite? favourites}) = _$FavouritesBuildableStateImpl;
 
   @override
   int get imageIndex;
@@ -382,13 +383,13 @@ abstract class _FavouritesBuildableState implements FavouritesBuildableState {
   @override
   bool get failure;
   @override
+  String get errorMessage;
+  @override
   bool get descriptionIsExpandable;
   @override
   bool get characteristicsIsExpandable;
   @override
   Favourite? get favourites;
-  @override
-  String? get errorMessage;
   @override
   @JsonKey(ignore: true)
   _$$FavouritesBuildableStateImplCopyWith<_$FavouritesBuildableStateImpl>

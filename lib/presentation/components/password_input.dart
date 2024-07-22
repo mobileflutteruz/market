@@ -9,13 +9,13 @@ class PasswordInputWidget extends StatefulWidget {
   final String? hintText;
   final String? Function(String?)? validator;
 
-  PasswordInputWidget({
-    Key? key,
+  const PasswordInputWidget({
+    super.key,
     required this.validator,
     required this.textEditingController,
     this.title = "Parol",
     this.hintText = "Parolni kiriting",
-  }) : super(key: key);
+  });
 
   @override
   State<PasswordInputWidget> createState() => _PasswordInputWidgetState();

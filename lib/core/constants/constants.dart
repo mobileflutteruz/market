@@ -3,8 +3,6 @@ import 'package:flutter_svg/svg.dart';
 
 part 'text_styles.dart';
 
-
-
 part 'icon_constants.dart';
 
 part 'image_const.dart';
@@ -70,7 +68,7 @@ sealed class Urls {
   static String createCart = '/cart/store';
   static String deleteCart({
     required int productId,
-    required int attributeId,
+   
   }) =>
       '/cart/delete/$productId';
 

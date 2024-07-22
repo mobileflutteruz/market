@@ -14,9 +14,10 @@ class FavouritesBuildableState
     @Default(false) bool loading,
     @Default(false) bool success,
     @Default(false) bool failure,
+    @Default('') String errorMessage,
     @Default(false) bool descriptionIsExpandable,
     @Default(false) bool characteristicsIsExpandable,
     Favourite? favourites,
-    String? errorMessage,
+    // String? errorMessage,
   }) = _FavouritesBuildableState;
 }

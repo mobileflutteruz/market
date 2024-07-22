@@ -1,10 +1,7 @@
-
 part of '../home/components/food_home_components.dart';
 
-
-
 class FoodHomeView extends StatefulWidget {
-  const FoodHomeView({Key? key}) : super(key: key);
+  const FoodHomeView({super.key});
 
   @override
   State<FoodHomeView> createState() => _FoodHomeViewState();
@@ -85,10 +82,14 @@ class _FoodHomeViewState extends State<FoodHomeView> {
             );
           }
 
-          final List<HomeBanner> topBanner = state.homeProducts?.result!.top_banner ?? [];
-          final List<HomeBanner> bottomBanner = state.homeProducts?.result!.bottom_banner ?? [];
-          final List<TopProduct> topProduct = state.homeProducts?.result!.top_product ?? [];
-          final List<TopProduct> bottomProduct = state.homeProducts?.result!.bottom_product ?? [];
+          final List<HomeBanner> topBanner =
+              state.homeProducts?.result!.top_banner ?? [];
+          final List<HomeBanner> bottomBanner =
+              state.homeProducts?.result!.bottom_banner ?? [];
+          final List<TopProduct> topProduct =
+              state.homeProducts?.result!.top_product ?? [];
+          final List<TopProduct> bottomProduct =
+              state.homeProducts?.result!.bottom_product ?? [];
 
           return SingleChildScrollView(
             child: Column(
@@ -106,7 +107,12 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                           padding: const EdgeInsets.only(bottom: 24),
                           child: FoodProductsViewWidget(
                             title: product.name!,
-                            smallButton: () {},
+                            smallButton: () {
+                              context
+                                  .read<FoodBasketCubit>()
+                                  .setBasketProducts(product!.top_id!);
+                              print("Basket");
+                            },
                             leftBtnTapped: () {
                               Navigator.push(
                                 context,
@@ -115,11 +121,11 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                                 ),
                               );
                             },
-                            products: product!.products!,
+                            products: product.products!,
                           ),
                         )
                       : const SizedBox.shrink();
-                }).toList(),
+                }),
                 const SizedBox(height: 24),
                 FoodBannerViewWidget(banners: bottomBanner),
                 const SizedBox(height: 24),
@@ -128,7 +134,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                       ? Padding(
                           padding: const EdgeInsets.only(bottom: 24),
                           child: FoodProductsViewWidget(
-                            title: product!.name!,
+                            title: product.name!,
                             smallButton: () {},
                             leftBtnTapped: () {
                               Navigator.push(
@@ -142,7 +148,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                           ),
                         )
                       : const SizedBox.shrink();
-                }).toList(),
+                }),
               ],
             ),
           );

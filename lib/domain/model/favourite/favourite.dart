@@ -1,6 +1,5 @@
 // favourite
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'dart:convert';
 
 part 'favourite.freezed.dart';
 part 'favourite.g.dart';

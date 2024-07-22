@@ -12,7 +12,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../../details/details_page.dart';
 
 class FoodProductsSimilarViewWidget extends StatefulWidget {
-  FoodProductsSimilarViewWidget({
+  const FoodProductsSimilarViewWidget({
     super.key,
     this.title = "",
     required this.similarProduct,
@@ -78,7 +78,7 @@ class _FoodProductsViewWidgetState
                   return Padding(
                     padding: EdgeInsets.only(
                         left: 16.0,
-                        right: index == widget.similarProduct! ? 16 : 0),
+                        right: index == widget.similarProduct ? 16 : 0),
                     child: FoodSimilarItemWidget(
                       similarProduct:
                           state.product!.result!.similar_products![index],
@@ -87,7 +87,7 @@ class _FoodProductsViewWidgetState
                         // context.read<FavouritesCubit>().setLikeId(widget.similarProduct.result!
                         //           .similar_products![index].id!,);
 
-                        context.read<DetailsCubit>().setLikeId(widget
+                        context.read<FavouritesCubit>().setLikeId(widget
                             .similarProduct
                             .result!
                             .similar_products![index]
@@ -96,11 +96,10 @@ class _FoodProductsViewWidgetState
                         //     .read<FavouritesCubit>()
                         //     .setFavouriteId(widget.similarProduct.result!.similar_products![index].id!);
                       },
-                      isLiked:  state.likeIds.contains(widget
-                            .similarProduct
-                            .result!
-                            .similar_products![index]
-                            .id!), //state.likeIds.contains(product.id.toString()),
+                      isLiked: state.likeIds.contains(
+                        widget.similarProduct.result!.similar_products![index]
+                            .id!,
+                      ), //state.likeIds.contains(product.id.toString()),
 
                       onTap: () {
                         showModalView(

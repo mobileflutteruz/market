@@ -10,10 +10,10 @@ class Buildable<BLOC extends StateStreamable<STATE>, STATE, BUILDABLE>
   final Widget Function(BuildContext context, BUILDABLE buildable) builder;
 
   Buildable({
-    Key? key,
+    super.key,
     required this.properties,
     required this.builder,
-  }) : super(key: key);
+  });
 
   final Function equals = const DeepCollectionEquality().equals;
 

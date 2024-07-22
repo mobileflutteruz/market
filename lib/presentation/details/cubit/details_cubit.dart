@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:karmango/domain/model/mobile/product/product.dart';
 import 'package:karmango/domain/repository/data_repository.dart';
 import 'package:karmango/presentation/components/buildable_cubit.dart';
 import '../../../../../domain/repository/main_repository.dart';
-
 
 part 'details_state.dart';
 
@@ -14,14 +12,11 @@ part 'details_cubit.freezed.dart';
 @Injectable()
 class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildableState> {
   DetailsCubit(this.mainRepo, this.repo)
-      : super( DetailsBuildableState()) {
-    getLikeIds();
-  }
+      : super(const DetailsBuildableState()) {}
 
   final MainRepository mainRepo;
   final DataRepository repo;
 
- 
   Future fetchProduct(int productId) async {
     build(
       (buildable) => buildable.copyWith(
@@ -38,8 +33,6 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildableState> {
           product: product,
         ),
       );
-
-
     } catch (e) {
       build(
         (buildable) => buildable.copyWith(
@@ -78,38 +71,6 @@ class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildableState> {
               ? 0
               : buildable.cardProductCount - 1),
     );
-  }
-
-  setLikeId(int likeId) async {
-    List<String> ids = await mainRepo.getLikeIds() ?? [];
-    // List<String> ids = await mainRepo.getLikeIds() ?? [];
-    debugPrint("List<String> ids = await _repository.getLikeIds() ?? [] $ids");
-
-    if (!ids.contains(likeId.toString())) {
-      ids.add(likeId.toString());
-    } else {
-      ids.removeWhere((p) => p == likeId.toString());
-    }
-    await mainRepo.setLikeIds(ids);
-    await repo.createFavorite(productId: likeId);
-
-    build(
-      (buildable) => buildable.copyWith(
-        likeIds: ids,
-      ),
-    );
-    debugPrint("$ids");
-  }
-
-  getLikeIds() async {
-    List<String> ids = await mainRepo.getLikeIds() ?? [];
-
-    build(
-      (buildable) => buildable.copyWith(
-        likeIds: ids,
-      ),
-    );
-    debugPrint("$ids");
   }
 
   changeTabIndex(int index) {

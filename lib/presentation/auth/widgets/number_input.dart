@@ -53,6 +53,8 @@ class NumberInputPhone extends StatelessWidget {
                 ),
               ),
               validator: (p0) {
+                return null;
+              
                 // return locator<AuthRepository>().phoneValidator(p0!); 
               },
             ),

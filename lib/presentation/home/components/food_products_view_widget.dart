@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
-import 'package:karmango/presentation/details/cubit/details_cubit.dart';
+import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 import 'package:karmango/presentation/home/components/food_product.dart';
 import 'package:karmango/presentation/home/cubit/food_home_cubit.dart';
 import 'package:karmango/presentation/components/buildable.dart';
@@ -69,31 +69,30 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  final product = widget.products![index];
+                  final product = widget.products[index];
                   return Padding(
                     padding: EdgeInsets.only(
                         left: 16.0,
-                        right: index == widget.products!.length - 1 ? 16 : 0),
+                        right: index == widget.products.length - 1 ? 16 : 0),
                     child: FoodProductItemWidget(
                       likeTapped: () {
                         print("Product to  added to Favorite");
                         // context
                         //     .read<FavouritesCubit>().setLikeId(widget.products![index].id!);
-                          context
-                                    .read<DetailsCubit>()
-                                    .setLikeId(widget.products![index].id!);
-                        
+                        context
+                            .read<FavouritesCubit>()
+                            .setLikeId(product.id!);
                       },
-                      isLiked: state.likeIds.contains(product.id.toString()),
-                      product: widget.products![index],
+                      isLiked: state.likeIds.contains(product.id!),
+                      product: widget.products[index],
                       onTap: () {
-                        showModalView(context, widget.products![index]);
+                        showModalView(context, widget.products[index]);
                       },
                       smallButton: widget.smallButton,
                     ),
                   );
                 },
-                itemCount: widget.products!.length,
+                itemCount: widget.products.length,
               ),
             ),
             AppUtils.kGap24,

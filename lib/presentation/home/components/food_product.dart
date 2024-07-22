@@ -10,14 +10,14 @@ import 'package:karmango/presentation/home/components/small_button.dart';
 
 class FoodProductItemWidget extends StatefulWidget {
   const FoodProductItemWidget({
-    Key? key,
+    super.key,
     required this.product,
     required this.onTap,
     required this.likeTapped,
     required this.isLiked,
     required this.smallButton,
     this.isNew = false,
-  }) : super(key: key);
+  });
 
   final MobileProduct ? product;
   final void Function() onTap;
@@ -133,7 +133,7 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
                                   CupertinoIcons.heart_fill,
                                   color: FoodColors.cF83333,
                                 )
-                              : Icon(
+                              : const Icon(
                                   CupertinoIcons.heart,
                                 ),
                         ),
@@ -143,7 +143,7 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
                 ],
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               widget.product!.name ?? "",
               
@@ -165,7 +165,7 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text(
               ' ${(widget.product!.price!.toInt())}  ${context.l10n.sum}',
               style: TextStyle(
@@ -174,9 +174,9 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             SmallButton(onTap: widget.smallButton),
-            SizedBox(height: 8,),
+            const SizedBox(height: 8,),
           ],
         ),
       ),

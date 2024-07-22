@@ -8,7 +8,7 @@ class ShortTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
 
-  ShortTextField(
+  const ShortTextField(
       {super.key,
       required this.title,
       required this.controller,

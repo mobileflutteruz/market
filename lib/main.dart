@@ -14,9 +14,9 @@ import 'package:karmango/presentation/auth/register/cubit/register_cubit.dart';
 import 'package:karmango/presentation/auth/splash/cubit/splash_cubit.dart';
 import 'package:karmango/presentation/details/cubit/details_cubit.dart';
 import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
-import 'package:karmango/presentation/food_basket/cubit/food_basket_cubit.dart';
-import 'package:karmango/presentation/food_category/cubit/category_cubit.dart';
-import 'package:karmango/presentation/food_profile/cubit/food_profile_cubit.dart';
+import 'package:karmango/presentation/basket/cubit/food_basket_cubit.dart';
+import 'package:karmango/presentation/category/cubit/category_cubit.dart';
+import 'package:karmango/presentation/profile/cubit/food_profile_cubit.dart';
 import 'package:karmango/presentation/home/cubit/food_home_cubit.dart';
 import 'package:karmango/presentation/my_order/cubit/food_my_order_cubit.dart';
 
@@ -34,7 +34,7 @@ class MyHttpOverrides extends HttpOverrides {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
-  
+
   await init();
   runApp(
     MultiBlocProvider(
@@ -55,10 +55,7 @@ Future<void> main() async {
         BlocProvider(create: (context) => locator<OtpCubit>()),
         BlocProvider(create: (context) => locator<RegisterCubit>()),
         BlocProvider(create: (context) => locator<CategoryCubit>()),
-        // BlocProvider(create: (context) => locator<CategoryProductsCubit>()), 
- 
-
-
+        // BlocProvider(create: (context) => locator<CategoryProductsCubit>()),
       ],
       child: const MyApp(),
     ),
@@ -90,12 +87,13 @@ class MyApp extends StatelessWidget {
           theme: MainTheme.light,
           themeMode: ThemeMode.light,
           onGenerateRoute: OngenerateRoutes.instance.routeGenerator,
-          initialRoute: FoodNavigatorConst.foodSplash, 
+          initialRoute: FoodNavigatorConst.appContainer,
           // initialRoute: FoodNavigatorConst.foodHome,
           builder: (context, child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(),
-              child: child ?? const SizedBox.shrink(), // Ensure child is not null
+              child:
+                  child ?? const SizedBox.shrink(), // Ensure child is not null
             );
           },
         );

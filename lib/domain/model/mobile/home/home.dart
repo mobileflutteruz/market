@@ -39,7 +39,7 @@ class HomeBanner with _$HomeBanner {
 @freezed
 class TopProduct with _$TopProduct {
     const factory TopProduct({
-        int? top_d,
+        int? top_id,
         String? name,
         List<MobileProduct>? products,
     }) = _TopProduct;

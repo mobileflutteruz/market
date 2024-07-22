@@ -28,11 +28,7 @@ class InputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var maskFormatter = MaskTextInputFormatter(
-      mask: '##-###-##-##',
-      filter: {"#": RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy,
-    );
+   
     return SizedBox(
       height: AppLayout.getHeight(65, context),
       child: TextFormField(
@@ -42,9 +38,7 @@ class InputWidget extends StatelessWidget {
         enabled: true,
 
         inputFormatters: [
-          FilteringTextInputFormatter.digitsOnly,
-          LengthLimitingTextInputFormatter(9),
-          maskFormatter
+        
         ],
         validator: (value) {
           if (value == null || value.isEmpty) {

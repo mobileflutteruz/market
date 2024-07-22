@@ -98,7 +98,7 @@ class _SearchViewState extends State<FoodSearchView> {
             SizedBox(
               child: Column(
                 children: [
-                  Row(
+                  const Row(
                     children: [
                       // Text(
                       //   popularSearchesF.first,

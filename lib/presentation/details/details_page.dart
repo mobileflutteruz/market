@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/presentation/components/buildable.dart';
-import 'package:karmango/presentation/components/common_app_bar.dart';
 import 'package:karmango/presentation/components/image_view.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
 import 'package:karmango/presentation/details/cubit/details_cubit.dart';
@@ -96,7 +95,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                     height: 4,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
-                                      color: Color(0xffc4c4c4),
+                                      color: const Color(0xffc4c4c4),
                                     ),
                                   ),
                                   InkWell(

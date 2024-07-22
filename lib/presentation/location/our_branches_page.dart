@@ -52,10 +52,10 @@ class FoodOurBranchesPage extends StatelessWidget {
 
 class OurBranchesMapItem extends StatelessWidget {
   const OurBranchesMapItem({
-    Key? key,
+    super.key,
     required this.locationName,
     this.onTap,
-  }) : super(key: key);
+  });
   final String locationName;
   final void Function()? onTap;
 

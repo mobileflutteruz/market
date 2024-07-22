@@ -609,7 +609,7 @@ TopProduct _$TopProductFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TopProduct {
-  int? get top_d => throw _privateConstructorUsedError;
+  int? get top_id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   List<MobileProduct>? get products => throw _privateConstructorUsedError;
 
@@ -625,7 +625,7 @@ abstract class $TopProductCopyWith<$Res> {
           TopProduct value, $Res Function(TopProduct) then) =
       _$TopProductCopyWithImpl<$Res, TopProduct>;
   @useResult
-  $Res call({int? top_d, String? name, List<MobileProduct>? products});
+  $Res call({int? top_id, String? name, List<MobileProduct>? products});
 }
 
 /// @nodoc
@@ -641,14 +641,14 @@ class _$TopProductCopyWithImpl<$Res, $Val extends TopProduct>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? top_d = freezed,
+    Object? top_id = freezed,
     Object? name = freezed,
     Object? products = freezed,
   }) {
     return _then(_value.copyWith(
-      top_d: freezed == top_d
-          ? _value.top_d
-          : top_d // ignore: cast_nullable_to_non_nullable
+      top_id: freezed == top_id
+          ? _value.top_id
+          : top_id // ignore: cast_nullable_to_non_nullable
               as int?,
       name: freezed == name
           ? _value.name
@@ -670,7 +670,7 @@ abstract class _$$TopProductImplCopyWith<$Res>
       __$$TopProductImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? top_d, String? name, List<MobileProduct>? products});
+  $Res call({int? top_id, String? name, List<MobileProduct>? products});
 }
 
 /// @nodoc
@@ -684,14 +684,14 @@ class __$$TopProductImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? top_d = freezed,
+    Object? top_id = freezed,
     Object? name = freezed,
     Object? products = freezed,
   }) {
     return _then(_$TopProductImpl(
-      top_d: freezed == top_d
-          ? _value.top_d
-          : top_d // ignore: cast_nullable_to_non_nullable
+      top_id: freezed == top_id
+          ? _value.top_id
+          : top_id // ignore: cast_nullable_to_non_nullable
               as int?,
       name: freezed == name
           ? _value.name
@@ -709,14 +709,14 @@ class __$$TopProductImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TopProductImpl implements _TopProduct {
   const _$TopProductImpl(
-      {this.top_d, this.name, final List<MobileProduct>? products})
+      {this.top_id, this.name, final List<MobileProduct>? products})
       : _products = products;
 
   factory _$TopProductImpl.fromJson(Map<String, dynamic> json) =>
       _$$TopProductImplFromJson(json);
 
   @override
-  final int? top_d;
+  final int? top_id;
   @override
   final String? name;
   final List<MobileProduct>? _products;
@@ -731,7 +731,7 @@ class _$TopProductImpl implements _TopProduct {
 
   @override
   String toString() {
-    return 'TopProduct(top_d: $top_d, name: $name, products: $products)';
+    return 'TopProduct(top_id: $top_id, name: $name, products: $products)';
   }
 
   @override
@@ -739,15 +739,15 @@ class _$TopProductImpl implements _TopProduct {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TopProductImpl &&
-            (identical(other.top_d, top_d) || other.top_d == top_d) &&
+            (identical(other.top_id, top_id) || other.top_id == top_id) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, top_d, name, const DeepCollectionEquality().hash(_products));
+  int get hashCode => Object.hash(runtimeType, top_id, name,
+      const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
@@ -765,7 +765,7 @@ class _$TopProductImpl implements _TopProduct {
 
 abstract class _TopProduct implements TopProduct {
   const factory _TopProduct(
-      {final int? top_d,
+      {final int? top_id,
       final String? name,
       final List<MobileProduct>? products}) = _$TopProductImpl;
 
@@ -773,7 +773,7 @@ abstract class _TopProduct implements TopProduct {
       _$TopProductImpl.fromJson;
 
   @override
-  int? get top_d;
+  int? get top_id;
   @override
   String? get name;
   @override

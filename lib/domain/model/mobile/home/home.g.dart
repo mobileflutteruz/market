@@ -63,7 +63,7 @@ Map<String, dynamic> _$$HomeBannerImplToJson(_$HomeBannerImpl instance) =>
 
 _$TopProductImpl _$$TopProductImplFromJson(Map<String, dynamic> json) =>
     _$TopProductImpl(
-      top_d: (json['top_d'] as num?)?.toInt(),
+      top_id: (json['top_id'] as num?)?.toInt(),
       name: json['name'] as String?,
       products: (json['products'] as List<dynamic>?)
           ?.map((e) => MobileProduct.fromJson(e as Map<String, dynamic>))
@@ -72,7 +72,7 @@ _$TopProductImpl _$$TopProductImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$TopProductImplToJson(_$TopProductImpl instance) =>
     <String, dynamic>{
-      'top_d': instance.top_d,
+      'top_id': instance.top_id,
       'name': instance.name,
       'products': instance.products,
     };
