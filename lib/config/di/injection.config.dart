@@ -16,7 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart' as _i3;
 import '../../data/api/api.dart' as _i12;
 import '../../data/api/auth_api.dart' as _i18;
 import '../../data/api/main_api.dart' as _i19;
-import '../../data/preferences/token_preferences.dart' as _i7;
+import '../../data/preferences/token_preferences.dart' as _i8;
 import '../../domain/repository/auth_repository.dart' as _i22;
 import '../../domain/repository/data_repository.dart' as _i14;
 import '../../domain/repository/main_repository.dart' as _i9;
@@ -33,7 +33,7 @@ import '../../presentation/home/cubit/food_home_cubit.dart' as _i25;
 import '../../presentation/my_order/cubit/food_my_order_cubit.dart' as _i10;
 import '../../presentation/profile/cubit/food_profile_cubit.dart' as _i4;
 import '../app_init/cubit/app_init_cubit.dart' as _i13;
-import '../token_data_source.dart' as _i8;
+import '../token_data_source.dart' as _i7;
 import '../user_data_source.dart' as _i6;
 import '../user_session_manager.dart' as _i11;
 import 'data_module.dart' as _i28;
@@ -60,20 +60,22 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i5.FlutterSecureStorage>(),
           gh<_i3.SharedPreferences>(),
         ));
-    gh.factory<_i7.TokenPreference>(
-        () => _i7.TokenPreference(gh<_i3.SharedPreferences>()));
-    gh.factory<_i8.TokenDataSource>(
-        () => _i8.TokenDataSource(gh<_i5.FlutterSecureStorage>()));
+    gh.factory<_i7.TokenDataSource>(
+        () => _i7.TokenDataSource(gh<_i5.FlutterSecureStorage>()));
+    gh.factory<_i8.TokenPreference>(() => _i8.TokenPreference(
+          gh<_i3.SharedPreferences>(),
+          gh<String>(),
+        ));
     gh.factory<_i9.MainRepository>(
-        () => _i9.MainRepository(gh<_i7.TokenPreference>()));
+        () => _i9.MainRepository(gh<_i8.TokenPreference>()));
     gh.factory<_i10.FoodMyOrderCubit>(
         () => _i10.FoodMyOrderCubit(gh<_i9.MainRepository>()));
     gh.singleton<_i11.UserSessionManager>(() => _i11.UserSessionManager(
-          gh<_i8.TokenDataSource>(),
+          gh<_i7.TokenDataSource>(),
           gh<_i6.UserDataDataSource>(),
         ));
     gh.factory<_i12.Api>(() => _i12.Api(
-          gh<_i7.TokenPreference>(),
+          gh<_i8.TokenPreference>(),
           gh<_i11.UserSessionManager>(),
         ));
     gh.factory<_i13.AppInitCubit>(
@@ -97,7 +99,7 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i21.MainService>(() => _i21.MainService(gh<_i19.MainApi>()));
     gh.factory<_i22.AuthRepository>(() => _i22.AuthRepository(
-          gh<_i7.TokenPreference>(),
+          gh<_i8.TokenPreference>(),
           gh<_i12.Api>(),
           gh<_i18.AuthApi>(),
         ));
@@ -111,7 +113,7 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i26.SplashCubit>(() => _i26.SplashCubit(
           gh<_i22.AuthRepository>(),
-          gh<_i7.TokenPreference>(),
+          gh<_i8.TokenPreference>(),
         ));
     gh.factory<_i27.LoginCubit>(() => _i27.LoginCubit(
           gh<_i18.AuthApi>(),

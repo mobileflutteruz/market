@@ -11,7 +11,7 @@ import '../../domain/model/user/user_model.dart';
 class TokenPreference {
   final SharedPreferences localeDb;
 
-  TokenPreference(this.localeDb);
+  TokenPreference(this.localeDb, this.db);
 
   final String _key = "token";
   final String _favourites = "favourites";
@@ -21,6 +21,7 @@ class TokenPreference {
   final String _user = "user";
   final String _mobileInitScreen = "mobileInitScreen";
   final String _furnitureInitScreen = "furnitureInitScreen";
+  final String db;
 
   setGuestUser(String value) async {
     await localeDb.setString(_guest, value);

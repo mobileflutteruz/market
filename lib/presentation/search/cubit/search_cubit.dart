@@ -1,39 +1,43 @@
-// import 'dart:async';
-// import 'package:freezed_annotation/freezed_annotation.dart';
-// import 'package:injectable/injectable.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:karmango/data/preferences/token_preferences.dart';
 
-// import 'package:karmango/domain/repository/main_repository.dart';
-// import 'package:karmango/presentation/search/cubit/search_state.dart';
+import 'dart:async';
+import 'package:karmango/data/preferences/token_preferences.dart';
+import 'package:karmango/domain/repository/data_repository.dart';
+import 'package:karmango/domain/repository/main_repository.dart';
+import 'package:karmango/presentation/components/buildable_cubit.dart';
 
-// part 'search_state.dart';
-// part 'search_cubit.freezed.dart';
-// @injectable
-// class SearchCubit extends Cubit<SearchState> {
-//   final TokenPreference _preferences;
-//   final MainRepository _mainRepository;
-//   SearchCubit(this._preferences, this._mainRepository)
-//       : super(const SearchBuildableState());
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:karmango/domain/model/search/search_product.dart';
 
-//   // Existing methods here...
+part 'search_state.dart';
+part 'search_cubit.freezed.dart';
 
-//   int? nextPageKey = 0;
-//   final int _size = 10;
-//   String _search = "";
-//   Timer? _debounce;
+class SearchCubit
+    extends BuildableCubit<SearchState, SearchBuildableState> {
+    SearchCubit(this._preferences, this._mainRepository, this.dataRepo)
+      : super(const SearchBuildableState());
 
-//   Future<void> fetch(int page) async {
-//     try {
-//       final products = await _mainRepository.fetchSearchProducts(_search, page, _size);
-//       nextPageKey = products.length < _size ? null : page + 1;
-//       emit((state as SearchBuildableState).copyWith(products: products));
-//     } catch (e) {
-//       print('Error fetching products: $e');
-//     }
-//   }
+  final TokenPreference _preferences;
+  final MainRepository _mainRepository;
+  final DataRepository dataRepo;
 
-//   void initCalendar(DateTime time, DateTime time2) {
-//     emit((state as SearchBuildableState).copyWith(focusedDay: time, focusedDa2: time2));
-//   }
-// }
+
+
+  int? nextPageKey = 0;
+  final int _size = 10;
+  String _search = "";
+  Timer? _debounce;
+
+  Future<void> fetch() async {
+    try {
+      final products = await dataRepo.searchProducts(_search);
+      emit((state as SearchBuildableState).copyWith(products: products));
+    } catch (e) {
+      print('Error fetching products: $e');
+    }
+  }
+
+  void initCalendar(DateTime time, DateTime time2) {
+    emit((state as SearchBuildableState)
+        .copyWith(focusedDay: time, focusedDa2: time2));
+  }
+}

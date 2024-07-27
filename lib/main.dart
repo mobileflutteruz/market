@@ -22,6 +22,8 @@ import 'package:karmango/presentation/my_order/cubit/food_my_order_cubit.dart';
 
 import 'dart:io';
 
+import 'package:karmango/presentation/search/cubit/search_cubit.dart';
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
@@ -55,6 +57,11 @@ Future<void> main() async {
         BlocProvider(create: (context) => locator<OtpCubit>()),
         BlocProvider(create: (context) => locator<RegisterCubit>()),
         BlocProvider(create: (context) => locator<CategoryCubit>()),
+        // BlocProvider(create: (context) => locator<SearchCubit>()),
+        // BlocProvider(create: (context) => locator<FoodHomeCubit>()),
+
+
+
         // BlocProvider(create: (context) => locator<CategoryProductsCubit>()),
       ],
       child: const MyApp(),

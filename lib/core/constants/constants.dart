@@ -87,5 +87,7 @@ sealed class Urls {
   static String orderHistory() => '/order-history';
   static String orderDetail(int orderDetailId) =>
       '/order-detail/$orderDetailId';
+
+    static String searchByProduct(String inputText) => '/general/search-products-input/$inputText';
   // static String
 }
