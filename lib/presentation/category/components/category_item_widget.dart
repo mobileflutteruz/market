@@ -24,8 +24,8 @@ class FoodCategoryItemWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: AppUtils.kPaddingAll12,
-        width: AppLayout.getWidth(164, context), // Use AppLayout.getWidth to get responsive width
-        height: AppLayout.getHeight(128, context), // Use AppLayout.getHeight to get responsive height
+        width: AppLayout.getWidth(164, context), 
+        height: AppLayout.getHeight(128, context), 
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           color: ColorConstants.cF5F5F8,

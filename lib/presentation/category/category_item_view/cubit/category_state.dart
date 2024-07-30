@@ -10,7 +10,7 @@ class CategoryProductBuildableState extends CategoryProductState with _$Category
     @Default(false) bool loading,
     @Default(false) bool success,
     @Default(false) bool failed,
-    ProductModel ? categoryProduct,
+    ProductModel? categoryProduct,
     dynamic error,
   }) = _CategoryProductBuildableState;
 }

@@ -51,6 +51,7 @@ class DataRepository {
   Future<ProductModel> getCategoryProducts(int id) async {
     final response = await api.getWithToken(path: Urls.productsByCategory(id));
     var data = jsonDecode(response.body);
+    print(response.body);
     return ProductModel.fromJson(data);
   }
 
@@ -141,12 +142,10 @@ class DataRepository {
         print('Failed to create basket: ${response.body}');
         throw Exception('Failed to create basket: ${response.body}');
       }
-      
     } catch (e) {
       print('Error creating basket: $e');
       rethrow;
     }
-    
   }
 
   /// Cart
@@ -158,7 +157,7 @@ class DataRepository {
         .toList();
   }
 
-   Future<BasketProducts>  createCart({
+  Future<BasketProducts> createCart({
     required int product_id,
     // required int attribute_id,
   }) async {
@@ -166,9 +165,11 @@ class DataRepository {
     //   "product_id": "$product_id",
     //   // "attribute_id": "$attribute_id",
     // };
-    final response =
-        await api.postWithToken(path: "/cart/store",  body:  {'product_id': product_id},);
-       var data = jsonDecode(response.body);
+    final response = await api.postWithToken(
+      path: "/cart/store",
+      body: {'product_id': product_id},
+    );
+    var data = jsonDecode(response.body);
     return BasketProducts.fromJson(data);
   }
 

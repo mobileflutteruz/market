@@ -8,16 +8,19 @@ part 'category_state.dart';
 part 'category_cubit.freezed.dart';
 
 @Injectable()
-class CategoryProductCubit extends BuildableCubit<CategoryProductState, CategoryProductBuildableState> {
-  CategoryProductCubit(this._dataRepository) : super(const CategoryProductBuildableState());
+class CategoryProductCubit extends BuildableCubit<CategoryProductState,
+    CategoryProductBuildableState> {
+  CategoryProductCubit(this._dataRepository)
+      : super(const CategoryProductBuildableState());
 
   final DataRepository _dataRepository;
 
-  
   fetchCategoryProduct(int productId) async {
     build((buildable) => buildable.copyWith(loading: true));
     try {
-      final ProductModel ? categoryProduct =   await _dataRepository.getCategoryProducts(productId) ; // Assuming you have a way to get this data
+      final ProductModel? categoryProduct =
+          await _dataRepository.getCategoryProducts(productId);
+      print( _dataRepository.getCategoryProducts(productId)); // Assuming you have a way to get this data
 
       build(
         (buildable) => buildable.copyWith(

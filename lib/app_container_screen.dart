@@ -18,7 +18,7 @@ class AppContainerScreen extends StatelessWidget {
         BlocProvider(
           create: (context) => locator<AppInitCubit>()..checkAuth(),
         ),
-       
+       BlocProvider(create: (context) => locator<CategoryProductCubit>())
       ],
       child: BlocListener<AppInitCubit, AppInitState>(
         listener: _onAuthStateChanged,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/domain/model/mobile/cart_product/cart_product.dart';
-
 import 'package:karmango/presentation/components/image_view.dart';
 import 'package:karmango/presentation/home/components/small_button.dart';
 import 'package:karmango/core/utils/app_layouts.dart';
@@ -37,7 +36,9 @@ class CategoryProductItemWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           color: FoodColors.cF5F5F5,
         ),
-        width: AppLayout.getWidth(164, context),
+        // width: AppLayout.getWidth(164, context),
+        // height: AppLayout.getWidth(200, context),
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -46,71 +47,75 @@ class CategoryProductItemWidget extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      borderRadius: AppUtils.kBorderRadius12,
-                      color: ColorConstants.kGreyOrderBack,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(36),
-                      child: ImageViewWidget(
-                        imageLink: product.image ?? '', // Handle null case for imageLink
-                        isNetImg: true,
+                  SizedBox(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        borderRadius: AppUtils.kBorderRadius12,
+                        color: ColorConstants.kGreyOrderBack,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 36, right: 36, top: 36, bottom:10 ),
+                        child: ImageViewWidget(
+                          imageLink: product.image ?? '', // Handle null case for imageLink
+                          isNetImg: true,
+                        ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: AppUtils.kPaddingL8R16B16T16,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (isNew)
-                          Container(
-                            height: AppLayout.getHeight(24, context),
-                            padding: AppUtils.kPaddingHor8Ver2,
-                            alignment: Alignment.center,
-                            decoration: ShapeDecoration(
-                              color: FoodColors.c2DCC70,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: AppUtils.kBorderRadius4,
+                  SizedBox(
+                    child: Padding(
+                      padding: AppUtils.kPaddingL8R16B16T16,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (isNew)
+                            Container(
+                              height: AppLayout.getHeight(24, context),
+                              padding: AppUtils.kPaddingHor8Ver2,
+                              alignment: Alignment.center,
+                              decoration: ShapeDecoration(
+                                color: FoodColors.c2DCC70,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: AppUtils.kBorderRadius4,
+                                ),
+                              ),
+                              child: Text(
+                                'New',
+                                style: Styles.manropeMedium13.copyWith(color: FoodColors.cffffff),
                               ),
                             ),
-                            child: Text(
-                              'New',
-                              style: Styles.manropeMedium13.copyWith(color: FoodColors.cffffff),
-                            ),
-                          ),
-                        AppUtils.kGap4,
-                        if (product.discount != null)
-                          Container(
-                            padding: AppUtils.kPaddingHor8Ver2,
-                            height: AppLayout.getHeight(24, context),
-                            alignment: Alignment.center,
-                            decoration: ShapeDecoration(
-                              color: FoodColors.cF83333,
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: AppUtils.kBorderRadius4,
+                          AppUtils.kGap4,
+                          if (product.discount != null)
+                            Container(
+                              padding: AppUtils.kPaddingHor8Ver2,
+                              height: AppLayout.getHeight(24, context),
+                              alignment: Alignment.center,
+                              decoration: ShapeDecoration(
+                                color: FoodColors.cF83333,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: AppUtils.kBorderRadius4,
+                                ),
+                              ),
+                              child: Text(
+                                '-${product.discount}%', // Use product.discount directly
+                                style: Styles.manropeMedium13.copyWith(color: FoodColors.cffffff),
                               ),
                             ),
-                            child: Text(
-                              '-${product.discount}%', // Use product.discount directly
-                              style: Styles.manropeMedium13.copyWith(color: FoodColors.cffffff),
-                            ),
+                          const Spacer(),
+                          InkWell(
+                            onTap: likeTapped,
+                            child: isLiked
+                                ? Icon(CupertinoIcons.heart_fill, color: FoodColors.cF83333)
+                                : const Icon(CupertinoIcons.heart),
                           ),
-                        const Spacer(),
-                        InkWell(
-                          onTap: likeTapped,
-                          child: isLiked
-                              ? Icon(CupertinoIcons.heart_fill, color: FoodColors.cF83333)
-                              : const Icon(CupertinoIcons.heart),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-            AppUtils.kGap8,
+            AppUtils.kGap8, // Ensure proper gap between image and text
             Text(
               product.name ?? "", // Handle null case for product.name
               style: Styles.manropeMedium12.copyWith(color: FoodColors.c0E1923),
