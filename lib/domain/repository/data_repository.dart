@@ -9,8 +9,6 @@ import 'package:karmango/domain/model/mobile/cart_product/cart_product.dart';
 import 'package:karmango/domain/model/mobile/category/category.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
 import 'package:karmango/domain/model/mobile/product/product.dart';
-import 'package:karmango/domain/model/mobile/search/search.dart';
-import 'package:karmango/domain/model/search/search_product.dart';
 
 @Injectable()
 class DataRepository {
@@ -18,9 +16,8 @@ class DataRepository {
   final LoggingService log = LoggingService();
 
   DataRepository(this.api);
-
   // Home
-  Future<MobileHomeProducts> getHomeProducts() async {
+  Future getHomeProducts() async {
     final response = await api.getWithToken(path: "/HomePage/");
     var data = jsonDecode(response.body);
     return MobileHomeProducts.fromJson(data);
@@ -31,6 +28,18 @@ class DataRepository {
     final data = jsonDecode(response.body);
     return ProductDataModel.fromJson(data);
   }
+
+//  Future getCategories() async {
+//     final response = await api.getWithToken(path: Urls.categories);
+//     var data = jsonDecode(response.body);
+//     return  CategoryModel.fromJson(data);
+//   }
+
+//   Future getCategoryProducts(int id) async{
+//      final response = await api.getWithToken(path: Urls.productsByCategory(id));
+//     var data = jsonDecode(response.body);
+//     return  ProductModel.fromJson(data);
+//   }
 
   // Category
   Future<List<CategoryModel>> getCategories() async {
@@ -45,7 +54,7 @@ class DataRepository {
     return ProductModel.fromJson(data);
   }
 
-  // Favorites
+  /// Favorites
   Future<Favourite> getFavorites() async {
     final response = await api.getWithToken(path: Urls.favorite);
     var data = jsonDecode(response.body);
@@ -60,43 +69,62 @@ class DataRepository {
       );
 
       if (response.statusCode == 200) {
+        // Javobni dekodlash
         final data = jsonDecode(response.body);
+        // `Favourite` ob'ektini yaratish
         return Favourite.fromJson(data);
       } else {
-        log.logError('Failed to create favorite: ${response.body}');
+        // Xatolikni qayd etish
+        print('Failed to create favorite: ${response.body}');
         throw Exception('Failed to create favorite: ${response.body}');
       }
     } catch (e) {
-      log.logError('Error creating favorite: $e');
+      print('Error creating favorite: $e');
       rethrow;
     }
   }
 
+  // Future<Favourite> createFavorite({required int product_id}) async {
+  //   final body = {
+  //     "product_id": product_id,
+  //   };
+  //   final response =
+  //       await api.postWithToken(path: "/favorite/delete/$product_id", body: body);
+  //   var data = jsonDecode(response.body);
+  //   return data["status"];
+  // }
+
   Future<bool> deleteFavorite({required int productId}) async {
     final response =
         await api.deleteWithToken(path: Urls.deleteFavorite(productId));
-    return response.statusCode == 200;
+    return response.statusCode ==
+        200; // Return true if the deletion was successful
   }
 
-  // Basket
+  //Basket
   Future<BasketProducts> getBasketProducts() async {
     try {
       final response = await api.getWithToken(path: "/cart");
 
       if (response.statusCode == 200) {
+        // Javobni dekodlash
         final data = jsonDecode(response.body);
+        // `BasketProducts` ob'ektini yaratish
         return BasketProducts.fromJson(data);
       } else {
-        log.logError('Failed to fetch basket products: ${response.body}');
+        // Xatolikni qayd etish
+        print('Failed to fetch basket products: ${response.body}');
         throw Exception('Failed to fetch basket products: ${response.body}');
       }
     } catch (e) {
-      log.logError('Error fetching basket products: $e');
+      print('Error fetching basket products: $e');
       rethrow;
     }
   }
 
-  Future<BasketProducts> createBasket({required int productId}) async {
+  Future<BasketProducts> createBasket({
+    required int productId,
+  }) async {
     try {
       final response = await api.postWithToken(
         path: "/cart/store",
@@ -104,47 +132,63 @@ class DataRepository {
       );
 
       if (response.statusCode == 200) {
+        // Javobni dekodlash
         final data = jsonDecode(response.body);
+        // `BasketProducts` ob'ektini yaratish
         return BasketProducts.fromJson(data);
       } else {
-        log.logError('Failed to create basket: ${response.body}');
+        // Xatolikni qayd etish
+        print('Failed to create basket: ${response.body}');
         throw Exception('Failed to create basket: ${response.body}');
       }
+      
     } catch (e) {
-      log.logError('Error creating basket: $e');
+      print('Error creating basket: $e');
       rethrow;
     }
+    
   }
 
-  // Cart
-  Future<List<BasketProducts>> getAllCarts() async {
+  /// Cart
+  getAllCarts() async {
     final response = await api.getWithToken(path: Urls.favorite);
     var data = jsonDecode(response.body);
     return (data["data"] as List)
-        .map((e) => BasketProducts.fromJson(e))
+        .map((e) => MobileProduct.fromJson(e))
         .toList();
   }
 
-  Future<BasketProducts> createCart({required int productId}) async {
-    final response = await api.postWithToken(
-      path: "/cart/store",
-      body: {'product_id': productId},
-    );
-    var data = jsonDecode(response.body);
+   Future<BasketProducts>  createCart({
+    required int product_id,
+    // required int attribute_id,
+  }) async {
+    // final body = {
+    //   "product_id": "$product_id",
+    //   // "attribute_id": "$attribute_id",
+    // };
+    final response =
+        await api.postWithToken(path: "/cart/store",  body:  {'product_id': product_id},);
+       var data = jsonDecode(response.body);
     return BasketProducts.fromJson(data);
   }
 
-  Future<List<SearchProduct>> searchProducts(String inputText) async {
-    final result = await api.get(
-      path: "${Constants.baseUrl}${Urls.searchByProduct(inputText)}",
-    );
+  // deleteCart({
+  //   required int productId,
+  //   required int attributeId,
+  // }) async {
+  //   final response = await api.deleteWithToken(
+  //       path: Urls.deleteCart(productId: productId, attributeId: attributeId));
+  //   var data = jsonDecode(response.body);
+  //   return data["status"];
+  // }
 
-    final SearchProductsData data =
-        SearchProductsData.fromJson(result as Map<String, dynamic>);
+//  Future<List<Search>> searchProducts(String inputText) async {
+//   final result = await api.get(
+//       api: "${Constants.baseUrl}${Urls.searchByProduct(inputText)}");
 
-    return data.data;
-  }
+//   final SearchProductsData data =
+//       SearchProductsData.fromJson(result as Map<String, dynamic>);
 
-
-  
+//   return data.data;
+// }
 }

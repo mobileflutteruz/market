@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/presentation/auth/login/food_login_page.dart';
 import 'package:karmango/presentation/auth/splash/food_splash_view.dart';
+import 'package:karmango/presentation/category/category_item_view/cubit/category_cubit.dart';
 import 'package:karmango/presentation/home/food_home_page.dart';
 import 'config/app_init/cubit/app_init_cubit.dart';
 import 'config/app_init/cubit/app_init_state.dart';
@@ -17,10 +18,12 @@ class AppContainerScreen extends StatelessWidget {
         BlocProvider(
           create: (context) => locator<AppInitCubit>()..checkAuth(),
         ),
+       
       ],
       child: BlocListener<AppInitCubit, AppInitState>(
         listener: _onAuthStateChanged,
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           home: Builder(
             builder: (context) {
               final appInitCubit = context.read<AppInitCubit>();

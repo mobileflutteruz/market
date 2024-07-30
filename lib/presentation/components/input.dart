@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../core/constants/constants.dart';
 import '../../core/utils/app_layouts.dart';
 
 class InputWidget extends StatelessWidget {
-   InputWidget({
+  const InputWidget({
     super.key,
     required this.hintText,
     this.textEditingController,
     this.prefixIcon,
-    this.onChanged,
     this.lengthLimiting,
     this.keyboardType = TextInputType.text,
     this.textInputFormatters = const [],
     this.textCapitalization = TextCapitalization.none,
     this.validator,
   });
-  void Function(String)? onChanged;
+
   final String hintText;
   final TextEditingController? textEditingController;
   final TextInputType? keyboardType;
@@ -29,6 +28,7 @@ class InputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   
     return SizedBox(
       height: AppLayout.getHeight(65, context),
       child: TextFormField(
@@ -37,7 +37,9 @@ class InputWidget extends StatelessWidget {
         controller: textEditingController,
         enabled: true,
 
-        inputFormatters: [],
+        inputFormatters: [
+        
+        ],
         validator: (value) {
           if (value == null || value.isEmpty) {
             return "This field is required";
@@ -52,7 +54,6 @@ class InputWidget extends StatelessWidget {
         //   if (lengthLimiting != null)
         //     LengthLimitingTextInputFormatter(lengthLimiting),
         // ],
-        onChanged: onChanged,
         decoration: InputDecoration(
           // errorText: "adfa",
 
@@ -71,7 +72,6 @@ class InputWidget extends StatelessWidget {
                   child: prefixIcon,
                 )
               : null,
-
           prefixIconConstraints: BoxConstraints(
             minHeight: AppLayout.getHeight(32, context),
             minWidth: AppLayout.getWidth(32, context),

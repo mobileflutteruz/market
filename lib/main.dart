@@ -12,17 +12,14 @@ import 'package:karmango/presentation/auth/login/cubit/login_cubit.dart';
 import 'package:karmango/presentation/auth/otp/cubit/otp_cubit.dart';
 import 'package:karmango/presentation/auth/register/cubit/register_cubit.dart';
 import 'package:karmango/presentation/auth/splash/cubit/splash_cubit.dart';
+import 'package:karmango/presentation/category/category_item_view/cubit/category_cubit.dart';
 import 'package:karmango/presentation/details/cubit/details_cubit.dart';
 import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 import 'package:karmango/presentation/basket/cubit/food_basket_cubit.dart';
-import 'package:karmango/presentation/category/cubit/category_cubit.dart';
-import 'package:karmango/presentation/profile/cubit/food_profile_cubit.dart';
 import 'package:karmango/presentation/home/cubit/food_home_cubit.dart';
+import 'package:karmango/presentation/profile/cubit/food_profile_cubit.dart';
 import 'package:karmango/presentation/my_order/cubit/food_my_order_cubit.dart';
-
 import 'dart:io';
-
-import 'package:karmango/presentation/search/cubit/search_cubit.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -41,27 +38,24 @@ Future<void> main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) {
-          var bloc = locator<FoodHomeCubit>();
-          bloc.fetchProducts();
-          return bloc;
-        }),
+        // BlocProvider(create: (context) {
+        //   var bloc = locator<FoodHomeCubit>();
+        //   // bloc.fetchProducts();
+        //   // return bloc;
+        // }),
         BlocProvider(create: (context) => locator<LoginCubit>()),
         BlocProvider(create: (context) => locator<FoodBasketCubit>()),
         BlocProvider(create: (context) => locator<FoodProfileCubit>()),
         BlocProvider(create: (context) => locator<FoodMyOrderCubit>()),
         BlocProvider(create: (context) => locator<FavouritesCubit>()),
-        BlocProvider(create: (context) => locator<CategoryCubit>()),
+     
         BlocProvider(create: (context) => locator<DetailsCubit>()),
         BlocProvider(create: (context) => locator<SplashCubit>()),
         BlocProvider(create: (context) => locator<OtpCubit>()),
         BlocProvider(create: (context) => locator<RegisterCubit>()),
-        BlocProvider(create: (context) => locator<CategoryCubit>()),
-        // BlocProvider(create: (context) => locator<SearchCubit>()),
-        // BlocProvider(create: (context) => locator<FoodHomeCubit>()),
-
-
-
+        BlocProvider(create: (context) => locator<FoodHomeCubit>()),
+         BlocProvider(create: (context) => locator<CategoryProductCubit>())
+        // BlocProvider(create: (context) => locator<CategoryCubit()),
         // BlocProvider(create: (context) => locator<CategoryProductsCubit>()),
       ],
       child: const MyApp(),

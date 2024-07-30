@@ -45,28 +45,27 @@ class FavouritesCubit
   }
 
   Future<Favourite?> setLikeId(int productId) async {
-  build((buildable) => buildable.copyWith(loading: true));
-  try {
-    final Favourite? favourite =
-        await _dataRepository.createFavorite(productId);
-    build((buildable) => buildable.copyWith(
-          loading: false,
-          success: true,
-          favourites: favourite,
-        // Resetting the last deleted product ID
-        ));
-    return favourite;
-  } catch (e) {
-    build((buildable) => buildable.copyWith(
-          loading: false,
-          failure: true,
-          errorMessage: 'Something went wrong: $e',
-        ));
-    print('Something went wrong: $e');
-    return null;
+    build((buildable) => buildable.copyWith(loading: true));
+    try {
+      final Favourite? favourite =
+          await _dataRepository.createFavorite(productId);
+      build((buildable) => buildable.copyWith(
+            loading: false,
+            success: true,
+            favourites: favourite,
+            // Resetting the last deleted product ID
+          ));
+      return favourite;
+    } catch (e) {
+      build((buildable) => buildable.copyWith(
+            loading: false,
+            failure: true,
+            errorMessage: 'Something went wrong: $e',
+          ));
+      print('Something went wrong: $e');
+      return null;
+    }
   }
-}
-
 
   // setLikeId(int likeId) async {
   //   List<String> ids = await _repository.getLikeIds() ?? [];

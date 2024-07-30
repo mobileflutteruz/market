@@ -15,41 +15,41 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$CategoryBuildableState {
+mixin _$CategoryProductBuildableState {
   bool get loading => throw _privateConstructorUsedError;
   bool get success => throw _privateConstructorUsedError;
   bool get failed => throw _privateConstructorUsedError;
-  List<CategoryModel>? get category => throw _privateConstructorUsedError;
-  ProductModel? get products => throw _privateConstructorUsedError;
+  ProductModel? get categoryProduct => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CategoryBuildableStateCopyWith<CategoryBuildableState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $CategoryProductBuildableStateCopyWith<CategoryProductBuildableState>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CategoryBuildableStateCopyWith<$Res> {
-  factory $CategoryBuildableStateCopyWith(CategoryBuildableState value,
-          $Res Function(CategoryBuildableState) then) =
-      _$CategoryBuildableStateCopyWithImpl<$Res, CategoryBuildableState>;
+abstract class $CategoryProductBuildableStateCopyWith<$Res> {
+  factory $CategoryProductBuildableStateCopyWith(
+          CategoryProductBuildableState value,
+          $Res Function(CategoryProductBuildableState) then) =
+      _$CategoryProductBuildableStateCopyWithImpl<$Res,
+          CategoryProductBuildableState>;
   @useResult
   $Res call(
       {bool loading,
       bool success,
       bool failed,
-      List<CategoryModel>? category,
-      ProductModel? products,
+      ProductModel? categoryProduct,
       dynamic error});
 
-  $ProductModelCopyWith<$Res>? get products;
+  $ProductModelCopyWith<$Res>? get categoryProduct;
 }
 
 /// @nodoc
-class _$CategoryBuildableStateCopyWithImpl<$Res,
-        $Val extends CategoryBuildableState>
-    implements $CategoryBuildableStateCopyWith<$Res> {
-  _$CategoryBuildableStateCopyWithImpl(this._value, this._then);
+class _$CategoryProductBuildableStateCopyWithImpl<$Res,
+        $Val extends CategoryProductBuildableState>
+    implements $CategoryProductBuildableStateCopyWith<$Res> {
+  _$CategoryProductBuildableStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -62,8 +62,7 @@ class _$CategoryBuildableStateCopyWithImpl<$Res,
     Object? loading = null,
     Object? success = null,
     Object? failed = null,
-    Object? category = freezed,
-    Object? products = freezed,
+    Object? categoryProduct = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -79,13 +78,9 @@ class _$CategoryBuildableStateCopyWithImpl<$Res,
           ? _value.failed
           : failed // ignore: cast_nullable_to_non_nullable
               as bool,
-      category: freezed == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as List<CategoryModel>?,
-      products: freezed == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
+      categoryProduct: freezed == categoryProduct
+          ? _value.categoryProduct
+          : categoryProduct // ignore: cast_nullable_to_non_nullable
               as ProductModel?,
       error: freezed == error
           ? _value.error
@@ -96,46 +91,45 @@ class _$CategoryBuildableStateCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $ProductModelCopyWith<$Res>? get products {
-    if (_value.products == null) {
+  $ProductModelCopyWith<$Res>? get categoryProduct {
+    if (_value.categoryProduct == null) {
       return null;
     }
 
-    return $ProductModelCopyWith<$Res>(_value.products!, (value) {
-      return _then(_value.copyWith(products: value) as $Val);
+    return $ProductModelCopyWith<$Res>(_value.categoryProduct!, (value) {
+      return _then(_value.copyWith(categoryProduct: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$CategoryBuildableStateImplCopyWith<$Res>
-    implements $CategoryBuildableStateCopyWith<$Res> {
-  factory _$$CategoryBuildableStateImplCopyWith(
-          _$CategoryBuildableStateImpl value,
-          $Res Function(_$CategoryBuildableStateImpl) then) =
-      __$$CategoryBuildableStateImplCopyWithImpl<$Res>;
+abstract class _$$CategoryProductBuildableStateImplCopyWith<$Res>
+    implements $CategoryProductBuildableStateCopyWith<$Res> {
+  factory _$$CategoryProductBuildableStateImplCopyWith(
+          _$CategoryProductBuildableStateImpl value,
+          $Res Function(_$CategoryProductBuildableStateImpl) then) =
+      __$$CategoryProductBuildableStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {bool loading,
       bool success,
       bool failed,
-      List<CategoryModel>? category,
-      ProductModel? products,
+      ProductModel? categoryProduct,
       dynamic error});
 
   @override
-  $ProductModelCopyWith<$Res>? get products;
+  $ProductModelCopyWith<$Res>? get categoryProduct;
 }
 
 /// @nodoc
-class __$$CategoryBuildableStateImplCopyWithImpl<$Res>
-    extends _$CategoryBuildableStateCopyWithImpl<$Res,
-        _$CategoryBuildableStateImpl>
-    implements _$$CategoryBuildableStateImplCopyWith<$Res> {
-  __$$CategoryBuildableStateImplCopyWithImpl(
-      _$CategoryBuildableStateImpl _value,
-      $Res Function(_$CategoryBuildableStateImpl) _then)
+class __$$CategoryProductBuildableStateImplCopyWithImpl<$Res>
+    extends _$CategoryProductBuildableStateCopyWithImpl<$Res,
+        _$CategoryProductBuildableStateImpl>
+    implements _$$CategoryProductBuildableStateImplCopyWith<$Res> {
+  __$$CategoryProductBuildableStateImplCopyWithImpl(
+      _$CategoryProductBuildableStateImpl _value,
+      $Res Function(_$CategoryProductBuildableStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -144,11 +138,10 @@ class __$$CategoryBuildableStateImplCopyWithImpl<$Res>
     Object? loading = null,
     Object? success = null,
     Object? failed = null,
-    Object? category = freezed,
-    Object? products = freezed,
+    Object? categoryProduct = freezed,
     Object? error = freezed,
   }) {
-    return _then(_$CategoryBuildableStateImpl(
+    return _then(_$CategoryProductBuildableStateImpl(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -161,13 +154,9 @@ class __$$CategoryBuildableStateImplCopyWithImpl<$Res>
           ? _value.failed
           : failed // ignore: cast_nullable_to_non_nullable
               as bool,
-      category: freezed == category
-          ? _value._category
-          : category // ignore: cast_nullable_to_non_nullable
-              as List<CategoryModel>?,
-      products: freezed == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
+      categoryProduct: freezed == categoryProduct
+          ? _value.categoryProduct
+          : categoryProduct // ignore: cast_nullable_to_non_nullable
               as ProductModel?,
       error: freezed == error
           ? _value.error
@@ -179,15 +168,14 @@ class __$$CategoryBuildableStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CategoryBuildableStateImpl implements _CategoryBuildableState {
-  const _$CategoryBuildableStateImpl(
+class _$CategoryProductBuildableStateImpl
+    implements _CategoryProductBuildableState {
+  const _$CategoryProductBuildableStateImpl(
       {this.loading = false,
       this.success = false,
       this.failed = false,
-      final List<CategoryModel>? category,
-      this.products,
-      this.error})
-      : _category = category;
+      this.categoryProduct,
+      this.error});
 
   @override
   @JsonKey()
@@ -198,66 +186,50 @@ class _$CategoryBuildableStateImpl implements _CategoryBuildableState {
   @override
   @JsonKey()
   final bool failed;
-  final List<CategoryModel>? _category;
   @override
-  List<CategoryModel>? get category {
-    final value = _category;
-    if (value == null) return null;
-    if (_category is EqualUnmodifiableListView) return _category;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  final ProductModel? products;
+  final ProductModel? categoryProduct;
   @override
   final dynamic error;
 
   @override
   String toString() {
-    return 'CategoryBuildableState(loading: $loading, success: $success, failed: $failed, category: $category, products: $products, error: $error)';
+    return 'CategoryProductBuildableState(loading: $loading, success: $success, failed: $failed, categoryProduct: $categoryProduct, error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CategoryBuildableStateImpl &&
+            other is _$CategoryProductBuildableStateImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.success, success) || other.success == success) &&
             (identical(other.failed, failed) || other.failed == failed) &&
-            const DeepCollectionEquality().equals(other._category, _category) &&
-            (identical(other.products, products) ||
-                other.products == products) &&
+            (identical(other.categoryProduct, categoryProduct) ||
+                other.categoryProduct == categoryProduct) &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      loading,
-      success,
-      failed,
-      const DeepCollectionEquality().hash(_category),
-      products,
-      const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, loading, success, failed,
+      categoryProduct, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CategoryBuildableStateImplCopyWith<_$CategoryBuildableStateImpl>
-      get copyWith => __$$CategoryBuildableStateImplCopyWithImpl<
-          _$CategoryBuildableStateImpl>(this, _$identity);
+  _$$CategoryProductBuildableStateImplCopyWith<
+          _$CategoryProductBuildableStateImpl>
+      get copyWith => __$$CategoryProductBuildableStateImplCopyWithImpl<
+          _$CategoryProductBuildableStateImpl>(this, _$identity);
 }
 
-abstract class _CategoryBuildableState implements CategoryBuildableState {
-  const factory _CategoryBuildableState(
+abstract class _CategoryProductBuildableState
+    implements CategoryProductBuildableState {
+  const factory _CategoryProductBuildableState(
       {final bool loading,
       final bool success,
       final bool failed,
-      final List<CategoryModel>? category,
-      final ProductModel? products,
-      final dynamic error}) = _$CategoryBuildableStateImpl;
+      final ProductModel? categoryProduct,
+      final dynamic error}) = _$CategoryProductBuildableStateImpl;
 
   @override
   bool get loading;
@@ -266,13 +238,12 @@ abstract class _CategoryBuildableState implements CategoryBuildableState {
   @override
   bool get failed;
   @override
-  List<CategoryModel>? get category;
-  @override
-  ProductModel? get products;
+  ProductModel? get categoryProduct;
   @override
   dynamic get error;
   @override
   @JsonKey(ignore: true)
-  _$$CategoryBuildableStateImplCopyWith<_$CategoryBuildableStateImpl>
+  _$$CategoryProductBuildableStateImplCopyWith<
+          _$CategoryProductBuildableStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
