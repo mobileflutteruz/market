@@ -10,6 +10,8 @@ import 'package:karmango/presentation/components/loader_widget.dart';
 import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../domain/model/mobile/basket/basket_products.dart';
+
 class FoodBasketView extends StatefulWidget {
   const FoodBasketView({super.key});
 
@@ -17,8 +19,7 @@ class FoodBasketView extends StatefulWidget {
   State<FoodBasketView> createState() => _BasketViewState();
 }
 
-class _BasketViewState extends State<FoodBasketView>
-    with TickerProviderStateMixin {
+class _BasketViewState extends State<FoodBasketView> with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -51,8 +52,7 @@ class _BasketViewState extends State<FoodBasketView>
             }
           }
         },
-        child: Buildable<FoodBasketCubit, FoodBasketState,
-            FoodBasketBuildableState>(
+        child: Buildable<FoodBasketCubit, FoodBasketState, FoodBasketBuildableState>(
           properties: (buildable) => [
             buildable.failed,
             buildable.loading,
@@ -61,8 +61,7 @@ class _BasketViewState extends State<FoodBasketView>
             // buildable.likeIds,
           ],
           builder: (context, state) {
-            if (state.loading &&
-                (state.products == null || state.products!.result!.isEmpty)) {
+            if (state.loading && (state.products == null || state.products!.result!.isEmpty)) {
               return const LoaderWidget();
             }
 
@@ -87,8 +86,7 @@ class _BasketViewState extends State<FoodBasketView>
                     ),
                   ],
                 ),
-                bottomNavigationBar:
-                    FoodBasketBottomBarWidget(currentIndex: state.tabIndex),
+                bottomNavigationBar: FoodBasketBottomBarWidget(currentIndex: state.tabIndex),
               );
             }
             return Scaffold(
@@ -102,20 +100,19 @@ class _BasketViewState extends State<FoodBasketView>
                       children: [
                         ListView.builder(
                           itemBuilder: (BuildContext context, int index) {
-                            final product = state.products!.result![index];
+                            final Result? product = state.products?.result?[index];
                             return FoodBasketCartItem(
                               product: [product],
                             );
                           },
-                          itemCount: state.products!.result!.length,
+                          itemCount: state.products?.result?.length ?? 0,
                         ),
                       ],
                     ),
                   )
                 ],
               ),
-              bottomNavigationBar:
-                  FoodBasketBottomBarWidget(currentIndex: state.tabIndex),
+              bottomNavigationBar: FoodBasketBottomBarWidget(currentIndex: state.tabIndex),
             );
           },
         ),

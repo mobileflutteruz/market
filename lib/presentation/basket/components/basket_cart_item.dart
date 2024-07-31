@@ -1,4 +1,3 @@
-
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/presentation/basket/cubit/food_basket_cubit.dart';
 import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
@@ -12,13 +11,14 @@ import '../../../../core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/domain/model/mobile/basket/basket_products.dart' as basket;
+
 class FoodBasketCartItem extends StatelessWidget {
   const FoodBasketCartItem({
     super.key,
     required this.product,
   });
 
-   final List<basket.Result>? product;
+  final List<basket.Result?>? product;
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +41,12 @@ class FoodBasketCartItem extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                          // Checkbox and product image container
+                            // Checkbox and product image container
                             SizedBox(
                               height: 16,
                               width: 16,
                               child: Checkbox(
-                                value: state.selectedIds.contains(product.id),
+                                value: state.selectedIds.contains(product?.id??0),
                                 activeColor: const Color(0xFF2473F2),
                                 side: const BorderSide(
                                   color: Color(0xFF8D909B),
@@ -56,10 +56,8 @@ class FoodBasketCartItem extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                                 checkColor: ColorConstants.cffffff,
-                                onChanged: (value) => context
-                                    .read<FoodBasketCubit>()
-                                    .setSelectIds(
-                                  [product.id!],
+                                onChanged: (value) => context.read<FoodBasketCubit>().setSelectIds(
+                                  [product?.id ?? 0],
                                 ),
                               ),
                             ),
@@ -75,7 +73,7 @@ class FoodBasketCartItem extends StatelessWidget {
                                 ),
                               ),
                               child: ImageViewWidget(
-                                imageLink: product.image!,
+                                imageLink: product?.image??'',
                               ),
                             ),
                           ],
@@ -87,13 +85,12 @@ class FoodBasketCartItem extends StatelessWidget {
                             children: [
                               // Product name and favorite icon
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      product.name!,
+                                      product?.name??'',
                                       maxLines: 3,
                                       overflow: TextOverflow.ellipsis,
                                       style: Styles.manropeMedium14.copyWith(
@@ -101,16 +98,12 @@ class FoodBasketCartItem extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Buildable<FavouritesCubit, FavouritesState,
-                                      FavouritesBuildableState>(
+                                  Buildable<FavouritesCubit, FavouritesState, FavouritesBuildableState>(
                                     properties: (buildable) => [buildable.likeIds],
                                     builder: (context, state) {
                                       return GestureDetector(
-                                        onTap: () => context
-                                            .read<FavouritesCubit>()
-                                            .setLikeId(product.id!),
-                                        child: state.likeIds
-                                                .contains("${product.id}")
+                                        onTap: () => context.read<FavouritesCubit>().setLikeId(product?.id??0),
+                                        child: state.likeIds.contains("${product?.id??0}")
                                             ? IconConstants.heartSelect
                                             : IconConstants.heart,
                                       );
@@ -121,11 +114,10 @@ class FoodBasketCartItem extends StatelessWidget {
                               AppUtils.kGap8,
                               // Product price
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
-                                    child: Text("${product.main_price} cум",
+                                    child: Text("${product?.main_price??0} cум",
                                         maxLines: 2,
                                         style: Styles.manropeBold14.copyWith(
                                           color: ColorConstants.cF83333,
@@ -146,13 +138,11 @@ class FoodBasketCartItem extends StatelessWidget {
                               AppUtils.kGap20,
                               // Delete button and basket counter
                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   GestureDetector(
                                     onTap: () {
-                                      BlocProvider.of<FoodBasketCubit>(context)
-                                          .removeBasketId(product.id!);
+                                      BlocProvider.of<FoodBasketCubit>(context).removeBasketId(product?.id??0);
                                     },
                                     child: Row(
                                       children: [
@@ -160,8 +150,7 @@ class FoodBasketCartItem extends StatelessWidget {
                                         AppUtils.kGap8,
                                         Text(
                                           context.l10n.delete,
-                                          style:
-                                              Styles.manropeMedium14.copyWith(
+                                          style: Styles.manropeMedium14.copyWith(
                                             color: ColorConstants.c8D909B,
                                           ),
                                         ),

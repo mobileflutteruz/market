@@ -21,12 +21,13 @@ import 'package:karmango/presentation/profile/cubit/food_profile_cubit.dart';
 import 'package:karmango/presentation/my_order/cubit/food_my_order_cubit.dart';
 import 'dart:io';
 
+import 'package:karmango/presentation/search/bloc/search_bloc.dart';
+
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
+      ..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
   }
 }
 
@@ -48,7 +49,8 @@ Future<void> main() async {
         BlocProvider(create: (context) => locator<FoodProfileCubit>()),
         BlocProvider(create: (context) => locator<FoodMyOrderCubit>()),
         BlocProvider(create: (context) => locator<FavouritesCubit>()),
-     
+        BlocProvider(create: (context) => locator<SearchBloc>()),
+
         BlocProvider(create: (context) => locator<DetailsCubit>()),
         BlocProvider(create: (context) => locator<SplashCubit>()),
         BlocProvider(create: (context) => locator<OtpCubit>()),
@@ -93,8 +95,7 @@ class MyApp extends StatelessWidget {
           builder: (context, child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(),
-              child:
-                  child ?? const SizedBox.shrink(), // Ensure child is not null
+              child: child ?? const SizedBox.shrink(), // Ensure child is not null
             );
           },
         );

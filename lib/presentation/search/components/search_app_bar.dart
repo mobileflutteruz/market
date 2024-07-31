@@ -1,8 +1,8 @@
 part of 'search_components.dart';
 
-
 class FoodSearchAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const FoodSearchAppBarWidget({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +22,15 @@ class FoodSearchAppBarWidget extends StatelessWidget implements PreferredSizeWid
       surfaceTintColor: FoodColors.cffffff,
       shadowColor: const Color(0x11050505),
       foregroundColor: FoodColors.cffffff,
-      title: const FoodSearchTextFieldWidget(),
+      title: FoodSearchTextFieldWidget(
+        onChanged: (value) {
+          context.read<SearchBloc>().add(OnSearchEvent(text: value));
+        },
+      ),
       centerTitle: false,
     );
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

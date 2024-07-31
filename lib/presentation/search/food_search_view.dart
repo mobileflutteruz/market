@@ -1,4 +1,3 @@
-
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/presentation/search/components/search_components.dart';
@@ -110,7 +109,7 @@ class _SearchViewState extends State<FoodSearchView> {
                     ],
                   ),
                   AppUtils.kGap16,
-                   Divider(
+                  Divider(
                     height: 1,
                     color: FoodColors.cEEEEEE,
                   )
