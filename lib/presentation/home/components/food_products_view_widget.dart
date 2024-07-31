@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
+import 'package:karmango/presentation/basket/cubit/food_basket_cubit.dart';
 import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 import 'package:karmango/presentation/home/components/food_product.dart';
 import 'package:karmango/presentation/home/cubit/food_home_cubit.dart';
@@ -79,16 +80,20 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
                         print("Product to  added to Favorite");
                         // context
                         //     .read<FavouritesCubit>().setLikeId(widget.products![index].id!);
-                        context
-                            .read<FavouritesCubit>()
-                            .setLikeId(product.id!);
+                        context.read<FavouritesCubit>().setLikeId(product.id!);
                       },
                       isLiked: state.likeIds.contains(product.id!),
                       product: widget.products[index],
                       onTap: () {
                         showModalView(context, widget.products[index]);
                       },
-                      smallButton: widget.smallButton,
+                      smallButton: () {
+                        context
+                            .read<FoodBasketCubit>()
+                            .setBasketProducts(product.id!);
+                        print(
+                            "BASKEEEEEEEEEEEEEEEEET SEEET ITEEEEEM:   ${context.read<FoodBasketCubit>().setBasketProducts(product.id!)}");
+                      },
                     ),
                   );
                 },

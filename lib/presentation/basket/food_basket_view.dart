@@ -61,21 +61,17 @@ class _BasketViewState extends State<FoodBasketView>
             // buildable.likeIds,
           ],
           builder: (context, state) {
-            if (state.failed) {
-              return const Center(
-                child: Text("Something went wrong"),
-              );
-            }
             if (state.loading &&
                 (state.products == null || state.products!.result!.isEmpty)) {
               return const LoaderWidget();
             }
-            if (state.products == null || state.products!.result!.isEmpty) {
+
+            if (state.failed) {
               return Scaffold(
                 backgroundColor: Colors.white,
                 appBar: const FoodBasketAppBarWidget(),
                 body: Column(
-                  mainAxisAlignment: MainAxisAlignment.center, 
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Align(
@@ -91,8 +87,8 @@ class _BasketViewState extends State<FoodBasketView>
                     ),
                   ],
                 ),
-                 bottomNavigationBar:
-              FoodBasketBottomBarWidget(currentIndex: state.tabIndex),
+                bottomNavigationBar:
+                    FoodBasketBottomBarWidget(currentIndex: state.tabIndex),
               );
             }
             return Scaffold(

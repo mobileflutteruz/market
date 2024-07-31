@@ -62,38 +62,39 @@ class DataRepository {
     return Favourite.fromJson(data);
   }
 
-  Future<Favourite> createFavorite(int productId) async {
-    try {
-      final response = await api.postWithToken(
-        path: '/favorite/create',
-        body: {'product_id': productId},
-      );
+  // Future<Favourite> createFavorite(int productId) async {
+  //   try {
+  //     final response = await api.postWithToken(
+  //       path: '/favorite/create',
+  //       body: {'product_id': productId},
+  //     );
 
-      if (response.statusCode == 200) {
-        // Javobni dekodlash
-        final data = jsonDecode(response.body);
-        // `Favourite` ob'ektini yaratish
-        return Favourite.fromJson(data);
-      } else {
-        // Xatolikni qayd etish
-        print('Failed to create favorite: ${response.body}');
-        throw Exception('Failed to create favorite: ${response.body}');
-      }
-    } catch (e) {
-      print('Error creating favorite: $e');
-      rethrow;
-    }
-  }
-
-  // Future<Favourite> createFavorite({required int product_id}) async {
-  //   final body = {
-  //     "product_id": product_id,
-  //   };
-  //   final response =
-  //       await api.postWithToken(path: "/favorite/delete/$product_id", body: body);
-  //   var data = jsonDecode(response.body);
-  //   return data["status"];
+  //     if (response.statusCode == 200) {
+  //       // Javobni dekodlash
+  //       final data = jsonDecode(response.body);
+  //       // `Favourite` ob'ektini yaratish
+  //       return Favourite.fromJson(data);
+  //     } else {
+  //       // Xatolikni qayd etish
+  //       print('Failed to create favorite: ${response.body}');
+  //       throw Exception('Failed to create favorite: ${response.body}');
+  //     }
+  //   } catch (e) {
+  //     print('Error creating favorite: $e');
+  //     rethrow;
+  //   }
   // }
+
+  Future<Favourite> createFavorite({required int product_id}) async {
+    final body = {
+      "product_id": product_id,
+    };
+    final response =
+        await api.post(path: "/favorite/delete/$product_id", body: body);
+    var data = jsonDecode(response.body);
+    print("ADDEEEEEEED FAVORIT ${response.body}");
+    return data["status"];
+  }
 
   Future<bool> deleteFavorite({required int productId}) async {
     final response =
@@ -124,29 +125,25 @@ class DataRepository {
   }
 
   Future<BasketProducts> createBasket({
-    required int productId,
-  }) async {
-    try {
-      final response = await api.postWithToken(
-        path: "/cart/store",
-        body: {'product_id': productId},
-      );
+  required int productId,
 
-      if (response.statusCode == 200) {
-        // Javobni dekodlash
-        final data = jsonDecode(response.body);
-        // `BasketProducts` ob'ektini yaratish
-        return BasketProducts.fromJson(data);
-      } else {
-        // Xatolikni qayd etish
-        print('Failed to create basket: ${response.body}');
-        throw Exception('Failed to create basket: ${response.body}');
-      }
-    } catch (e) {
-      print('Error creating basket: $e');
-      rethrow;
+}) async {
+  try {
+    final response = await api.postWithToken(
+      path: "/cart/store",
+      body: {'product_id': productId},
+    );
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return BasketProducts.fromJson(data);
+    } else {
+      throw Exception('Failed to create basket: ${response.body}');
     }
+  } catch (e) {
+    print('Error creating basket: $e');
+    rethrow;
   }
+}
 
   /// Cart
   getAllCarts() async {

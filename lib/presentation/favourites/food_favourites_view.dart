@@ -4,6 +4,7 @@ import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/presentation/components/common_app_bar.dart';
+import 'package:karmango/presentation/components/common_blue_button.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
 import 'package:karmango/presentation/favourites/components/food_info.dart';
 import 'package:karmango/presentation/favourites/components/food_product.dart';
@@ -49,28 +50,57 @@ class FavouritesView extends StatelessWidget {
                 child: Text("Something went wrong"),
               );
             }
-            if (state.loading && (state.favourites == null || state.favourites!.result!.isEmpty)) {
+            if (state.loading) {
               return const LoaderWidget();
             }
-            if (state.favourites == null || state.favourites!.result!.isEmpty) {
-              return Scaffold(
-                appBar: CommonAppBar(title: context.l10n.favorites),
-                body: CustomScrollView(
-                  slivers: [
-                    const FoodInfoWidget(favouritesCount: 0),
-                    SliverToBoxAdapter(
-                      child: Column(
-                        children: [
-                          AppUtils.kGap40,
-                          Lottie.asset('assets/animation/food_empty.json'),
-                        ],
+            if (state.failure) {
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .6,
+                      child: Image.asset("assets/images/home_error.png"),
+                    ),
+                    const SizedBox(height: 20),
+                    const Text(
+                      'что-то пошло не так',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF0E1923),
+                        fontSize: 20,
+                        fontFamily: 'Manrope',
+                        fontWeight: FontWeight.w600,
                       ),
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      'Нет результатов поиска, мы не можем найти товар, который вы ищете.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFF7C8A9D),
+                        fontSize: 13,
+                        fontFamily: 'Manrope',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    CommonButtonWidget(
+                      title: "Retry",
+                      onTap: () {
+                        context.read<FavouritesCubit>().fetchFavourites();
+                      },
                     ),
                   ],
                 ),
               );
             }
-            return Scaffold(
+
+
+            if (state.favourites != null && state.favourites!.result!.isNotEmpty) {
+              return Scaffold(
               appBar: CommonAppBar(title: context.l10n.favorites),
               body: CustomScrollView(
                 slivers: [
@@ -102,6 +132,27 @@ class FavouritesView extends StatelessWidget {
                 ],
               ),
             );
+            }
+
+           
+              return Scaffold(
+                appBar: CommonAppBar(title: context.l10n.favorites),
+                body: CustomScrollView(
+                  slivers: [
+                    const FoodInfoWidget(favouritesCount: 0),
+                    SliverToBoxAdapter(
+                      child: Column(
+                        children: [
+                          AppUtils.kGap40,
+                          Lottie.asset('assets/animation/food_empty.json'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            
+            
           },
         ),
       ),

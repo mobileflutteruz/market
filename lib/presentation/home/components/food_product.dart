@@ -7,7 +7,6 @@ import 'package:karmango/domain/model/mobile/home/home.dart';
 import 'package:karmango/presentation/components/image_view.dart';
 import 'package:karmango/presentation/home/components/small_button.dart';
 
-
 class FoodProductItemWidget extends StatefulWidget {
   const FoodProductItemWidget({
     super.key,
@@ -19,7 +18,7 @@ class FoodProductItemWidget extends StatefulWidget {
     this.isNew = false,
   });
 
-  final MobileProduct ? product;
+  final MobileProduct? product;
   final void Function() onTap;
   final void Function()? likeTapped;
   final bool isLiked;
@@ -41,16 +40,15 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
 
   void _toggleLike() {
     setState(() {
+      if (widget.likeTapped != null) {
+        widget.likeTapped!();
+      }
       _isLiked = !_isLiked;
     });
-    if (widget.likeTapped != null) {
-      widget.likeTapped!();
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-  
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
@@ -127,7 +125,7 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
                           ),
                         const Spacer(),
                         InkWell(
-                          onTap: _toggleLike,
+                          onTap: _toggleLike ,
                           child: _isLiked
                               ? Icon(
                                   CupertinoIcons.heart_fill,
@@ -146,7 +144,6 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
             const SizedBox(height: 8),
             Text(
               widget.product!.name ?? "",
-              
               style: TextStyle(
                 color: FoodColors.c0E1923,
                 fontSize: 12,
@@ -160,7 +157,8 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                color: widget.isNew ? FoodColors.primaryColor : FoodColors.cA6AEBF,
+                color:
+                    widget.isNew ? FoodColors.primaryColor : FoodColors.cA6AEBF,
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
               ),
@@ -176,11 +174,12 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
             ),
             const SizedBox(height: 8),
             SmallButton(onTap: widget.smallButton),
-            const SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
           ],
         ),
       ),
     );
   }
 }
-

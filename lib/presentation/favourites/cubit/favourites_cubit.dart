@@ -48,7 +48,7 @@ class FavouritesCubit
     build((buildable) => buildable.copyWith(loading: true));
     try {
       final Favourite? favourite =
-          await _dataRepository.createFavorite(productId);
+          await _dataRepository.createFavorite(product_id: productId);
       build((buildable) => buildable.copyWith(
             loading: false,
             success: true,

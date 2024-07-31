@@ -13,7 +13,7 @@ class ImageViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print( "IMAGEEEEEEEEEEEEEe            ""https://karmango.shop.dukan.uz$imageLink");
+    // print( "IMAGEEEEEEEEEEEEEe            ""https://karmango.shop.dukan.uz$imageLink");
     return isNetImg
         ? Image.network(
             "https://karmango.shop.dukan.uz$imageLink",
