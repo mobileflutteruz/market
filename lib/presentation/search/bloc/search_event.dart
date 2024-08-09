@@ -1,14 +1,14 @@
-part of 'search_bloc.dart';
+// part of 'search_bloc.dart';
 
-sealed class SearchEvent extends Equatable {
-  const SearchEvent();
-}
+// sealed class SearchEvent extends Equatable {
+//   const SearchEvent();
+// }
 
-class OnSearchEvent extends SearchEvent {
-  const OnSearchEvent({required this.text});
+// class OnSearchEvent extends SearchEvent {
+//   const OnSearchEvent({required this.text});
 
-  final String text;
+//   final String text;
 
-  @override
-  List<Object> get props => [text];
-}
+//   @override
+//   List<Object> get props => [text];
+// }

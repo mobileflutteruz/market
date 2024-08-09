@@ -12,7 +12,7 @@ class FoodSearchTextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: AppLayout.getHeight(40, context),
+      height: AppLayout.getHeight(35, context),
       child: TextFormField(
         onChanged: onChanged,
         decoration: InputDecoration(

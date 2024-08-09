@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:karmango/config/app_init/cubit/app_init_cubit.dart';
 import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/config/router/router.dart';
 import 'package:karmango/config/theme/main_theme.dart';
@@ -22,6 +23,7 @@ import 'package:karmango/presentation/my_order/cubit/food_my_order_cubit.dart';
 import 'dart:io';
 
 import 'package:karmango/presentation/search/bloc/search_bloc.dart';
+import 'package:karmango/presentation/search/cubit/search_cubit.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -39,26 +41,21 @@ Future<void> main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        // BlocProvider(create: (context) {
-        //   var bloc = locator<FoodHomeCubit>();
-        //   // bloc.fetchProducts();
-        //   // return bloc;
-        // }),
+        BlocProvider(
+          create: (context) => locator<AppInitCubit>()..checkAuth(),
+        ),
+        BlocProvider(create: (context) => locator<CategoryProductCubit>()),
+        BlocProvider(create: (context) => locator<SearchedCubit>()),
         BlocProvider(create: (context) => locator<LoginCubit>()),
         BlocProvider(create: (context) => locator<FoodBasketCubit>()),
         BlocProvider(create: (context) => locator<FoodProfileCubit>()),
         BlocProvider(create: (context) => locator<FoodMyOrderCubit>()),
         BlocProvider(create: (context) => locator<FavouritesCubit>()),
-        BlocProvider(create: (context) => locator<SearchBloc>()),
-
         BlocProvider(create: (context) => locator<DetailsCubit>()),
         BlocProvider(create: (context) => locator<SplashCubit>()),
         BlocProvider(create: (context) => locator<OtpCubit>()),
         BlocProvider(create: (context) => locator<RegisterCubit>()),
         BlocProvider(create: (context) => locator<FoodHomeCubit>()),
-        //  BlocProvider(create: (context) => locator<CategoryProductCubit>())
-        // BlocProvider(create: (context) => locator<CategoryCubit()),
-        // BlocProvider(create: (context) => locator<CategoryProductsCubit>()),
       ],
       child: const MyApp(),
     ),
@@ -91,7 +88,6 @@ class MyApp extends StatelessWidget {
           themeMode: ThemeMode.light,
           onGenerateRoute: OngenerateRoutes.instance.routeGenerator,
           initialRoute: FoodNavigatorConst.appContainer,
-          // initialRoute: FoodNavigatorConst.foodHome,
           builder: (context, child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(),

@@ -22,10 +22,10 @@ import '../../domain/repository/data_repository.dart' as _i14;
 import '../../domain/repository/main_repository.dart' as _i9;
 import '../../domain/repository/search_repo.dart' as _i21;
 import '../../domain/service/main_serivce.dart' as _i23;
-import '../../presentation/auth/login/cubit/login_cubit.dart' as _i29;
+import '../../presentation/auth/login/cubit/login_cubit.dart' as _i30;
 import '../../presentation/auth/otp/cubit/otp_cubit.dart' as _i26;
 import '../../presentation/auth/register/cubit/register_cubit.dart' as _i25;
-import '../../presentation/auth/splash/cubit/splash_cubit.dart' as _i28;
+import '../../presentation/auth/splash/cubit/splash_cubit.dart' as _i29;
 import '../../presentation/basket/cubit/food_basket_cubit.dart' as _i22;
 import '../../presentation/category/category_item_view/cubit/category_cubit.dart'
     as _i16;
@@ -35,11 +35,12 @@ import '../../presentation/favourites/cubit/favourites_cubit.dart' as _i17;
 import '../../presentation/home/cubit/food_home_cubit.dart' as _i27;
 import '../../presentation/my_order/cubit/food_my_order_cubit.dart' as _i10;
 import '../../presentation/profile/cubit/food_profile_cubit.dart' as _i4;
+import '../../presentation/search/cubit/search_cubit.dart' as _i28;
 import '../app_init/cubit/app_init_cubit.dart' as _i13;
 import '../token_data_source.dart' as _i8;
 import '../user_data_source.dart' as _i6;
 import '../user_session_manager.dart' as _i11;
-import 'data_module.dart' as _i30;
+import 'data_module.dart' as _i31;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -116,11 +117,13 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i14.DataRepository>(),
           gh<_i24.AuthRepository>(),
         ));
-    gh.factory<_i28.SplashCubit>(() => _i28.SplashCubit(
+    gh.factory<_i28.SearchedCubit>(
+        () => _i28.SearchedCubit(gh<_i21.SearchRepository>()));
+    gh.factory<_i29.SplashCubit>(() => _i29.SplashCubit(
           gh<_i24.AuthRepository>(),
           gh<_i7.TokenPreference>(),
         ));
-    gh.factory<_i29.LoginCubit>(() => _i29.LoginCubit(
+    gh.factory<_i30.LoginCubit>(() => _i30.LoginCubit(
           gh<_i19.AuthApi>(),
           gh<_i24.AuthRepository>(),
           gh<_i11.UserSessionManager>(),
@@ -129,4 +132,4 @@ extension GetItInjectableX on _i1.GetIt {
   }
 }
 
-class _$DataModule extends _i30.DataModule {}
+class _$DataModule extends _i31.DataModule {}

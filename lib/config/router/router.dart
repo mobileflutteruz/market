@@ -61,8 +61,8 @@ class OngenerateRoutes {
         return sampleRoute(const FoodSplashView());
       case FoodNavigatorConst.foodHome:
         return sampleRoute(const FoodHomePage());
-      case FoodNavigatorConst.foodSearchPage:
-        return sampleRoute(const FoodSearchPage());
+      // case FoodNavigatorConst.foodSearchPage:
+      //   return sampleRoute(const FoodSearchPage());
       case FoodNavigatorConst.foodProfileCard:
         return sampleRoute(const FoodProfileCardPage());
       case FoodNavigatorConst.foodFavourites:

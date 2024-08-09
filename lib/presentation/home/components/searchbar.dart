@@ -1,7 +1,6 @@
 import 'package:karmango/core/constants/constants.dart';
-
-import 'package:karmango/presentation/search/food_search_page.dart';
 import 'package:karmango/core/extension/context_extension.dart';
+import 'package:karmango/presentation/search/food_search_view.dart';
 import '../../../../core/utils/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +14,7 @@ class FoodSearchBarWidget extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => const FoodSearchPage(),
+            builder: (_) =>  FoodSearchView(),
           ),
         );
       },

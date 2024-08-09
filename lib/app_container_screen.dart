@@ -2,43 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/presentation/auth/login/food_login_page.dart';
 import 'package:karmango/presentation/auth/splash/food_splash_view.dart';
-import 'package:karmango/presentation/category/category_item_view/cubit/category_cubit.dart';
 import 'package:karmango/presentation/home/food_home_page.dart';
-import 'config/app_init/cubit/app_init_cubit.dart';
-import 'config/app_init/cubit/app_init_state.dart';
-import 'config/di/injection.dart';
+import 'package:karmango/config/app_init/cubit/app_init_cubit.dart';
+import 'package:karmango/config/app_init/cubit/app_init_state.dart';
 
 class AppContainerScreen extends StatelessWidget {
   const AppContainerScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => locator<AppInitCubit>()..checkAuth(),
-        ),
-       BlocProvider(create: (context) => locator<CategoryProductCubit>())
-      ],
-      child: BlocListener<AppInitCubit, AppInitState>(
-        listener: _onAuthStateChanged,
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: Builder(
-            builder: (context) {
-              final appInitCubit = context.read<AppInitCubit>();
-              final state = appInitCubit.state;
-              if (state is AppInitLoadingState) {
-                return const FoodSplashView();
-              } else if (state is AuthorizedState) {
-                return const FoodHomePage();
-              } else if (state is UnauthorizedState) {
-                return const FoodLoginPage();
-              } else {
-                return Container(); // Fallback in case of unexpected state
-              }
-            },
-          ),
+    return BlocListener<AppInitCubit, AppInitState>(
+      listener: _onAuthStateChanged,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Builder(
+          builder: (context) {
+            final appInitCubit = context.read<AppInitCubit>();
+            final state = appInitCubit.state;
+            if (state is AppInitLoadingState) {
+              return const FoodSplashView();
+            } else if (state is AuthorizedState) {
+              return const FoodHomePage();
+            } else if (state is UnauthorizedState) {
+              return const FoodLoginPage();
+            } else {
+              return Container(); // Fallback in case of unexpected state
+            }
+          },
         ),
       ),
     );

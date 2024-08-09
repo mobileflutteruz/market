@@ -22,8 +22,10 @@ SearchProduct _$SearchProductFromJson(Map<String, dynamic> json) {
 mixin _$SearchProduct {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  dynamic get description => throw _privateConstructorUsedError;
-  dynamic get details_of_product => throw _privateConstructorUsedError;
+  String? get description =>
+      throw _privateConstructorUsedError; // Null bo'lishi mumkin, shuning uchun String? qilinadi
+  String? get details_of_product =>
+      throw _privateConstructorUsedError; // Null bo'lishi mumkin, shuning uchun String? qilinadi
   int? get price => throw _privateConstructorUsedError;
   int? get quantity => throw _privateConstructorUsedError;
   int? get quantity_rest => throw _privateConstructorUsedError;
@@ -32,7 +34,7 @@ mixin _$SearchProduct {
   String? get status => throw _privateConstructorUsedError;
   String? get product_type => throw _privateConstructorUsedError;
   int? get category_id => throw _privateConstructorUsedError;
-  dynamic get created_at => throw _privateConstructorUsedError;
+  DateTime? get created_at => throw _privateConstructorUsedError;
   DateTime? get updated_at => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,8 +52,8 @@ abstract class $SearchProductCopyWith<$Res> {
   $Res call(
       {int? id,
       String? name,
-      dynamic description,
-      dynamic details_of_product,
+      String? description,
+      String? details_of_product,
       int? price,
       int? quantity,
       int? quantity_rest,
@@ -60,7 +62,7 @@ abstract class $SearchProductCopyWith<$Res> {
       String? status,
       String? product_type,
       int? category_id,
-      dynamic created_at,
+      DateTime? created_at,
       DateTime? updated_at});
 }
 
@@ -104,11 +106,11 @@ class _$SearchProductCopyWithImpl<$Res, $Val extends SearchProduct>
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       details_of_product: freezed == details_of_product
           ? _value.details_of_product
           : details_of_product // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -144,7 +146,7 @@ class _$SearchProductCopyWithImpl<$Res, $Val extends SearchProduct>
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as DateTime?,
       updated_at: freezed == updated_at
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
@@ -164,8 +166,8 @@ abstract class _$$SearchProductImplCopyWith<$Res>
   $Res call(
       {int? id,
       String? name,
-      dynamic description,
-      dynamic details_of_product,
+      String? description,
+      String? details_of_product,
       int? price,
       int? quantity,
       int? quantity_rest,
@@ -174,7 +176,7 @@ abstract class _$$SearchProductImplCopyWith<$Res>
       String? status,
       String? product_type,
       int? category_id,
-      dynamic created_at,
+      DateTime? created_at,
       DateTime? updated_at});
 }
 
@@ -216,11 +218,11 @@ class __$$SearchProductImplCopyWithImpl<$Res>
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       details_of_product: freezed == details_of_product
           ? _value.details_of_product
           : details_of_product // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -256,7 +258,7 @@ class __$$SearchProductImplCopyWithImpl<$Res>
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as DateTime?,
       updated_at: freezed == updated_at
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
@@ -292,9 +294,11 @@ class _$SearchProductImpl implements _SearchProduct {
   @override
   final String? name;
   @override
-  final dynamic description;
+  final String? description;
+// Null bo'lishi mumkin, shuning uchun String? qilinadi
   @override
-  final dynamic details_of_product;
+  final String? details_of_product;
+// Null bo'lishi mumkin, shuning uchun String? qilinadi
   @override
   final int? price;
   @override
@@ -312,7 +316,7 @@ class _$SearchProductImpl implements _SearchProduct {
   @override
   final int? category_id;
   @override
-  final dynamic created_at;
+  final DateTime? created_at;
   @override
   final DateTime? updated_at;
 
@@ -328,10 +332,10 @@ class _$SearchProductImpl implements _SearchProduct {
             other is _$SearchProductImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality()
-                .equals(other.details_of_product, details_of_product) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.details_of_product, details_of_product) ||
+                other.details_of_product == details_of_product) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
@@ -345,8 +349,8 @@ class _$SearchProductImpl implements _SearchProduct {
                 other.product_type == product_type) &&
             (identical(other.category_id, category_id) ||
                 other.category_id == category_id) &&
-            const DeepCollectionEquality()
-                .equals(other.created_at, created_at) &&
+            (identical(other.created_at, created_at) ||
+                other.created_at == created_at) &&
             (identical(other.updated_at, updated_at) ||
                 other.updated_at == updated_at));
   }
@@ -357,8 +361,8 @@ class _$SearchProductImpl implements _SearchProduct {
       runtimeType,
       id,
       name,
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(details_of_product),
+      description,
+      details_of_product,
       price,
       quantity,
       quantity_rest,
@@ -367,7 +371,7 @@ class _$SearchProductImpl implements _SearchProduct {
       status,
       product_type,
       category_id,
-      const DeepCollectionEquality().hash(created_at),
+      created_at,
       updated_at);
 
   @JsonKey(ignore: true)
@@ -388,8 +392,8 @@ abstract class _SearchProduct implements SearchProduct {
   const factory _SearchProduct(
       {final int? id,
       final String? name,
-      final dynamic description,
-      final dynamic details_of_product,
+      final String? description,
+      final String? details_of_product,
       final int? price,
       final int? quantity,
       final int? quantity_rest,
@@ -398,7 +402,7 @@ abstract class _SearchProduct implements SearchProduct {
       final String? status,
       final String? product_type,
       final int? category_id,
-      final dynamic created_at,
+      final DateTime? created_at,
       final DateTime? updated_at}) = _$SearchProductImpl;
 
   factory _SearchProduct.fromJson(Map<String, dynamic> json) =
@@ -409,10 +413,10 @@ abstract class _SearchProduct implements SearchProduct {
   @override
   String? get name;
   @override
-  dynamic get description;
-  @override
-  dynamic get details_of_product;
-  @override
+  String? get description;
+  @override // Null bo'lishi mumkin, shuning uchun String? qilinadi
+  String? get details_of_product;
+  @override // Null bo'lishi mumkin, shuning uchun String? qilinadi
   int? get price;
   @override
   int? get quantity;
@@ -429,7 +433,7 @@ abstract class _SearchProduct implements SearchProduct {
   @override
   int? get category_id;
   @override
-  dynamic get created_at;
+  DateTime? get created_at;
   @override
   DateTime? get updated_at;
   @override

@@ -24,7 +24,7 @@ class FoodSearchAppBarWidget extends StatelessWidget implements PreferredSizeWid
       foregroundColor: FoodColors.cffffff,
       title: FoodSearchTextFieldWidget(
         onChanged: (value) {
-          context.read<SearchBloc>().add(OnSearchEvent(text: value));
+          context.read<SearchedCubit>().searchProducts(value);
         },
       ),
       centerTitle: false,

@@ -125,25 +125,24 @@ class DataRepository {
   }
 
   Future<BasketProducts> createBasket({
-  required int productId,
-
-}) async {
-  try {
-    final response = await api.postWithToken(
-      path: "/cart/store",
-      body: {'product_id': productId},
-    );
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      return BasketProducts.fromJson(data);
-    } else {
-      throw Exception('Failed to create basket: ${response.body}');
+    required int productId,
+  }) async {
+    try {
+      final response = await api.postWithToken(
+        path: "/cart/store",
+        body: {'product_id': productId},
+      );
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return BasketProducts.fromJson(data);
+      } else {
+        throw Exception('Failed to create basket: ${response.body}');
+      }
+    } catch (e) {
+      print('Error creating basket: $e');
+      rethrow;
     }
-  } catch (e) {
-    print('Error creating basket: $e');
-    rethrow;
   }
-}
 
   /// Cart
   getAllCarts() async {
