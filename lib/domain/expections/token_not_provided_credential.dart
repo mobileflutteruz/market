@@ -1,0 +1,3 @@
+class TokenCredentialExceptions implements Exception {
+
+}

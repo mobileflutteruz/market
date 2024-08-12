@@ -5,6 +5,7 @@ import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/domain/repository/auth_repository.dart';
 import 'package:karmango/presentation/auth/login/cubit/login_cubit.dart';
 import 'package:karmango/presentation/auth/otp/components/custom_pin.dart';
+import 'package:karmango/presentation/auth/otp/cubit/otp_cubit.dart';
 import 'package:karmango/presentation/auth/register/components/checkbox_widget.dart';
 import 'package:karmango/presentation/auth/widgets/app_logo.dart';
 import 'package:karmango/presentation/auth/widgets/couple_text.dart';

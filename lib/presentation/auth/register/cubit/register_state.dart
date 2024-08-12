@@ -9,6 +9,9 @@ class RegisterBuildableState extends RegisterState
     @Default(false) bool loading,
     @Default(false) bool success,
     @Default(false) bool failure,
-    dynamic error,
+      dynamic error,
+    UserModel? user,
+  
+    dynamic token,
   }) = _RegisterBuildableState;
 }

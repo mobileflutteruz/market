@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:karmango/core/constants/logger_service.dart';
 import 'package:karmango/data/api/auth_api.dart';
 import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
+import 'package:karmango/domain/model/auth/register/register.dart';
 
 import 'package:uuid/uuid.dart';
 import '../../core/constants/constants.dart';
@@ -23,20 +24,42 @@ class AuthRepository {
   final LoggingService log = LoggingService();
 
   /// Registers a new user with the provided details.
-  Future<void> register({
+  Future<RegisterModel> register({
     required String password,
     required String phone,
     required String name,
   }) async {
-    try {
-      final response = await _authApi.register(password, phone, name);
-      await _onAuthResponse(response);
-    } catch (e) {
-      log.logError("Error registering user", error: e);
-    }
+    final query = {
+      "password": password,
+      "phone": phone,
+      "name": name,
+    };
+    final response = await _api.postWithToken(path: "/register", body: query);
+    final result = jsonDecode(response.body);
+    final RegisterModel data =
+        RegisterModel.fromJson(result as Map<String, dynamic>);
+    return data;
   }
 
- /// Logs in a user with the given phone number and password.
+  Future<AuthResponse> login({
+    required String phone,
+    required String password,
+  }) async {
+    final query = {
+      "phone": phone,
+      "password": password,
+    };
+
+    final response = await _api.post(path: '/login', body: query);
+    final result = jsonDecode(response.body);
+
+    final AuthResponse data =
+        AuthResponse.fromJson(result as Map<String, dynamic>);
+
+    return data;
+  }
+
+  /// Logs in a user with the given phone number and password.
   ///
   ///
   // Future<void> login({
@@ -55,26 +78,6 @@ class AuthRepository {
   //     log.logError("Error logging in", error: e);
   //   }
   // }
-
-  Future<AuthResponse> login({
-    required String phone,
-    required String password,
-  }) async {
-    final query = {
-      "phone": phone,
-      "password": password,
-    };
-
-
-    final response =   await _api.post(path: '/login', body: query);
-    final result = jsonDecode(response.body);
-
-    final AuthResponse data =
-    AuthResponse.fromJson(result as Map<String, dynamic>);
-
-    return data;
-  }
-
 
   /// Logs out the current user and clears the token.
   Future<void> logout() async {
@@ -162,7 +165,6 @@ class AuthRepository {
     }
   }
 
-
   /// Activates a user with the given phone number and code.
   Future<void> activateUser({
     required String phone,
@@ -233,8 +235,7 @@ class AuthRepository {
     final body = jsonDecode(response.body);
 
     if (body["token"] == null) {
-       log.logDebug("TOKEN: $body");
-      
+      log.logDebug("TOKEN: $body");
     } else {
       await _token.set(body["token"]);
     }

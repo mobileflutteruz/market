@@ -299,3 +299,488 @@ abstract class _UserModel implements UserModel {
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+User _$UserFromJson(Map<String, dynamic> json) {
+  return _User.fromJson(json);
+}
+
+/// @nodoc
+mixin _$User {
+  String? get name => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  String? get token => throw _privateConstructorUsedError;
+  dynamic get photo => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserCopyWith<$Res> {
+  factory $UserCopyWith(User value, $Res Function(User) then) =
+      _$UserCopyWithImpl<$Res, User>;
+  @useResult
+  $Res call({String? name, String? phone, String? token, dynamic photo});
+}
+
+/// @nodoc
+class _$UserCopyWithImpl<$Res, $Val extends User>
+    implements $UserCopyWith<$Res> {
+  _$UserCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? phone = freezed,
+    Object? token = freezed,
+    Object? photo = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photo: freezed == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
+  factory _$$UserImplCopyWith(
+          _$UserImpl value, $Res Function(_$UserImpl) then) =
+      __$$UserImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? name, String? phone, String? token, dynamic photo});
+}
+
+/// @nodoc
+class __$$UserImplCopyWithImpl<$Res>
+    extends _$UserCopyWithImpl<$Res, _$UserImpl>
+    implements _$$UserImplCopyWith<$Res> {
+  __$$UserImplCopyWithImpl(_$UserImpl _value, $Res Function(_$UserImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+    Object? phone = freezed,
+    Object? token = freezed,
+    Object? photo = freezed,
+  }) {
+    return _then(_$UserImpl(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photo: freezed == photo
+          ? _value.photo
+          : photo // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$UserImpl implements _User {
+  const _$UserImpl({this.name, this.phone, this.token, this.photo});
+
+  factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserImplFromJson(json);
+
+  @override
+  final String? name;
+  @override
+  final String? phone;
+  @override
+  final String? token;
+  @override
+  final dynamic photo;
+
+  @override
+  String toString() {
+    return 'User(name: $name, phone: $phone, token: $token, photo: $photo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.token, token) || other.token == token) &&
+            const DeepCollectionEquality().equals(other.photo, photo));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, phone, token,
+      const DeepCollectionEquality().hash(photo));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
+      __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UserImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _User implements User {
+  const factory _User(
+      {final String? name,
+      final String? phone,
+      final String? token,
+      final dynamic photo}) = _$UserImpl;
+
+  factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
+
+  @override
+  String? get name;
+  @override
+  String? get phone;
+  @override
+  String? get token;
+  @override
+  dynamic get photo;
+  @override
+  @JsonKey(ignore: true)
+  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+UserInfoss _$UserInfossFromJson(Map<String, dynamic> json) {
+  return _UserInfoss.fromJson(json);
+}
+
+/// @nodoc
+mixin _$UserInfoss {
+  bool? get status => throw _privateConstructorUsedError;
+  User? get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UserInfossCopyWith<UserInfoss> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserInfossCopyWith<$Res> {
+  factory $UserInfossCopyWith(
+          UserInfoss value, $Res Function(UserInfoss) then) =
+      _$UserInfossCopyWithImpl<$Res, UserInfoss>;
+  @useResult
+  $Res call({bool? status, User? data});
+
+  $UserCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class _$UserInfossCopyWithImpl<$Res, $Val extends UserInfoss>
+    implements $UserInfossCopyWith<$Res> {
+  _$UserInfossCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_value.copyWith(
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as User?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.data!, (value) {
+      return _then(_value.copyWith(data: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$UserInfossImplCopyWith<$Res>
+    implements $UserInfossCopyWith<$Res> {
+  factory _$$UserInfossImplCopyWith(
+          _$UserInfossImpl value, $Res Function(_$UserInfossImpl) then) =
+      __$$UserInfossImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool? status, User? data});
+
+  @override
+  $UserCopyWith<$Res>? get data;
+}
+
+/// @nodoc
+class __$$UserInfossImplCopyWithImpl<$Res>
+    extends _$UserInfossCopyWithImpl<$Res, _$UserInfossImpl>
+    implements _$$UserInfossImplCopyWith<$Res> {
+  __$$UserInfossImplCopyWithImpl(
+      _$UserInfossImpl _value, $Res Function(_$UserInfossImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = freezed,
+    Object? data = freezed,
+  }) {
+    return _then(_$UserInfossImpl(
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      data: freezed == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as User?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$UserInfossImpl implements _UserInfoss {
+  const _$UserInfossImpl({this.status, this.data});
+
+  factory _$UserInfossImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserInfossImplFromJson(json);
+
+  @override
+  final bool? status;
+  @override
+  final User? data;
+
+  @override
+  String toString() {
+    return 'UserInfoss(status: $status, data: $data)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserInfossImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, status, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserInfossImplCopyWith<_$UserInfossImpl> get copyWith =>
+      __$$UserInfossImplCopyWithImpl<_$UserInfossImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$UserInfossImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _UserInfoss implements UserInfoss {
+  const factory _UserInfoss({final bool? status, final User? data}) =
+      _$UserInfossImpl;
+
+  factory _UserInfoss.fromJson(Map<String, dynamic> json) =
+      _$UserInfossImpl.fromJson;
+
+  @override
+  bool? get status;
+  @override
+  User? get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$UserInfossImplCopyWith<_$UserInfossImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Role _$RoleFromJson(Map<String, dynamic> json) {
+  return _Role.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Role {
+  String? get name => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RoleCopyWith<Role> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RoleCopyWith<$Res> {
+  factory $RoleCopyWith(Role value, $Res Function(Role) then) =
+      _$RoleCopyWithImpl<$Res, Role>;
+  @useResult
+  $Res call({String? name});
+}
+
+/// @nodoc
+class _$RoleCopyWithImpl<$Res, $Val extends Role>
+    implements $RoleCopyWith<$Res> {
+  _$RoleCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RoleImplCopyWith<$Res> implements $RoleCopyWith<$Res> {
+  factory _$$RoleImplCopyWith(
+          _$RoleImpl value, $Res Function(_$RoleImpl) then) =
+      __$$RoleImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? name});
+}
+
+/// @nodoc
+class __$$RoleImplCopyWithImpl<$Res>
+    extends _$RoleCopyWithImpl<$Res, _$RoleImpl>
+    implements _$$RoleImplCopyWith<$Res> {
+  __$$RoleImplCopyWithImpl(_$RoleImpl _value, $Res Function(_$RoleImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+  }) {
+    return _then(_$RoleImpl(
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RoleImpl implements _Role {
+  const _$RoleImpl({this.name});
+
+  factory _$RoleImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RoleImplFromJson(json);
+
+  @override
+  final String? name;
+
+  @override
+  String toString() {
+    return 'Role(name: $name)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RoleImpl &&
+            (identical(other.name, name) || other.name == name));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, name);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RoleImplCopyWith<_$RoleImpl> get copyWith =>
+      __$$RoleImplCopyWithImpl<_$RoleImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RoleImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Role implements Role {
+  const factory _Role({final String? name}) = _$RoleImpl;
+
+  factory _Role.fromJson(Map<String, dynamic> json) = _$RoleImpl.fromJson;
+
+  @override
+  String? get name;
+  @override
+  @JsonKey(ignore: true)
+  _$$RoleImplCopyWith<_$RoleImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

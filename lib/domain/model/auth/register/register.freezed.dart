@@ -14,34 +14,35 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-RegisterResponse _$RegisterResponseFromJson(Map<String, dynamic> json) {
-  return _RegisterResponse.fromJson(json);
+RegisterModel _$RegisterModelFromJson(Map<String, dynamic> json) {
+  return _RegisterModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$RegisterResponse {
-  bool get status => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+mixin _$RegisterModel {
+  bool? get status => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RegisterResponseCopyWith<RegisterResponse> get copyWith =>
+  $RegisterModelCopyWith<RegisterModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RegisterResponseCopyWith<$Res> {
-  factory $RegisterResponseCopyWith(
-          RegisterResponse value, $Res Function(RegisterResponse) then) =
-      _$RegisterResponseCopyWithImpl<$Res, RegisterResponse>;
+abstract class $RegisterModelCopyWith<$Res> {
+  factory $RegisterModelCopyWith(
+          RegisterModel value, $Res Function(RegisterModel) then) =
+      _$RegisterModelCopyWithImpl<$Res, RegisterModel>;
   @useResult
-  $Res call({bool status, String message});
+  $Res call({bool? status, String? message, String? phone});
 }
 
 /// @nodoc
-class _$RegisterResponseCopyWithImpl<$Res, $Val extends RegisterResponse>
-    implements $RegisterResponseCopyWith<$Res> {
-  _$RegisterResponseCopyWithImpl(this._value, this._then);
+class _$RegisterModelCopyWithImpl<$Res, $Val extends RegisterModel>
+    implements $RegisterModelCopyWith<$Res> {
+  _$RegisterModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -51,120 +52,135 @@ class _$RegisterResponseCopyWithImpl<$Res, $Val extends RegisterResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
-    Object? message = null,
+    Object? status = freezed,
+    Object? message = freezed,
+    Object? phone = freezed,
   }) {
     return _then(_value.copyWith(
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool,
-      message: null == message
+              as bool?,
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$RegisterResponseImplCopyWith<$Res>
-    implements $RegisterResponseCopyWith<$Res> {
-  factory _$$RegisterResponseImplCopyWith(_$RegisterResponseImpl value,
-          $Res Function(_$RegisterResponseImpl) then) =
-      __$$RegisterResponseImplCopyWithImpl<$Res>;
+abstract class _$$RegisterModelImplCopyWith<$Res>
+    implements $RegisterModelCopyWith<$Res> {
+  factory _$$RegisterModelImplCopyWith(
+          _$RegisterModelImpl value, $Res Function(_$RegisterModelImpl) then) =
+      __$$RegisterModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool status, String message});
+  $Res call({bool? status, String? message, String? phone});
 }
 
 /// @nodoc
-class __$$RegisterResponseImplCopyWithImpl<$Res>
-    extends _$RegisterResponseCopyWithImpl<$Res, _$RegisterResponseImpl>
-    implements _$$RegisterResponseImplCopyWith<$Res> {
-  __$$RegisterResponseImplCopyWithImpl(_$RegisterResponseImpl _value,
-      $Res Function(_$RegisterResponseImpl) _then)
+class __$$RegisterModelImplCopyWithImpl<$Res>
+    extends _$RegisterModelCopyWithImpl<$Res, _$RegisterModelImpl>
+    implements _$$RegisterModelImplCopyWith<$Res> {
+  __$$RegisterModelImplCopyWithImpl(
+      _$RegisterModelImpl _value, $Res Function(_$RegisterModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = null,
-    Object? message = null,
+    Object? status = freezed,
+    Object? message = freezed,
+    Object? phone = freezed,
   }) {
-    return _then(_$RegisterResponseImpl(
-      status: null == status
+    return _then(_$RegisterModelImpl(
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool,
-      message: null == message
+              as bool?,
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      phone: freezed == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$RegisterResponseImpl implements _RegisterResponse {
-  const _$RegisterResponseImpl({required this.status, required this.message});
+class _$RegisterModelImpl implements _RegisterModel {
+  const _$RegisterModelImpl({this.status, this.message, this.phone});
 
-  factory _$RegisterResponseImpl.fromJson(Map<String, dynamic> json) =>
-      _$$RegisterResponseImplFromJson(json);
+  factory _$RegisterModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RegisterModelImplFromJson(json);
 
   @override
-  final bool status;
+  final bool? status;
   @override
-  final String message;
+  final String? message;
+  @override
+  final String? phone;
 
   @override
   String toString() {
-    return 'RegisterResponse(status: $status, message: $message)';
+    return 'RegisterModel(status: $status, message: $message, phone: $phone)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RegisterResponseImpl &&
+            other is _$RegisterModelImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.phone, phone) || other.phone == phone));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message);
+  int get hashCode => Object.hash(runtimeType, status, message, phone);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RegisterResponseImplCopyWith<_$RegisterResponseImpl> get copyWith =>
-      __$$RegisterResponseImplCopyWithImpl<_$RegisterResponseImpl>(
-          this, _$identity);
+  _$$RegisterModelImplCopyWith<_$RegisterModelImpl> get copyWith =>
+      __$$RegisterModelImplCopyWithImpl<_$RegisterModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$RegisterResponseImplToJson(
+    return _$$RegisterModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _RegisterResponse implements RegisterResponse {
-  const factory _RegisterResponse(
-      {required final bool status,
-      required final String message}) = _$RegisterResponseImpl;
+abstract class _RegisterModel implements RegisterModel {
+  const factory _RegisterModel(
+      {final bool? status,
+      final String? message,
+      final String? phone}) = _$RegisterModelImpl;
 
-  factory _RegisterResponse.fromJson(Map<String, dynamic> json) =
-      _$RegisterResponseImpl.fromJson;
+  factory _RegisterModel.fromJson(Map<String, dynamic> json) =
+      _$RegisterModelImpl.fromJson;
 
   @override
-  bool get status;
+  bool? get status;
   @override
-  String get message;
+  String? get message;
+  @override
+  String? get phone;
   @override
   @JsonKey(ignore: true)
-  _$$RegisterResponseImplCopyWith<_$RegisterResponseImpl> get copyWith =>
+  _$$RegisterModelImplCopyWith<_$RegisterModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

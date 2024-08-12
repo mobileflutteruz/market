@@ -49,6 +49,7 @@ class _RegisterViewState extends State<FoodRegisterView> {
                             color: FoodColors.c0E1923,
                           ),
                         ),
+                        AppUtils.kGap8,
                         NameInputWidget(
                           hintText: context.l10n.enterYourFirstNameAndLastName,
                           textEditingController:
@@ -63,6 +64,7 @@ class _RegisterViewState extends State<FoodRegisterView> {
                             color: FoodColors.c0E1923,
                           ),
                         ),
+                        AppUtils.kGap8,
                         PhoneInputWidget(
                           hintText: context.l10n.enterPhoneNumber,
                           textEditingController:

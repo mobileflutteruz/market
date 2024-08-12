@@ -1,4 +1,5 @@
 
+import 'package:karmango/domain/model/user/user_model.dart';
 import 'package:karmango/presentation/components/buildable_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -48,6 +49,10 @@ class RegisterCubit
         ),
       );
     }
+  }
+   logout() async {
+    authRepo.logout();
+    // emit(const ProfileState.update());
   }
 
   @override

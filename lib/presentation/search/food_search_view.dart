@@ -72,7 +72,7 @@ class _FoodSearchViewState extends State<FoodSearchView> {
             // Agar qidiruv natijalari bo'lmasa, recent va popular qidiruvlarni ko'rsatish
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              
               children: [
                 _buildRecentSearches(state),
                 const SizedBox(height: 16),

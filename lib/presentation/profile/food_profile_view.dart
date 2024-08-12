@@ -5,6 +5,7 @@ import 'package:karmango/core/constants/navigator_const.dart';
 
 import 'package:karmango/data/locale_db/food_db.dart';
 import 'package:karmango/domain/model/user/user_model.dart';
+import 'package:karmango/presentation/auth/register/cubit/register_cubit.dart';
 import 'package:karmango/presentation/profile/components/exit_button.dart';
 import 'package:karmango/presentation/profile/components/my_card_item.dart';
 import 'package:karmango/presentation/profile/components/profile_app_bar.dart';
@@ -114,7 +115,7 @@ class _FoodProfileViewState extends State<FoodProfileView> {
                                                     .foodProfileEdit);
                                           },
                                           child: Text(
-                                                  context.l10n.signIn,
+                                            context.l10n.signIn,
                                             style: Styles.manropeSemiBold16
                                                 .copyWith(
                                               color: FoodColors.cffffff,
@@ -157,7 +158,8 @@ class _FoodProfileViewState extends State<FoodProfileView> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          foodUser?.name ?? context.l10n.whats_your_name,
+                                          foodUser?.name ??
+                                              context.l10n.whats_your_name,
                                           style: Styles.interMedium16.copyWith(
                                             color: FoodColors.c0E1A23,
                                           ),
@@ -170,8 +172,7 @@ class _FoodProfileViewState extends State<FoodProfileView> {
                                           ),
                                         ),
                                         AppUtils.kGap16,
-                                       
-                                                foodUser?.cards == null
+                                        foodUser?.cards == null
                                             ? FoodProfileCardWidget(
                                                 isProfileCard: true,
                                                 balance:
@@ -339,6 +340,7 @@ class _FoodProfileViewState extends State<FoodProfileView> {
               ),
             ),
             onPressed: () {
+              context.read<RegisterCubit>().logout();
               Navigator.pop(context);
               // Add your logic for the OK button here
             },

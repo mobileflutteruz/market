@@ -22,13 +22,29 @@ class TokenPreference {
   final String _mobileInitScreen = "mobileInitScreen";
   final String _furnitureInitScreen = "furnitureInitScreen";
 
+  Future<void> saveGuestUser(String token) async {
+    // Tokenni saqlash jarayoni
+    // Masalan, SharedPreferences orqali:
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('guest_token', token);
+    print('Guest token saqlandi: $token');
+  }
+
+  Future<String?> getGuestUser() async {
+    // Tokenni olish jarayoni
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('guest');
+  }
+
+
+
   setGuestUser(String value) async {
     await localeDb.setString(_guest, value);
   }
 
-  getGuestUser() async {
-    return localeDb.getString(_guest);
-  }
+  // getGuestUser() async {
+  //   return localeDb.getString(_guest);
+  // }
 
   Future<void> setUser(Map<String, dynamic> json) async {
     String user = jsonEncode(UserModel.fromJson(json));

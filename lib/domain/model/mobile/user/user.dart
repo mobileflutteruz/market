@@ -21,3 +21,34 @@ class UserModel with _$UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 }
+
+
+
+@freezed
+class User with _$User {
+  const factory User({
+    String? name,
+    String? phone,
+    String? token,
+    dynamic photo,
+  }) = _User;
+
+  factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
+}
+
+@freezed
+class UserInfoss with _$UserInfoss {
+  const factory UserInfoss({
+    bool? status,
+    User? data,
+  }) = _UserInfoss;
+
+  factory UserInfoss.fromJson(Map<String, Object?> json) => _$UserInfossFromJson(json);
+}
+
+@freezed
+class Role with _$Role {
+  const factory Role({String? name}) = _Role;
+
+  factory Role.fromJson(Map<String, Object?> json) => _$RoleFromJson(json);
+}

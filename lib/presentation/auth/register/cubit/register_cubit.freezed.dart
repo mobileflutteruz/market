@@ -20,6 +20,8 @@ mixin _$RegisterBuildableState {
   bool get success => throw _privateConstructorUsedError;
   bool get failure => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
+  UserModel? get user => throw _privateConstructorUsedError;
+  dynamic get token => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RegisterBuildableStateCopyWith<RegisterBuildableState> get copyWith =>
@@ -32,7 +34,13 @@ abstract class $RegisterBuildableStateCopyWith<$Res> {
           $Res Function(RegisterBuildableState) then) =
       _$RegisterBuildableStateCopyWithImpl<$Res, RegisterBuildableState>;
   @useResult
-  $Res call({bool loading, bool success, bool failure, dynamic error});
+  $Res call(
+      {bool loading,
+      bool success,
+      bool failure,
+      dynamic error,
+      UserModel? user,
+      dynamic token});
 }
 
 /// @nodoc
@@ -53,6 +61,8 @@ class _$RegisterBuildableStateCopyWithImpl<$Res,
     Object? success = null,
     Object? failure = null,
     Object? error = freezed,
+    Object? user = freezed,
+    Object? token = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -71,6 +81,14 @@ class _$RegisterBuildableStateCopyWithImpl<$Res,
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 }
@@ -84,7 +102,13 @@ abstract class _$$RegisterBuildableStateImplCopyWith<$Res>
       __$$RegisterBuildableStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, bool success, bool failure, dynamic error});
+  $Res call(
+      {bool loading,
+      bool success,
+      bool failure,
+      dynamic error,
+      UserModel? user,
+      dynamic token});
 }
 
 /// @nodoc
@@ -104,6 +128,8 @@ class __$$RegisterBuildableStateImplCopyWithImpl<$Res>
     Object? success = null,
     Object? failure = null,
     Object? error = freezed,
+    Object? user = freezed,
+    Object? token = freezed,
   }) {
     return _then(_$RegisterBuildableStateImpl(
       loading: null == loading
@@ -122,6 +148,14 @@ class __$$RegisterBuildableStateImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ));
   }
 }
@@ -133,7 +167,9 @@ class _$RegisterBuildableStateImpl implements _RegisterBuildableState {
       {this.loading = false,
       this.success = false,
       this.failure = false,
-      this.error});
+      this.error,
+      this.user,
+      this.token});
 
   @override
   @JsonKey()
@@ -146,10 +182,14 @@ class _$RegisterBuildableStateImpl implements _RegisterBuildableState {
   final bool failure;
   @override
   final dynamic error;
+  @override
+  final UserModel? user;
+  @override
+  final dynamic token;
 
   @override
   String toString() {
-    return 'RegisterBuildableState(loading: $loading, success: $success, failure: $failure, error: $error)';
+    return 'RegisterBuildableState(loading: $loading, success: $success, failure: $failure, error: $error, user: $user, token: $token)';
   }
 
   @override
@@ -160,12 +200,20 @@ class _$RegisterBuildableStateImpl implements _RegisterBuildableState {
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.success, success) || other.success == success) &&
             (identical(other.failure, failure) || other.failure == failure) &&
-            const DeepCollectionEquality().equals(other.error, error));
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.user, user) || other.user == user) &&
+            const DeepCollectionEquality().equals(other.token, token));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, success, failure,
-      const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(
+      runtimeType,
+      loading,
+      success,
+      failure,
+      const DeepCollectionEquality().hash(error),
+      user,
+      const DeepCollectionEquality().hash(token));
 
   @JsonKey(ignore: true)
   @override
@@ -180,7 +228,9 @@ abstract class _RegisterBuildableState implements RegisterBuildableState {
       {final bool loading,
       final bool success,
       final bool failure,
-      final dynamic error}) = _$RegisterBuildableStateImpl;
+      final dynamic error,
+      final UserModel? user,
+      final dynamic token}) = _$RegisterBuildableStateImpl;
 
   @override
   bool get loading;
@@ -190,6 +240,10 @@ abstract class _RegisterBuildableState implements RegisterBuildableState {
   bool get failure;
   @override
   dynamic get error;
+  @override
+  UserModel? get user;
+  @override
+  dynamic get token;
   @override
   @JsonKey(ignore: true)
   _$$RegisterBuildableStateImplCopyWith<_$RegisterBuildableStateImpl>

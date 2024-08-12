@@ -1,17 +1,16 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'dart:convert';
 
 part 'register.freezed.dart';
 part 'register.g.dart';
 
 @freezed
-abstract class RegisterResponse with _$RegisterResponse {
-  const factory RegisterResponse({
-    required bool status,
-    required String message,
-  }) = _RegisterResponse;
+class RegisterModel with _$RegisterModel {
+    const factory RegisterModel({
+        bool? status,
+        String? message,
+        String? phone,
+    }) = _RegisterModel;
 
-  factory RegisterResponse.fromJson(Map<String, dynamic> json) =>
-      _$RegisterResponseFromJson(json);
+    factory RegisterModel.fromJson(Map<String, dynamic> json) => _$RegisterModelFromJson(json);
 }
-
-

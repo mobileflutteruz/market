@@ -22,10 +22,8 @@ SearchProduct _$SearchProductFromJson(Map<String, dynamic> json) {
 mixin _$SearchProduct {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  String? get description =>
-      throw _privateConstructorUsedError; // Null bo'lishi mumkin, shuning uchun String? qilinadi
-  String? get details_of_product =>
-      throw _privateConstructorUsedError; // Null bo'lishi mumkin, shuning uchun String? qilinadi
+  String? get description => throw _privateConstructorUsedError;
+  String? get details_of_product => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
   int? get quantity => throw _privateConstructorUsedError;
   int? get quantity_rest => throw _privateConstructorUsedError;
@@ -295,10 +293,8 @@ class _$SearchProductImpl implements _SearchProduct {
   final String? name;
   @override
   final String? description;
-// Null bo'lishi mumkin, shuning uchun String? qilinadi
   @override
   final String? details_of_product;
-// Null bo'lishi mumkin, shuning uchun String? qilinadi
   @override
   final int? price;
   @override
@@ -414,9 +410,9 @@ abstract class _SearchProduct implements SearchProduct {
   String? get name;
   @override
   String? get description;
-  @override // Null bo'lishi mumkin, shuning uchun String? qilinadi
+  @override
   String? get details_of_product;
-  @override // Null bo'lishi mumkin, shuning uchun String? qilinadi
+  @override
   int? get price;
   @override
   int? get quantity;
