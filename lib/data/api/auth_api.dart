@@ -17,7 +17,7 @@ class AuthApi {
       "phone": phone,
       "email": email
     };
-    Response data = await _api.post(path: Urls.register, body: body);
+    Response data = await _api.postWithToken(path: Urls.register, body: body);
     return data.body;
   }
 

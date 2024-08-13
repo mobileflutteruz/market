@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @Injectable()
 class UserDataDataSource {
-  static const _firstRunKey = 'first_run';
+  static const _firstRunKey = 'token';
   static const _userIdKey = 'user_id_key';
 
   final FlutterSecureStorage _secureStorage;
@@ -15,6 +15,7 @@ class UserDataDataSource {
   Future<bool> isFirstRun() async {
     final isFirstRun = _sharedPreferences.getBool(_firstRunKey) ?? true;
     if (isFirstRun) {
+      print("Is First Run ${isFirstRun}");
       await _sharedPreferences.setBool(_firstRunKey, false);
     }
     return isFirstRun;

@@ -21,16 +21,16 @@ class UserSessionManager {
   }
 
   Future<bool> isUserLoggedIn() async {
-    final token = await _tokenDataSource.getToken();
-    return token != null;
+    final token = await getToken();
+    return token != null && token.isNotEmpty;
   }
 
   Future<void> saveUserToken(String token) async {
     await _tokenDataSource.saveToken(token);
   }
 
-  Future<String?> getToken() async {
-    return _tokenDataSource.getToken();
+   Future<String?> getToken() async {
+    return await _tokenDataSource.getGuestUser();
   }
 
   Future<String?> getUserId() async {
@@ -42,8 +42,15 @@ class UserSessionManager {
     await _userDataDataSource.saveUserId(userId);
   }
 
-  Future<void> clearUserSession() async {
+   Future<void> clearUserSession() async {
+    await _tokenDataSource.clearUser();
     await _tokenDataSource.clearToken();
-    await _userDataDataSource.clearUserData();
   }
+
+  Future<void> saveToken(String token) async {
+    await _tokenDataSource.saveGuestUser(token);
+  }
+
+  
+
 }

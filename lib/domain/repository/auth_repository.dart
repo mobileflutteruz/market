@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:injectable/injectable.dart';
 import 'dart:convert';
@@ -8,7 +7,6 @@ import 'package:karmango/core/constants/logger_service.dart';
 import 'package:karmango/data/api/auth_api.dart';
 import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
 import 'package:karmango/domain/model/auth/register/register.dart';
-
 import 'package:uuid/uuid.dart';
 import '../../core/constants/constants.dart';
 import '../../data/api/api.dart';
@@ -23,7 +21,7 @@ class AuthRepository {
   final TokenPreference _token;
   final LoggingService log = LoggingService();
 
-  /// Registers a new user with the provided details.
+  
   Future<RegisterModel> register({
     required String password,
     required String phone,
@@ -34,11 +32,20 @@ class AuthRepository {
       "phone": phone,
       "name": name,
     };
-    final response = await _api.postWithToken(path: "/register", body: query);
-    final result = jsonDecode(response.body);
-    final RegisterModel data =
-        RegisterModel.fromJson(result as Map<String, dynamic>);
-    return data;
+    try {
+      final response = await _api.post(path: "/register", body: query);
+      if (response.statusCode == 200) {
+        final result = jsonDecode(response.body);
+        final RegisterModel data =
+            RegisterModel.fromJson(result as Map<String, dynamic>);
+        return data;
+      } else {
+        throw Exception('Registration failed with status: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error during registration: $e');
+      rethrow;
+    }
   }
 
   Future<AuthResponse> login({
@@ -59,27 +66,6 @@ class AuthRepository {
     return data;
   }
 
-  /// Logs in a user with the given phone number and password.
-  ///
-  ///
-  // Future<void> login({
-  //   required String phone,
-  //   required String password,
-  // }) async {
-  //   final body = {
-  //     "phone": phone,
-  //     "password": password,
-  //   };
-  //
-  //   try {
-  //     final  AuthResponse response = await _api.post(path: '/login', body: body);
-  //     await _onAuthResponse(response);
-  //   } catch (e) {
-  //     log.logError("Error logging in", error: e);
-  //   }
-  // }
-
-  /// Logs out the current user and clears the token.
   Future<void> logout() async {
     try {
       await _authApi.logOut();
@@ -90,7 +76,6 @@ class AuthRepository {
     }
   }
 
-  /// Verifies a user's phone number with a given code.
   Future<void> verify(String phone, String code) async {
     try {
       final response = await _authApi.verfy(phone, code);
@@ -100,7 +85,6 @@ class AuthRepository {
     }
   }
 
-  /// Resets the user's password.
   Future<void> resetPassword(String oldPassword, String newPassword) async {
     try {
       final response = await _authApi.resetPassword(oldPassword, newPassword);
@@ -110,7 +94,6 @@ class AuthRepository {
     }
   }
 
-  /// Initiates a password reset for the given phone number.
   Future<void> forgetPassword(String phone) async {
     try {
       final response = await _authApi.forgetPassword(phone);
@@ -120,7 +103,6 @@ class AuthRepository {
     }
   }
 
-  /// Logs in as a guest user.
   Future<void> loginAsGuest() async {
     try {
       // Get device info
@@ -147,15 +129,18 @@ class AuthRepository {
       final response = await _authApi.createGuestLogin(uuid, model);
 
       // Handle the authentication response
-      await _onAuthResponseGuest(response);
+      if (response.statusCode == 200) {
+        await _onAuthResponseGuest(response);
+      } else {
+        log.logError(
+            "Error logging in as guest: ${response.statusCode} - ${response.reasonPhrase}");
+      }
     } catch (e, stackTrace) {
-      // Log the error with stack trace for better debugging
       log.logError("Error logging in as guest",
           error: e, stackTrace: stackTrace);
     }
   }
 
-  /// Retrieves the current user's information.
   Future<AuthResponse?> getUserInfo() async {
     try {
       return await _token.getUser();
@@ -165,7 +150,6 @@ class AuthRepository {
     }
   }
 
-  /// Activates a user with the given phone number and code.
   Future<void> activateUser({
     required String phone,
     required String code,
@@ -184,7 +168,6 @@ class AuthRepository {
     }
   }
 
-  /// Changes the user's password.
   Future<void> changePassword({
     required String userId,
     required String password,
@@ -205,7 +188,6 @@ class AuthRepository {
     }
   }
 
-  /// Resends the activation code to the given phone number.
   Future<void> resendActivationCode({
     required String phone,
   }) async {
@@ -220,7 +202,6 @@ class AuthRepository {
     }
   }
 
-  /// Verifies the SMS code for the given phone number.
   Future<void> verifySms(String phone, String code) async {
     try {
       final response = await _authApi.verfy(removePlus(phone), code);
@@ -230,29 +211,35 @@ class AuthRepository {
     }
   }
 
-  /// Handles the authentication response and saves the token if available.
-  _onAuthResponse(http.Response response) async {
-    final body = jsonDecode(response.body);
-
-    if (body["token"] == null) {
-      log.logDebug("TOKEN: $body");
+  Future<void> _onAuthResponse(http.Response response) async {
+    if (response.statusCode == 200) {
+      final body = jsonDecode(response.body);
+      if (body["token"] == null) {
+        log.logDebug("TOKEN: $body");
+      } else {
+        await _token.set(body["token"]);
+      }
     } else {
-      await _token.set(body["token"]);
+      log.logError(
+          "Auth Response Error: ${response.statusCode} - ${response.reasonPhrase}");
     }
   }
 
-  /// Handles the guest login response and saves the guest token.
   Future<void> _onAuthResponseGuest(http.Response response) async {
-    final body = jsonDecode(response.body);
-    if (body["token"] == null) {
-      log.logDebug("ACCESS_TOKEN: $body");
+    if (response.statusCode == 200) {
+      final body = jsonDecode(response.body);
+      if (body["token"] == null) {
+        log.logDebug("ACCESS_TOKEN: $body");
+      } else {
+        await _token.set(body["token"]);
+        await _token.saveGuestUser(body["token"]);
+      }
     } else {
-      await _token.set(body["token"]);
-      await _token.setGuestUser(body["token"]);
+      log.logError(
+          "Guest Auth Response Error: ${response.statusCode} - ${response.reasonPhrase}");
     }
   }
 
-  /// Removes the plus sign from the phone number.
   String removePlus(String input) {
     List<String> list1 = input.split("");
     if (list1[0] == "+") {
@@ -261,7 +248,6 @@ class AuthRepository {
     return list1.join();
   }
 
-  /// Validates the password.
   String? passWordvalidator(String value) {
     if (value.length < 6) {
       return "The password must be at least 6 characters";
@@ -271,7 +257,6 @@ class AuthRepository {
     return null;
   }
 
-  /// Validates the confirmation password.
   String? confirmationValidator(String confirmedPass, String passWord) {
     if (confirmedPass.length < 6) {
       return "The password must be at least 6 characters";
@@ -283,25 +268,20 @@ class AuthRepository {
     return null;
   }
 
-  /// Validates the email.
   String? emailValidator(String? value) {
     if (value == null || value.isEmpty) {
       return 'Iltimos, emailni kiriting';
     }
-    // Email format validation
     return null;
   }
 
-  /// Validates the phone number.
   String? phoneValidator(String? value) {
     if (value == null || value.isEmpty) {
       return 'Iltimos, telefon raqamini kiriting';
     }
-    // Phone number format validation
     return null;
   }
 
-  /// Validates the name.
   String? nameValidator(String? value) {
     if (value == null || value.isEmpty) {
       return 'Iltimos, ismingizni kiriting';
@@ -312,7 +292,6 @@ class AuthRepository {
     return null;
   }
 
-  /// Validates general text input.
   String? textValidator(String value) {
     if (value.isEmpty) {
       return "Shouldn't be empty";

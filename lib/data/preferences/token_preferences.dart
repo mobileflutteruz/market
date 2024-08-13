@@ -1,10 +1,7 @@
 import 'dart:convert';
-
 import 'package:injectable/injectable.dart';
-
 import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../domain/model/user/user_model.dart';
 
 @Injectable()
@@ -19,32 +16,18 @@ class TokenPreference {
   final String _baskets = "baskets";
   final String _guest = "guest";
   final String _user = "user";
-  final String _mobileInitScreen = "mobileInitScreen";
-  final String _furnitureInitScreen = "furnitureInitScreen";
-
-  Future<void> saveGuestUser(String token) async {
-    // Tokenni saqlash jarayoni
-    // Masalan, SharedPreferences orqali:
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('guest_token', token);
-    print('Guest token saqlandi: $token');
-  }
-
-  Future<String?> getGuestUser() async {
-    // Tokenni olish jarayoni
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('guest');
-  }
 
 
+  Future<void> saveGuestUser(String value) async {
+      print("TOKEEEEEEEEEEEEEN saveGuestUser : ${value}");
 
-  setGuestUser(String value) async {
     await localeDb.setString(_guest, value);
   }
 
-  // getGuestUser() async {
-  //   return localeDb.getString(_guest);
-  // }
+  Future<String?> getGuestUser() async {
+      print("TOKEEEEEEEEEEEEEN getGuestUser : ${_guest}");
+    return localeDb.getString(_guest);
+  }
 
   Future<void> setUser(Map<String, dynamic> json) async {
     String user = jsonEncode(UserModel.fromJson(json));
@@ -60,12 +43,25 @@ class TokenPreference {
     return null;
   }
 
+
+
   Future<void> set(String value) async {
+      print("TOKEEEEEEEEEEEEEN SEEEEET : ${value}");
     await localeDb.setString(_key, value);
   }
 
   Future<String?> get() async {
+    print("TOKEEEEEEEEEEEEEN GEEEEET : ${_key}");
     return localeDb.getString(_key);
+  }
+
+  Future<void> clear() async {
+    
+    await localeDb.remove(_key);
+  }
+
+  Future<void> clearUser() async {
+    await localeDb.remove(_user);
   }
 
   /// Mobile Shop Product Favourites
@@ -108,29 +104,5 @@ class TokenPreference {
 
   Future<String?> getMyOrder() async {
     return localeDb.getString(_baskets);
-  }
-
-  Future<void> clear() async {
-    await localeDb.remove(_key);
-  }
-
-  Future<void> clearUser() async {
-    await localeDb.remove(_user);
-  }
-
-  Future<void> setMobileInitScreen(bool value) async {
-    await localeDb.setBool(_mobileInitScreen, value);
-  }
-
-  Future<bool?> getMobileInitScreen() async {
-    return localeDb.getBool(_mobileInitScreen);
-  }
-
-  Future<void> setFurnitureInitScreen(bool value) async {
-    await localeDb.setBool(_furnitureInitScreen, value);
-  }
-
-  Future<bool?> getFurnitureInitScreen() async {
-    return localeDb.getBool(_furnitureInitScreen);
   }
 }
