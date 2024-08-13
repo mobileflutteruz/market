@@ -14,6 +14,7 @@ class TokenDataSource {
   final String _favouritesKey = "favourites";
   final String _furnitureFavouritesKey = "furnitureFavourites";
   final String _basketsKey = "baskets";
+  final String _ordersKey = "orders";
   final String _guestKey = "guest";
   final String _userKey = "user";
 
@@ -39,8 +40,14 @@ class TokenDataSource {
   Future<AuthResponse?> getUser() async {
     String? userString = await _secureStorage.read(key: _userKey);
     if (userString != null) {
-      Map<String, dynamic> json = jsonDecode(userString);
-      return AuthResponse.fromJson(json);
+      try {
+        Map<String, dynamic> json = jsonDecode(userString);
+        return AuthResponse.fromJson(json);
+      } catch (e) {
+        // Handle decoding error (e.g., throw exception or return default AuthResponse)
+        print("Error decoding user data: $e");
+        return null;
+      }
     }
     return null;
   }
@@ -72,8 +79,7 @@ class TokenDataSource {
 
   // Mebel do'koni uchun yoqtirganlarni olish
   Future<List<String>?> getFurnitureFavourites() async {
-    String? favouritesString =
-        await _secureStorage.read(key: _furnitureFavouritesKey);
+    String? favouritesString = await _secureStorage.read(key: _furnitureFavouritesKey);
     if (favouritesString != null) {
       return List<String>.from(jsonDecode(favouritesString));
     }
@@ -103,12 +109,12 @@ class TokenDataSource {
 
   // Buyurtmani saqlash
   Future<void> setMyOrder({required String value}) async {
-    await _secureStorage.write(key: _basketsKey, value: value);
+    await _secureStorage.write(key: _ordersKey, value: value); // Use _ordersKey instead of _basketsKey
   }
 
   // Buyurtmani olish
   Future<String?> getMyOrder() async {
-    return await _secureStorage.read(key: _basketsKey);
+    return await _secureStorage.read(key: _ordersKey); // Use _ordersKey instead of _basketsKey
   }
 
   // Tokenni saqlash

@@ -177,7 +177,7 @@ class Api {
 
   //!gettokens
   Future<String?> gettokens() async {
-  var token = await _userSessionmanager.getToken();
+  var token = await _token.getToken();
   if (token == null) {
     print("Token mavjud emas, guest token olinmoqda...");
     token = await _token.getGuestUser();
