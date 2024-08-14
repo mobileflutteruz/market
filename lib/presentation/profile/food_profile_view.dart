@@ -342,6 +342,11 @@ class _FoodProfileViewState extends State<FoodProfileView> {
             onPressed: () {
               context.read<RegisterCubit>().logout();
               Navigator.pop(context);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                FoodNavigatorConst.foodLoginScreen,
+                (route) => false,
+              );
               // Add your logic for the OK button here
             },
             child: Text(

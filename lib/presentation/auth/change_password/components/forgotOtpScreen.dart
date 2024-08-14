@@ -1,13 +1,24 @@
-part of '../widgets/all_components.dart';
 
-class FoodOtpScreen extends StatefulWidget {
-  const FoodOtpScreen({super.key, required this.phoneNumber});
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:karmango/core/constants/constants.dart';
+import 'package:karmango/core/constants/navigator_const.dart';
+import 'package:karmango/core/extension/context_extension.dart';
+import 'package:karmango/core/utils/utils.dart';
+import 'package:karmango/presentation/auth/otp/components/custom_pin.dart';
+import 'package:karmango/presentation/auth/otp/cubit/otp_cubit.dart';
+import 'package:karmango/presentation/auth/widgets/app_logo.dart';
+import 'package:karmango/presentation/auth/widgets/common_food_button.dart';
+
+class ForgotOtpScreen extends StatefulWidget {
+  const ForgotOtpScreen({super.key, required this.phoneNumber});
   final String phoneNumber;
   @override
-  State<FoodOtpScreen> createState() => _FoodOtpScreenState();
+  State<ForgotOtpScreen> createState() => _FoodOtpScreenState();
 }
 
-class _FoodOtpScreenState extends State<FoodOtpScreen> {
+class _FoodOtpScreenState extends State<ForgotOtpScreen> {
   late FocusNode otpFocusNode;
 
   @override
@@ -55,7 +66,7 @@ class _FoodOtpScreenState extends State<FoodOtpScreen> {
                               .read<OtpCubit>()
                               .verfysSms(widget.phoneNumber, controller.text);
                           Navigator.pushNamed(
-                              context, FoodNavigatorConst.foodLoginScreen);
+                              context, FoodNavigatorConst.foodChangePassword);
                         }),
                   )
                 ]),

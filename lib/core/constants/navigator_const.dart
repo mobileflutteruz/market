@@ -1,4 +1,3 @@
-
 sealed class FoodNavigatorConst {
   static const String appContainer = "/appContainer";
   static const String foodLoginScreen = "/foodLoginScreen";
@@ -10,7 +9,7 @@ sealed class FoodNavigatorConst {
   static const String foodReOtpScreen = "/foodReOtpScreen";
   static const String foodOtpScreen = "/foodOtpScreen";
   static const String foodSearchPage = "/foodSearchPage";
-
+  static const String forgotOtpScreen = "/forgotOtpScreen";
   static const String foodChooseApp = "/foodChooseApp";
   static const String foodNotification = "/foodNotification";
   static const String foodNotificationDetails = "/foodNotificationDetails";
@@ -52,5 +51,4 @@ sealed class FoodNavigatorConst {
   static const String foodBasket = "/foodBasket";
   static const String categoryDetailView = "/categoryDetailView";
   static const String allProducts = "/allProducts";
-
 }

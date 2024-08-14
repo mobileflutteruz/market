@@ -784,3 +784,158 @@ abstract class _Role implements Role {
   _$$RoleImplCopyWith<_$RoleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+ResendActivation _$ResendActivationFromJson(Map<String, dynamic> json) {
+  return _ResendActivation.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ResendActivation {
+  bool get status => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ResendActivationCopyWith<ResendActivation> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ResendActivationCopyWith<$Res> {
+  factory $ResendActivationCopyWith(
+          ResendActivation value, $Res Function(ResendActivation) then) =
+      _$ResendActivationCopyWithImpl<$Res, ResendActivation>;
+  @useResult
+  $Res call({bool status, String message});
+}
+
+/// @nodoc
+class _$ResendActivationCopyWithImpl<$Res, $Val extends ResendActivation>
+    implements $ResendActivationCopyWith<$Res> {
+  _$ResendActivationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? message = null,
+  }) {
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ResendActivationImplCopyWith<$Res>
+    implements $ResendActivationCopyWith<$Res> {
+  factory _$$ResendActivationImplCopyWith(_$ResendActivationImpl value,
+          $Res Function(_$ResendActivationImpl) then) =
+      __$$ResendActivationImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool status, String message});
+}
+
+/// @nodoc
+class __$$ResendActivationImplCopyWithImpl<$Res>
+    extends _$ResendActivationCopyWithImpl<$Res, _$ResendActivationImpl>
+    implements _$$ResendActivationImplCopyWith<$Res> {
+  __$$ResendActivationImplCopyWithImpl(_$ResendActivationImpl _value,
+      $Res Function(_$ResendActivationImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? message = null,
+  }) {
+    return _then(_$ResendActivationImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ResendActivationImpl implements _ResendActivation {
+  const _$ResendActivationImpl({required this.status, required this.message});
+
+  factory _$ResendActivationImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ResendActivationImplFromJson(json);
+
+  @override
+  final bool status;
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'ResendActivation(status: $status, message: $message)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResendActivationImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, status, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ResendActivationImplCopyWith<_$ResendActivationImpl> get copyWith =>
+      __$$ResendActivationImplCopyWithImpl<_$ResendActivationImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ResendActivationImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ResendActivation implements ResendActivation {
+  const factory _ResendActivation(
+      {required final bool status,
+      required final String message}) = _$ResendActivationImpl;
+
+  factory _ResendActivation.fromJson(Map<String, dynamic> json) =
+      _$ResendActivationImpl.fromJson;
+
+  @override
+  bool get status;
+  @override
+  String get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$ResendActivationImplCopyWith<_$ResendActivationImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

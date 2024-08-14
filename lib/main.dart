@@ -9,6 +9,7 @@ import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/core/l10n/app_localizations.dart';
 import 'package:karmango/core/utils/app_options.dart';
 import 'package:karmango/data/preferences/locale_data_source.dart';
+import 'package:karmango/presentation/auth/change_password/cubit/change_cubit.dart';
 import 'package:karmango/presentation/auth/login/cubit/login_cubit.dart';
 import 'package:karmango/presentation/auth/otp/cubit/otp_cubit.dart';
 import 'package:karmango/presentation/auth/register/cubit/register_cubit.dart';
@@ -56,6 +57,7 @@ Future<void> main() async {
         BlocProvider(create: (context) => locator<OtpCubit>()),
         BlocProvider(create: (context) => locator<RegisterCubit>()),
         BlocProvider(create: (context) => locator<FoodHomeCubit>()),
+        BlocProvider(create: (context)  => locator<CHangePasswordCubit>(),)
       ],
       child: const MyApp(),
     ),

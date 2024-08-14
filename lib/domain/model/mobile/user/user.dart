@@ -52,3 +52,14 @@ class Role with _$Role {
 
   factory Role.fromJson(Map<String, Object?> json) => _$RoleFromJson(json);
 }
+
+
+@freezed
+class ResendActivation with _$ResendActivation {
+    const factory ResendActivation({
+        required bool status,
+        required String message,
+    }) = _ResendActivation;
+
+    factory ResendActivation.fromJson(Map<String, dynamic> json) => _$ResendActivationFromJson(json);
+}

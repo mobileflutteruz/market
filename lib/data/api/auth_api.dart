@@ -2,6 +2,7 @@ import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/data/api/api.dart';
+import 'package:dio/dio.dart' as dio;
 
 
 @Injectable()
@@ -52,7 +53,7 @@ class AuthApi {
   }
    Future<Response> forgetPassword(String phone) async {
     final body = {"phone": phone};
-    var data = await _api.post(path: Urls.forgotPassword, body: body);
+    var data = await _api.postWithToken(path: "/resend-activation", body: body);
     return data;
   }
 
@@ -72,6 +73,21 @@ Future<Response> createGuestLogin(String uuid, String model) async {
   Future getUserInfo() async {
     final response = await _api.getWithToken(path: 'client/profile/info');
     return response;
+  }
+
+  Future<Response> updatePassword(
+      String newPass, String confirmPass) async {
+    final Map<String, Object> params = {
+      'password': newPass,
+      'password_confirmation': confirmPass
+    };
+    var data = await _api.post(
+      path: "updatePassword",
+      body: params,
+    );
+    print("-------------here-------");
+    print(data);
+    return data;
   }
 
  

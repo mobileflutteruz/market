@@ -7,6 +7,7 @@ import 'package:karmango/core/constants/logger_service.dart';
 import 'package:karmango/data/api/auth_api.dart';
 import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
 import 'package:karmango/domain/model/auth/register/register.dart';
+import 'package:karmango/domain/model/mobile/user/user.dart';
 import 'package:uuid/uuid.dart';
 import '../../core/constants/constants.dart';
 import '../../data/api/api.dart';
@@ -14,14 +15,14 @@ import '../../data/preferences/token_preferences.dart';
 
 @Injectable()
 class AuthRepository {
-  AuthRepository(this._token, this._api, this._authApi);
+  AuthRepository(this._token, this._api, this._authApi, this.auth);
 
   final Api _api;
   final AuthApi _authApi;
   final TokenPreference _token;
+  final AuthRepository auth;
   final LoggingService log = LoggingService();
 
-  
   Future<RegisterModel> register({
     required String password,
     required String phone,
@@ -40,12 +41,20 @@ class AuthRepository {
             RegisterModel.fromJson(result as Map<String, dynamic>);
         return data;
       } else {
-        throw Exception('Registration failed with status: ${response.statusCode}');
+        throw Exception(
+            'Registration failed with status: ${response.statusCode}');
       }
     } catch (e) {
       print('Error during registration: $e');
       rethrow;
     }
+  }
+
+  updatePassword(String newPass, String confirmPass) async {
+    final response = await auth.updatePassword(newPass, confirmPass);
+    Map<String, dynamic> result = Map<String, dynamic>.from(response.data);
+
+    return result;
   }
 
   Future<AuthResponse> login({
@@ -94,14 +103,53 @@ class AuthRepository {
     }
   }
 
-  Future<void> forgetPassword(String phone) async {
-    try {
-      final response = await _authApi.forgetPassword(phone);
-      await _onAuthResponse(response);
-    } catch (e) {
-      log.logError("Error initiating password reset", error: e);
-    }
+//  Future<bool> forgetPassword(String phone) async {
+//     try {
+//       final response = await _authApi.forgetPassword(phone);
+//       await _onAuthResponse(response);
+//       return true;
+//     } catch (e) {
+//       log.logError("Error initiating password reset", error: e);
+//       return false;
+//     }
+//   }
+  Future<ResendActivation> forgetPassword({
+    required String phone,
+  }) async {
+    final query = {
+      "phone": phone,
+    };
+
+    final response = await _api.post(path: '/resend-activation', body: query);
+    final result = jsonDecode(response.body);
+
+    final ResendActivation data =
+        ResendActivation.fromJson(result as Map<String, dynamic>);
+
+    return data;
   }
+
+  // Future<void> forgetPassword(String phone) async {
+  //   try {
+  //     final response = await http.post(
+  //       Uri.parse('https://karmango.shop.dukan.uz/api/resend-activation'),
+  //       body: jsonEncode({'phone': phone}),
+  //       headers: <String, String>{
+  //         'Content-Type': 'application/json; charset=UTF-8',
+  //       },
+  //     );
+
+  //     if (response.statusCode == 200) {
+  //       // Handle successful password reset
+  //     } else {
+  //       log.logError('Failed to reset password');
+  //       throw Exception('Failed to reset password');
+  //     }
+  //   } catch (e) {
+  //     // Handle exceptions
+  //     rethrow; // or handle appropriately
+  //   }
+  // }
 
   Future<void> loginAsGuest() async {
     try {

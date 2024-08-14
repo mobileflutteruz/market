@@ -67,3 +67,17 @@ Map<String, dynamic> _$$RoleImplToJson(_$RoleImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
     };
+
+_$ResendActivationImpl _$$ResendActivationImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ResendActivationImpl(
+      status: json['status'] as bool,
+      message: json['message'] as String,
+    );
+
+Map<String, dynamic> _$$ResendActivationImplToJson(
+        _$ResendActivationImpl instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+    };

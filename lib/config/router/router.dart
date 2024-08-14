@@ -2,6 +2,8 @@ import 'package:karmango/app_container_screen.dart';
 import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
 import 'package:karmango/presentation/auth/change_password/components/const_comp.dart';
+import 'package:karmango/presentation/auth/change_password/components/forgotOtpScreen.dart';
+import 'package:karmango/presentation/auth/change_password/components/phone_input.dart';
 import 'package:karmango/presentation/auth/login/food_login_page.dart';
 import 'package:karmango/presentation/auth/splash/food_splash_view.dart';
 import 'package:karmango/presentation/auth/widgets/all_components.dart';
@@ -41,9 +43,14 @@ class OngenerateRoutes {
       case FoodNavigatorConst.appContainer:
         return sampleRoute(const AppContainerScreen());
       case FoodNavigatorConst.foodLoginScreen:
-        return sampleRoute(FoodLoginPage());
+        return sampleRoute(const FoodLoginPage());
       case FoodNavigatorConst.foodPhoneInput:
         return sampleRoute(const FoodPhoneInput());
+      case FoodNavigatorConst.forgotOtpScreen:
+        final phoneNumber = settings.arguments as String;
+        return sampleRoute(ForgotOtpScreen(
+          phoneNumber: phoneNumber,
+        ));
       case FoodNavigatorConst.foodOtpScreen:
         final phoneNumber = settings.arguments as String;
         return sampleRoute(
