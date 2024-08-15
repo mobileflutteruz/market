@@ -1,4 +1,3 @@
-
 import 'package:karmango/domain/model/product/product_model.dart';
 import 'package:karmango/domain/model/user/user_model.dart';
 
@@ -83,7 +82,13 @@ final List<DemoProductModel> recommendProducts2 = [
   meva,
 ];
 
-final List<DemoProductModel> discountedProducts = [sweet, meet, bread, milk, meva];
+final List<DemoProductModel> discountedProducts = [
+  sweet,
+  meet,
+  bread,
+  milk,
+  meva
+];
 
 final List<DemoProductModel> allProducts = [
   foydali,
@@ -300,7 +305,6 @@ DemoProductModel sous = DemoProductModel(
   images: [
     "assets/temp_images/food_category/sous/1.png",
     "assets/temp_images/food_category/sous/2.png",
- 
   ],
   characteristicsProduct: {},
   name: "Chig'atoy Mayanezi",

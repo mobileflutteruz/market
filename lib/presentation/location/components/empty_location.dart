@@ -5,7 +5,6 @@ import '../../../../core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/constants/constants.dart';
 
-
 class FoodEmptyLocationPage extends StatelessWidget {
   const FoodEmptyLocationPage({super.key});
 
@@ -32,9 +31,8 @@ class FoodEmptyLocationPage extends StatelessWidget {
               Text(
                 context.l10n.noNotificationsYet,
                 textAlign: TextAlign.center,
-                style: Styles.manropeSemiBold18.copyWith(
-                  color: FoodColors.c0E1923
-                ),
+                style: Styles.manropeSemiBold18
+                    .copyWith(color: FoodColors.c0E1923),
               ),
               AppUtils.kGap12,
               Text(
@@ -51,11 +49,12 @@ class FoodEmptyLocationPage extends StatelessWidget {
         child: Padding(
             padding: AppUtils.kPaddingAll16,
             child: GestureDetector(
-              onTap: () => Navigator.pushNamed(context, FoodNavigatorConst.foodAddLocationPage),
+              onTap: () => Navigator.pushNamed(
+                  context, FoodNavigatorConst.foodAddLocationPage),
               child: SizedBox(
                 height: 50,
                 child: DecoratedBox(
-                  decoration:  ShapeDecoration(
+                  decoration: ShapeDecoration(
                     color: FoodColors.primaryColor,
                     shape: const RoundedRectangleBorder(
                       borderRadius: AppUtils.kBorderRadius8,
@@ -68,9 +67,8 @@ class FoodEmptyLocationPage extends StatelessWidget {
                     children: [
                       Text(context.l10n.addACard,
                           textAlign: TextAlign.center,
-                          style: Styles.manropeMedium16.copyWith(
-                            color: FoodColors.cffffff
-                          )),
+                          style: Styles.manropeMedium16
+                              .copyWith(color: FoodColors.cffffff)),
                     ],
                   ),
                 ),

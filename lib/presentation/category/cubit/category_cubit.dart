@@ -18,7 +18,7 @@ class CategoryCubit
 
   final DataRepository _dataRepository;
 
-   fetchCategory() async {
+  fetchCategory() async {
     build(
       (buildable) => buildable.copyWith(
         loading: true,

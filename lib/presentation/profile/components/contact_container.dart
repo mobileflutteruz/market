@@ -1,4 +1,3 @@
-
 import 'package:karmango/core/utils/app_layouts.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +28,6 @@ class FoodContactContainer extends StatelessWidget {
           color: FoodColors.cFAFAFA,
         ),
         child: Row(
-        
           children: [
             icon,
             AppUtils.kGap12,
@@ -37,7 +35,6 @@ class FoodContactContainer extends StatelessWidget {
               text,
               style: Styles.manropeMedium16,
             ),
-         
           ],
         ),
       ),

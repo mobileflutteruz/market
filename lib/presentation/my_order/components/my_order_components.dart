@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import '../../../../core/constants/constants.dart';
 import '../../../../core/utils/utils.dart';
 
-
 part 'active_products.dart';
 part 'price_description.dart';
 part 'payment_amount.dart';

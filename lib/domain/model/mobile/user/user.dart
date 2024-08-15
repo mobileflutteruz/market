@@ -6,7 +6,7 @@ part 'user.g.dart';
 
 @freezed
 class UserModel with _$UserModel {
-  @JsonSerializable(fieldRename: FieldRename.snake)
+  // @JsonSerializable(fieldRename: FieldRename.snake)
   const factory UserModel({
     required int? user_id,
     required String? user_name,
@@ -21,8 +21,6 @@ class UserModel with _$UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
 }
-
-
 
 @freezed
 class User with _$User {
@@ -43,7 +41,8 @@ class UserInfoss with _$UserInfoss {
     User? data,
   }) = _UserInfoss;
 
-  factory UserInfoss.fromJson(Map<String, Object?> json) => _$UserInfossFromJson(json);
+  factory UserInfoss.fromJson(Map<String, Object?> json) =>
+      _$UserInfossFromJson(json);
 }
 
 @freezed
@@ -53,13 +52,13 @@ class Role with _$Role {
   factory Role.fromJson(Map<String, Object?> json) => _$RoleFromJson(json);
 }
 
-
 @freezed
 class ResendActivation with _$ResendActivation {
-    const factory ResendActivation({
-        required bool status,
-        required String message,
-    }) = _ResendActivation;
+  const factory ResendActivation({
+    required bool status,
+    required String message,
+  }) = _ResendActivation;
 
-    factory ResendActivation.fromJson(Map<String, dynamic> json) => _$ResendActivationFromJson(json);
+  factory ResendActivation.fromJson(Map<String, dynamic> json) =>
+      _$ResendActivationFromJson(json);
 }

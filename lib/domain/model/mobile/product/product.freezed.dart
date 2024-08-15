@@ -23,8 +23,12 @@ mixin _$ProductDataModel {
   bool? get status => throw _privateConstructorUsedError;
   Result? get result => throw _privateConstructorUsedError;
 
+  /// Serializes this ProductDataModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProductDataModelCopyWith<ProductDataModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$ProductDataModelCopyWithImpl<$Res, $Val extends ProductDataModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProductDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -68,6 +74,8 @@ class _$ProductDataModelCopyWithImpl<$Res, $Val extends ProductDataModel>
     ) as $Val);
   }
 
+  /// Create a copy of ProductDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ResultCopyWith<$Res>? get result {
@@ -103,6 +111,8 @@ class __$$ProductDataModelImplCopyWithImpl<$Res>
       $Res Function(_$ProductDataModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,11 +159,13 @@ class _$ProductDataModelImpl implements _ProductDataModel {
             (identical(other.result, result) || other.result == result));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, result);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductDataModelImplCopyWith<_$ProductDataModelImpl> get copyWith =>
@@ -179,8 +191,11 @@ abstract class _ProductDataModel implements ProductDataModel {
   bool? get status;
   @override
   Result? get result;
+
+  /// Create a copy of ProductDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductDataModelImplCopyWith<_$ProductDataModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -195,8 +210,12 @@ mixin _$Result {
   List<SimilarProduct>? get similar_products =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this Result to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ResultCopyWith<Result> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -220,6 +239,8 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -238,6 +259,8 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
     ) as $Val);
   }
 
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductCopyWith<$Res>? get product {
@@ -272,6 +295,8 @@ class __$$ResultImplCopyWithImpl<$Res>
       _$ResultImpl _value, $Res Function(_$ResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -329,12 +354,14 @@ class _$ResultImpl implements _Result {
                 .equals(other._similar_products, _similar_products));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, product,
       const DeepCollectionEquality().hash(_similar_products));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResultImplCopyWith<_$ResultImpl> get copyWith =>
@@ -359,8 +386,11 @@ abstract class _Result implements Result {
   Product? get product;
   @override
   List<SimilarProduct>? get similar_products;
+
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResultImplCopyWith<_$ResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -388,8 +418,12 @@ mixin _$Product {
   int? get rest_products => throw _privateConstructorUsedError;
   int? get price_to_pay => throw _privateConstructorUsedError;
 
+  /// Serializes this Product to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Product
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -427,6 +461,8 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Product
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -550,6 +586,8 @@ class __$$ProductImplCopyWithImpl<$Res>
       _$ProductImpl _value, $Res Function(_$ProductImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Product
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -735,7 +773,7 @@ class _$ProductImpl implements _Product {
                 other.price_to_pay == price_to_pay));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -756,7 +794,9 @@ class _$ProductImpl implements _Product {
       rest_products,
       price_to_pay);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Product
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
@@ -823,8 +863,11 @@ abstract class _Product implements Product {
   int? get rest_products;
   @override
   int? get price_to_pay;
+
+  /// Create a copy of Product
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductImplCopyWith<_$ProductImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -844,8 +887,12 @@ mixin _$SimilarProduct {
   String? get product_type => throw _privateConstructorUsedError;
   double? get price_to_pay => throw _privateConstructorUsedError;
 
+  /// Serializes this SimilarProduct to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SimilarProduct
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SimilarProductCopyWith<SimilarProduct> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -877,6 +924,8 @@ class _$SimilarProductCopyWithImpl<$Res, $Val extends SimilarProduct>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SimilarProduct
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -953,6 +1002,8 @@ class __$$SimilarProductImplCopyWithImpl<$Res>
       _$SimilarProductImpl _value, $Res Function(_$SimilarProductImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SimilarProduct
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1058,12 +1109,14 @@ class _$SimilarProductImpl implements _SimilarProduct {
                 other.price_to_pay == price_to_pay));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, status, discount,
       price, image, product_type, price_to_pay);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SimilarProduct
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SimilarProductImplCopyWith<_$SimilarProductImpl> get copyWith =>
@@ -1108,8 +1161,11 @@ abstract class _SimilarProduct implements SimilarProduct {
   String? get product_type;
   @override
   double? get price_to_pay;
+
+  /// Create a copy of SimilarProduct
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SimilarProductImplCopyWith<_$SimilarProductImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

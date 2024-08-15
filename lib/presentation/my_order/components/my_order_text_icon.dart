@@ -25,9 +25,7 @@ class FoodMyOrderTextIcon extends StatelessWidget {
     return Container(
       width: 138,
       height: 24,
-    
       decoration: ShapeDecoration(
-       
         color: backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
@@ -42,22 +40,19 @@ class FoodMyOrderTextIcon extends StatelessWidget {
             width: 16,
             height: 16,
             clipBehavior: Clip.antiAlias,
-            decoration:  const BoxDecoration(),
+            decoration: const BoxDecoration(),
             child: Icon(
               icon,
               size: 18,
               color: iconColor,
-         
             ),
           ),
           const SizedBox(width: 4),
-           Text(
-            text,
-            style: Styles.manropeMedium12.copyWith(
-              color: textColor,
-              overflow: TextOverflow.ellipsis,
-            )
-          ),
+          Text(text,
+              style: Styles.manropeMedium12.copyWith(
+                color: textColor,
+                overflow: TextOverflow.ellipsis,
+              )),
         ],
       ),
     );

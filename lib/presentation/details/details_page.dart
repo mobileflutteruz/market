@@ -8,7 +8,8 @@ import 'package:karmango/presentation/components/image_view.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
 import 'package:karmango/presentation/details/cubit/details_cubit.dart';
 import 'package:karmango/presentation/home/components/food_products_similar_widget%20.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
+
 import '../../core/constants/constants.dart';
 import '../../core/utils/app_layouts.dart';
 import '../../core/utils/utils.dart';
@@ -82,7 +83,8 @@ class _DetailsPageState extends State<DetailsPage> {
                           child: Column(
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   IconButton(
                                     onPressed: () async {
@@ -104,7 +106,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                       _isLiked
                                           ? CupertinoIcons.heart_fill
                                           : CupertinoIcons.heart,
-                                      color: _isLiked ? Colors.red : Colors.black,
+                                      color:
+                                          _isLiked ? Colors.red : Colors.black,
                                     ),
                                   ),
                                 ],

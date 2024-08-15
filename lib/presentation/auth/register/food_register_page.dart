@@ -1,4 +1,3 @@
-
 part of '../widgets/all_components.dart';
 
 class FoodRegisterPage extends StatelessWidget {
@@ -6,12 +5,12 @@ class FoodRegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: BlocProvider(
         create: (context) => locator<RegisterCubit>(),
-        child: BlocListener<LoginCubit, LoginState>(
+        child: BlocListener<RegisterCubit, RegisterState>(
           listener: (context, state) {
-            if (state is LoginBuildableState) {
+            if (state is RegisterBuildableState) {
               if (state.success == true) {
                 AppUtils.msg(context, state.message ?? "Success",
                     color: Colors.green);
@@ -38,10 +37,9 @@ class FoodRegisterPage extends StatelessWidget {
             ],
             builder: (context, state) {
               return ModalProgressHUD(
-                inAsyncCall: state.loading,
-                // dismissible: true,
-                child: const FoodRegisterView()
-              );
+                  inAsyncCall: state.loading,
+                  // dismissible: true,
+                  child: const FoodRegisterView());
             },
           ),
         ),

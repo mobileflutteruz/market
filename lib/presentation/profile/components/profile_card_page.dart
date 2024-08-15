@@ -1,5 +1,3 @@
-
-
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/presentation/auth/widgets/common_food_button.dart';
@@ -18,7 +16,8 @@ class FoodProfileCardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Buildable<FoodProfileCubit, FoodProfileState, FoodProfileBuildableState>(
+    return Buildable<FoodProfileCubit, FoodProfileState,
+            FoodProfileBuildableState>(
         properties: (buildable) => [buildable.profileUser],
         builder: (context, state) {
           return Scaffold(
@@ -37,8 +36,8 @@ class FoodProfileCardPage extends StatelessWidget {
                         children: [
                           ...List.generate(
                             state.profileUser!.cards.length,
-                            (index) =>  const FoodProfileCardWidget(
-                              balance: "4 555 457.00 UZS" ,
+                            (index) => const FoodProfileCardWidget(
+                              balance: "4 555 457.00 UZS",
                               cardNumber: "8600 **** **** **70",
                               cardData: "12/26",
                             ),
@@ -73,7 +72,6 @@ class FoodProfileCardPage extends StatelessWidget {
             bottomNavigationBar: Padding(
               padding: AppUtils.kPaddingHorizontal16,
               child: CommonFoodButtonWidget(
-
                 title: context.l10n.addACard,
                 onTap: () {
                   Navigator.pushNamed(

@@ -1,9 +1,7 @@
 name: karmango
+description: A new Flutter project.
 
-description: "A new Flutter project."
-
-publish_to: 'none'
-
+publish_to: 'none' 
 version: 1.0.0+1
 
 environment:
@@ -17,20 +15,30 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
-  # get it singleton
+
+  # Dependency Injection
   injectable: ^2.4.4
   get_it: ^7.7.0
-  # interceptor
+
+  # Networking and HTTP
   pretty_http_logger: ^1.0.3
   http: ^1.2.0
-  # no sql database
+  dio: ^5.5.0+1
+
+  # NoSQL Database
   shared_preferences: ^2.0.18
-  # code generator for data classes
+  hive_flutter: ^1.1.0
+
+  # Code Generation for Data Classes
   freezed_annotation: ^2.4.4
   json_annotation: ^4.8.1
-  # state manager
+
+  # State Management
   flutter_bloc: ^8.1.6
-  # cached image
+  bloc: ^8.1.4
+  equatable: ^2.0.5
+
+  # UI and Utilities
   cached_network_image: ^3.3.0
   gap: ^3.0.1
   flutter_svg: ^2.0.9
@@ -42,36 +50,32 @@ dependencies:
   step_progress_indicator: ^1.0.2
   url_launcher: ^6.2.3
   image_picker: ^1.0.7
-  equatable: ^2.0.5
-  hive_flutter: ^1.1.0
   lottie: ^3.0.0
-  dio: ^5.5.0+1
   rotated_corner_decoration: ^2.1.0+1
-
   card_swiper: ^3.0.1
-  share_it: ^0.7.0
-  share: ^2.0.4
-  share_plus: ^10.0.1
+  modal_bottom_sheet: ^3.0.0
+
+  # File Handling and Storage
   path_provider: ^2.1.2
   file_picker_writable: ^2.1.0+1
-  modal_bottom_sheet: ^3.0.0
-  bloc: ^8.1.4
-  logger: ^2.3.0
   flutter_secure_storage: ^4.2.1
+
+  # Utilities
+  logger: ^2.3.0
   http_parser: ^4.0.2
   device_info_plus: ^10.1.0
-  
+
+  share_plus: ^10.0.1  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  build_runner: ^2.4.11
   freezed: ^2.5.2
   injectable_generator: ^2.6.2
   flutter_lints: ^4.0.0
   json_serializable: ^6.8.0
- 
+  build_runner: ^2.4.12
 
 flutter:
 
@@ -82,14 +86,9 @@ flutter:
     - assets/images/
     - assets/animation/
     - assets/fonts/manrope/
-
-
-    #foods
+    # foods
     - assets/images/food/
     - assets/icons/food/
-
-
-
 
   fonts:
     - family: Manrope

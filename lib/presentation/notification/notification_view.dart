@@ -1,12 +1,9 @@
-
-
 import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/presentation/notification/components/notification_item_widget.dart';
 import 'package:karmango/presentation/components/common_app_bar.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import '../../../core/constants/constants.dart';
-
 
 class FoodNotificationView extends StatelessWidget {
   const FoodNotificationView({super.key});
@@ -36,7 +33,8 @@ class FoodNotificationView extends StatelessWidget {
                 circleColor: FoodColors.cF69F1E,
                 circleIcon: FoodIcons.skidka,
                 onTap: () {
-                  Navigator.pushNamed(context, FoodNavigatorConst.foodNotifyItemPage);
+                  Navigator.pushNamed(
+                      context, FoodNavigatorConst.foodNotifyItemPage);
                 },
               ),
               NotificationWidgetItem(

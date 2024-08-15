@@ -11,7 +11,6 @@ class FoodMyOrderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     Map<String, int> myData1 = {
       context.l10n.productPrice: 99000,
       context.l10n.delivery: 15000,
@@ -185,16 +184,16 @@ class FoodMyOrderCard extends StatelessWidget {
             width: double.infinity,
             height: AppLayout.getHeight(51, context),
             padding: const EdgeInsets.symmetric(horizontal: 16),
-           decoration: BoxDecoration(
+            decoration: BoxDecoration(
               color: ColorConstants.cffffff,
               borderRadius: BorderRadius.circular(10),
-             boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x26A2AAB8),
-                    blurRadius: 6,
-                    offset: Offset(0, 4),
-                    spreadRadius: 0,
-                  )
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x26A2AAB8),
+                  blurRadius: 6,
+                  offset: Offset(0, 4),
+                  spreadRadius: 0,
+                )
               ],
             ),
             child: Row(
@@ -215,13 +214,13 @@ class FoodMyOrderCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: ColorConstants.cffffff,
               borderRadius: BorderRadius.circular(10),
-             boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x26A2AAB8),
-                    blurRadius: 6,
-                    offset: Offset(0, 4),
-                    spreadRadius: 0,
-                  )
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x26A2AAB8),
+                  blurRadius: 6,
+                  offset: Offset(0, 4),
+                  spreadRadius: 0,
+                )
               ],
             ),
             child: Column(children: [

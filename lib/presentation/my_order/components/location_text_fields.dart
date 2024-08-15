@@ -34,7 +34,7 @@ class FoodLocationTextField extends StatelessWidget {
             ),
             borderSide: BorderSide(color: Colors.blue),
           ),
-          enabledBorder:  OutlineInputBorder(
+          enabledBorder: OutlineInputBorder(
             borderRadius: const BorderRadius.all(
               Radius.circular(8.0),
             ),
@@ -42,7 +42,7 @@ class FoodLocationTextField extends StatelessWidget {
               color: FoodColors.cF4F7F8,
             ),
           ),
-          focusedBorder:  OutlineInputBorder(
+          focusedBorder: OutlineInputBorder(
             borderRadius: const BorderRadius.all(
               Radius.circular(8.0),
             ),
@@ -53,7 +53,7 @@ class FoodLocationTextField extends StatelessWidget {
           ),
           hintText: hintText,
           hintStyle: Styles.manropeMedium14.copyWith(
-            color:  FoodColors.c8D909B,
+            color: FoodColors.c8D909B,
           ),
         ),
       ),

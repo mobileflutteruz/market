@@ -1,4 +1,4 @@
-extension StringToDate on String{
+extension StringToDate on String {
   String removeZFromDateTime(DateTime dateTime) {
     String formattedDateTime = dateTime.toIso8601String();
     if (formattedDateTime.endsWith('Z')) {
@@ -8,4 +8,3 @@ extension StringToDate on String{
     return formattedDateTime;
   }
 }
-

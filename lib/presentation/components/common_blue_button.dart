@@ -1,4 +1,3 @@
-
 import 'package:karmango/core/constants/constants.dart';
 import '../../../../core/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +27,7 @@ class CommonButtonWidget extends StatelessWidget {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(10),
               decoration: ShapeDecoration(
-                color:  isFurniture? FoodColors.cE8A842: FoodColors.c2472F2,
+                color: isFurniture ? FoodColors.cE8A842 : FoodColors.c2472F2,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -36,9 +35,8 @@ class CommonButtonWidget extends StatelessWidget {
               child: Text(
                 title,
                 textAlign: TextAlign.center,
-                style: Styles.manropeSemiBold15.copyWith(
-                  color: FoodColors.cffffff
-                ),
+                style: Styles.manropeSemiBold15
+                    .copyWith(color: FoodColors.cffffff),
               ),
             ),
             // Platform.isIOS ? AppUtils.kGap :

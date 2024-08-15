@@ -1,6 +1,6 @@
 part of 'utils.dart';
 
-class AppLauncher{
+class AppLauncher {
   AppLauncher._();
   static Future<void> makePhoneCall(String phoneNumber) async {
     final Uri launchUri = Uri(
@@ -69,4 +69,3 @@ class AppLauncher{
     }
   }
 }
-

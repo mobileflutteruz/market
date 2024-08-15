@@ -16,4 +16,3 @@ import 'package:karmango/presentation/components/phone_input.dart';
 
 // part '../components/phone_input.dart';
 part '../components/re_otp_page.dart';
-

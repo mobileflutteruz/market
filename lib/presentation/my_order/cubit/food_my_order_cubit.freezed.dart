@@ -25,7 +25,9 @@ mixin _$FoodMyOrderBuildableState {
   List<int> get cardProductIds => throw _privateConstructorUsedError;
   int get tabIndex => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FoodMyOrderBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FoodMyOrderBuildableStateCopyWith<FoodMyOrderBuildableState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +60,8 @@ class _$FoodMyOrderBuildableStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FoodMyOrderBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -137,6 +141,8 @@ class __$$FoodMyOrderBuildableStateImplCopyWithImpl<$Res>
       $Res Function(_$FoodMyOrderBuildableStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FoodMyOrderBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -285,7 +291,9 @@ class _$FoodMyOrderBuildableStateImpl implements _FoodMyOrderBuildableState {
       const DeepCollectionEquality().hash(_cardProductIds),
       tabIndex);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FoodMyOrderBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FoodMyOrderBuildableStateImplCopyWith<_$FoodMyOrderBuildableStateImpl>
@@ -320,8 +328,11 @@ abstract class _FoodMyOrderBuildableState implements FoodMyOrderBuildableState {
   List<int> get cardProductIds;
   @override
   int get tabIndex;
+
+  /// Create a copy of FoodMyOrderBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FoodMyOrderBuildableStateImplCopyWith<_$FoodMyOrderBuildableStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

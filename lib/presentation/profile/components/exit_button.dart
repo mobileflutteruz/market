@@ -4,12 +4,9 @@ import '../../../../core/constants/constants.dart';
 import '../../../core/utils/app_layouts.dart';
 
 class FoodExitButtonWidget extends StatelessWidget {
-  const FoodExitButtonWidget({super.key,this.onTap});
+  const FoodExitButtonWidget({super.key, this.onTap});
 
   final void Function()? onTap;
-
-
-
 
   @override
   Widget build(BuildContext context) {

@@ -29,7 +29,9 @@ mixin _$DetailsBuildableState {
       throw _privateConstructorUsedError; // List<SimilarProduct>? similarProduct,
   String? get message => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetailsBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DetailsBuildableStateCopyWith<DetailsBuildableState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -67,6 +69,8 @@ class _$DetailsBuildableStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DetailsBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,6 +134,8 @@ class _$DetailsBuildableStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of DetailsBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataModelCopyWith<$Res>? get product {
@@ -178,6 +184,8 @@ class __$$DetailsBuildableStateImplCopyWithImpl<$Res>
       $Res Function(_$DetailsBuildableStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DetailsBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -346,7 +354,9 @@ class _$DetailsBuildableStateImpl implements _DetailsBuildableState {
       product,
       message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetailsBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DetailsBuildableStateImplCopyWith<_$DetailsBuildableStateImpl>
@@ -387,11 +397,14 @@ abstract class _DetailsBuildableState implements DetailsBuildableState {
   @override
   bool get failure;
   @override
-  ProductDataModel? get product;
-  @override // List<SimilarProduct>? similarProduct,
-  String? get message;
+  ProductDataModel? get product; // List<SimilarProduct>? similarProduct,
   @override
-  @JsonKey(ignore: true)
+  String? get message;
+
+  /// Create a copy of DetailsBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DetailsBuildableStateImplCopyWith<_$DetailsBuildableStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

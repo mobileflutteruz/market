@@ -109,7 +109,6 @@ class FoodFavoriteItemWidget extends StatelessWidget {
                                 ),
                               ),
                             const Spacer(),
-                            
                             InkWell(
                               onTap: likeTapped,
                               child: isLiked
@@ -117,7 +116,7 @@ class FoodFavoriteItemWidget extends StatelessWidget {
                                       CupertinoIcons.heart,
                                       color: FoodColors.cF83333,
                                     )
-                                  :  Icon(
+                                  : Icon(
                                       CupertinoIcons.heart_fill,
                                       color: FoodColors.cF83333,
                                     ),

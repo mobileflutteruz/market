@@ -1,4 +1,3 @@
-
 import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/data/locale_db/food_db.dart';

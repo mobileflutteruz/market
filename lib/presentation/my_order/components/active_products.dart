@@ -31,7 +31,7 @@ class FoodActiveProductsWidget extends StatelessWidget {
                     color: FoodColors.c0E1923,
                   ),
                 ),
-               const Spacer(),
+                const Spacer(),
                 Text(
                   '10 256 000 сум',
                   style: Styles.manropeBold16.copyWith(

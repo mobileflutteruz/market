@@ -13,20 +13,17 @@ class FoodHomeBuildableState extends FoodHomeState
     dynamic error,
     @Default(0) int imageIndex,
     @Default(0) int cardProductCount,
-
     @Default([]) List<String> likeIds,
-    @Default(0)  int infoTabIndex,
-    @Default(false)  bool descriptionIsExpandable,
-    @Default(false)  bool characteristicsIsExpandable,
-
+    @Default(0) int infoTabIndex,
+    @Default(false) bool descriptionIsExpandable,
+    @Default(false) bool characteristicsIsExpandable,
     @Default(false) bool isSuccess,
     @Default(false) bool isUser,
     @Default(0) int currentIndex,
     @Default([]) List data,
-    @Default(0 ) int count,
+    @Default(0) int count,
     MobileHomeProducts? homeProducts,
     MobileHomeProducts? banner,
     ProductDataModel? product,
-
   }) = _FoodHomeBuildableState;
 }

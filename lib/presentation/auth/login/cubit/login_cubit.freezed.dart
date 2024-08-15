@@ -22,7 +22,9 @@ mixin _$LoginBuildableState {
   String? get message => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LoginBuildableStateCopyWith<LoginBuildableState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +53,8 @@ class _$LoginBuildableStateCopyWithImpl<$Res, $Val extends LoginBuildableState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LoginBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -109,6 +113,8 @@ class __$$LoginBuildableStateImplCopyWithImpl<$Res>
       $Res Function(_$LoginBuildableStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoginBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -189,7 +195,9 @@ class _$LoginBuildableStateImpl implements _LoginBuildableState {
   int get hashCode => Object.hash(runtimeType, loading, success, failure,
       message, const DeepCollectionEquality().hash(error));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginBuildableStateImplCopyWith<_$LoginBuildableStateImpl> get copyWith =>
@@ -215,8 +223,11 @@ abstract class _LoginBuildableState implements LoginBuildableState {
   String? get message;
   @override
   dynamic get error;
+
+  /// Create a copy of LoginBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoginBuildableStateImplCopyWith<_$LoginBuildableStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -54,9 +54,11 @@ class CategoryProductItemWidget extends StatelessWidget {
                         color: ColorConstants.kGreyOrderBack,
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 36, right: 36, top: 36, bottom:10 ),
+                        padding: const EdgeInsets.only(
+                            left: 36, right: 36, top: 36, bottom: 10),
                         child: ImageViewWidget(
-                          imageLink: product.image ?? '', // Handle null case for imageLink
+                          imageLink: product.image ??
+                              '', // Handle null case for imageLink
                           isNetImg: true,
                         ),
                       ),
@@ -81,7 +83,8 @@ class CategoryProductItemWidget extends StatelessWidget {
                               ),
                               child: Text(
                                 'New',
-                                style: Styles.manropeMedium13.copyWith(color: FoodColors.cffffff),
+                                style: Styles.manropeMedium13
+                                    .copyWith(color: FoodColors.cffffff),
                               ),
                             ),
                           AppUtils.kGap4,
@@ -98,14 +101,16 @@ class CategoryProductItemWidget extends StatelessWidget {
                               ),
                               child: Text(
                                 '-${product.discount}%', // Use product.discount directly
-                                style: Styles.manropeMedium13.copyWith(color: FoodColors.cffffff),
+                                style: Styles.manropeMedium13
+                                    .copyWith(color: FoodColors.cffffff),
                               ),
                             ),
                           const Spacer(),
                           InkWell(
                             onTap: likeTapped,
                             child: isLiked
-                                ? Icon(CupertinoIcons.heart_fill, color: FoodColors.cF83333)
+                                ? Icon(CupertinoIcons.heart_fill,
+                                    color: FoodColors.cF83333)
                                 : const Icon(CupertinoIcons.heart),
                           ),
                         ],

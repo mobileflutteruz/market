@@ -21,7 +21,6 @@ class ExpirationDateInputWidget extends StatelessWidget {
       children: [
         Text(
           context.l10n.cardNumber,
-          
           style: Styles.manropeMedium14.copyWith(
             color: FoodColors.c7C8A9D,
           ),
@@ -34,7 +33,6 @@ class ExpirationDateInputWidget extends StatelessWidget {
           textInputFormatters: [
             FilteringTextInputFormatter.digitsOnly,
             ExpireDateFormatter(separator: '/'),
-
           ],
           lengthLimiting: 5,
         ),

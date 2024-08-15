@@ -124,33 +124,33 @@ class CategoryProductScreen extends StatelessWidget {
               );
             } else {
               return Scaffold(
-                body:  Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-           Lottie.asset('assets/animation/food_empty.json'),
-          AppUtils.kGap32,
-          SizedBox(
-            child: Text(
-              "Категория по вашему запросу пуста",
-              textAlign: TextAlign.center,
-              style: Styles.manropeSemiBold18.copyWith(
-                color: ColorConstants.c0E1A23,
-              ),
-            ),
-          ),
-          AppUtils.kGap32,
-          Text(
-            "Мы не нашли никаких товаров в этой категории",
-            textAlign: TextAlign.center,
-            maxLines: 3,
-            style: Styles.manropeRegular14.copyWith(
-              color: ColorConstants.c7C8A9D,
-            ),
-          ),
-        ],
-      ),
+                body: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Lottie.asset('assets/animation/food_empty.json'),
+                    AppUtils.kGap32,
+                    SizedBox(
+                      child: Text(
+                        "Категория по вашему запросу пуста",
+                        textAlign: TextAlign.center,
+                        style: Styles.manropeSemiBold18.copyWith(
+                          color: ColorConstants.c0E1A23,
+                        ),
+                      ),
+                    ),
+                    AppUtils.kGap32,
+                    Text(
+                      "Мы не нашли никаких товаров в этой категории",
+                      textAlign: TextAlign.center,
+                      maxLines: 3,
+                      style: Styles.manropeRegular14.copyWith(
+                        color: ColorConstants.c7C8A9D,
+                      ),
+                    ),
+                  ],
+                ),
               );
             }
           },

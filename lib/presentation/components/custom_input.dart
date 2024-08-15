@@ -1,10 +1,9 @@
-
 import 'package:karmango/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CustomInput extends StatelessWidget {
-   CustomInput({
+  CustomInput({
     super.key,
     required this.iconPath,
     required this.hintText,

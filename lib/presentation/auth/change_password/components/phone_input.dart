@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/config/di/injection.dart';
@@ -51,9 +49,9 @@ class _FoodPhoneInputState extends State<FoodPhoneInput> {
               CommonFoodButtonWidget(
                   title: context.l10n.next,
                   onTap: () {
-                     print("PHONE CONTROLLER: ${phoneController.text}");
+                    print("PHONE CONTROLLER: ${phoneController.text}");
                     if (formKey.currentState!.validate()) {
-                      context.read<CHangePasswordCubit>().change(
+                      context.read<ChangePasswordCubit>().change(
                             number: phoneController.text,
                           );
                       print("PHONE CONTROLLER: ${phoneController.text}");

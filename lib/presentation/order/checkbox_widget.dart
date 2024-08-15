@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import '../../core/utils/utils.dart';
 
 class FoodCheckBoxWidget extends StatefulWidget {
- 
-   const FoodCheckBoxWidget({
+  const FoodCheckBoxWidget({
     super.key,
-   
   });
 
   @override
@@ -27,8 +25,8 @@ class _FoodCheckBoxWidgetState extends State<FoodCheckBoxWidget> {
           child: Checkbox(
             activeColor: FoodColors.primaryColor,
             checkColor: FoodColors.cffffff,
-            side:  BorderSide(
-              color:  FoodColors.primaryColor,
+            side: BorderSide(
+              color: FoodColors.primaryColor,
               width: 1,
             ),
             shape: RoundedRectangleBorder(
@@ -45,7 +43,9 @@ class _FoodCheckBoxWidgetState extends State<FoodCheckBoxWidget> {
         AppUtils.kGap8,
         Text(
           context.l10n.iAgreeTerms,
-          style: Styles.manropeMedium13.copyWith(color: FoodColors.c212121,),
+          style: Styles.manropeMedium13.copyWith(
+            color: FoodColors.c212121,
+          ),
         ),
       ],
     );

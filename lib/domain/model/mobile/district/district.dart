@@ -13,7 +13,8 @@ class District with _$District {
     required List<Districts> districts,
   }) = _District;
 
-  factory District.fromJson(Map<String, dynamic> json) => _$DistrictFromJson(json);
+  factory District.fromJson(Map<String, dynamic> json) =>
+      _$DistrictFromJson(json);
 }
 
 @freezed
@@ -26,5 +27,6 @@ class Districts with _$Districts {
     @JsonKey(name: 'updated_at') DateTime? updatedAt,
   }) = _Districts;
 
-  factory Districts.fromJson(Map<String, dynamic> json) => _$DistrictsFromJson(json);
+  factory Districts.fromJson(Map<String, dynamic> json) =>
+      _$DistrictsFromJson(json);
 }

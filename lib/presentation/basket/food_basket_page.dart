@@ -7,6 +7,6 @@ class FoodBasketPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  FoodBasketView();
+    return FoodBasketView();
   }
 }

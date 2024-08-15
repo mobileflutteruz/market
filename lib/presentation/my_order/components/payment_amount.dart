@@ -4,7 +4,8 @@ class FoodPaymentAmountWidget extends StatefulWidget {
   const FoodPaymentAmountWidget({super.key});
 
   @override
-  State<FoodPaymentAmountWidget> createState() => _FoodPaymentAmountWidgetState();
+  State<FoodPaymentAmountWidget> createState() =>
+      _FoodPaymentAmountWidgetState();
 }
 
 class _FoodPaymentAmountWidgetState extends State<FoodPaymentAmountWidget> {
@@ -28,7 +29,7 @@ class _FoodPaymentAmountWidgetState extends State<FoodPaymentAmountWidget> {
         AppUtils.kGap24,
         ...List.generate(
           2,
-              (index) => Padding(
+          (index) => Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: GestureDetector(
               onTap: () {
@@ -61,7 +62,7 @@ class _FoodPaymentAmountWidgetState extends State<FoodPaymentAmountWidget> {
                       ),
                     ),
                     Radio(
-                      activeColor:  FoodColors.c2473F2,
+                      activeColor: FoodColors.c2473F2,
                       focusColor: FoodColors.cC6C8CE,
                       value: index,
                       groupValue: paymentAmount,

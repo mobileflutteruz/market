@@ -17,7 +17,6 @@ class CardInputWidget extends StatelessWidget {
       children: [
         Text(
           context.l10n.cardNumber,
-          
           style: Styles.manropeMedium14.copyWith(
             color: FoodColors.c7C8A9D,
           ),
@@ -34,8 +33,6 @@ class CardInputWidget extends StatelessWidget {
           ],
           lengthLimiting: 19,
         ),
-
-
       ],
     );
   }

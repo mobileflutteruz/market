@@ -21,7 +21,9 @@ mixin _$OtpBuildableState {
   bool get failed => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OtpBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OtpBuildableStateCopyWith<OtpBuildableState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$OtpBuildableStateCopyWithImpl<$Res, $Val extends OtpBuildableState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OtpBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +97,8 @@ class __$$OtpBuildableStateImplCopyWithImpl<$Res>
       $Res Function(_$OtpBuildableStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OtpBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -163,7 +169,9 @@ class _$OtpBuildableStateImpl implements _OtpBuildableState {
   int get hashCode => Object.hash(runtimeType, loading, success, failed,
       const DeepCollectionEquality().hash(error));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OtpBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OtpBuildableStateImplCopyWith<_$OtpBuildableStateImpl> get copyWith =>
@@ -186,8 +194,11 @@ abstract class _OtpBuildableState implements OtpBuildableState {
   bool get failed;
   @override
   dynamic get error;
+
+  /// Create a copy of OtpBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OtpBuildableStateImplCopyWith<_$OtpBuildableStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

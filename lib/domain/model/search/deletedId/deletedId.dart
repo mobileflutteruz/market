@@ -6,10 +6,11 @@ part 'deletedId.g.dart';
 
 @freezed
 class DeletedId with _$DeletedId {
-    const factory DeletedId({
-        bool? status,
-        String? message,
-    }) = _DeletedId;
+  const factory DeletedId({
+    bool? status,
+    String? message,
+  }) = _DeletedId;
 
-    factory DeletedId.fromJson(Map<String, dynamic> json) => _$DeletedIdFromJson(json);
+  factory DeletedId.fromJson(Map<String, dynamic> json) =>
+      _$DeletedIdFromJson(json);
 }

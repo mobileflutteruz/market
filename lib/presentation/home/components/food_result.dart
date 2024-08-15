@@ -50,7 +50,7 @@
 //                   isLiked: state.likeIds.contains(product.id.toString()),
 //                   product: product,
 //                   onTap: () => Navigator.pushNamed(context, FoodNavigatorConst.foodBasket), smallButton: () {  },
-                  
+
 //                 ),
 //               );
 //             },

@@ -9,11 +9,10 @@ class FoodProfileBuildableState extends FoodProfileState
     @Default(null) String? userName,
     @Default(false) bool notificationValue,
     @Default(null) UserModel? profileUser,
-        @Default(false) bool loading,
+    @Default(false) bool loading,
     @Default(false) bool success,
     @Default(false) bool failure,
     @Default('') String errorMessage,
-     @Default('') String imagePath,
-
+    @Default('') String imagePath,
   }) = _FoodProfileBuildableState;
 }

@@ -11,7 +11,6 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-
       automaticallyImplyLeading: false,
       backgroundColor: FoodColors.cffffff,
       leading: backOnTap != null
@@ -30,7 +29,7 @@ class CommonAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
         style: Styles.manropeMedium18.copyWith(
-          color:  ColorConstants.c0E1A23,
+          color: ColorConstants.c0E1A23,
         ),
       ),
       centerTitle: false,

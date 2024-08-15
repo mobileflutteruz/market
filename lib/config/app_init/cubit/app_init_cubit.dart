@@ -23,7 +23,7 @@ class AppInitCubit extends Cubit<AppInitState> {
     final deviceInfo = DeviceInfoPlugin();
     final androidInfo = await deviceInfo.androidInfo;
     final deviceModel = androidInfo.model;
-    
+
     // Eski 'androidId' o'rniga yangi 'id' xususiyatidan foydalanamiz
     final deviceUuid = androidInfo.id;
 

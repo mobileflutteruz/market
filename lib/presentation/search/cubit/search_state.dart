@@ -5,7 +5,7 @@ abstract class SearchState {}
 @freezed
 class SearchdBuildableState extends SearchState with _$SearchdBuildableState {
   const factory SearchdBuildableState({
-     @Default(false) bool loading,
+    @Default(false) bool loading,
     @Default(false) bool success,
     @Default(false) bool failure,
     dynamic error,
@@ -15,10 +15,6 @@ class SearchdBuildableState extends SearchState with _$SearchdBuildableState {
     DeletedId? deletedId,
   }) = _SearchedBuildableState;
 }
-
-
-
-
 
 // abstract class SearchState {}
 

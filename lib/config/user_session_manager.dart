@@ -2,7 +2,6 @@ import 'package:injectable/injectable.dart';
 import 'token_data_source.dart';
 import 'user_data_source.dart';
 
-
 @Singleton()
 class UserSessionManager {
   @Injectable()
@@ -29,7 +28,7 @@ class UserSessionManager {
     await _tokenDataSource.saveToken(token);
   }
 
-   Future<String?> getToken() async {
+  Future<String?> getToken() async {
     return await _tokenDataSource.getGuestUser();
   }
 
@@ -42,7 +41,7 @@ class UserSessionManager {
     await _userDataDataSource.saveUserId(userId);
   }
 
-   Future<void> clearUserSession() async {
+  Future<void> clearUserSession() async {
     await _tokenDataSource.clearUser();
     await _tokenDataSource.clearToken();
   }
@@ -50,7 +49,4 @@ class UserSessionManager {
   Future<void> saveToken(String token) async {
     await _tokenDataSource.saveGuestUser(token);
   }
-
-  
-
 }

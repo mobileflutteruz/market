@@ -28,8 +28,12 @@ mixin _$District {
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   List<Districts> get districts => throw _privateConstructorUsedError;
 
+  /// Serializes this District to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of District
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DistrictCopyWith<District> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -57,6 +61,8 @@ class _$DistrictCopyWithImpl<$Res, $Val extends District>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of District
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -115,6 +121,8 @@ class __$$DistrictImplCopyWithImpl<$Res>
       _$DistrictImpl _value, $Res Function(_$DistrictImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of District
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -201,12 +209,14 @@ class _$DistrictImpl implements _District {
                 .equals(other._districts, _districts));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, createdAt, updatedAt,
       const DeepCollectionEquality().hash(_districts));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of District
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DistrictImplCopyWith<_$DistrictImpl> get copyWith =>
@@ -243,8 +253,11 @@ abstract class _District implements District {
   DateTime? get updatedAt;
   @override
   List<Districts> get districts;
+
+  /// Create a copy of District
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DistrictImplCopyWith<_$DistrictImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -264,8 +277,12 @@ mixin _$Districts {
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
+  /// Serializes this Districts to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Districts
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DistrictsCopyWith<Districts> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -293,6 +310,8 @@ class _$DistrictsCopyWithImpl<$Res, $Val extends Districts>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Districts
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -351,6 +370,8 @@ class __$$DistrictsImplCopyWithImpl<$Res>
       _$DistrictsImpl _value, $Res Function(_$DistrictsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Districts
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -432,12 +453,14 @@ class _$DistrictsImpl implements _Districts {
                 other.updatedAt == updatedAt));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, regionId, name, createdAt, updatedAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Districts
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DistrictsImplCopyWith<_$DistrictsImpl> get copyWith =>
@@ -476,8 +499,11 @@ abstract class _Districts implements Districts {
   @override
   @JsonKey(name: 'updated_at')
   DateTime? get updatedAt;
+
+  /// Create a copy of Districts
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DistrictsImplCopyWith<_$DistrictsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

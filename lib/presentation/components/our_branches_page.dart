@@ -30,7 +30,7 @@ class OurBranchesPage extends StatelessWidget {
         child: Column(
           children: [
             InputWidget(
-              hintText: context.l10n.address ,
+              hintText: context.l10n.address,
               keyboardType: TextInputType.text,
               prefixIcon: IconConstants.search,
               textEditingController: searchController,
@@ -96,5 +96,3 @@ class OurBranchesMapItem extends StatelessWidget {
     );
   }
 }
-
-

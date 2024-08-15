@@ -22,7 +22,6 @@ class LoginCubit extends BuildableCubit<LoginState, LoginBuildableState> {
   final AuthRepository authRepo;
   final UserSessionManager _userSessionManager;
 
-
   login({
     required String phone,
     required String password,
@@ -31,7 +30,6 @@ class LoginCubit extends BuildableCubit<LoginState, LoginBuildableState> {
       (buildable) => buildable.copyWith(loading: true, failure: false),
     );
     try {
-
       final AuthResponse response = await authRepo.login(
         phone: phone,
         password: password,
@@ -41,32 +39,26 @@ class LoginCubit extends BuildableCubit<LoginState, LoginBuildableState> {
         String accessToken = response.token!;
         String userId = response.user_id.toString();
 
-
-
         await _userSessionManager.saveUserToken(accessToken);
         await _userSessionManager.saveUserId(userId);
         build(
-              (buildable) => buildable.copyWith(
+          (buildable) => buildable.copyWith(
             success: true,
             loading: false,
             failure: false,
             message: "Successfully",
           ),
         );
-
-
-
       } else {
         build(
-              (buildable) => buildable.copyWith(
+          (buildable) => buildable.copyWith(
             success: false,
             loading: false,
             failure: true,
-                message: "Error",
+            message: "Error",
           ),
         );
       }
-
     } catch (e) {
       print(e.toString());
       build(

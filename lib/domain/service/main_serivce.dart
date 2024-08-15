@@ -15,14 +15,12 @@ class MainService {
     return MobileHomeProducts.fromJson(data);
   }
 
-
   fetchProductDetails(int productId) async {
     final response = await _mainApi.fetchProductDetails(productId);
     var data = jsonDecode(response.body);
     return ProductDataModel.fromJson(data);
   }
 
-  
   // fetchOrderHistory(int page, int size) async {
   //   final response = await _mainApi.fetchOrderHistory(page, size);
   //   var data = jsonDecode(response.body);
@@ -40,10 +38,6 @@ class MainService {
   //   var data = jsonDecode(response.body);
   //   return NotificationData.fromJson(data);
   // }
-
-
-
-
 
   // String convertTime(DateTime time) {
   //   String formattedDateTime =

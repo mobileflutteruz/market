@@ -101,7 +101,8 @@ class FoodCategoryPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CategoryProductScreen(category.id!),
+                          builder: (context) =>
+                              CategoryProductScreen(category.id!),
                         ),
                       );
                     },

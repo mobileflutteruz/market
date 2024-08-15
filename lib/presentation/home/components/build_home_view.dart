@@ -5,12 +5,10 @@ import 'package:karmango/presentation/category/food_category_view.dart';
 import 'package:karmango/presentation/profile/food_profile_view.dart';
 import 'package:karmango/presentation/home/components/food_home_components.dart';
 
-
-
 buildHomeUi(int index) {
   switch (index) {
     case 0:
-      return  const FoodHomeView();
+      return const FoodHomeView();
     case 1:
       return const FoodCategoryView();
     case 2:

@@ -50,7 +50,7 @@ class UserModel {
   Map<String, dynamic> toJson() {
     List<Map<String, dynamic>> cardsJson =
         cards.map((card) => card.toJson()).toList();
-        
+
     List<Map<String, dynamic>> cardJson =
         cards.map((newCard) => newCard.toJson()).toList();
 

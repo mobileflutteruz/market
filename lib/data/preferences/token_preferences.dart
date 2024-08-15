@@ -17,15 +17,14 @@ class TokenPreference {
   final String _guest = "guest";
   final String _user = "user";
 
-
   Future<void> saveGuestUser(String value) async {
-      print("TOKEEEEEEEEEEEEEN saveGuestUser : ${value}");
+    print("TOKEEEEEEEEEEEEEN saveGuestUser : ${value}");
 
     await localeDb.setString(_guest, value);
   }
 
   Future<String?> getGuestUser() async {
-      print("TOKEEEEEEEEEEEEEN getGuestUser : ${_guest}");
+    print("TOKEEEEEEEEEEEEEN getGuestUser : ${_guest}");
     return localeDb.getString(_guest);
   }
 
@@ -43,10 +42,8 @@ class TokenPreference {
     return null;
   }
 
-
-
   Future<void> set(String value) async {
-      print("TOKEEEEEEEEEEEEEN SEEEEET : ${value}");
+    print("TOKEEEEEEEEEEEEEN SEEEEET : ${value}");
     await localeDb.setString(_key, value);
   }
 
@@ -56,7 +53,6 @@ class TokenPreference {
   }
 
   Future<void> clear() async {
-    
     await localeDb.remove(_key);
   }
 

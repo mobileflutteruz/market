@@ -1,4 +1,3 @@
-
 import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/presentation/profile/cubit/food_profile_cubit.dart';
 import 'package:karmango/core/extension/context_extension.dart';
@@ -10,7 +9,6 @@ import '../../../../core/constants/constants.dart';
 import '../../../../config/di/injection.dart';
 import '../../components/buildable.dart';
 import '../../components/common_app_bar.dart';
-
 
 class FoodSettingsPage extends StatelessWidget {
   const FoodSettingsPage({super.key});
@@ -24,7 +22,8 @@ class FoodSettingsPage extends StatelessWidget {
       },
       child: BlocListener<FoodProfileCubit, FoodProfileState>(
         listener: (context, state) {},
-        child: Buildable<FoodProfileCubit, FoodProfileState, FoodProfileBuildableState>(
+        child: Buildable<FoodProfileCubit, FoodProfileState,
+                FoodProfileBuildableState>(
             properties: (buildable) => [
                   buildable.notificationValue,
                 ],
@@ -44,7 +43,7 @@ class FoodSettingsPage extends StatelessWidget {
                         height: 48,
                         width: double.infinity,
                         padding: const EdgeInsets.only(left: 16),
-                        decoration:  BoxDecoration(
+                        decoration: BoxDecoration(
                           color: FoodColors.cF5F5F8,
                           borderRadius: AppUtils.kBorderRadius8,
                         ),
@@ -56,9 +55,8 @@ class FoodSettingsPage extends StatelessWidget {
                             AppUtils.kGap12,
                             Text(
                               context.l10n.notifications,
-                              style: Styles.manropeMedium16.copyWith(
-                                color: FoodColors.c0E1923
-                              ),
+                              style: Styles.manropeMedium16
+                                  .copyWith(color: FoodColors.c0E1923),
                             ),
                             const Spacer(),
                             Transform.scale(
@@ -68,7 +66,8 @@ class FoodSettingsPage extends StatelessWidget {
                                 onChanged: (changedValue) {
                                   context
                                       .read<FoodProfileCubit>()
-                                      .foodChangeNotificationValue(changedValue);
+                                      .foodChangeNotificationValue(
+                                          changedValue);
                                   // setState(() {
                                   //   value = changedValue;
                                   // });
@@ -88,7 +87,7 @@ class FoodSettingsPage extends StatelessWidget {
                           height: 48,
                           width: double.infinity,
                           padding: AppUtils.kPaddingHorizontal16,
-                          decoration:  BoxDecoration(
+                          decoration: BoxDecoration(
                             color: FoodColors.cF5F5F8,
                             borderRadius: AppUtils.kBorderRadius8,
                           ),
@@ -96,20 +95,19 @@ class FoodSettingsPage extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            
                             children: [
-                             Row(
-                              children: [ 
-                                 IconConstants.globe,
-                              AppUtils.kGap12,
-                              Text(
-                                context.l10n.changeLanguage,
-                                style: Styles.manropeMedium16.copyWith(
-                                  color: FoodColors.c0E1923,
-                                ),
+                              Row(
+                                children: [
+                                  IconConstants.globe,
+                                  AppUtils.kGap12,
+                                  Text(
+                                    context.l10n.changeLanguage,
+                                    style: Styles.manropeMedium16.copyWith(
+                                      color: FoodColors.c0E1923,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              ],
-                             ),
                               IconConstants.arrowBackGrey,
                             ],
                           ),

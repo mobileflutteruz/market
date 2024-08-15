@@ -33,10 +33,11 @@ class FavouritesView extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.errorMessage)),
               );
-            } 
+            }
           }
         },
-        child: Buildable<FavouritesCubit, FavouritesState, FavouritesBuildableState>(
+        child: Buildable<FavouritesCubit, FavouritesState,
+            FavouritesBuildableState>(
           properties: (buildable) => [
             buildable.failure,
             buildable.loading,
@@ -98,61 +99,64 @@ class FavouritesView extends StatelessWidget {
               );
             }
 
-
-            if (state.favourites != null && state.favourites!.result!.isNotEmpty) {
-              return Scaffold(
-              appBar: CommonAppBar(title: context.l10n.favorites),
-              body: CustomScrollView(
-                slivers: [
-                  FoodInfoWidget(favouritesCount: state.favourites!.result!.length),
-                  SliverPadding(
-                    padding: AppUtils.kPaddingHorizontal16,
-                    sliver: SliverGrid.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: crossAxisCount == 0 || crossAxisCount == 1 ? 2 : crossAxisCount,
-                        mainAxisSpacing: 16,
-                        crossAxisSpacing: 16,
-                        childAspectRatio: .52,
-                      ),
-                      itemBuilder: (context, index) {
-                        final product = state.favourites!.result![index];
-                        return FoodFavoriteItemWidget(
-                          productList: [product],
-                          onTap: () {},
-                          likeTapped: () {
-                            context.read<FavouritesCubit>().deleteLikeId(product.product_id!);
-                          },
-                          isLiked: state.likeIds.contains(product.id!),
-                          smallButton: () {},
-                        );
-                      },
-                      itemCount: state.favourites!.result!.length,
-                    ),
-                  ),
-                ],
-              ),
-            );
-            }
-
-           
+            if (state.favourites != null &&
+                state.favourites!.result!.isNotEmpty) {
               return Scaffold(
                 appBar: CommonAppBar(title: context.l10n.favorites),
                 body: CustomScrollView(
                   slivers: [
-                    const FoodInfoWidget(favouritesCount: 0),
-                    SliverToBoxAdapter(
-                      child: Column(
-                        children: [
-                          AppUtils.kGap40,
-                          Lottie.asset('assets/animation/food_empty.json'),
-                        ],
+                    FoodInfoWidget(
+                        favouritesCount: state.favourites!.result!.length),
+                    SliverPadding(
+                      padding: AppUtils.kPaddingHorizontal16,
+                      sliver: SliverGrid.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount:
+                              crossAxisCount == 0 || crossAxisCount == 1
+                                  ? 2
+                                  : crossAxisCount,
+                          mainAxisSpacing: 16,
+                          crossAxisSpacing: 16,
+                          childAspectRatio: .52,
+                        ),
+                        itemBuilder: (context, index) {
+                          final product = state.favourites!.result![index];
+                          return FoodFavoriteItemWidget(
+                            productList: [product],
+                            onTap: () {},
+                            likeTapped: () {
+                              context
+                                  .read<FavouritesCubit>()
+                                  .deleteLikeId(product.product_id!);
+                            },
+                            isLiked: state.likeIds.contains(product.id!),
+                            smallButton: () {},
+                          );
+                        },
+                        itemCount: state.favourites!.result!.length,
                       ),
                     ),
                   ],
                 ),
               );
-            
-            
+            }
+
+            return Scaffold(
+              appBar: CommonAppBar(title: context.l10n.favorites),
+              body: CustomScrollView(
+                slivers: [
+                  const FoodInfoWidget(favouritesCount: 0),
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        AppUtils.kGap40,
+                        Lottie.asset('assets/animation/food_empty.json'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
           },
         ),
       ),

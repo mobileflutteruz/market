@@ -188,14 +188,13 @@ class Styles {
     overflow: TextOverflow.ellipsis,
   );
 
-    /// Font Size: Inter 12
+  /// Font Size: Inter 12
   static TextStyle interMedium12 = const TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w500,
     fontFamily: "Inter",
     overflow: TextOverflow.ellipsis,
   );
-
 
   /// Font Size: Inter 14
   static TextStyle interSemiBold14 = const TextStyle(
@@ -213,7 +212,7 @@ class Styles {
     overflow: TextOverflow.ellipsis,
   );
 
-    /// Font Size: Inter 16
+  /// Font Size: Inter 16
   static TextStyle interMedium16 = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
@@ -221,7 +220,7 @@ class Styles {
     overflow: TextOverflow.ellipsis,
   );
 
-    /// Font Size: Inter 16
+  /// Font Size: Inter 16
   static TextStyle interSemiBold16 = const TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w600,
@@ -229,7 +228,7 @@ class Styles {
     overflow: TextOverflow.ellipsis,
   );
 
-   /// Font Size: Inter 20
+  /// Font Size: Inter 20
   static TextStyle interSemiBold20 = const TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w600,

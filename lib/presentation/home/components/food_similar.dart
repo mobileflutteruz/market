@@ -156,7 +156,8 @@ class _FoodSimilarItemWidgetState extends State<FoodSimilarItemWidget> {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: Styles.manropeBold14.copyWith(
-                color: widget.isNew ? FoodColors.primaryColor : FoodColors.cA6AEBF,
+                color:
+                    widget.isNew ? FoodColors.primaryColor : FoodColors.cA6AEBF,
               ),
             ),
             AppUtils.kGap4,

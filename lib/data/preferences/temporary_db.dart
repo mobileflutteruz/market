@@ -2,18 +2,6 @@ import 'package:flutter/material.dart';
 import '../../core/constants/constants.dart';
 import '../../core/utils/app_options.dart';
 
-
-
-
-
-
-
-
-
-
-
-
-
 const List regions = [
   "Toshkent shahri",
   "Toshkent viloyati",
@@ -53,9 +41,6 @@ final List<String> paymentTypeImages = [
 ];
 // List<String> languageTexts = <String>['O\'zbek', 'Русский ', 'English'];
 
-
-
-
 Map<String, String> languageItems = {
   "O’zbek tili": ImageConstants.uz,
   "Русский язык": ImageConstants.ru,
@@ -67,9 +52,6 @@ final localization = [
   const Locale("ru"),
   const Locale("en"),
 ];
-
-
-
 
 int currentLocaleIndex = AppOptions.instance.locale == const Locale("uz")
     ? 0

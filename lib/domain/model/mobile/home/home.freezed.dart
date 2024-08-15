@@ -23,8 +23,12 @@ mixin _$MobileHomeProducts {
   bool? get status => throw _privateConstructorUsedError;
   MobileHomeData? get result => throw _privateConstructorUsedError;
 
+  /// Serializes this MobileHomeProducts to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MobileHomeProducts
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MobileHomeProductsCopyWith<MobileHomeProducts> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$MobileHomeProductsCopyWithImpl<$Res, $Val extends MobileHomeProducts>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MobileHomeProducts
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -68,6 +74,8 @@ class _$MobileHomeProductsCopyWithImpl<$Res, $Val extends MobileHomeProducts>
     ) as $Val);
   }
 
+  /// Create a copy of MobileHomeProducts
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MobileHomeDataCopyWith<$Res>? get result {
@@ -103,6 +111,8 @@ class __$$MobileHomeProductsImplCopyWithImpl<$Res>
       $Res Function(_$MobileHomeProductsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MobileHomeProducts
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,11 +159,13 @@ class _$MobileHomeProductsImpl implements _MobileHomeProducts {
             (identical(other.result, result) || other.result == result));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, result);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MobileHomeProducts
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MobileHomeProductsImplCopyWith<_$MobileHomeProductsImpl> get copyWith =>
@@ -180,8 +192,11 @@ abstract class _MobileHomeProducts implements MobileHomeProducts {
   bool? get status;
   @override
   MobileHomeData? get result;
+
+  /// Create a copy of MobileHomeProducts
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MobileHomeProductsImplCopyWith<_$MobileHomeProductsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -197,8 +212,12 @@ mixin _$MobileHomeData {
   List<HomeBanner>? get bottom_banner => throw _privateConstructorUsedError;
   List<TopProduct>? get bottom_product => throw _privateConstructorUsedError;
 
+  /// Serializes this MobileHomeData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MobileHomeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MobileHomeDataCopyWith<MobileHomeData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -226,6 +245,8 @@ class _$MobileHomeDataCopyWithImpl<$Res, $Val extends MobileHomeData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MobileHomeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -278,6 +299,8 @@ class __$$MobileHomeDataImplCopyWithImpl<$Res>
       _$MobileHomeDataImpl _value, $Res Function(_$MobileHomeDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MobileHomeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -383,7 +406,7 @@ class _$MobileHomeDataImpl implements _MobileHomeData {
                 .equals(other._bottom_product, _bottom_product));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -392,7 +415,9 @@ class _$MobileHomeDataImpl implements _MobileHomeData {
       const DeepCollectionEquality().hash(_bottom_banner),
       const DeepCollectionEquality().hash(_bottom_product));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MobileHomeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MobileHomeDataImplCopyWith<_$MobileHomeDataImpl> get copyWith =>
@@ -425,8 +450,11 @@ abstract class _MobileHomeData implements MobileHomeData {
   List<HomeBanner>? get bottom_banner;
   @override
   List<TopProduct>? get bottom_product;
+
+  /// Create a copy of MobileHomeData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MobileHomeDataImplCopyWith<_$MobileHomeDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -441,8 +469,12 @@ mixin _$HomeBanner {
   String? get banner => throw _privateConstructorUsedError;
   String? get alternative_text => throw _privateConstructorUsedError;
 
+  /// Serializes this HomeBanner to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HomeBanner
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $HomeBannerCopyWith<HomeBanner> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -466,6 +498,8 @@ class _$HomeBannerCopyWithImpl<$Res, $Val extends HomeBanner>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of HomeBanner
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -509,6 +543,8 @@ class __$$HomeBannerImplCopyWithImpl<$Res>
       _$HomeBannerImpl _value, $Res Function(_$HomeBannerImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HomeBanner
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -564,11 +600,13 @@ class _$HomeBannerImpl implements _HomeBanner {
                 other.alternative_text == alternative_text));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, banner, alternative_text);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HomeBanner
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HomeBannerImplCopyWith<_$HomeBannerImpl> get copyWith =>
@@ -597,8 +635,11 @@ abstract class _HomeBanner implements HomeBanner {
   String? get banner;
   @override
   String? get alternative_text;
+
+  /// Create a copy of HomeBanner
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HomeBannerImplCopyWith<_$HomeBannerImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -613,8 +654,12 @@ mixin _$TopProduct {
   String? get name => throw _privateConstructorUsedError;
   List<MobileProduct>? get products => throw _privateConstructorUsedError;
 
+  /// Serializes this TopProduct to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TopProduct
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TopProductCopyWith<TopProduct> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -638,6 +683,8 @@ class _$TopProductCopyWithImpl<$Res, $Val extends TopProduct>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TopProduct
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -681,6 +728,8 @@ class __$$TopProductImplCopyWithImpl<$Res>
       _$TopProductImpl _value, $Res Function(_$TopProductImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TopProduct
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -744,12 +793,14 @@ class _$TopProductImpl implements _TopProduct {
             const DeepCollectionEquality().equals(other._products, _products));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, top_id, name,
       const DeepCollectionEquality().hash(_products));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TopProduct
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TopProductImplCopyWith<_$TopProductImpl> get copyWith =>
@@ -778,8 +829,11 @@ abstract class _TopProduct implements TopProduct {
   String? get name;
   @override
   List<MobileProduct>? get products;
+
+  /// Create a copy of TopProduct
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TopProductImplCopyWith<_$TopProductImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -799,8 +853,12 @@ mixin _$MobileProduct {
   String? get product_type => throw _privateConstructorUsedError;
   double? get price_to_pay => throw _privateConstructorUsedError;
 
+  /// Serializes this MobileProduct to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of MobileProduct
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MobileProductCopyWith<MobileProduct> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -832,6 +890,8 @@ class _$MobileProductCopyWithImpl<$Res, $Val extends MobileProduct>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MobileProduct
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -908,6 +968,8 @@ class __$$MobileProductImplCopyWithImpl<$Res>
       _$MobileProductImpl _value, $Res Function(_$MobileProductImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MobileProduct
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1013,12 +1075,14 @@ class _$MobileProductImpl implements _MobileProduct {
                 other.price_to_pay == price_to_pay));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, status, discount,
       price, image, product_type, price_to_pay);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MobileProduct
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MobileProductImplCopyWith<_$MobileProductImpl> get copyWith =>
@@ -1062,8 +1126,11 @@ abstract class _MobileProduct implements MobileProduct {
   String? get product_type;
   @override
   double? get price_to_pay;
+
+  /// Create a copy of MobileProduct
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MobileProductImplCopyWith<_$MobileProductImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

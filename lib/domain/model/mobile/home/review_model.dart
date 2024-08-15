@@ -13,7 +13,7 @@ class ReviewsModel {
     this.ratingCount2 = 0,
     this.ratingCount3 = 0,
     this.ratingCount4 = 0,
-    this.ratingCount5 =  0,
+    this.ratingCount5 = 0,
     this.reviews = const [],
   });
 
@@ -35,7 +35,7 @@ class ReviewsModel {
 
   Map<String, dynamic> toJson() {
     List<Map<String, dynamic>> reviewsJson =
-    reviews.map((review) => review.toJson()).toList();
+        reviews.map((review) => review.toJson()).toList();
 
     return {
       'ratingCount1': ratingCount1,
@@ -46,11 +46,7 @@ class ReviewsModel {
       'reviews': reviewsJson,
     };
   }
-
 }
-
-
-
 
 class ReviewModel {
   final UserModel userModel;
@@ -86,8 +82,4 @@ class ReviewModel {
       'images': images,
     };
   }
-
-
-
-
 }

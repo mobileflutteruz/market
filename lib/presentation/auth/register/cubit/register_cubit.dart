@@ -50,10 +50,7 @@ class RegisterCubit
     }
   }
 
-  
-
-  
-   logout() async {
+  logout() async {
     authRepo.logout();
     // emit(const ProfileState.update());
   }

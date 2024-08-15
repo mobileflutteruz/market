@@ -35,8 +35,12 @@ mixin _$SearchProduct {
   DateTime? get created_at => throw _privateConstructorUsedError;
   DateTime? get updated_at => throw _privateConstructorUsedError;
 
+  /// Serializes this SearchProduct to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SearchProduct
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SearchProductCopyWith<SearchProduct> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -74,6 +78,8 @@ class _$SearchProductCopyWithImpl<$Res, $Val extends SearchProduct>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SearchProduct
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -186,6 +192,8 @@ class __$$SearchProductImplCopyWithImpl<$Res>
       _$SearchProductImpl _value, $Res Function(_$SearchProductImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchProduct
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -351,7 +359,7 @@ class _$SearchProductImpl implements _SearchProduct {
                 other.updated_at == updated_at));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -370,7 +378,9 @@ class _$SearchProductImpl implements _SearchProduct {
       created_at,
       updated_at);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchProduct
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchProductImplCopyWith<_$SearchProductImpl> get copyWith =>
@@ -432,8 +442,11 @@ abstract class _SearchProduct implements SearchProduct {
   DateTime? get created_at;
   @override
   DateTime? get updated_at;
+
+  /// Create a copy of SearchProduct
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SearchProductImplCopyWith<_$SearchProductImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

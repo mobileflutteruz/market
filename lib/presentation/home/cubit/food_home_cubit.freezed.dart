@@ -36,7 +36,9 @@ mixin _$FoodHomeBuildableState {
   MobileHomeProducts? get banner => throw _privateConstructorUsedError;
   ProductDataModel? get product => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FoodHomeBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FoodHomeBuildableStateCopyWith<FoodHomeBuildableState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -84,6 +86,8 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FoodHomeBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -187,6 +191,8 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of FoodHomeBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MobileHomeProductsCopyWith<$Res>? get homeProducts {
@@ -199,6 +205,8 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of FoodHomeBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MobileHomeProductsCopyWith<$Res>? get banner {
@@ -211,6 +219,8 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of FoodHomeBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataModelCopyWith<$Res>? get product {
@@ -272,6 +282,8 @@ class __$$FoodHomeBuildableStateImplCopyWithImpl<$Res>
       $Res Function(_$FoodHomeBuildableStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FoodHomeBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -535,7 +547,9 @@ class _$FoodHomeBuildableStateImpl implements _FoodHomeBuildableState {
         product
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FoodHomeBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FoodHomeBuildableStateImplCopyWith<_$FoodHomeBuildableStateImpl>
@@ -603,8 +617,11 @@ abstract class _FoodHomeBuildableState implements FoodHomeBuildableState {
   MobileHomeProducts? get banner;
   @override
   ProductDataModel? get product;
+
+  /// Create a copy of FoodHomeBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FoodHomeBuildableStateImplCopyWith<_$FoodHomeBuildableStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

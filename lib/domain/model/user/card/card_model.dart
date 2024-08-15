@@ -32,5 +32,4 @@ class CardModel {
       'cardPhone': cardPhone,
     };
   }
-
 }

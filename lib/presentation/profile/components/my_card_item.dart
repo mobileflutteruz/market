@@ -9,19 +9,18 @@ class FoodProfileCardWidget extends StatelessWidget {
   final String cardData;
   final bool isProfileCard;
 
-
   const FoodProfileCardWidget({
     super.key,
     required this.balance,
     required this.cardNumber,
     required this.cardData,
-     this.isProfileCard=false,
+    this.isProfileCard = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height:  isProfileCard? 96:136,
+      height: isProfileCard ? 96 : 136,
       padding: AppUtils.kPaddingHor16Ver12,
       decoration: BoxDecoration(
           color: FoodColors.primaryColor,
@@ -36,7 +35,6 @@ class FoodProfileCardWidget extends StatelessWidget {
             children: [
               Text(
                 context.l10n.balance,
-              
                 style: Styles.manropeRegular10.copyWith(
                   color: ColorConstants.cffffff,
                 ),

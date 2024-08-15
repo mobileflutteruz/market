@@ -3,7 +3,6 @@ import 'package:injectable/injectable.dart';
 import 'package:karmango/domain/expections/invalid_credentials_exceptions.dart';
 import 'package:karmango/domain/model/favourite/favourite.dart';
 import 'package:karmango/domain/repository/data_repository.dart';
-import '../../../domain/repository/main_repository.dart';
 import '../../components/buildable_cubit.dart';
 
 part 'favourites_state.dart';
@@ -13,12 +12,11 @@ part 'favourites_cubit.freezed.dart';
 @Injectable()
 class FavouritesCubit
     extends BuildableCubit<FavouritesState, FavouritesBuildableState> {
-  FavouritesCubit(this._repository, this._dataRepository)
+  FavouritesCubit(this._dataRepository)
       : super(const FavouritesBuildableState()) {
     init();
   }
 
-  final MainRepository _repository;
   final DataRepository _dataRepository;
 
   Future<void> init() async {

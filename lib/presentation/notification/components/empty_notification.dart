@@ -4,7 +4,6 @@ import '../../../../core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/constants/constants.dart';
 
-
 class FoodEmptyNotificationWidget extends StatelessWidget {
   const FoodEmptyNotificationWidget({super.key});
 
@@ -31,9 +30,8 @@ class FoodEmptyNotificationWidget extends StatelessWidget {
               Text(
                 "У вас еще нет активного адреса",
                 textAlign: TextAlign.center,
-                style: Styles.manropeSemiBold18.copyWith(
-                  color: FoodColors.c0E1923
-                ),
+                style: Styles.manropeSemiBold18
+                    .copyWith(color: FoodColors.c0E1923),
               ),
               AppUtils.kGap12,
               Text(
@@ -54,7 +52,7 @@ class FoodEmptyNotificationWidget extends StatelessWidget {
               child: SizedBox(
                 height: 50,
                 child: DecoratedBox(
-                  decoration:  ShapeDecoration(
+                  decoration: ShapeDecoration(
                     color: FoodColors.primaryColor,
                     shape: const RoundedRectangleBorder(
                       borderRadius: AppUtils.kBorderRadius8,
@@ -67,9 +65,8 @@ class FoodEmptyNotificationWidget extends StatelessWidget {
                     children: [
                       Text(context.l10n.toMain,
                           textAlign: TextAlign.center,
-                          style: Styles.manropeMedium16.copyWith(
-                            color: FoodColors.cffffff
-                          )),
+                          style: Styles.manropeMedium16
+                              .copyWith(color: FoodColors.cffffff)),
                     ],
                   ),
                 ),

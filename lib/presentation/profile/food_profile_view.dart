@@ -340,7 +340,7 @@ class _FoodProfileViewState extends State<FoodProfileView> {
               ),
             ),
             onPressed: () {
-              context.read<RegisterCubit>().logout();
+              context.read<FoodProfileCubit>().logout();
               Navigator.pop(context);
               Navigator.pushNamedAndRemoveUntil(
                 context,

@@ -15,32 +15,36 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$CHangePasswordBuildableState {
+mixin _$ChangePasswordBuildableState {
   bool get loading => throw _privateConstructorUsedError;
   bool get success => throw _privateConstructorUsedError;
   bool get isModal_hud => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
   bool get failure => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
   UserModel? get user => throw _privateConstructorUsedError;
   dynamic get token => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $CHangePasswordBuildableStateCopyWith<CHangePasswordBuildableState>
+  /// Create a copy of ChangePasswordBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ChangePasswordBuildableStateCopyWith<ChangePasswordBuildableState>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CHangePasswordBuildableStateCopyWith<$Res> {
-  factory $CHangePasswordBuildableStateCopyWith(
-          CHangePasswordBuildableState value,
-          $Res Function(CHangePasswordBuildableState) then) =
-      _$CHangePasswordBuildableStateCopyWithImpl<$Res,
-          CHangePasswordBuildableState>;
+abstract class $ChangePasswordBuildableStateCopyWith<$Res> {
+  factory $ChangePasswordBuildableStateCopyWith(
+          ChangePasswordBuildableState value,
+          $Res Function(ChangePasswordBuildableState) then) =
+      _$ChangePasswordBuildableStateCopyWithImpl<$Res,
+          ChangePasswordBuildableState>;
   @useResult
   $Res call(
       {bool loading,
       bool success,
       bool isModal_hud,
+      String? message,
       bool failure,
       dynamic error,
       UserModel? user,
@@ -50,22 +54,25 @@ abstract class $CHangePasswordBuildableStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CHangePasswordBuildableStateCopyWithImpl<$Res,
-        $Val extends CHangePasswordBuildableState>
-    implements $CHangePasswordBuildableStateCopyWith<$Res> {
-  _$CHangePasswordBuildableStateCopyWithImpl(this._value, this._then);
+class _$ChangePasswordBuildableStateCopyWithImpl<$Res,
+        $Val extends ChangePasswordBuildableState>
+    implements $ChangePasswordBuildableStateCopyWith<$Res> {
+  _$ChangePasswordBuildableStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChangePasswordBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? loading = null,
     Object? success = null,
     Object? isModal_hud = null,
+    Object? message = freezed,
     Object? failure = null,
     Object? error = freezed,
     Object? user = freezed,
@@ -84,6 +91,10 @@ class _$CHangePasswordBuildableStateCopyWithImpl<$Res,
           ? _value.isModal_hud
           : isModal_hud // ignore: cast_nullable_to_non_nullable
               as bool,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
       failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -103,6 +114,8 @@ class _$CHangePasswordBuildableStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ChangePasswordBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserModelCopyWith<$Res>? get user {
@@ -117,18 +130,19 @@ class _$CHangePasswordBuildableStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$CHangePasswordBuildableStateImplCopyWith<$Res>
-    implements $CHangePasswordBuildableStateCopyWith<$Res> {
-  factory _$$CHangePasswordBuildableStateImplCopyWith(
-          _$CHangePasswordBuildableStateImpl value,
-          $Res Function(_$CHangePasswordBuildableStateImpl) then) =
-      __$$CHangePasswordBuildableStateImplCopyWithImpl<$Res>;
+abstract class _$$ChangePasswordBuildableStateImplCopyWith<$Res>
+    implements $ChangePasswordBuildableStateCopyWith<$Res> {
+  factory _$$ChangePasswordBuildableStateImplCopyWith(
+          _$ChangePasswordBuildableStateImpl value,
+          $Res Function(_$ChangePasswordBuildableStateImpl) then) =
+      __$$ChangePasswordBuildableStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {bool loading,
       bool success,
       bool isModal_hud,
+      String? message,
       bool failure,
       dynamic error,
       UserModel? user,
@@ -139,27 +153,30 @@ abstract class _$$CHangePasswordBuildableStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$CHangePasswordBuildableStateImplCopyWithImpl<$Res>
-    extends _$CHangePasswordBuildableStateCopyWithImpl<$Res,
-        _$CHangePasswordBuildableStateImpl>
-    implements _$$CHangePasswordBuildableStateImplCopyWith<$Res> {
-  __$$CHangePasswordBuildableStateImplCopyWithImpl(
-      _$CHangePasswordBuildableStateImpl _value,
-      $Res Function(_$CHangePasswordBuildableStateImpl) _then)
+class __$$ChangePasswordBuildableStateImplCopyWithImpl<$Res>
+    extends _$ChangePasswordBuildableStateCopyWithImpl<$Res,
+        _$ChangePasswordBuildableStateImpl>
+    implements _$$ChangePasswordBuildableStateImplCopyWith<$Res> {
+  __$$ChangePasswordBuildableStateImplCopyWithImpl(
+      _$ChangePasswordBuildableStateImpl _value,
+      $Res Function(_$ChangePasswordBuildableStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChangePasswordBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? loading = null,
     Object? success = null,
     Object? isModal_hud = null,
+    Object? message = freezed,
     Object? failure = null,
     Object? error = freezed,
     Object? user = freezed,
     Object? token = freezed,
   }) {
-    return _then(_$CHangePasswordBuildableStateImpl(
+    return _then(_$ChangePasswordBuildableStateImpl(
       loading: null == loading
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
@@ -172,6 +189,10 @@ class __$$CHangePasswordBuildableStateImplCopyWithImpl<$Res>
           ? _value.isModal_hud
           : isModal_hud // ignore: cast_nullable_to_non_nullable
               as bool,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
       failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -194,12 +215,13 @@ class __$$CHangePasswordBuildableStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CHangePasswordBuildableStateImpl
-    implements _CHangePasswordBuildableState {
-  const _$CHangePasswordBuildableStateImpl(
+class _$ChangePasswordBuildableStateImpl
+    implements _ChangePasswordBuildableState {
+  const _$ChangePasswordBuildableStateImpl(
       {this.loading = false,
       this.success = false,
       this.isModal_hud = false,
+      this.message = null,
       this.failure = false,
       this.error,
       this.user,
@@ -216,6 +238,9 @@ class _$CHangePasswordBuildableStateImpl
   final bool isModal_hud;
   @override
   @JsonKey()
+  final String? message;
+  @override
+  @JsonKey()
   final bool failure;
   @override
   final dynamic error;
@@ -226,18 +251,19 @@ class _$CHangePasswordBuildableStateImpl
 
   @override
   String toString() {
-    return 'CHangePasswordBuildableState(loading: $loading, success: $success, isModal_hud: $isModal_hud, failure: $failure, error: $error, user: $user, token: $token)';
+    return 'ChangePasswordBuildableState(loading: $loading, success: $success, isModal_hud: $isModal_hud, message: $message, failure: $failure, error: $error, user: $user, token: $token)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CHangePasswordBuildableStateImpl &&
+            other is _$ChangePasswordBuildableStateImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.success, success) || other.success == success) &&
             (identical(other.isModal_hud, isModal_hud) ||
                 other.isModal_hud == isModal_hud) &&
+            (identical(other.message, message) || other.message == message) &&
             (identical(other.failure, failure) || other.failure == failure) &&
             const DeepCollectionEquality().equals(other.error, error) &&
             (identical(other.user, user) || other.user == user) &&
@@ -250,30 +276,34 @@ class _$CHangePasswordBuildableStateImpl
       loading,
       success,
       isModal_hud,
+      message,
       failure,
       const DeepCollectionEquality().hash(error),
       user,
       const DeepCollectionEquality().hash(token));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChangePasswordBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CHangePasswordBuildableStateImplCopyWith<
-          _$CHangePasswordBuildableStateImpl>
-      get copyWith => __$$CHangePasswordBuildableStateImplCopyWithImpl<
-          _$CHangePasswordBuildableStateImpl>(this, _$identity);
+  _$$ChangePasswordBuildableStateImplCopyWith<
+          _$ChangePasswordBuildableStateImpl>
+      get copyWith => __$$ChangePasswordBuildableStateImplCopyWithImpl<
+          _$ChangePasswordBuildableStateImpl>(this, _$identity);
 }
 
-abstract class _CHangePasswordBuildableState
-    implements CHangePasswordBuildableState {
-  const factory _CHangePasswordBuildableState(
+abstract class _ChangePasswordBuildableState
+    implements ChangePasswordBuildableState {
+  const factory _ChangePasswordBuildableState(
       {final bool loading,
       final bool success,
       final bool isModal_hud,
+      final String? message,
       final bool failure,
       final dynamic error,
       final UserModel? user,
-      final dynamic token}) = _$CHangePasswordBuildableStateImpl;
+      final dynamic token}) = _$ChangePasswordBuildableStateImpl;
 
   @override
   bool get loading;
@@ -282,6 +312,8 @@ abstract class _CHangePasswordBuildableState
   @override
   bool get isModal_hud;
   @override
+  String? get message;
+  @override
   bool get failure;
   @override
   dynamic get error;
@@ -289,9 +321,12 @@ abstract class _CHangePasswordBuildableState
   UserModel? get user;
   @override
   dynamic get token;
+
+  /// Create a copy of ChangePasswordBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
-  _$$CHangePasswordBuildableStateImplCopyWith<
-          _$CHangePasswordBuildableStateImpl>
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ChangePasswordBuildableStateImplCopyWith<
+          _$ChangePasswordBuildableStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -4,7 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 class Buildable<BLOC extends StateStreamable<STATE>, STATE, BUILDABLE>
     extends StatelessWidget {
-
   final List<Object?> Function(BUILDABLE) properties;
 
   final Widget Function(BuildContext context, BUILDABLE buildable) builder;

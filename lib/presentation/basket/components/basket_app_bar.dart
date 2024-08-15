@@ -2,11 +2,14 @@ part of 'basket_components.dart';
 
 class FoodBasketAppBarWidget extends StatelessWidget
     implements PreferredSizeWidget {
-  const FoodBasketAppBarWidget({super.key, });
+  const FoodBasketAppBarWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Buildable<FoodBasketCubit, FoodBasketState, FoodBasketBuildableState>(
+    return Buildable<FoodBasketCubit, FoodBasketState,
+            FoodBasketBuildableState>(
         properties: (buildable) => [
               buildable.cardProductIds,
               buildable.selectedIds,
@@ -14,7 +17,7 @@ class FoodBasketAppBarWidget extends StatelessWidget
             ],
         builder: (context, state) {
           return AppBar(
-              automaticallyImplyLeading: false,
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.white,
             elevation: 20,
             surfaceTintColor: Colors.white,
@@ -26,7 +29,7 @@ class FoodBasketAppBarWidget extends StatelessWidget
                 Text(
                   context.l10n.yourCart,
                   style: Styles.manropeSemiBold18.copyWith(
-                    color:  FoodColors.c0E1923,
+                    color: FoodColors.c0E1923,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -53,7 +56,7 @@ class FoodBasketAppBarWidget extends StatelessWidget
                       width: 16,
                       child: Checkbox(
                         activeColor: const Color(0xFF2473F2),
-                        side:  BorderSide(
+                        side: BorderSide(
                           color: FoodColors.c8D909B,
                           width: 1,
                         ),
@@ -73,12 +76,14 @@ class FoodBasketAppBarWidget extends StatelessWidget
                             }
                           }
 
-                          context.read<FoodBasketCubit>().chooseAllItem(onChanged!);
-                          onChanged!=true
-                              ?  context.read<FoodBasketCubit>().clearSelectIds():context
+                          context
+                              .read<FoodBasketCubit>()
+                              .chooseAllItem(onChanged!);
+                          onChanged != true
+                              ? context.read<FoodBasketCubit>().clearSelectIds()
+                              : context
                                   .read<FoodBasketCubit>()
                                   .setSelectIds(productIds);
-
                         },
                       ),
                     ),

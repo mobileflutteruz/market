@@ -66,7 +66,7 @@ class _FoodProfileEditPageState extends State<FoodProfileEditPage> {
     });
   }
 
-   final formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   void _showPicker(context, String title) {
     showModalBottomSheet(
@@ -199,8 +199,10 @@ class _FoodProfileEditPageState extends State<FoodProfileEditPage> {
                                                   CrossAxisAlignment.end,
                                               children: [
                                                 Icon(
-                                                  CupertinoIcons.plus_circle_fill,
-                                                  color: FoodColors.primaryColor,
+                                                  CupertinoIcons
+                                                      .plus_circle_fill,
+                                                  color:
+                                                      FoodColors.primaryColor,
                                                   size: 24,
                                                 )
                                               ],
@@ -220,7 +222,7 @@ class _FoodProfileEditPageState extends State<FoodProfileEditPage> {
                                 ),
                               ),
                               AppUtils.kGap32,
-                      
+
                               Text(
                                 context.l10n.surname,
                                 style: Styles.manropeMedium14
@@ -228,8 +230,7 @@ class _FoodProfileEditPageState extends State<FoodProfileEditPage> {
                               ),
                               AppUtils.kGap8,
                               InputWidget(
-                                 keyboardType: TextInputType.text,
-                                 
+                                keyboardType: TextInputType.text,
                                 textEditingController: surnameController,
                                 hintText: context.l10n.surname,
                               ),
@@ -241,7 +242,7 @@ class _FoodProfileEditPageState extends State<FoodProfileEditPage> {
                               ),
                               AppUtils.kGap8,
                               // NameInputWidget(
-                      
+
                               //   hintText:
                               //       context.l10n.name,
                               //   // textEditingController:
@@ -255,15 +256,15 @@ class _FoodProfileEditPageState extends State<FoodProfileEditPage> {
                                   textEditingController: nameController,
                                   hintText: context.l10n.name),
                               AppUtils.kGap20,
-                               Text(
+                              Text(
                                 context.l10n.phoneNumber,
                                 style: Styles.manropeMedium14
                                     .copyWith(color: FoodColors.c0E1923),
                               ),
-                                AppUtils.kGap8,
+                              AppUtils.kGap8,
                               InputPhone(
                                 // isRequired: false,
-                                  keyboardType: TextInputType.number,
+                                keyboardType: TextInputType.number,
                                 textEditingController: phoneController!,
                                 hintText: context.l10n.enterPhoneNumber,
                                 validator: (value) {
@@ -277,16 +278,14 @@ class _FoodProfileEditPageState extends State<FoodProfileEditPage> {
                             child: CommonFoodButtonWidget(
                               title: context.l10n.save,
                               onTap: () {
-
-
-                                 if (formKey.currentState!.validate()) {
-                              // context.read<RegisterCubit>().register();
-                              // Navigator.pushNamed(
-                              //   context,
-                              //   FoodNavigatorConst.foodOtpScreen,
-                              //   arguments: phoneController.text,
-                              // );
-                            }
+                                if (formKey.currentState!.validate()) {
+                                  // context.read<RegisterCubit>().register();
+                                  // Navigator.pushNamed(
+                                  //   context,
+                                  //   FoodNavigatorConst.foodOtpScreen,
+                                  //   arguments: phoneController.text,
+                                  // );
+                                }
                                 final UserModel profileUser = UserModel(
                                   name: surnameController?.text == ""
                                       ? null
@@ -300,7 +299,7 @@ class _FoodProfileEditPageState extends State<FoodProfileEditPage> {
                                 context
                                     .read<FoodProfileCubit>()
                                     .foodSetUser(profileUser);
-                      
+
                                 // Navigator.pop(context, profileUser);
                               },
                             ),

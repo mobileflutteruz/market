@@ -15,12 +15,11 @@ import '../../data/preferences/token_preferences.dart';
 
 @Injectable()
 class AuthRepository {
-  AuthRepository(this._token, this._api, this._authApi, this.auth);
+  AuthRepository(this._token, this._api, this.authApi, );
 
   final Api _api;
-  final AuthApi _authApi;
+  final AuthApi authApi;
   final TokenPreference _token;
-  final AuthRepository auth;
   final LoggingService log = LoggingService();
 
   Future<RegisterModel> register({
@@ -50,12 +49,20 @@ class AuthRepository {
     }
   }
 
-  updatePassword(String newPass, String confirmPass) async {
-    final response = await auth.updatePassword(newPass, confirmPass);
-    Map<String, dynamic> result = Map<String, dynamic>.from(response.data);
-
+  
+Future<Map<String, dynamic>> updatePassword(String newPass, String confirmPass) async {
+  try {
+    final response = await authApi.resetPassword(newPass, confirmPass);
+    // Javobni JSON formatida dekod qilamiz
+    final Map<String, dynamic> result = Map<String, dynamic>.from(jsonDecode(response.body));
     return result;
+  } catch (e) {
+    // Xatolikni log qilish va qayta otish
+    print('Error updating password: $e');
+    rethrow;
   }
+}
+
 
   Future<AuthResponse> login({
     required String phone,
@@ -77,7 +84,7 @@ class AuthRepository {
 
   Future<void> logout() async {
     try {
-      await _authApi.logOut();
+      await authApi.logOut();
       await _token.clear();
       await _token.clearUser();
     } catch (e) {
@@ -87,7 +94,7 @@ class AuthRepository {
 
   Future<void> verify(String phone, String code) async {
     try {
-      final response = await _authApi.verfy(phone, code);
+      final response = await authApi.verfy(phone, code);
       await _onAuthResponse(response);
     } catch (e) {
       log.logError("Error verifying user", error: e);
@@ -96,7 +103,7 @@ class AuthRepository {
 
   Future<void> resetPassword(String oldPassword, String newPassword) async {
     try {
-      final response = await _authApi.resetPassword(oldPassword, newPassword);
+      final response = await authApi.resetPassword(oldPassword, newPassword);
       await _onAuthResponse(response);
     } catch (e) {
       log.logError("Error resetting password", error: e);
@@ -174,7 +181,7 @@ class AuthRepository {
       }
 
       // Call the API to create a guest login
-      final response = await _authApi.createGuestLogin(uuid, model);
+      final response = await authApi.createGuestLogin(uuid, model);
 
       // Handle the authentication response
       if (response.statusCode == 200) {
@@ -252,7 +259,7 @@ class AuthRepository {
 
   Future<void> verifySms(String phone, String code) async {
     try {
-      final response = await _authApi.verfy(removePlus(phone), code);
+      final response = await authApi.verfy(removePlus(phone), code);
       await _onAuthResponse(response);
     } catch (e) {
       log.logError("Error verifying SMS", error: e);

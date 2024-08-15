@@ -3,11 +3,10 @@ import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @module
-abstract class DataModule{
-
+abstract class DataModule {
   @singleton
   FlutterSecureStorage get secureStorage => const FlutterSecureStorage();
 
   @preResolve
-  Future<SharedPreferences> get prefs=> SharedPreferences.getInstance();
+  Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
 }

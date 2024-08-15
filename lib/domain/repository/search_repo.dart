@@ -39,26 +39,23 @@ class SearchRepository {
     return SearchedHistory.fromJson(data);
   }
 
-Future<DeletedId?> searchDeletedId({
-  required int index,
-}) async {
-  final response = await _api.deleteWithToken(
-    path: '/search/delete/${index}',
-  );
-  final result = jsonDecode(response.body);
+  Future<DeletedId?> searchDeletedId({
+    required int index,
+  }) async {
+    final response = await _api.deleteWithToken(
+      path: '/search/delete/${index}',
+    );
+    final result = jsonDecode(response.body);
 
-  return DeletedId.fromJson(result);
-}
-
+    return DeletedId.fromJson(result);
+  }
 
   Future<AllProductDeleted?> searchDeletedAll() async {
-  final response = await _api.deleteWithToken(
-    path: '/clear/searchHistory',
-  );
-  final result = jsonDecode(response.body);
+    final response = await _api.deleteWithToken(
+      path: '/clear/searchHistory',
+    );
+    final result = jsonDecode(response.body);
 
-  
-  return AllProductDeleted.fromJson(result);
-}
-
+    return AllProductDeleted.fromJson(result);
+  }
 }

@@ -7,8 +7,8 @@ class AppOptions extends Equatable {
     required this.locale,
   });
 
-  static AppOptions get instance =>  AppOptions(locale: LocalDataService.getLocale);
-
+  static AppOptions get instance =>
+      AppOptions(locale: LocalDataService.getLocale);
 
   final Locale locale;
 
@@ -21,13 +21,13 @@ class AppOptions extends Equatable {
 
   static AppOptions of(BuildContext context) {
     final scope =
-    context.dependOnInheritedWidgetOfExactType<_ModelBindingScope>()!;
+        context.dependOnInheritedWidgetOfExactType<_ModelBindingScope>()!;
     return scope.modelBindingState.currentModel;
   }
 
   static void update(BuildContext context, AppOptions newModel) {
     final scope =
-    context.dependOnInheritedWidgetOfExactType<_ModelBindingScope>()!;
+        context.dependOnInheritedWidgetOfExactType<_ModelBindingScope>()!;
     scope.modelBindingState.updateModel(newModel);
   }
 
@@ -70,7 +70,7 @@ class _ModelBindingState extends State<ModelBinding> {
     currentModel = widget.initialModel;
   }
 
-  void updateModel(AppOptions newModel) async{
+  void updateModel(AppOptions newModel) async {
     if (newModel != currentModel) {
       await LocalDataService.setLocale(newModel.locale);
       setState(() {
@@ -81,7 +81,7 @@ class _ModelBindingState extends State<ModelBinding> {
 
   @override
   Widget build(BuildContext context) => _ModelBindingScope(
-    modelBindingState: this,
-    child: widget.child,
-  );
+        modelBindingState: this,
+        child: widget.child,
+      );
 }

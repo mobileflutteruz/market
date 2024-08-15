@@ -1,4 +1,3 @@
-
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 
@@ -8,10 +7,8 @@ import 'package:karmango/core/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 builtBottomBar() {
-  return Buildable<FoodHomeCubit, FoodHomeState,
-      FoodHomeBuildableState>(
+  return Buildable<FoodHomeCubit, FoodHomeState, FoodHomeBuildableState>(
     properties: (buildable) => [buildable.currentIndex],
     builder: (context, state) {
       return BottomNavigationBar(
@@ -28,10 +25,9 @@ builtBottomBar() {
         ),
         elevation: 10,
         onTap: (value) {
-          if(value==3){
+          if (value == 3) {
             context.read<FavouritesCubit>().fetchFavourites();
-
-        }
+          }
           BlocProvider.of<FoodHomeCubit>(context, listen: false)
               .changeTabs(value);
         },
@@ -39,7 +35,7 @@ builtBottomBar() {
           BottomNavigationBarItem(
             icon: state.currentIndex == 0
                 ? FoodIcons.foodHomeRed
-            // IconConstants.homeSelect
+                // IconConstants.homeSelect
                 : FoodIcons.foodHomeGrey,
             label: context.l10n.home,
           ),

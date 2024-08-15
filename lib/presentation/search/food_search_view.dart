@@ -72,7 +72,6 @@ class _FoodSearchViewState extends State<FoodSearchView> {
             // Agar qidiruv natijalari bo'lmasa, recent va popular qidiruvlarni ko'rsatish
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              
               children: [
                 _buildRecentSearches(state),
                 const SizedBox(height: 16),
@@ -92,7 +91,8 @@ class _FoodSearchViewState extends State<FoodSearchView> {
       itemBuilder: (context, index) {
         final product = state.product![index];
         return ListTile(
-          leading: Image.network(product.image ?? '', width: 50, height: 50, fit: BoxFit.cover),
+          leading: Image.network(product.image ?? '',
+              width: 50, height: 50, fit: BoxFit.cover),
           title: Text(product.name ?? 'No name'),
           subtitle: Text('${product.price ?? 0} \$'),
           onTap: () {
@@ -139,7 +139,8 @@ class _FoodSearchViewState extends State<FoodSearchView> {
             itemBuilder: (context, index) {
               return ListTile(
                 leading: Icon(Icons.history),
-                title: Text(state.searched!.result!.search_history![index].word!),
+                title:
+                    Text(state.searched!.result!.search_history![index].word!),
                 trailing: IconButton(
                   icon: Icon(Icons.clear),
                   onPressed: () {

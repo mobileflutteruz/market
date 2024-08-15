@@ -28,10 +28,13 @@ class NumberInputPhone extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(width: width * .03),
-         IconConstants.phone,
+          IconConstants.phone,
           SizedBox(width: width * .03),
           const Text('+998',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.white)),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white)),
           SizedBox(
             width: width * .6,
             child: TextFormField(
@@ -54,8 +57,8 @@ class NumberInputPhone extends StatelessWidget {
               ),
               validator: (p0) {
                 return null;
-              
-                // return locator<AuthRepository>().phoneValidator(p0!); 
+
+                // return locator<AuthRepository>().phoneValidator(p0!);
               },
             ),
           ),

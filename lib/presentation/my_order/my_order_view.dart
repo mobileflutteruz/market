@@ -1,4 +1,3 @@
-
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/data/locale_db/food_db.dart';
@@ -36,7 +35,8 @@ class _FoodMyOrderViewState extends State<FoodMyOrderView>
 
   @override
   Widget build(BuildContext context) {
-    return Buildable<FoodMyOrderCubit, FoodMyOrderState, FoodMyOrderBuildableState>(
+    return Buildable<FoodMyOrderCubit, FoodMyOrderState,
+            FoodMyOrderBuildableState>(
         properties: (buildable) => [
               // buildable.tabIndex,
               // buildable.cardProducts,
@@ -63,7 +63,6 @@ class _FoodMyOrderViewState extends State<FoodMyOrderView>
               child: Column(
                 children: [
                   AppUtils.kGap24,
-                 
                   ListView.builder(
                     itemCount: myOrderProducts.length,
                     shrinkWrap: true,
@@ -77,7 +76,6 @@ class _FoodMyOrderViewState extends State<FoodMyOrderView>
                       );
                     },
                   ),
-                 
                 ],
               ),
             ),

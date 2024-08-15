@@ -18,12 +18,15 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RegisterBuildableState {
   bool get loading => throw _privateConstructorUsedError;
   bool get success => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
   bool get failure => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
   UserModel? get user => throw _privateConstructorUsedError;
   dynamic get token => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisterBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RegisterBuildableStateCopyWith<RegisterBuildableState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -37,6 +40,7 @@ abstract class $RegisterBuildableStateCopyWith<$Res> {
   $Res call(
       {bool loading,
       bool success,
+      String? message,
       bool failure,
       dynamic error,
       UserModel? user,
@@ -54,11 +58,14 @@ class _$RegisterBuildableStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RegisterBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? loading = null,
     Object? success = null,
+    Object? message = freezed,
     Object? failure = null,
     Object? error = freezed,
     Object? user = freezed,
@@ -73,6 +80,10 @@ class _$RegisterBuildableStateCopyWithImpl<$Res,
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as bool,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
       failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -105,6 +116,7 @@ abstract class _$$RegisterBuildableStateImplCopyWith<$Res>
   $Res call(
       {bool loading,
       bool success,
+      String? message,
       bool failure,
       dynamic error,
       UserModel? user,
@@ -121,11 +133,14 @@ class __$$RegisterBuildableStateImplCopyWithImpl<$Res>
       $Res Function(_$RegisterBuildableStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegisterBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? loading = null,
     Object? success = null,
+    Object? message = freezed,
     Object? failure = null,
     Object? error = freezed,
     Object? user = freezed,
@@ -140,6 +155,10 @@ class __$$RegisterBuildableStateImplCopyWithImpl<$Res>
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as bool,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
       failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -166,6 +185,7 @@ class _$RegisterBuildableStateImpl implements _RegisterBuildableState {
   const _$RegisterBuildableStateImpl(
       {this.loading = false,
       this.success = false,
+      this.message = null,
       this.failure = false,
       this.error,
       this.user,
@@ -179,6 +199,9 @@ class _$RegisterBuildableStateImpl implements _RegisterBuildableState {
   final bool success;
   @override
   @JsonKey()
+  final String? message;
+  @override
+  @JsonKey()
   final bool failure;
   @override
   final dynamic error;
@@ -189,7 +212,7 @@ class _$RegisterBuildableStateImpl implements _RegisterBuildableState {
 
   @override
   String toString() {
-    return 'RegisterBuildableState(loading: $loading, success: $success, failure: $failure, error: $error, user: $user, token: $token)';
+    return 'RegisterBuildableState(loading: $loading, success: $success, message: $message, failure: $failure, error: $error, user: $user, token: $token)';
   }
 
   @override
@@ -199,6 +222,7 @@ class _$RegisterBuildableStateImpl implements _RegisterBuildableState {
             other is _$RegisterBuildableStateImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
             (identical(other.success, success) || other.success == success) &&
+            (identical(other.message, message) || other.message == message) &&
             (identical(other.failure, failure) || other.failure == failure) &&
             const DeepCollectionEquality().equals(other.error, error) &&
             (identical(other.user, user) || other.user == user) &&
@@ -210,12 +234,15 @@ class _$RegisterBuildableStateImpl implements _RegisterBuildableState {
       runtimeType,
       loading,
       success,
+      message,
       failure,
       const DeepCollectionEquality().hash(error),
       user,
       const DeepCollectionEquality().hash(token));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisterBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RegisterBuildableStateImplCopyWith<_$RegisterBuildableStateImpl>
@@ -227,6 +254,7 @@ abstract class _RegisterBuildableState implements RegisterBuildableState {
   const factory _RegisterBuildableState(
       {final bool loading,
       final bool success,
+      final String? message,
       final bool failure,
       final dynamic error,
       final UserModel? user,
@@ -237,6 +265,8 @@ abstract class _RegisterBuildableState implements RegisterBuildableState {
   @override
   bool get success;
   @override
+  String? get message;
+  @override
   bool get failure;
   @override
   dynamic get error;
@@ -244,8 +274,11 @@ abstract class _RegisterBuildableState implements RegisterBuildableState {
   UserModel? get user;
   @override
   dynamic get token;
+
+  /// Create a copy of RegisterBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RegisterBuildableStateImplCopyWith<_$RegisterBuildableStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

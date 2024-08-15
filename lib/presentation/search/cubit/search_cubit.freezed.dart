@@ -25,7 +25,9 @@ mixin _$SearchdBuildableState {
   AllProductDeleted? get allDeleted => throw _privateConstructorUsedError;
   DeletedId? get deletedId => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchdBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SearchdBuildableStateCopyWith<SearchdBuildableState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -62,6 +64,8 @@ class _$SearchdBuildableStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SearchdBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -110,6 +114,8 @@ class _$SearchdBuildableStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of SearchdBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SearchedHistoryCopyWith<$Res>? get searched {
@@ -122,6 +128,8 @@ class _$SearchdBuildableStateCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of SearchdBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AllProductDeletedCopyWith<$Res>? get allDeleted {
@@ -134,6 +142,8 @@ class _$SearchdBuildableStateCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of SearchdBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DeletedIdCopyWith<$Res>? get deletedId {
@@ -184,6 +194,8 @@ class __$$SearchedBuildableStateImplCopyWithImpl<$Res>
       $Res Function(_$SearchedBuildableStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SearchdBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -310,7 +322,9 @@ class _$SearchedBuildableStateImpl implements _SearchedBuildableState {
       allDeleted,
       deletedId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SearchdBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchedBuildableStateImplCopyWith<_$SearchedBuildableStateImpl>
@@ -345,8 +359,11 @@ abstract class _SearchedBuildableState implements SearchdBuildableState {
   AllProductDeleted? get allDeleted;
   @override
   DeletedId? get deletedId;
+
+  /// Create a copy of SearchdBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SearchedBuildableStateImplCopyWith<_$SearchedBuildableStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -6,7 +6,7 @@ class FoodBasketNotCartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  CommonAppBar(
+      appBar: CommonAppBar(
         title: context.l10n.basket,
       ),
       body: Column(

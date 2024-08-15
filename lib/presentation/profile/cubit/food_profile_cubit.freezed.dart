@@ -25,7 +25,9 @@ mixin _$FoodProfileBuildableState {
   String get errorMessage => throw _privateConstructorUsedError;
   String get imagePath => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FoodProfileBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FoodProfileBuildableStateCopyWith<FoodProfileBuildableState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +60,8 @@ class _$FoodProfileBuildableStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FoodProfileBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -137,6 +141,8 @@ class __$$FoodProfileBuildableStateImplCopyWithImpl<$Res>
       $Res Function(_$FoodProfileBuildableStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FoodProfileBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -253,7 +259,9 @@ class _$FoodProfileBuildableStateImpl implements _FoodProfileBuildableState {
   int get hashCode => Object.hash(runtimeType, userName, notificationValue,
       profileUser, loading, success, failure, errorMessage, imagePath);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FoodProfileBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FoodProfileBuildableStateImplCopyWith<_$FoodProfileBuildableStateImpl>
@@ -288,8 +296,11 @@ abstract class _FoodProfileBuildableState implements FoodProfileBuildableState {
   String get errorMessage;
   @override
   String get imagePath;
+
+  /// Create a copy of FoodProfileBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FoodProfileBuildableStateImplCopyWith<_$FoodProfileBuildableStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

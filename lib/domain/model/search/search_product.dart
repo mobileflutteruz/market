@@ -8,8 +8,8 @@ class SearchProduct with _$SearchProduct {
   const factory SearchProduct({
     int? id,
     String? name,
-    String? description, 
-    String? details_of_product, 
+    String? description,
+    String? details_of_product,
     int? price,
     int? quantity,
     int? quantity_rest,

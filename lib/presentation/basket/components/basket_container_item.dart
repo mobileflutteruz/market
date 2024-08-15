@@ -1,16 +1,13 @@
 part of 'basket_components.dart';
 
-
 class FoodBasketContainerItem extends StatelessWidget {
   void Function()? onTap;
   final String imageUrl;
-  
 
   FoodBasketContainerItem({
     Key? key,
     this.onTap,
     required this.imageUrl,
-    
   }) : super(key: key);
 
   @override
@@ -25,10 +22,9 @@ class FoodBasketContainerItem extends StatelessWidget {
           color: ColorConstants.kGreyOrderBack,
         ),
         child: CachedNetworkImage(
-              height: AppLayout.getHeight(80, context),
-        width: AppLayout.getWidth(72, context),
-          progressIndicatorBuilder: (context, url, downloadProgress) =>
-              Center(
+          height: AppLayout.getHeight(80, context),
+          width: AppLayout.getWidth(72, context),
+          progressIndicatorBuilder: (context, url, downloadProgress) => Center(
             child: CircularProgressIndicator.adaptive(
                 value: downloadProgress.progress),
           ),

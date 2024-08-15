@@ -1,8 +1,8 @@
 part of 'search_components.dart';
 
-class FoodSearchAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
+class FoodSearchAppBarWidget extends StatelessWidget
+    implements PreferredSizeWidget {
   const FoodSearchAppBarWidget({super.key});
-
 
   @override
   Widget build(BuildContext context) {

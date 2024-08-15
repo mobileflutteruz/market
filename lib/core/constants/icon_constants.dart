@@ -21,7 +21,9 @@ class IconConstants {
   static final more = SvgPicture.asset("assets/icons/more.svg");
   static final myOrder = SvgPicture.asset("assets/icons/my_order.svg");
   static final myOrderBlue = SvgPicture.asset("assets/icons/my_order_blue.svg");
-  static final person = SvgPicture.asset("assets/icons/person.svg", );
+  static final person = SvgPicture.asset(
+    "assets/icons/person.svg",
+  );
   static final personBlue = SvgPicture.asset("assets/icons/person_blue.svg");
   static final phone = SvgPicture.asset("assets/icons/phone.svg");
   static final plus = SvgPicture.asset("assets/icons/plus.svg");
@@ -208,5 +210,4 @@ sealed class FoodIcons {
   static final skidka = SvgPicture.asset("assets/icons/food/skidka.svg");
   static final zakaz = SvgPicture.asset("assets/icons/food/zakaz.svg");
   static final circleRed = SvgPicture.asset("assets/icons/food/circleRed.svg");
-
 }

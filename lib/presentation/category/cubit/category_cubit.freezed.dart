@@ -23,7 +23,9 @@ mixin _$CategoryBuildableState {
   ProductModel? get products => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CategoryBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CategoryBuildableStateCopyWith<CategoryBuildableState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +58,8 @@ class _$CategoryBuildableStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CategoryBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -94,6 +98,8 @@ class _$CategoryBuildableStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of CategoryBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductModelCopyWith<$Res>? get products {
@@ -138,6 +144,8 @@ class __$$CategoryBuildableStateImplCopyWithImpl<$Res>
       $Res Function(_$CategoryBuildableStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CategoryBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -242,7 +250,9 @@ class _$CategoryBuildableStateImpl implements _CategoryBuildableState {
       products,
       const DeepCollectionEquality().hash(error));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CategoryBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CategoryBuildableStateImplCopyWith<_$CategoryBuildableStateImpl>
@@ -271,8 +281,11 @@ abstract class _CategoryBuildableState implements CategoryBuildableState {
   ProductModel? get products;
   @override
   dynamic get error;
+
+  /// Create a copy of CategoryBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CategoryBuildableStateImplCopyWith<_$CategoryBuildableStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

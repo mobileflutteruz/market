@@ -68,7 +68,6 @@ sealed class Urls {
   static String createCart = '/cart/store';
   static String deleteCart({
     required int productId,
-   
   }) =>
       '/cart/delete/$productId';
 

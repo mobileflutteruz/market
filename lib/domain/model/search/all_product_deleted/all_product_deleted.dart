@@ -6,10 +6,11 @@ part 'all_product_deleted.g.dart';
 
 @freezed
 class AllProductDeleted with _$AllProductDeleted {
-    const factory AllProductDeleted({
-        bool? status,
-        String? message,
-    }) = _AllProductDeleted;
+  const factory AllProductDeleted({
+    bool? status,
+    String? message,
+  }) = _AllProductDeleted;
 
-    factory AllProductDeleted.fromJson(Map<String, dynamic> json) => _$AllProductDeletedFromJson(json);
+  factory AllProductDeleted.fromJson(Map<String, dynamic> json) =>
+      _$AllProductDeletedFromJson(json);
 }

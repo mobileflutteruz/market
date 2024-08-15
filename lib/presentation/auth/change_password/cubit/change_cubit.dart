@@ -9,10 +9,9 @@ part 'change_state.dart';
 part 'change_cubit.freezed.dart';
 
 @Injectable()
-class CHangePasswordCubit
-    extends BuildableCubit<CHangePasswordState, CHangePasswordBuildableState> {
-  CHangePasswordCubit(this.authRepo)
-      : super(const CHangePasswordBuildableState());
+class ChangePasswordCubit
+    extends BuildableCubit<ChangePasswordState, ChangePasswordBuildableState> {
+  ChangePasswordCubit(this.authRepo) : super(const ChangePasswordBuildableState());
 
   final AuthRepository authRepo;
 
@@ -47,9 +46,15 @@ class CHangePasswordCubit
     }
   }
 
-  resetPassword(String newPass, String confirmPass) async {
-    build((buildable) => buildable.copyWith(
-        isModal_hud: true, success: false, failure: false, error: null));
+  Future<void> resetPassword(String newPass, String confirmPass) async {
+    build(
+      (buildable) => buildable.copyWith(
+        isModal_hud: true,
+        success: false,
+        failure: false,
+        error: null,
+      ),
+    );
     try {
       await authRepo.updatePassword(newPass, confirmPass);
       build(
@@ -59,8 +64,6 @@ class CHangePasswordCubit
         ),
       );
     } catch (e) {
-      print("erooorrrrrr--------->");
-      print(e);
       build(
         (buildable) => buildable.copyWith(
           isModal_hud: false,
@@ -76,11 +79,29 @@ class CHangePasswordCubit
       );
     }
   }
-  // @override
-  // Future<void> close() {
-  //   nameController.dispose();
-  //   passwordController.dispose();
-  //   phoneController.dispose();
-  //   return super.close();
-  // }
+
+  Future<void> verifySms(String phone, String code) async {
+    build(
+      (buildable) => buildable.copyWith(loading: true, failure: false),
+    );
+    try {
+      await authRepo.verifySms(phone, code);
+      build((buildable) =>
+          buildable.copyWith(success: true, loading: false, failure: false));
+    } catch (e) {
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          failure: true,
+          error: e.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<void> close() {
+    phoneController.dispose();
+    return super.close();
+  }
 }

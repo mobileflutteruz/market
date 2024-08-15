@@ -4,7 +4,6 @@
 // import 'package:karmango/domain/model/search/search_product.dart';
 // import 'package:karmango/domain/repository/search_repo.dart';
 
-
 // part 'search_event.dart';
 
 // part 'search_state.dart';

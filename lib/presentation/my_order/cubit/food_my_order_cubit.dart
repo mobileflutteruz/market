@@ -4,20 +4,18 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../domain/repository/main_repository.dart';
 
-
 part 'food_my_order_state.dart';
 part 'food_my_order_cubit.freezed.dart';
 
 @Injectable()
-class FoodMyOrderCubit extends BuildableCubit<FoodMyOrderState, FoodMyOrderBuildableState> {
+class FoodMyOrderCubit
+    extends BuildableCubit<FoodMyOrderState, FoodMyOrderBuildableState> {
   FoodMyOrderCubit(this._repository) : super(const FoodMyOrderBuildableState());
   final MainRepository _repository;
 
-
-
   changeTabIndex({required int tabIndex}) {
     build(
-          (buildable) => buildable.copyWith(
+      (buildable) => buildable.copyWith(
         tabIndex: tabIndex == 0 ? 1 : 0,
       ),
     );
@@ -31,7 +29,7 @@ class FoodMyOrderCubit extends BuildableCubit<FoodMyOrderState, FoodMyOrderBuild
     }
     await _repository.setMyOrderIds(ids);
     build(
-          (buildable) => buildable.copyWith(
+      (buildable) => buildable.copyWith(
           cardProducts: ids, cardProductIds: ids.keys.toList()),
     );
   }
@@ -44,7 +42,7 @@ class FoodMyOrderCubit extends BuildableCubit<FoodMyOrderState, FoodMyOrderBuild
     await _repository.setMyOrderIds(ids);
 
     build(
-          (buildable) => buildable.copyWith(
+      (buildable) => buildable.copyWith(
         cardProducts: ids,
         cardProductIds: ids.keys.toList(),
       ),
@@ -55,14 +53,10 @@ class FoodMyOrderCubit extends BuildableCubit<FoodMyOrderState, FoodMyOrderBuild
     Map<int, int> ids = await _repository.getMyOrderIds();
 
     build(
-          (buildable) => buildable.copyWith(
+      (buildable) => buildable.copyWith(
         cardProducts: ids,
         cardProductIds: ids.keys.toList(),
       ),
     );
   }
-
-
-
-
 }

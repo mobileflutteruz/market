@@ -6,7 +6,6 @@ import 'package:karmango/core/extension/context_extension.dart';
 import '../../../../core/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-
 class FoodChangeLanguagePage extends StatefulWidget {
   const FoodChangeLanguagePage({super.key});
 
@@ -15,8 +14,11 @@ class FoodChangeLanguagePage extends StatefulWidget {
 }
 
 class _FoodChangeLanguagePageState extends State<FoodChangeLanguagePage> {
-  int _site = AppOptions.instance.locale==const Locale("uz")?0:AppOptions.instance.locale==const Locale("ru")?1:2;
-
+  int _site = AppOptions.instance.locale == const Locale("uz")
+      ? 0
+      : AppOptions.instance.locale == const Locale("ru")
+          ? 1
+          : 2;
 
   @override
   Widget build(BuildContext context) {
@@ -36,21 +38,18 @@ class _FoodChangeLanguagePageState extends State<FoodChangeLanguagePage> {
               (index) => Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     setState(() {
-                      _site=index;
+                      _site = index;
                       AppOptions.instance.locale;
 
                       AppOptions.update(
                         context,
                         AppOptions.of(context).copyWith(
-                            locale: localization[index]//const Locale("en"),
-                        ),
+                            locale: localization[index] //const Locale("en"),
+                            ),
                       );
-
-
                     });
-
                   },
                   child: Container(
                     width: double.infinity,
@@ -74,7 +73,6 @@ class _FoodChangeLanguagePageState extends State<FoodChangeLanguagePage> {
                           ),
                         ),
                         const Spacer(),
-
                         Radio(
                           activeColor: FoodColors.primaryColor,
                           focusColor: FoodColors.cC6C8CE,
@@ -82,13 +80,13 @@ class _FoodChangeLanguagePageState extends State<FoodChangeLanguagePage> {
                           groupValue: _site,
                           onChanged: (value) {
                             setState(() {
-
                               _site = value!;
                               AppOptions.update(
                                 context,
                                 AppOptions.of(context).copyWith(
-                                    locale: localization[index]//const Locale("en"),
-                                ),
+                                    locale: localization[
+                                        index] //const Locale("en"),
+                                    ),
                               );
                             });
                           },
@@ -142,7 +140,8 @@ class LanguageButtonWidget extends StatelessWidget {
             Text(
               text,
               style: Styles.manropeMedium14.copyWith(
-                color: isRed ? const Color(0xFFD71B30) : const Color(0xFF162B4C),
+                color:
+                    isRed ? const Color(0xFFD71B30) : const Color(0xFF162B4C),
               ),
             ),
           ],

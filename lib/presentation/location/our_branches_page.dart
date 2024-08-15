@@ -6,7 +6,6 @@ import 'package:karmango/core/extension/context_extension.dart';
 import '../../../../core/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-
 class FoodOurBranchesPage extends StatelessWidget {
   const FoodOurBranchesPage({super.key});
 
@@ -31,7 +30,7 @@ class FoodOurBranchesPage extends StatelessWidget {
         child: Column(
           children: [
             InputWidget(
-              hintText: context.l10n.address ,
+              hintText: context.l10n.address,
               keyboardType: TextInputType.text,
               prefixIcon: IconConstants.search,
               textEditingController: searchController,
@@ -97,5 +96,3 @@ class OurBranchesMapItem extends StatelessWidget {
     );
   }
 }
-
-

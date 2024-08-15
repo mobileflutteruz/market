@@ -52,13 +52,11 @@ class AwesomeTopSnackbarState extends State<AwesomeTopSnackbar> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Text(
-                  widget.message,
+              child: Text(widget.message,
                   style: theme.textTheme.bodyMedium?.merge(widget.textStyle),
                   textAlign: TextAlign.start,
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 2
-              ),
+                  maxLines: 2),
             ),
           ),
           Visibility(
@@ -82,25 +80,25 @@ class AwesomeTopSnackbarState extends State<AwesomeTopSnackbar> {
 
 typedef ControllerCallback = void Function(AnimationController);
 
-enum DismissType {  onSwipe, none }
+enum DismissType { onSwipe, none }
 
 OverlayEntry? _previousEntry;
 
 void mySnackbar(
-    OverlayState overlayState,
-    Widget child, {
-      Duration animationDuration = const Duration(milliseconds: 1200),
-      Duration reverseAnimationDuration = const Duration(milliseconds: 550),
-      Duration displayDuration = const Duration(milliseconds: 3000),
-      VoidCallback? onTap,
-      bool persistent = false,
-      ControllerCallback? onAnimationControllerInit,
-      EdgeInsets padding = const EdgeInsets.all(16),
-      Curve curve = Curves.elasticOut,
-      Curve reverseCurve = Curves.linearToEaseOut,
-      DismissType dismissType = DismissType.onSwipe,
-      List<DismissDirection> dismissDirection = const [DismissDirection.up],
-    }) {
+  OverlayState overlayState,
+  Widget child, {
+  Duration animationDuration = const Duration(milliseconds: 1200),
+  Duration reverseAnimationDuration = const Duration(milliseconds: 550),
+  Duration displayDuration = const Duration(milliseconds: 3000),
+  VoidCallback? onTap,
+  bool persistent = false,
+  ControllerCallback? onAnimationControllerInit,
+  EdgeInsets padding = const EdgeInsets.all(16),
+  Curve curve = Curves.elasticOut,
+  Curve reverseCurve = Curves.linearToEaseOut,
+  DismissType dismissType = DismissType.onSwipe,
+  List<DismissDirection> dismissDirection = const [DismissDirection.up],
+}) {
   late OverlayEntry overlayEntry;
   overlayEntry = OverlayEntry(
     builder: (_) {
@@ -168,7 +166,8 @@ class _TopSnackBar extends StatefulWidget {
   _TopSnackBarState createState() => _TopSnackBarState();
 }
 
-class _TopSnackBarState extends State<_TopSnackBar> with SingleTickerProviderStateMixin {
+class _TopSnackBarState extends State<_TopSnackBar>
+    with SingleTickerProviderStateMixin {
   late final Animation<Offset> _offsetAnimation;
   late final AnimationController _animationController;
 
@@ -184,7 +183,7 @@ class _TopSnackBarState extends State<_TopSnackBar> with SingleTickerProviderSta
       reverseDuration: widget.reverseAnimationDuration,
     );
     _animationController.addStatusListener(
-          (status) {
+      (status) {
         if (status == AnimationStatus.completed && !widget.persistent) {
           _timer = Timer(widget.displayDuration, () {
             if (mounted) {
@@ -266,14 +265,18 @@ class _TopSnackBarState extends State<_TopSnackBar> with SingleTickerProviderSta
 }
 
 void awesomeTopSnackbar(BuildContext context, String message,
-    {BoxDecoration? iconWithDecoration, Color? backgroundColor, Icon? icon, TextStyle? textStyle}) {
+    {BoxDecoration? iconWithDecoration,
+    Color? backgroundColor,
+    Icon? icon,
+    TextStyle? textStyle}) {
   AnimationController? localAnimationController;
 
   mySnackbar(
     animationDuration: const Duration(milliseconds: 1000),
     reverseAnimationDuration: const Duration(milliseconds: 350),
     displayDuration: const Duration(milliseconds: 2500),
-    onAnimationControllerInit: (controller) => localAnimationController = controller,
+    onAnimationControllerInit: (controller) =>
+        localAnimationController = controller,
     dismissType: DismissType.onSwipe,
     dismissDirection: [
       DismissDirection.horizontal,
@@ -292,10 +295,10 @@ void awesomeTopSnackbar(BuildContext context, String message,
       message: message,
       textStyle: textStyle ??
           Theme.of(context).textTheme.bodyMedium!.merge(const TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-            color: Colors.white,
-          )),
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+                color: Colors.white,
+              )),
       backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
     ),
   );

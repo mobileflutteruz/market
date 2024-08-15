@@ -23,8 +23,12 @@ mixin _$DeletedId {
   bool? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
+  /// Serializes this DeletedId to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeletedId
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeletedIdCopyWith<DeletedId> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$DeletedIdCopyWithImpl<$Res, $Val extends DeletedId>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeletedId
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,6 +91,8 @@ class __$$DeletedIdImplCopyWithImpl<$Res>
       _$DeletedIdImpl _value, $Res Function(_$DeletedIdImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeletedId
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -131,11 +139,13 @@ class _$DeletedIdImpl implements _DeletedId {
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeletedId
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeletedIdImplCopyWith<_$DeletedIdImpl> get copyWith =>
@@ -160,8 +170,11 @@ abstract class _DeletedId implements DeletedId {
   bool? get status;
   @override
   String? get message;
+
+  /// Create a copy of DeletedId
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeletedIdImplCopyWith<_$DeletedIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

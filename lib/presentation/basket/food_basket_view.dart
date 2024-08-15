@@ -19,7 +19,8 @@ class FoodBasketView extends StatefulWidget {
   State<FoodBasketView> createState() => _BasketViewState();
 }
 
-class _BasketViewState extends State<FoodBasketView> with TickerProviderStateMixin {
+class _BasketViewState extends State<FoodBasketView>
+    with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -52,7 +53,8 @@ class _BasketViewState extends State<FoodBasketView> with TickerProviderStateMix
             }
           }
         },
-        child: Buildable<FoodBasketCubit, FoodBasketState, FoodBasketBuildableState>(
+        child: Buildable<FoodBasketCubit, FoodBasketState,
+            FoodBasketBuildableState>(
           properties: (buildable) => [
             buildable.failed,
             buildable.loading,
@@ -61,7 +63,8 @@ class _BasketViewState extends State<FoodBasketView> with TickerProviderStateMix
             // buildable.likeIds,
           ],
           builder: (context, state) {
-            if (state.loading && (state.products == null || state.products!.result!.isEmpty)) {
+            if (state.loading &&
+                (state.products == null || state.products!.result!.isEmpty)) {
               return const LoaderWidget();
             }
 
@@ -86,7 +89,8 @@ class _BasketViewState extends State<FoodBasketView> with TickerProviderStateMix
                     ),
                   ],
                 ),
-                bottomNavigationBar: FoodBasketBottomBarWidget(currentIndex: state.tabIndex),
+                bottomNavigationBar:
+                    FoodBasketBottomBarWidget(currentIndex: state.tabIndex),
               );
             }
             return Scaffold(
@@ -100,7 +104,8 @@ class _BasketViewState extends State<FoodBasketView> with TickerProviderStateMix
                       children: [
                         ListView.builder(
                           itemBuilder: (BuildContext context, int index) {
-                            final Result? product = state.products?.result?[index];
+                            final Result? product =
+                                state.products?.result?[index];
                             return FoodBasketCartItem(
                               product: [product],
                             );
@@ -112,7 +117,8 @@ class _BasketViewState extends State<FoodBasketView> with TickerProviderStateMix
                   )
                 ],
               ),
-              bottomNavigationBar: FoodBasketBottomBarWidget(currentIndex: state.tabIndex),
+              bottomNavigationBar:
+                  FoodBasketBottomBarWidget(currentIndex: state.tabIndex),
             );
           },
         ),

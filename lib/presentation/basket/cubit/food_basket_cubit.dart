@@ -79,15 +79,15 @@ class FoodBasketCubit
     }
   }
 
-
-   Future setBasketProducts(int product_id ) async {
+  Future setBasketProducts(int product_id) async {
     build(
       (buildable) => buildable.copyWith(
         loading: true,
       ),
     );
     try {
-      final BasketProducts products = await _dataRepo.createBasket(productId: product_id);
+      final BasketProducts products =
+          await _dataRepo.createBasket(productId: product_id);
       print("basketProducts success------------------------------------------");
       build(
         (buildable) => buildable.copyWith(
@@ -96,7 +96,6 @@ class FoodBasketCubit
           products: products,
         ),
       );
-
     } catch (e) {
       print("basketProducts error------------------------------------------");
       print(e);
@@ -109,7 +108,6 @@ class FoodBasketCubit
       );
     }
   }
-
 
   void updateBasket(Map<int, int> values) async {
     Map<int, int> ids = await _repo.getBasketIds();

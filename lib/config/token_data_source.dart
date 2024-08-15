@@ -68,8 +68,7 @@ class TokenDataSource {
 
   // Mobil do'kon uchun yoqtirganlarni saqlash
   Future<void> setFavourites({required List<String> values}) async {
-    await _secureStorage.write(
-        key: _favouritesKey, value: jsonEncode(values));
+    await _secureStorage.write(key: _favouritesKey, value: jsonEncode(values));
   }
 
   // Mobil do'kon uchun yoqtirganlarni tozalash
@@ -79,7 +78,8 @@ class TokenDataSource {
 
   // Mebel do'koni uchun yoqtirganlarni olish
   Future<List<String>?> getFurnitureFavourites() async {
-    String? favouritesString = await _secureStorage.read(key: _furnitureFavouritesKey);
+    String? favouritesString =
+        await _secureStorage.read(key: _furnitureFavouritesKey);
     if (favouritesString != null) {
       return List<String>.from(jsonDecode(favouritesString));
     }
@@ -109,12 +109,14 @@ class TokenDataSource {
 
   // Buyurtmani saqlash
   Future<void> setMyOrder({required String value}) async {
-    await _secureStorage.write(key: _ordersKey, value: value); // Use _ordersKey instead of _basketsKey
+    await _secureStorage.write(
+        key: _ordersKey, value: value); // Use _ordersKey instead of _basketsKey
   }
 
   // Buyurtmani olish
   Future<String?> getMyOrder() async {
-    return await _secureStorage.read(key: _ordersKey); // Use _ordersKey instead of _basketsKey
+    return await _secureStorage.read(
+        key: _ordersKey); // Use _ordersKey instead of _basketsKey
   }
 
   // Tokenni saqlash

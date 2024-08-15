@@ -6,11 +6,9 @@ import 'package:karmango/presentation/my_order/cubit/food_my_order_cubit.dart';
 import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 
-
 import '../../../../core/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 
 class FoodMyOrderCartItem extends StatelessWidget {
   const FoodMyOrderCartItem({
@@ -24,14 +22,15 @@ class FoodMyOrderCartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Buildable<FoodMyOrderCubit, FoodMyOrderState, FoodMyOrderBuildableState>(
+    return Buildable<FoodMyOrderCubit, FoodMyOrderState,
+        FoodMyOrderBuildableState>(
       properties: (buildable) => [buildable.selectedIds],
       builder: (context, state) {
         return Padding(
           padding: AppUtils.kPaddingAll16,
           child: Container(
             padding: AppUtils.kPaddingAll16,
-            decoration:  const ShapeDecoration(
+            decoration: const ShapeDecoration(
                 color: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: AppUtils.kBorderRadius10,
@@ -114,8 +113,6 @@ class FoodMyOrderCartItem extends StatelessWidget {
                 ),
                 AppUtils.kGap16,
                 AppUtils.kDivider,
-                  
-
                 FoodMyOrderItemText(
                   text: context.l10n.product_info,
                   onTap: onTap,

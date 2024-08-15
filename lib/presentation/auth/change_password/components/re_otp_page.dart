@@ -1,6 +1,4 @@
-
 part of 'const_comp.dart';
-
 
 class FoodReOtpScreen extends StatefulWidget {
   const FoodReOtpScreen({
@@ -14,7 +12,6 @@ class FoodReOtpScreen extends StatefulWidget {
 TextEditingController otpController = TextEditingController();
 
 class _OtpScreenState extends State<FoodReOtpScreen> {
-  
   late FocusNode otpFocusNode;
   @override
   void initState() {
@@ -39,19 +36,20 @@ class _OtpScreenState extends State<FoodReOtpScreen> {
       body: SingleChildScrollView(
         child: Column(children: [
           SizedBox(height: AppSizes.getH(context, .06)),
-            FoodLogoWidget(),
+          FoodLogoWidget(),
           SizedBox(height: AppSizes.getH(context, .07)),
           _customPin(),
           SizedBox(height: AppSizes.getH(context, .03)),
           Padding(
             padding: AppUtils.kPaddingHorizontal16,
-            child: CommonFoodButtonWidget(title:  context.l10n.next,onTap: (){
-              Navigator.pushNamed(context, FoodNavigatorConst.foodChangePassword);
-
-            },),
+            child: CommonFoodButtonWidget(
+              title: context.l10n.next,
+              onTap: () {
+                Navigator.pushNamed(
+                    context, FoodNavigatorConst.foodChangePassword);
+              },
+            ),
           )
-
-
         ]),
       ),
     );

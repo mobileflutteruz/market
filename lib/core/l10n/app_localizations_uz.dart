@@ -131,7 +131,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get addToCart => 'Savatga qo\'shish';
 
   @override
-  String get featuringContouredEdgesANewAction => 'Featuring new contoured edges, a new action button, a powerful camera upgrade, and a durable and lightweight titanium body, the A17 Pro brings next-level performance and mobile gaming. CUPERTINO, CALIFORNIA';
+  String get featuringContouredEdgesANewAction =>
+      'Featuring new contoured edges, a new action button, a powerful camera upgrade, and a durable and lightweight titanium body, the A17 Pro brings next-level performance and mobile gaming. CUPERTINO, CALIFORNIA';
 
   @override
   String get allReviews => 'Barcha fikrlar';
@@ -206,7 +207,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get byCard => 'Karta orqali';
 
   @override
-  String get iAgreeWithTermsPrivacyPolicy => 'Men shartlar va maxfiylik siyosatiga roziman';
+  String get iAgreeWithTermsPrivacyPolicy =>
+      'Men shartlar va maxfiylik siyosatiga roziman';
 
   @override
   String get pay => 'To\'lash';
@@ -215,7 +217,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get orderAccepted => 'Buyurtma qabul qilindi';
 
   @override
-  String get yourOrderHasBeenConfirmedOnTheDay => 'Sizning buyurtmangiz tasdiqlandi. Yetkazib berish kunida Sizga SMS bilan kodi keladi. Buyurtmani olish uchun iltimos, kodni ko\'rsating.';
+  String get yourOrderHasBeenConfirmedOnTheDay =>
+      'Sizning buyurtmangiz tasdiqlandi. Yetkazib berish kunida Sizga SMS bilan kodi keladi. Buyurtmani olish uchun iltimos, kodni ko\'rsating.';
 
   @override
   String get id => 'ID';
@@ -446,16 +449,19 @@ class AppLocalizationsUz extends AppLocalizations {
   String get weOfferThe => 'Biz siz uchun eng yaxshi mahsulotni taklif etamiz';
 
   @override
-  String get chooseTheProduct => 'Siz yoqtirgan mahsulotni tanlang va sotib oling';
+  String get chooseTheProduct =>
+      'Siz yoqtirgan mahsulotni tanlang va sotib oling';
 
   @override
-  String get payInInstallments => 'Kartangiz orqali do\'konimizda muddatli to\'lovingizni bajarishingiz mumkin.';
+  String get payInInstallments =>
+      'Kartangiz orqali do\'konimizda muddatli to\'lovingizni bajarishingiz mumkin.';
 
   @override
   String get begin => 'Boshlash';
 
   @override
-  String get theServicesOf => 'Sizning xarid qilingan mahsulotlaringizni bepul yetkazib berish xizmati butun O\'zbekistonda mavjud.';
+  String get theServicesOf =>
+      'Sizning xarid qilingan mahsulotlaringizni bepul yetkazib berish xizmati butun O\'zbekistonda mavjud.';
 
   @override
   String get login => 'Kirish';
@@ -488,7 +494,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get name => 'Ism';
 
   @override
-  String get theProductsYouPurchasedCanBe => 'Siz sotib olayotgan mahsulotlaringiz bepul tarqatilishi mumkin.';
+  String get theProductsYouPurchasedCanBe =>
+      'Siz sotib olayotgan mahsulotlaringiz bepul tarqatilishi mumkin.';
 
   @override
   String get start => 'Boshlash';
@@ -497,7 +504,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get internetIsUnavailable => 'Internet mavjud emas';
 
   @override
-  String get pleaseCheckYourInternet => 'Iltimos, internetni tekshirib, qayta urinib ko\'ring';
+  String get pleaseCheckYourInternet =>
+      'Iltimos, internetni tekshirib, qayta urinib ko\'ring';
 
   @override
   String get refreshThePage => 'Sahifani yangilang';
@@ -506,13 +514,15 @@ class AppLocalizationsUz extends AppLocalizations {
   String get paymentFailed => 'To\'lov amalga oshmadi';
 
   @override
-  String get yourOrderIsNotConfirmed => 'Sizning buyurtmangiz tasdiqlanmadi, iltimos, qayta urinib ko\'ring';
+  String get yourOrderIsNotConfirmed =>
+      'Sizning buyurtmangiz tasdiqlanmadi, iltimos, qayta urinib ko\'ring';
 
   @override
   String get noSearchResults => 'Qidiruv natijalari yo\'q';
 
   @override
-  String get noSearchResultsWeCannotFind => 'Qidiruv natijalari yo\'q, biz mahsulotni topa olmaymiz.';
+  String get noSearchResultsWeCannotFind =>
+      'Qidiruv natijalari yo\'q, biz mahsulotni topa olmaymiz.';
 
   @override
   String get toMain => 'Asosiy sahifaga';
@@ -527,7 +537,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get dontHaveAnAccount => 'Hisobingiz yo\'qmi? ';
 
   @override
-  String get enterYourFirstNameAndLastName => '  Ism va familiyangizni kiriting';
+  String get enterYourFirstNameAndLastName =>
+      '  Ism va familiyangizni kiriting';
 
   @override
   String get iAgreeToTheTermsofuse => 'Foydalanish shartlariga roziman';
@@ -542,7 +553,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get next => 'Keyingi';
 
   @override
-  String get wrongCodePleaseTryAgain => 'Noto\'g\'ri kod, iltimos, qayta urinib ko\'ring.';
+  String get wrongCodePleaseTryAgain =>
+      'Noto\'g\'ri kod, iltimos, qayta urinib ko\'ring.';
 
   @override
   String get passwordRecovery => 'Parol tiklash';
@@ -572,25 +584,29 @@ class AppLocalizationsUz extends AppLocalizations {
   String get verification => 'Tasdiqlash';
 
   @override
-  String get startShoppingByConveniently => 'Xaridni boshlash uchun qulaylik bilan tovarlarini xamda to\'lovingizni yirik darajada olib kirishingiz mumkin.';
+  String get startShoppingByConveniently =>
+      'Xaridni boshlash uchun qulaylik bilan tovarlarini xamda to\'lovingizni yirik darajada olib kirishingiz mumkin.';
 
   @override
   String get enterPassportInformation => 'Pasport ma\'lumotlaringizni kiriting';
 
   @override
-  String get pleaseEnterPassportInformationCorrectly => 'Iltimos, pasport ma\'lumotlaringizni to\'g\'ri kiriting, chunki bu sizning limit olishingiz uchun muhim.';
+  String get pleaseEnterPassportInformationCorrectly =>
+      'Iltimos, pasport ma\'lumotlaringizni to\'g\'ri kiriting, chunki bu sizning limit olishingiz uchun muhim.';
 
   @override
   String get enterTheDetails => 'Sevdalilaringiz ma\'lumotlarini kiriting';
 
   @override
-  String get ifWeCannotReachYou => 'Agar biz sizga yetkazib bera olmasak, iltimos, sizga yaqin bo\'lgan ikki kishi yoki ta\'sirli bog\'lanish uchun kontaktni taqdim eting.';
+  String get ifWeCannotReachYou =>
+      'Agar biz sizga yetkazib bera olmasak, iltimos, sizga yaqin bo\'lgan ikki kishi yoki ta\'sirli bog\'lanish uchun kontaktni taqdim eting.';
 
   @override
   String get enterYourCardDetails => 'Kartangiz ma\'lumotlarini kiriting';
 
   @override
-  String get enterYourPrimaryIcomeYouWill => 'Sizning muddatli to\'lov chegarasini olish uchun ishlatasiz bo\'lgan asosiy daromadingizni kiriting.';
+  String get enterYourPrimaryIcomeYouWill =>
+      'Sizning muddatli to\'lov chegarasini olish uchun ishlatasiz bo\'lgan asosiy daromadingizni kiriting.';
 
   @override
   String get continuee => 'Davom etish';
@@ -632,16 +648,19 @@ class AppLocalizationsUz extends AppLocalizations {
   String get silkRoad => 'Ippodrom';
 
   @override
-  String get iAgreeWithTheTermsAnd => 'Men shartlar va maxfiylik siyosatiga roziman';
+  String get iAgreeWithTheTermsAnd =>
+      'Men shartlar va maxfiylik siyosatiga roziman';
 
   @override
-  String get congYouHaveSuccPassedIden => 'Tabriklaymiz, siz muvaffaqiyatli identifikatsiyadan o\'tdingiz';
+  String get congYouHaveSuccPassedIden =>
+      'Tabriklaymiz, siz muvaffaqiyatli identifikatsiyadan o\'tdingiz';
 
   @override
   String get enterYourPassportAndPhoto => ' Pasport va suratingizni kiriting';
 
   @override
-  String get pleasePayAttentiontoThePhotoQuality => 'Iltimos surat sifatiga etibor bering bu malumotlar siz limit olishingiz uchun juda muhim.';
+  String get pleasePayAttentiontoThePhotoQuality =>
+      'Iltimos surat sifatiga etibor bering bu malumotlar siz limit olishingiz uchun juda muhim.';
 
   @override
   String get enterInformYourRelatives => 'Yaqinlaringiz malumotlarini kiriting';
@@ -650,7 +669,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get signIn => 'Kirish';
 
   @override
-  String get byLoggingIn => 'Kirganingiz bilan, siz ko\'plab imkoniyatlarga ega bo\'lasiz';
+  String get byLoggingIn =>
+      'Kirganingiz bilan, siz ko\'plab imkoniyatlarga ega bo\'lasiz';
 
   @override
   String get myOrder => 'Mening buyurtmalarim';
@@ -776,7 +796,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get similarProducts => 'O\'xshash mahsulotlar';
 
   @override
-  String get by_logging_in => 'Tizimga kirish orqali siz ko\'p imkoniyatlarga narsaga ega bo\'lasiz.';
+  String get by_logging_in =>
+      'Tizimga kirish orqali siz ko\'p imkoniyatlarga narsaga ega bo\'lasiz.';
 
   @override
   String get whats_your_name => 'Ismingiz nima?';

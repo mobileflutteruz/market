@@ -28,7 +28,6 @@ class InputWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return SizedBox(
       height: AppLayout.getHeight(65, context),
       child: TextFormField(
@@ -37,9 +36,7 @@ class InputWidget extends StatelessWidget {
         controller: textEditingController,
         enabled: true,
 
-        inputFormatters: [
-        
-        ],
+        inputFormatters: [],
         validator: (value) {
           if (value == null || value.isEmpty) {
             return "This field is required";

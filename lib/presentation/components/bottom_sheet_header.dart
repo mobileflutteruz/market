@@ -1,15 +1,13 @@
-
 import 'package:flutter/material.dart';
 
 import '../../core/constants/constants.dart';
 import '../../../../core/utils/utils.dart';
 
-
 class BottomSheetHeader extends StatelessWidget {
-  const BottomSheetHeader({super.key, required this.title, this.isExitButton=true});
+  const BottomSheetHeader(
+      {super.key, required this.title, this.isExitButton = true});
   final String title;
   final bool isExitButton;
-
 
   @override
   Widget build(BuildContext context) {
@@ -33,20 +31,20 @@ class BottomSheetHeader extends StatelessWidget {
           children: [
             const Spacer(),
             Text(
-            title,
+              title,
               style: Styles.manropeSemiBold18.copyWith(
-                color:  FoodColors.c0E1923,
+                color: FoodColors.c0E1923,
               ),
             ),
             const Spacer(),
-            if(isExitButton)
-            GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: IconConstants.exitWhite,
+            if (isExitButton)
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: IconConstants.exitWhite,
+                ),
               ),
-            ),
           ],
         ),
       ],

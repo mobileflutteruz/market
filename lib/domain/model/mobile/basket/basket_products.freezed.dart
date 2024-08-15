@@ -25,8 +25,12 @@ mixin _$BasketProducts {
   double? get total_payment => throw _privateConstructorUsedError;
   int? get total_quantity => throw _privateConstructorUsedError;
 
+  /// Serializes this BasketProducts to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BasketProducts
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BasketProductsCopyWith<BasketProducts> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +58,8 @@ class _$BasketProductsCopyWithImpl<$Res, $Val extends BasketProducts>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BasketProducts
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -106,6 +112,8 @@ class __$$BasketProductsImplCopyWithImpl<$Res>
       _$BasketProductsImpl _value, $Res Function(_$BasketProductsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BasketProducts
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -183,7 +191,7 @@ class _$BasketProductsImpl implements _BasketProducts {
                 other.total_quantity == total_quantity));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -192,7 +200,9 @@ class _$BasketProductsImpl implements _BasketProducts {
       total_payment,
       total_quantity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BasketProducts
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BasketProductsImplCopyWith<_$BasketProductsImpl> get copyWith =>
@@ -225,8 +235,11 @@ abstract class _BasketProducts implements BasketProducts {
   double? get total_payment;
   @override
   int? get total_quantity;
+
+  /// Create a copy of BasketProducts
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BasketProductsImplCopyWith<_$BasketProductsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -247,8 +260,12 @@ mixin _$Result {
   double? get price_to_pay => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
 
+  /// Serializes this Result to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ResultCopyWith<Result> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -279,6 +296,8 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -360,6 +379,8 @@ class __$$ResultImplCopyWithImpl<$Res>
       _$ResultImpl _value, $Res Function(_$ResultImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -479,7 +500,7 @@ class _$ResultImpl implements _Result {
             (identical(other.image, image) || other.image == image));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -493,7 +514,9 @@ class _$ResultImpl implements _Result {
       price_to_pay,
       image);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResultImplCopyWith<_$ResultImpl> get copyWith =>
@@ -539,8 +562,11 @@ abstract class _Result implements Result {
   double? get price_to_pay;
   @override
   String? get image;
+
+  /// Create a copy of Result
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResultImplCopyWith<_$ResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

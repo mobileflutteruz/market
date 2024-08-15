@@ -14,7 +14,7 @@ class NumberInput extends StatefulWidget {
   final TextEditingController fieldController;
   String? Function(String?)? validator;
 
-   NumberInput({
+  NumberInput({
     super.key,
     this.fieldText = "",
     required this.iconPath,

@@ -12,8 +12,8 @@ import 'package:pretty_http_logger/pretty_http_logger.dart';
 @Injectable()
 class Api {
   final TokenDataSource _token;
-  final UserSessionManager _userSessionmanager;
-  Api(this._token, this._userSessionmanager);
+
+  Api(this._token, );
 
   final String _host = "karmango.shop.dukan.uz";
   final String _root = "/api";
@@ -31,7 +31,8 @@ class Api {
     final uri = Uri.http(_host, "$_root/$path",
         params?.map((key, value) => MapEntry(key, value.toString())));
     final headers = await headerswithToken;
-    final result = await _httpClient.get(uri, headers: headers).timeout(_timeout);
+    final result =
+        await _httpClient.get(uri, headers: headers).timeout(_timeout);
     return propagateErrors(result);
   }
 
@@ -48,7 +49,8 @@ class Api {
       if (token != null) "Authorization": "Bearer $token",
     };
     print(headers);
-    final result = await _httpClient.get(uri, headers: headers).timeout(_timeout);
+    final result =
+        await _httpClient.get(uri, headers: headers).timeout(_timeout);
     return propagateErrors(result);
   }
 
@@ -177,19 +179,18 @@ class Api {
 
   //!gettokens
   Future<String?> gettokens() async {
-  var token = await _token.getToken();
-  if (token == null) {
-    print("Token mavjud emas, guest token olinmoqda...");
-    token = await _token.getGuestUser();
-  }
-  
-  if (token == null) {
-    print("Guest token ham mavjud emas.");
-  } else {
-    print("Token olingan: $token");
-  }
-  
-  return token;
-}
+    var token = await _token.getToken();
+    if (token == null) {
+      print("Token mavjud emas, guest token olinmoqda...");
+      token = await _token.getGuestUser();
+    }
 
+    if (token == null) {
+      print("Guest token ham mavjud emas.");
+    } else {
+      print("Token olingan: $token");
+    }
+
+    return token;
+  }
 }

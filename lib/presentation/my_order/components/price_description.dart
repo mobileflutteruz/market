@@ -28,7 +28,7 @@ class FoodPriceDescriptionWidget extends StatelessWidget {
             AppUtils.kGap12,
             ...List.generate(
               4,
-                  (index) => Padding(
+              (index) => Padding(
                 padding: EdgeInsets.only(bottom: index == 3 ? 0 : 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -9,10 +9,10 @@ part 'splash_cubit.freezed.dart';
 
 @Injectable()
 class SplashCubit extends BuildableCubit<SplashState, SplashState> {
-  SplashCubit(this._authRepository, this._tokenPreference)
+  SplashCubit( this._tokenPreference)
       : super(const SplashState());
 
-  final AuthRepository _authRepository;
+
   final TokenPreference _tokenPreference;
 
   Future<void> checkAndNavigate() async {
@@ -22,22 +22,22 @@ class SplashCubit extends BuildableCubit<SplashState, SplashState> {
       if (accessToken != null) {
         // Access token mavjud, foydalanuvchini home pagega o'tkazamiz
         build((buildable) => buildable.copyWith(
-          loading: false,
-          navigateToHome: true,
-        ));
+              loading: false,
+              navigateToHome: true,
+            ));
       } else {
         // Access token mavjud emas, ro'yxatdan o'tish sahifasiga o'tkazamiz
         build((buildable) => buildable.copyWith(
-          loading: false,
-          navigateToRegister: true,
-        ));
+              loading: false,
+              navigateToRegister: true,
+            ));
       }
     } catch (e) {
       build((buildable) => buildable.copyWith(
-        loading: false,
-        failure: true,
-        message: "Error",
-      ));
+            loading: false,
+            failure: true,
+            message: "Error",
+          ));
     }
   }
 }

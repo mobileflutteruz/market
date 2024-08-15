@@ -10,9 +10,6 @@ class FoodSplashView extends StatefulWidget {
 }
 
 class _FoodSplashViewState extends State<FoodSplashView> {
-
-
-
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(

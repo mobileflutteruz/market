@@ -29,7 +29,7 @@ class FoodNotificationItemWidget extends StatelessWidget {
               height: 40,
               width: 40,
               alignment: Alignment.center,
-              decoration:  ShapeDecoration(
+              decoration: ShapeDecoration(
                 color: FoodColors.cF69F1E,
                 shape: const OvalBorder(),
               ),
@@ -68,8 +68,7 @@ class FoodNotificationItemWidget extends StatelessWidget {
           ],
         ),
         AppUtils.kGap8,
-
-         Divider(
+        Divider(
           color: FoodColors.cEEEEEE,
         ),
         AppUtils.kGap16,

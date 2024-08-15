@@ -8,7 +8,6 @@ class CommonFoodButtonWidget extends StatelessWidget {
     super.key,
     this.onTap,
     required this.title,
- 
   });
 
   final String title;
@@ -36,9 +35,8 @@ class CommonFoodButtonWidget extends StatelessWidget {
               child: Text(
                 title,
                 textAlign: TextAlign.center,
-                style: Styles.manropeSemiBold15.copyWith(
-                  color: FoodColors.cffffff
-                ),
+                style: Styles.manropeSemiBold15
+                    .copyWith(color: FoodColors.cffffff),
               ),
             ),
             Platform.isIOS ? AppUtils.kGap : AppUtils.kGap8,

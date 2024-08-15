@@ -20,7 +20,8 @@ class CategoryProductCubit extends BuildableCubit<CategoryProductState,
     try {
       final ProductModel? categoryProduct =
           await _dataRepository.getCategoryProducts(productId);
-      print( _dataRepository.getCategoryProducts(productId)); // Assuming you have a way to get this data
+      print(_dataRepository.getCategoryProducts(
+          productId)); // Assuming you have a way to get this data
 
       build(
         (buildable) => buildable.copyWith(

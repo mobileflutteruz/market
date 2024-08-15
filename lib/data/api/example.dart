@@ -12,7 +12,6 @@
 //   Dio dio = Dio();
 //   ServiceApiExample(this._token);
 
-
 //   // Future fetch({
 //   //   required String path,
 //   //   Map<String, Object>? params,

@@ -63,11 +63,10 @@ class _ChangePasswordViewState extends State<FoodChangePasswordView> {
                         CommonFoodButtonWidget(
                           title: context.l10n.save,
                           onTap: () {
-
                             if (formKey.currentState!.validate()) {
-                              context.read<CHangePasswordCubit>().resetPassword(passwordController.text,
-                                      repasswordController.text);
-                            
+                              context.read<ChangePasswordCubit>().resetPassword(
+                                  passwordController.text,
+                                  repasswordController.text);
                             }
                             // if (formKey.currentState!.validate()) {
                             //     context.read<CHangePasswordCubit>().change(passwordController.text,);

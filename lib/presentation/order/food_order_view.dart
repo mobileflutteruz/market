@@ -9,7 +9,6 @@ import '../../../../core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import '../../../core/constants/constants.dart';
 
-
 class FoodOrderView extends StatefulWidget {
   const FoodOrderView({super.key});
 
@@ -109,7 +108,7 @@ class _OrderViewState extends State<FoodOrderView>
                   Text(
                     "Время доставки",
                     style: Styles.manropeSemiBold16.copyWith(
-                     color: FoodColors.c0E1923,
+                      color: FoodColors.c0E1923,
                     ),
                   ),
                   AppUtils.kGap16,
@@ -127,7 +126,7 @@ class _OrderViewState extends State<FoodOrderView>
                         Text(
                           "Стандарт  40-50 мин",
                           style: Styles.manropeMedium16.copyWith(
-                         color: FoodColors.c0E1923,
+                            color: FoodColors.c0E1923,
                           ),
                         ),
                         const Spacer(),
@@ -161,7 +160,7 @@ class _OrderViewState extends State<FoodOrderView>
                           Text(
                             "Улица Окилота, 21",
                             style: Styles.manropeMedium16.copyWith(
-                               color: FoodColors.c0E1923,
+                              color: FoodColors.c0E1923,
                             ),
                           ),
                           const Spacer(),
@@ -275,7 +274,7 @@ class _OrderViewState extends State<FoodOrderView>
                                   Text(
                                     "Karta orqali",
                                     style: Styles.manropeSemiBold12.copyWith(
-                                        color: FoodColors.c0E1923,
+                                      color: FoodColors.c0E1923,
                                     ),
                                   ),
                                   Image.asset(
@@ -289,7 +288,7 @@ class _OrderViewState extends State<FoodOrderView>
                         ],
                       ),
                       AppUtils.kGap32,
-                     const FoodCheckBoxWidget(),
+                      const FoodCheckBoxWidget(),
                       AppUtils.kGap32,
                     ],
                   ),

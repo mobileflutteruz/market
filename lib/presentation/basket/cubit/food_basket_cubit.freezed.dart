@@ -30,7 +30,9 @@ mixin _$FoodBasketBuildableState {
   bool get failed => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FoodBasketBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FoodBasketBuildableStateCopyWith<FoodBasketBuildableState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -69,6 +71,8 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FoodBasketBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -137,6 +141,8 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of FoodBasketBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BasketProductsCopyWith<$Res>? get products {
@@ -187,6 +193,8 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
       $Res Function(_$FoodBasketBuildableStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FoodBasketBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -400,7 +408,9 @@ class _$FoodBasketBuildableStateImpl
       failed,
       error);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FoodBasketBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FoodBasketBuildableStateImplCopyWith<_$FoodBasketBuildableStateImpl>
@@ -440,15 +450,18 @@ abstract class _FoodBasketBuildableState implements FoodBasketBuildableState {
   @override
   bool get loading;
   @override
-  BasketProducts? get products;
-  @override // @Default(false) bool isModal_hud,
+  BasketProducts? get products; // @Default(false) bool isModal_hud,
+  @override
   bool get success;
   @override
   bool get failed;
   @override
   bool get error;
+
+  /// Create a copy of FoodBasketBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FoodBasketBuildableStateImplCopyWith<_$FoodBasketBuildableStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

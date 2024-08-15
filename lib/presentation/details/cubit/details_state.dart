@@ -16,7 +16,7 @@ class DetailsBuildableState extends DetailsState with _$DetailsBuildableState {
     @Default(false) bool failure,
     @Default(null) ProductDataModel? product,
     // List<SimilarProduct>? similarProduct,
-    
+
     @Default(null) String? message,
   }) = _DetailsBuildableState;
 }

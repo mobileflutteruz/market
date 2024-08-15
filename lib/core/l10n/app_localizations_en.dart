@@ -92,7 +92,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get description => 'Description';
 
   @override
-  String get characteristicsAboutTheProduct => 'Characteristics about the product';
+  String get characteristicsAboutTheProduct =>
+      'Characteristics about the product';
 
   @override
   String get reviews => 'Reviews';
@@ -131,7 +132,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addToCart => 'Add to cart';
 
   @override
-  String get featuringContouredEdgesANewAction => 'Featuring new contoured edges, a new action button, a powerful camera upgrade, and a durable and lightweight titanium body, the A17 Pro brings next-level performance and mobile gaming. CUPERTINO, CALIFORNIA';
+  String get featuringContouredEdgesANewAction =>
+      'Featuring new contoured edges, a new action button, a powerful camera upgrade, and a durable and lightweight titanium body, the A17 Pro brings next-level performance and mobile gaming. CUPERTINO, CALIFORNIA';
 
   @override
   String get allReviews => 'All reviews';
@@ -206,7 +208,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get byCard => 'By card';
 
   @override
-  String get iAgreeWithTermsPrivacyPolicy => 'I agree with the Terms and Privacy Policy';
+  String get iAgreeWithTermsPrivacyPolicy =>
+      'I agree with the Terms and Privacy Policy';
 
   @override
   String get pay => 'Pay';
@@ -215,7 +218,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get orderAccepted => 'Order accepted';
 
   @override
-  String get yourOrderHasBeenConfirmedOnTheDay => 'Your order has been confirmed. On the day of delivery, you will receive an SMS with a code. Please show the code to receive the order.\n';
+  String get yourOrderHasBeenConfirmedOnTheDay =>
+      'Your order has been confirmed. On the day of delivery, you will receive an SMS with a code. Please show the code to receive the order.\n';
 
   @override
   String get id => 'ID';
@@ -449,13 +453,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chooseTheProduct => 'Choose the product you like and buy it';
 
   @override
-  String get payInInstallments => 'Pay in installments by card in our online store.';
+  String get payInInstallments =>
+      'Pay in installments by card in our online store.';
 
   @override
   String get begin => 'Begin';
 
   @override
-  String get theServicesOf => 'The services of free delivery of your purchased products are available throughout Uzbekistan.';
+  String get theServicesOf =>
+      'The services of free delivery of your purchased products are available throughout Uzbekistan.';
 
   @override
   String get login => 'Login';
@@ -488,7 +494,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get name => 'Name';
 
   @override
-  String get theProductsYouPurchasedCanBe => 'The products you purchased can be delivered for free across Uzbekistan.';
+  String get theProductsYouPurchasedCanBe =>
+      'The products you purchased can be delivered for free across Uzbekistan.';
 
   @override
   String get start => 'Start';
@@ -497,7 +504,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get internetIsUnavailable => 'Internet is unavailable';
 
   @override
-  String get pleaseCheckYourInternet => 'Please check your internet connection and try again';
+  String get pleaseCheckYourInternet =>
+      'Please check your internet connection and try again';
 
   @override
   String get refreshThePage => 'Refresh the page';
@@ -506,13 +514,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paymentFailed => 'Payment failed';
 
   @override
-  String get yourOrderIsNotConfirmed => 'Your order is not confirmed, please try again';
+  String get yourOrderIsNotConfirmed =>
+      'Your order is not confirmed, please try again';
 
   @override
   String get noSearchResults => 'No search results';
 
   @override
-  String get noSearchResultsWeCannotFind => 'No search results, we cannot find the product you are looking for.';
+  String get noSearchResultsWeCannotFind =>
+      'No search results, we cannot find the product you are looking for.';
 
   @override
   String get toMain => 'To main';
@@ -527,7 +537,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dontHaveAnAccount => 'Don\'t have an account?';
 
   @override
-  String get enterYourFirstNameAndLastName => '  Enter your first name and last name';
+  String get enterYourFirstNameAndLastName =>
+      '  Enter your first name and last name';
 
   @override
   String get iAgreeToTheTermsofuse => 'Enter the phone number';
@@ -572,25 +583,29 @@ class AppLocalizationsEn extends AppLocalizations {
   String get verification => 'Verification';
 
   @override
-  String get startShoppingByConveniently => 'Start shopping by conveniently spreading your purchases with a flexible installment plan, and enjoy the items in just a few minutes.';
+  String get startShoppingByConveniently =>
+      'Start shopping by conveniently spreading your purchases with a flexible installment plan, and enjoy the items in just a few minutes.';
 
   @override
   String get enterPassportInformation => 'Enter passport information';
 
   @override
-  String get pleaseEnterPassportInformationCorrectly => 'Please enter passport information correctly, as it is crucial for obtaining your limit.';
+  String get pleaseEnterPassportInformationCorrectly =>
+      'Please enter passport information correctly, as it is crucial for obtaining your limit.';
 
   @override
   String get enterTheDetails => 'Enter the details of your loved ones';
 
   @override
-  String get ifWeCannotReachYou => 'If we cannot reach you, please provide the contact information of two people close to you for communication.';
+  String get ifWeCannotReachYou =>
+      'If we cannot reach you, please provide the contact information of two people close to you for communication.';
 
   @override
   String get enterYourCardDetails => 'Enter your card details';
 
   @override
-  String get enterYourPrimaryIcomeYouWill => 'Enter the primary income you will use to get the installment payment limit.';
+  String get enterYourPrimaryIcomeYouWill =>
+      'Enter the primary income you will use to get the installment payment limit.';
 
   @override
   String get continuee => 'Continue';
@@ -632,25 +647,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get silkRoad => 'Silk Road';
 
   @override
-  String get iAgreeWithTheTermsAnd => 'I agree with the Terms and Privacy Policy';
+  String get iAgreeWithTheTermsAnd =>
+      'I agree with the Terms and Privacy Policy';
 
   @override
-  String get congYouHaveSuccPassedIden => 'Congratulations, you have successfully passed identification';
+  String get congYouHaveSuccPassedIden =>
+      'Congratulations, you have successfully passed identification';
 
   @override
   String get enterYourPassportAndPhoto => 'Enter your passport and photo';
 
   @override
-  String get pleasePayAttentiontoThePhotoQuality => 'Please pay attention to the photo quality, this information is very important for obtaining your limit.';
+  String get pleasePayAttentiontoThePhotoQuality =>
+      'Please pay attention to the photo quality, this information is very important for obtaining your limit.';
 
   @override
-  String get enterInformYourRelatives => 'Enter the information of your relatives';
+  String get enterInformYourRelatives =>
+      'Enter the information of your relatives';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get byLoggingIn => 'By logging in, you will have access to many opportunities';
+  String get byLoggingIn =>
+      'By logging in, you will have access to many opportunities';
 
   @override
   String get myOrder => 'My Order';
@@ -776,7 +796,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get similarProducts => 'Similar Products';
 
   @override
-  String get by_logging_in => 'By logging in, you gain access to many opportunities.';
+  String get by_logging_in =>
+      'By logging in, you gain access to many opportunities.';
 
   @override
   String get whats_your_name => 'What is your name?';

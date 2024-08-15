@@ -125,7 +125,7 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
                           ),
                         const Spacer(),
                         InkWell(
-                          onTap: _toggleLike ,
+                          onTap: _toggleLike,
                           child: _isLiked
                               ? Icon(
                                   CupertinoIcons.heart_fill,

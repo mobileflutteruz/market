@@ -14,7 +14,7 @@ class FoodSearchBarWidget extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) =>  FoodSearchView(),
+            builder: (_) => FoodSearchView(),
           ),
         );
       },
@@ -51,4 +51,3 @@ class FoodSearchBarWidget extends StatelessWidget {
     );
   }
 }
-

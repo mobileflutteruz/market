@@ -3,8 +3,6 @@ import 'package:karmango/core/extension/context_extension.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/utils/utils.dart';
 
-
-
 class FoodCheckBoxWidget extends StatefulWidget {
   const FoodCheckBoxWidget({
     super.key,

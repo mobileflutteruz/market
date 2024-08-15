@@ -13,7 +13,7 @@ part 'search_cubit.freezed.dart';
 // part 'category_state.dart';
 // part 'category_cubit.freezed.dart';
 
-@injectable
+@Injectable()
 class SearchedCubit extends BuildableCubit<SearchState, SearchdBuildableState> {
   SearchedCubit(this._dataRepository) : super(SearchdBuildableState()) {
     // fetchCategory();
@@ -26,16 +26,16 @@ class SearchedCubit extends BuildableCubit<SearchState, SearchdBuildableState> {
       (buildable) => buildable.copyWith(loading: true),
     );
     // try {
-      final List<SearchProduct>? products =
-          await _dataRepository.searchProduct(name: text);
-      build(
-        (buildable) => buildable.copyWith(
-          loading: false,
-          success: true,
-          failure: false,
-          product: products,
-        ),
-      );
+    final List<SearchProduct>? products =
+        await _dataRepository.searchProduct(name: text);
+    build(
+      (buildable) => buildable.copyWith(
+        loading: false,
+        success: true,
+        failure: false,
+        product: products,
+      ),
+    );
     // } catch (e) {
     //   print("fetchProducts error------------------------------------------");
     //   print(e);
@@ -58,23 +58,21 @@ class SearchedCubit extends BuildableCubit<SearchState, SearchdBuildableState> {
       final SearchedHistory searched = await _dataRepository.searchedHistory();
       build(
         (buildable) => buildable.copyWith(
-           loading: false,
-        success: true,
-        searched: searched,
+          loading: false,
+          success: true,
+          searched: searched,
         ),
       );
-      
     } catch (e) {
       print("SearchedHistory error------------------------------------------");
       print(e);
-       build(
+      build(
         (buildable) => buildable.copyWith(
-           loading: false,
-        failure: true,
-        error: e.toString(),
+          loading: false,
+          failure: true,
+          error: e.toString(),
         ),
       );
-   
     }
   }
 
@@ -139,93 +137,88 @@ class SearchedCubit extends BuildableCubit<SearchState, SearchdBuildableState> {
   }
 }
 
+// Future<void> searchProducts(String text) async {
+//   build(
+//     (buildable) => buildable.copyWith(loading: true),
+//   );
+//   try {
+//     final List<SearchProduct>? products = await repo.searchProduct(name: text);
+//     build(
+//       (buildable) => buildable.copyWith(
+//         loading: false,
+//         success: true,
+//         product: products,
+//       ),
+//     );
+//   } catch (e) {
+//     print("fetchProducts error------------------------------------------");
+//     print(e);
+//     build(
+//       (buildable) => buildable.copyWith(
+//         loading: false,
+//         failure: true,
+//         error: e.toString(),
+//       ),
+//     );
+//   }
+// }
 
+// Future<void> searchedHistory() async {
+//   emit(state.copyWith(loading: true));
+//   try {
+//     final SearchedHistory searched = await repo.searchedHistory();
+//     emit(state.copyWith(
+//       loading: false,
+//       success: true,
+//       searched: searched,
+//     ));
+//   } catch (e) {
+//     print("SearchedHistory error------------------------------------------");
+//     print(e);
+//     emit(state.copyWith(
+//       loading: false,
+//       failure: true,
+//       error: e.toString(),
+//     ));
+//   }
+// }
 
+// Future<void> deletById(int index) async {
+//   emit(state.copyWith(loading: true));
+//   try {
+//     final DeletedId? searched = await repo.searchDeletedId(index: index);
+//     emit(state.copyWith(
+//       loading: false,
+//       success: true,
+//       deletedId: searched,
+//     ));
+//   } catch (e) {
+//     print("SearchedHistory error------------------------------------------");
+//     print(e);
+//     emit(state.copyWith(
+//       loading: false,
+//       failure: true,
+//       error: e.toString(),
+//     ));
+//   }
+// }
 
-
-
-  // Future<void> searchProducts(String text) async {
-  //   build(
-  //     (buildable) => buildable.copyWith(loading: true),
-  //   );
-  //   try {
-  //     final List<SearchProduct>? products = await repo.searchProduct(name: text);
-  //     build(
-  //       (buildable) => buildable.copyWith(
-  //         loading: false,
-  //         success: true,
-  //         product: products,
-  //       ),
-  //     );
-  //   } catch (e) {
-  //     print("fetchProducts error------------------------------------------");
-  //     print(e);
-  //     build(
-  //       (buildable) => buildable.copyWith(
-  //         loading: false,
-  //         failure: true,
-  //         error: e.toString(),
-  //       ),
-  //     );
-  //   }
-  // }
-
-  // Future<void> searchedHistory() async {
-  //   emit(state.copyWith(loading: true));
-  //   try {
-  //     final SearchedHistory searched = await repo.searchedHistory();
-  //     emit(state.copyWith(
-  //       loading: false,
-  //       success: true,
-  //       searched: searched,
-  //     ));
-  //   } catch (e) {
-  //     print("SearchedHistory error------------------------------------------");
-  //     print(e);
-  //     emit(state.copyWith(
-  //       loading: false,
-  //       failure: true,
-  //       error: e.toString(),
-  //     ));
-  //   }
-  // }
-
-  // Future<void> deletById(int index) async {
-  //   emit(state.copyWith(loading: true));
-  //   try {
-  //     final DeletedId? searched = await repo.searchDeletedId(index: index);
-  //     emit(state.copyWith(
-  //       loading: false,
-  //       success: true,
-  //       deletedId: searched,
-  //     ));
-  //   } catch (e) {
-  //     print("SearchedHistory error------------------------------------------");
-  //     print(e);
-  //     emit(state.copyWith(
-  //       loading: false,
-  //       failure: true,
-  //       error: e.toString(),
-  //     ));
-  //   }
-  // }
-
-  // Future<void> deleteAll() async {
-  //   emit(state.copyWith(loading: true));
-  //   try {
-  //     final AllProductDeleted? allDeleted = await repo.searchDeletedAll();
-  //     emit(state.copyWith(
-  //       loading: false,
-  //       success: true,
-  //       allDeleted: allDeleted,
-  //     ));
-  //   } catch (e) {
-  //     print("SearchedHistory error------------------------------------------");
-  //     print(e);
-  //     emit(state.copyWith(
-  //       loading: false,
-  //       failure: true,
-  //       error: e.toString(),
-  //     ));
-  //   }
-  // }
+// Future<void> deleteAll() async {
+//   emit(state.copyWith(loading: true));
+//   try {
+//     final AllProductDeleted? allDeleted = await repo.searchDeletedAll();
+//     emit(state.copyWith(
+//       loading: false,
+//       success: true,
+//       allDeleted: allDeleted,
+//     ));
+//   } catch (e) {
+//     print("SearchedHistory error------------------------------------------");
+//     print(e);
+//     emit(state.copyWith(
+//       loading: false,
+//       failure: true,
+//       error: e.toString(),
+//     ));
+//   }
+// }

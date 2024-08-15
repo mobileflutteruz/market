@@ -28,7 +28,9 @@ mixin _$FavouritesBuildableState {
   bool get characteristicsIsExpandable => throw _privateConstructorUsedError;
   Favourite? get favourites => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FavouritesBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FavouritesBuildableStateCopyWith<FavouritesBuildableState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -66,6 +68,8 @@ class _$FavouritesBuildableStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FavouritesBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,6 +133,8 @@ class _$FavouritesBuildableStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of FavouritesBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $FavouriteCopyWith<$Res>? get favourites {
@@ -178,6 +184,8 @@ class __$$FavouritesBuildableStateImplCopyWithImpl<$Res>
       $Res Function(_$FavouritesBuildableStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FavouritesBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -346,7 +354,9 @@ class _$FavouritesBuildableStateImpl implements _FavouritesBuildableState {
       characteristicsIsExpandable,
       favourites);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FavouritesBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FavouritesBuildableStateImplCopyWith<_$FavouritesBuildableStateImpl>
@@ -390,8 +400,11 @@ abstract class _FavouritesBuildableState implements FavouritesBuildableState {
   bool get characteristicsIsExpandable;
   @override
   Favourite? get favourites;
+
+  /// Create a copy of FavouritesBuildableState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FavouritesBuildableStateImplCopyWith<_$FavouritesBuildableStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

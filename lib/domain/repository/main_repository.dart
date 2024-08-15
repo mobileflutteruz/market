@@ -16,9 +16,7 @@ class MainRepository {
     await _preference.setFavourites(values: likeIds);
   }
 
-  getCategory()async{
-    
-  }
+  getCategory() async {}
 
   /// Furniture Shop
   getFurnitureLikeIds() async {
@@ -35,7 +33,7 @@ class MainRepository {
 
     if (jsonString != null) {
       myMap = (json.decode(jsonString) as Map<String, dynamic>).map(
-            (key, value) => MapEntry(int.parse(key), value as int),
+        (key, value) => MapEntry(int.parse(key), value as int),
       );
     }
 
@@ -44,7 +42,7 @@ class MainRepository {
 
   setBasketIds(Map<int, int> basketIds) async {
     final String jsonString = json.encode(basketIds.map(
-          (key, value) => MapEntry(key.toString(), value),
+      (key, value) => MapEntry(key.toString(), value),
     ));
     await _preference.setBaskets(value: jsonString);
   }
@@ -55,7 +53,7 @@ class MainRepository {
 
     if (jsonString != null) {
       myMap = (json.decode(jsonString) as Map<String, dynamic>).map(
-            (key, value) => MapEntry(int.parse(key), value as int),
+        (key, value) => MapEntry(int.parse(key), value as int),
       );
     }
 
@@ -64,7 +62,7 @@ class MainRepository {
 
   setMyOrderIds(Map<int, int> basketIds) async {
     final String jsonString = json.encode(basketIds.map(
-          (key, value) => MapEntry(key.toString(), value),
+      (key, value) => MapEntry(key.toString(), value),
     ));
     await _preference.setMyOrder(value: jsonString);
   }

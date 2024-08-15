@@ -1,6 +1,5 @@
 part of 'my_order_components.dart';
 
-
 class FoodPickCardWidget extends StatefulWidget {
   const FoodPickCardWidget({super.key});
 
@@ -17,7 +16,7 @@ class _FoodPickCardWidgetState extends State<FoodPickCardWidget> {
       children: [
         ...List.generate(
           2,
-              (index) => Padding(
+          (index) => Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: GestureDetector(
               onTap: () {
@@ -84,7 +83,8 @@ class _FoodPickCardWidgetState extends State<FoodPickCardWidget> {
         ),
         AppUtils.kGap8,
         GestureDetector(
-          onTap: () => Navigator.pushNamed(context, FoodNavigatorConst.foodProfileCard),
+          onTap: () =>
+              Navigator.pushNamed(context, FoodNavigatorConst.foodProfileCard),
           child: Container(
             padding: AppUtils.kPaddingVertical16,
             decoration: ShapeDecoration(
@@ -102,13 +102,10 @@ class _FoodPickCardWidgetState extends State<FoodPickCardWidget> {
                   size: 30,
                 ),
                 AppUtils.kGap24,
-                Text(
-                    'Янги карта кушиш',
+                Text('Янги карта кушиш',
                     style: Styles.manropeMedium16.copyWith(
                       color: FoodColors.c212121,
-                    )
-
-                ),
+                    )),
               ],
             ),
           ),

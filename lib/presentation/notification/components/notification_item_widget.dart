@@ -65,7 +65,7 @@ class NotificationWidgetItem extends StatelessWidget {
                       style: Styles.manropeSemiBold16
                           .copyWith(color: FoodColors.c8B96A5),
                     ),
-                   const  SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
                       subtitle,
                       style: Styles.manropeSemiBold16.copyWith(

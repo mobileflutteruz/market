@@ -6,14 +6,13 @@ import 'package:karmango/core/utils/utils.dart';
 
 class FoodCategoryItemWidget extends StatelessWidget {
   final void Function()? onTap;
-  
+
   final String? imageLink;
   final String? categoryItemName;
 
   const FoodCategoryItemWidget({
     super.key,
     this.onTap,
-  
     required this.imageLink,
     required this.categoryItemName,
   });
@@ -24,8 +23,8 @@ class FoodCategoryItemWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         padding: AppUtils.kPaddingAll12,
-        width: AppLayout.getWidth(164, context), 
-        height: AppLayout.getHeight(128, context), 
+        width: AppLayout.getWidth(164, context),
+        height: AppLayout.getHeight(128, context),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           color: ColorConstants.cF5F5F8,

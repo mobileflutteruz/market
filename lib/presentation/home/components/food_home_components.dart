@@ -3,10 +3,8 @@ import 'package:karmango/presentation/basket/cubit/food_basket_cubit.dart';
 import 'package:karmango/presentation/components/common_blue_button.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 import 'package:karmango/presentation/home/all_prodact/all_prodact.dart';
 import 'package:karmango/presentation/home/components/banners_view.dart';
@@ -22,4 +20,3 @@ part '../food_home_view.dart';
 // part 'home_app_bar.dart';
 // part 'medium_banner_item.dart';
 // part 'medium_banners_view.dart';
-

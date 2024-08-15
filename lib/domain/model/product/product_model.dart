@@ -1,4 +1,3 @@
-
 class DemoProductModel {
   final int id;
   final String name;
@@ -14,8 +13,7 @@ class DemoProductModel {
   final int? discountPercent;
   final bool isNew;
 
-
-  DemoProductModel( {
+  DemoProductModel({
     required this.name,
     required this.id,
     required this.category,
@@ -26,10 +24,8 @@ class DemoProductModel {
     this.avialableProductCount = 0,
     required this.description,
     this.characteristicsProduct = const {},
-
     this.discountPercent,
-    this.isNew=false,
-
+    this.isNew = false,
   });
 
   factory DemoProductModel.fromJson(Map<String, dynamic> json) {
@@ -38,10 +34,12 @@ class DemoProductModel {
 
     var productColorImagesList = json['productColorImages'] as List<dynamic>;
     List<String> productColorImages =
-    productColorImagesList.map((image) => image as String).toList();
+        productColorImagesList.map((image) => image as String).toList();
 
-    var characteristicsProductJson = json['characteristicsProduct'] as Map<String, dynamic>;
-    Map<String, String> characteristicsProduct = characteristicsProductJson.cast<String, String>();
+    var characteristicsProductJson =
+        json['characteristicsProduct'] as Map<String, dynamic>;
+    Map<String, String> characteristicsProduct =
+        characteristicsProductJson.cast<String, String>();
 
     return DemoProductModel(
       id: json['id'],
@@ -54,7 +52,6 @@ class DemoProductModel {
       avialableProductCount: json['availableProductCount'],
       description: json['description'],
       characteristicsProduct: characteristicsProduct,
-
       discountPercent: json['discountPercent'],
       isNew: json['isNew'],
     );
@@ -72,7 +69,6 @@ class DemoProductModel {
       'availableProductCount': avialableProductCount,
       'description': description,
       'characteristicsProduct': characteristicsProduct,
-
       'discountPercent': discountPercent,
       'isNew': isNew,
     };

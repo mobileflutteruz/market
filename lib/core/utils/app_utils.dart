@@ -56,11 +56,11 @@ sealed class AppUtils {
   static const kPaddingBottom16 = EdgeInsets.fromLTRB(0, 0, 0, 16);
   static const kPaddingBottom2 = EdgeInsets.fromLTRB(0, 0, 0, 2);
   static const kPaddingHor8Ver2 =
-  EdgeInsets.symmetric(horizontal: 8, vertical: 2);
+      EdgeInsets.symmetric(horizontal: 8, vertical: 2);
   static const kPaddingL8R16B16T16 =
-  EdgeInsets.only(left: 8, right: 16,top: 16,bottom:16);
+      EdgeInsets.only(left: 8, right: 16, top: 16, bottom: 16);
   static const kPaddingHor12Ver10 =
-  EdgeInsets.symmetric(horizontal: 14, vertical: 16);
+      EdgeInsets.symmetric(horizontal: 14, vertical: 16);
   static const kPaddingHor14Ver16 =
       EdgeInsets.symmetric(horizontal: 14, vertical: 16);
   static const kPaddingHor16Ver12 =
@@ -146,7 +146,6 @@ sealed class AppUtils {
   static void msg(BuildContext context, String message,
       {Color color = Colors.green}) {
     awesomeTopSnackbar(
-
       context,
       message,
       // textStyle: const TextStyle(
@@ -177,5 +176,4 @@ sealed class AppUtils {
     //   ..hideCurrentSnackBar()
     //   ..showSnackBar(snackBar);
   }
-
 }

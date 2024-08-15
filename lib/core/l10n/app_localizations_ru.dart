@@ -131,7 +131,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get addToCart => 'Добавить в корзину';
 
   @override
-  String get featuringContouredEdgesANewAction => 'Featuring new contoured edges, a new action button, a powerful camera upgrade, and a durable and lightweight titanium body, the A17 Pro brings next-level performance and mobile gaming. CUPERTINO, CALIFORNIA';
+  String get featuringContouredEdgesANewAction =>
+      'Featuring new contoured edges, a new action button, a powerful camera upgrade, and a durable and lightweight titanium body, the A17 Pro brings next-level performance and mobile gaming. CUPERTINO, CALIFORNIA';
 
   @override
   String get allReviews => 'Все отзывы';
@@ -206,7 +207,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get byCard => 'Картой';
 
   @override
-  String get iAgreeWithTermsPrivacyPolicy => 'Я соглашаюсь с условиями и политикой конфиденциальности';
+  String get iAgreeWithTermsPrivacyPolicy =>
+      'Я соглашаюсь с условиями и политикой конфиденциальности';
 
   @override
   String get pay => 'Оплатить';
@@ -215,7 +217,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get orderAccepted => 'Заказ принят';
 
   @override
-  String get yourOrderHasBeenConfirmedOnTheDay => 'Ваш заказ подтвержден. В день доставки вы получите SMS с кодом. Пожалуйста, предъявите код для получения заказа.';
+  String get yourOrderHasBeenConfirmedOnTheDay =>
+      'Ваш заказ подтвержден. В день доставки вы получите SMS с кодом. Пожалуйста, предъявите код для получения заказа.';
 
   @override
   String get id => 'ID';
@@ -446,16 +449,19 @@ class AppLocalizationsRu extends AppLocalizations {
   String get weOfferThe => 'Мы предлагаем лучший продукт для вас и вашей семьи';
 
   @override
-  String get chooseTheProduct => 'Выберите продукт, который вам нравится, и купите его';
+  String get chooseTheProduct =>
+      'Выберите продукт, который вам нравится, и купите его';
 
   @override
-  String get payInInstallments => 'Оплачивайте покупки по частям картой в нашем интернет-магазине.';
+  String get payInInstallments =>
+      'Оплачивайте покупки по частям картой в нашем интернет-магазине.';
 
   @override
   String get begin => 'Начать';
 
   @override
-  String get theServicesOf => 'Услуги бесплатной доставки ваших приобретенных товаров доступны по всему Узбекистану.';
+  String get theServicesOf =>
+      'Услуги бесплатной доставки ваших приобретенных товаров доступны по всему Узбекистану.';
 
   @override
   String get login => 'Вход';
@@ -488,7 +494,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get name => 'Имя';
 
   @override
-  String get theProductsYouPurchasedCanBe => 'Купленные вами продукты могут быть доставлены бесплатно по всему Узбекистану.';
+  String get theProductsYouPurchasedCanBe =>
+      'Купленные вами продукты могут быть доставлены бесплатно по всему Узбекистану.';
 
   @override
   String get start => 'Начать';
@@ -497,7 +504,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get internetIsUnavailable => 'Отсутствует подключение к интернету';
 
   @override
-  String get pleaseCheckYourInternet => 'Пожалуйста, проверьте подключение к интернету и повторите попытку';
+  String get pleaseCheckYourInternet =>
+      'Пожалуйста, проверьте подключение к интернету и повторите попытку';
 
   @override
   String get refreshThePage => 'Обновить страницу';
@@ -506,13 +514,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get paymentFailed => 'Ошибка оплаты';
 
   @override
-  String get yourOrderIsNotConfirmed => 'Ваш заказ не подтвержден, пожалуйста, попробуйте еще раз';
+  String get yourOrderIsNotConfirmed =>
+      'Ваш заказ не подтвержден, пожалуйста, попробуйте еще раз';
 
   @override
   String get noSearchResults => 'Нет результатов поиска';
 
   @override
-  String get noSearchResultsWeCannotFind => 'Нет результатов поиска, мы не можем найти продукт, который вы ищете.';
+  String get noSearchResultsWeCannotFind =>
+      'Нет результатов поиска, мы не можем найти продукт, который вы ищете.';
 
   @override
   String get toMain => 'На главную';
@@ -542,7 +552,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get next => 'следующий';
 
   @override
-  String get wrongCodePleaseTryAgain => 'Неверный код, пожалуйста, попробуйте еще раз.';
+  String get wrongCodePleaseTryAgain =>
+      'Неверный код, пожалуйста, попробуйте еще раз.';
 
   @override
   String get passwordRecovery => 'Восстановление пароля';
@@ -572,25 +583,29 @@ class AppLocalizationsRu extends AppLocalizations {
   String get verification => 'Подтверждение';
 
   @override
-  String get startShoppingByConveniently => 'Начните покупки, удобно расспределяя свои покупки с гибким планом рассрочки, и наслаждайтесь товарами всего за несколько минут.';
+  String get startShoppingByConveniently =>
+      'Начните покупки, удобно расспределяя свои покупки с гибким планом рассрочки, и наслаждайтесь товарами всего за несколько минут.';
 
   @override
   String get enterPassportInformation => 'Введите информацию паспорта';
 
   @override
-  String get pleaseEnterPassportInformationCorrectly => 'Пожалуйста, введите информацию паспорта корректно, так как это важно для получения вашего лимита.';
+  String get pleaseEnterPassportInformationCorrectly =>
+      'Пожалуйста, введите информацию паспорта корректно, так как это важно для получения вашего лимита.';
 
   @override
   String get enterTheDetails => 'Введите данные ваших близких';
 
   @override
-  String get ifWeCannotReachYou => 'Если мы не сможем связаться с вами, предоставьте контактные данные двух близких вам людей для связи.';
+  String get ifWeCannotReachYou =>
+      'Если мы не сможем связаться с вами, предоставьте контактные данные двух близких вам людей для связи.';
 
   @override
   String get enterYourCardDetails => 'Введите данные вашей карты';
 
   @override
-  String get enterYourPrimaryIcomeYouWill => 'Введите основной доход, который вы будете использовать для получения лимита на рассрочку.';
+  String get enterYourPrimaryIcomeYouWill =>
+      'Введите основной доход, который вы будете использовать для получения лимита на рассрочку.';
 
   @override
   String get continuee => 'Продолжить';
@@ -632,25 +647,30 @@ class AppLocalizationsRu extends AppLocalizations {
   String get silkRoad => 'Шелковый путь';
 
   @override
-  String get iAgreeWithTheTermsAnd => 'Я согласен с условиями и политикой конфиденциальности';
+  String get iAgreeWithTheTermsAnd =>
+      'Я согласен с условиями и политикой конфиденциальности';
 
   @override
-  String get congYouHaveSuccPassedIden => 'Поздравляем, вы успешно прошли идентификацию';
+  String get congYouHaveSuccPassedIden =>
+      'Поздравляем, вы успешно прошли идентификацию';
 
   @override
   String get enterYourPassportAndPhoto => 'Enter your passport and photo';
 
   @override
-  String get pleasePayAttentiontoThePhotoQuality => 'Please pay attention to the photo quality, this information is very important for obtaining your limit.';
+  String get pleasePayAttentiontoThePhotoQuality =>
+      'Please pay attention to the photo quality, this information is very important for obtaining your limit.';
 
   @override
-  String get enterInformYourRelatives => 'Enter the information of your relatives';
+  String get enterInformYourRelatives =>
+      'Enter the information of your relatives';
 
   @override
   String get signIn => 'Войти';
 
   @override
-  String get byLoggingIn => 'Войдя в систему, у вас будет доступ ко многим возможностям';
+  String get byLoggingIn =>
+      'Войдя в систему, у вас будет доступ ко многим возможностям';
 
   @override
   String get myOrder => 'Мой заказ';
@@ -776,7 +796,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get similarProducts => 'Похожие товары ';
 
   @override
-  String get by_logging_in => 'Войдя в систему, вы обретаете множество возможностей.';
+  String get by_logging_in =>
+      'Войдя в систему, вы обретаете множество возможностей.';
 
   @override
   String get whats_your_name => 'Как вас зовут?';

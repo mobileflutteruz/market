@@ -23,8 +23,12 @@ mixin _$AllProductDeleted {
   bool? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
+  /// Serializes this AllProductDeleted to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AllProductDeleted
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AllProductDeletedCopyWith<AllProductDeleted> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$AllProductDeletedCopyWithImpl<$Res, $Val extends AllProductDeleted>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AllProductDeleted
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$AllProductDeletedImplCopyWithImpl<$Res>
       $Res Function(_$AllProductDeletedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AllProductDeleted
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,11 +140,13 @@ class _$AllProductDeletedImpl implements _AllProductDeleted {
             (identical(other.message, message) || other.message == message));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AllProductDeleted
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AllProductDeletedImplCopyWith<_$AllProductDeletedImpl> get copyWith =>
@@ -162,8 +172,11 @@ abstract class _AllProductDeleted implements AllProductDeleted {
   bool? get status;
   @override
   String? get message;
+
+  /// Create a copy of AllProductDeleted
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AllProductDeletedImplCopyWith<_$AllProductDeletedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

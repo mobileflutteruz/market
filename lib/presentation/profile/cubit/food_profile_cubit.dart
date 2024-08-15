@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:karmango/domain/model/user/user_model.dart';
+import 'package:karmango/domain/repository/auth_repository.dart';
 import 'package:karmango/presentation/components/buildable_cubit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -12,8 +13,8 @@ part 'food_profile_cubit.freezed.dart';
 @Injectable()
 class FoodProfileCubit
     extends BuildableCubit<FoodProfileState, FoodProfileBuildableState> {
-  FoodProfileCubit() : super(const FoodProfileBuildableState());
-
+  FoodProfileCubit(this.authRepo) : super(const FoodProfileBuildableState());
+  final AuthRepository authRepo;
   changeName(String name) {
     build(
       (buildable) => buildable.copyWith(userName: name),
@@ -72,5 +73,9 @@ class FoodProfileCubit
           ));
       print('Something went wrong: $e');
     }
+  }
+  logout() async {
+    authRepo.logout();
+    // emit(const ProfileState.update());
   }
 }

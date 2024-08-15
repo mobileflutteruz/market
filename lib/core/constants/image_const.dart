@@ -63,8 +63,6 @@ class FoodImages {
   static String address = "assets/images/food/address.png";
   static String delivery = "assets/images/food/delivery.png";
 
-
-
   static String fish = "assets/images/food/baliq.png";
   static String fruits = "assets/images/food/meva.png";
   static String bread = "assets/images/food/bread.png";
@@ -82,5 +80,4 @@ class FoodImages {
   static String emptyNotify = "assets/images/food/empty_notify.png";
   static String skidka = "assets/images/food/skidka.png";
   static String shampun = "assets/images/food/shampun.png";
-
 }
