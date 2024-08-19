@@ -23,24 +23,24 @@ class FavouritesCubit
     await fetchFavourites();
   }
 
-  Future<void> fetchFavourites() async {
-    build((buildable) => buildable.copyWith(loading: true));
-    try {
-      final Favourite favourites = await _dataRepository.getFavorites();
-      build((buildable) => buildable.copyWith(
-            loading: false,
-            success: true,
-            favourites: favourites,
-          ));
-    } catch (e) {
-      build((buildable) => buildable.copyWith(
-            loading: false,
-            failure: true,
-            errorMessage: 'Something went wrong: $e',
-          ));
-      print('Something went wrong: $e');
-    }
+Future<void> fetchFavourites() async {
+  build((buildable) => buildable.copyWith(loading: true));
+
+  try {
+    final favourites = await _dataRepository.getFavorites();
+    build((buildable) => buildable.copyWith(
+      loading: false,
+      success: true,
+      favourites: favourites, // List<Favourite> tipiga o'zgartirildi
+    ));
+  } catch (e) {
+    build((buildable) => buildable.copyWith(
+      loading: false,
+      failure: true,
+      errorMessage: 'Sevimlilarni olishda xatolik yuz berdi: $e',
+    ));
   }
+}
 
   Future<Favourite?> setLikeId(int productId) async {
     build((buildable) => buildable.copyWith(loading: true));

@@ -193,4 +193,41 @@ class Api {
 
     return token;
   }
+
+  // Future<Response> putWithToken({
+  //   required String path,
+  //   required Map<String, dynamic> body,
+  //   required String token,
+  // }) async {
+  //   final url = Uri.parse('$_host$path');
+
+  //   try {
+  //     final response = await _httpClient.put(
+  //       url,
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': 'Bearer $token', // Adds the token to the header
+  //       },
+  //       body: jsonEncode(body),
+  //     );
+
+  //     return response;
+  //   } catch (e) {
+  //     throw Exception('Error making PUT request: $e');
+  //   }
+  // }
+
+
+   Future<Response> putWithToken({
+    required String path,
+    Map<String, dynamic>? body,
+    Map<String, Object>? params,
+  }) async {
+    final uri = Uri.https(_host, "$_root$path", params);
+    final headers = await headerswithToken;
+    final result = await _httpClient
+        .put(uri, headers: headers, body: jsonEncode(body))
+        .timeout(_timeout);
+    return propagateErrors(result);
+  }
 }

@@ -7,6 +7,7 @@ import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/presentation/components/image_view.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
 import 'package:karmango/presentation/details/cubit/details_cubit.dart';
+import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 import 'package:karmango/presentation/home/components/food_products_similar_widget%20.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -101,7 +102,16 @@ class _DetailsPageState extends State<DetailsPage> {
                                     ),
                                   ),
                                   InkWell(
-                                    onTap: _toggleLike,
+                                    onTap: () {
+                                      setState(() {
+                                        _isLiked = !_isLiked;
+                                      });
+                                      context
+                                          .read<FavouritesCubit>()
+                                          .setLikeId(state.product!.result!.product!.id!);
+                                      print("MODAL SHEET Product to  added to Favorite");
+                                      // context
+                                    },
                                     child: Icon(
                                       _isLiked
                                           ? CupertinoIcons.heart_fill

@@ -14,7 +14,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
   void initState() {
     super.initState();
     pageController = PageController();
-    // Fetch products when the widget is initialized
+   
     context.read<FoodHomeCubit>().fetchProducts();
   }
 

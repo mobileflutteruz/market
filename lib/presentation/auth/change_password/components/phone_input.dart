@@ -6,6 +6,7 @@ import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/core/utils/utils.dart';
 import 'package:karmango/domain/repository/auth_repository.dart';
+import 'package:karmango/presentation/auth/change_password/components/forgotOtpScreen.dart';
 import 'package:karmango/presentation/auth/change_password/cubit/change_cubit.dart';
 import 'package:karmango/presentation/auth/widgets/app_logo.dart';
 import 'package:karmango/presentation/auth/widgets/common_food_button.dart';
@@ -42,6 +43,7 @@ class _FoodPhoneInputState extends State<FoodPhoneInput> {
                 textEditingController: phoneController,
                 hintText: context.l10n.enterPhoneNumber,
                 validator: (value) {
+                  // return "Hello Mello Yello";
                   return locator<AuthRepository>().phoneValidator(value!);
                 },
               ),
@@ -49,17 +51,20 @@ class _FoodPhoneInputState extends State<FoodPhoneInput> {
               CommonFoodButtonWidget(
                   title: context.l10n.next,
                   onTap: () {
-                    print("PHONE CONTROLLER: ${phoneController.text}");
                     if (formKey.currentState!.validate()) {
                       context.read<ChangePasswordCubit>().change(
                             number: phoneController.text,
                           );
-                      print("PHONE CONTROLLER: ${phoneController.text}");
-                      Navigator.pushNamed(
-                        context,
-                        FoodNavigatorConst.forgotOtpScreen,
-                        arguments: phoneController.text,
-                      );
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => ForgotOtpScreen(
+                                  phoneNumber: phoneController.text)));
+                      // Navigator.pushNamed(
+                      //   context,
+                      //   FoodNavigatorConst.forgotOtpScreen,
+                      //   arguments: phoneController.text,
+                      // );
                     }
                   }),
               const Spacer(),

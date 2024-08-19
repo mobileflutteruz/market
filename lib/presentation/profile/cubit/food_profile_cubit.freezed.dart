@@ -23,6 +23,10 @@ mixin _$FoodProfileBuildableState {
   bool get success => throw _privateConstructorUsedError;
   bool get failure => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
+  List<dynamic>? get cards => throw _privateConstructorUsedError;
+  UserModel? get user => throw _privateConstructorUsedError;
+  UserInfoss? get userInfo => throw _privateConstructorUsedError;
+  dynamic get token => throw _privateConstructorUsedError;
   String get imagePath => throw _privateConstructorUsedError;
 
   /// Create a copy of FoodProfileBuildableState
@@ -46,7 +50,15 @@ abstract class $FoodProfileBuildableStateCopyWith<$Res> {
       bool success,
       bool failure,
       String errorMessage,
+      List<dynamic>? cards,
+      UserModel? user,
+      UserInfoss? userInfo,
+      dynamic token,
       String imagePath});
+
+  $UserModelCopyWith<$Res>? get profileUser;
+  $UserModelCopyWith<$Res>? get user;
+  $UserInfossCopyWith<$Res>? get userInfo;
 }
 
 /// @nodoc
@@ -72,6 +84,10 @@ class _$FoodProfileBuildableStateCopyWithImpl<$Res,
     Object? success = null,
     Object? failure = null,
     Object? errorMessage = null,
+    Object? cards = freezed,
+    Object? user = freezed,
+    Object? userInfo = freezed,
+    Object? token = freezed,
     Object? imagePath = null,
   }) {
     return _then(_value.copyWith(
@@ -103,11 +119,69 @@ class _$FoodProfileBuildableStateCopyWithImpl<$Res,
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      cards: freezed == cards
+          ? _value.cards
+          : cards // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
+      userInfo: freezed == userInfo
+          ? _value.userInfo
+          : userInfo // ignore: cast_nullable_to_non_nullable
+              as UserInfoss?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
+  }
+
+  /// Create a copy of FoodProfileBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res>? get profileUser {
+    if (_value.profileUser == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.profileUser!, (value) {
+      return _then(_value.copyWith(profileUser: value) as $Val);
+    });
+  }
+
+  /// Create a copy of FoodProfileBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
+
+  /// Create a copy of FoodProfileBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserInfossCopyWith<$Res>? get userInfo {
+    if (_value.userInfo == null) {
+      return null;
+    }
+
+    return $UserInfossCopyWith<$Res>(_value.userInfo!, (value) {
+      return _then(_value.copyWith(userInfo: value) as $Val);
+    });
   }
 }
 
@@ -128,7 +202,18 @@ abstract class _$$FoodProfileBuildableStateImplCopyWith<$Res>
       bool success,
       bool failure,
       String errorMessage,
+      List<dynamic>? cards,
+      UserModel? user,
+      UserInfoss? userInfo,
+      dynamic token,
       String imagePath});
+
+  @override
+  $UserModelCopyWith<$Res>? get profileUser;
+  @override
+  $UserModelCopyWith<$Res>? get user;
+  @override
+  $UserInfossCopyWith<$Res>? get userInfo;
 }
 
 /// @nodoc
@@ -153,6 +238,10 @@ class __$$FoodProfileBuildableStateImplCopyWithImpl<$Res>
     Object? success = null,
     Object? failure = null,
     Object? errorMessage = null,
+    Object? cards = freezed,
+    Object? user = freezed,
+    Object? userInfo = freezed,
+    Object? token = freezed,
     Object? imagePath = null,
   }) {
     return _then(_$FoodProfileBuildableStateImpl(
@@ -184,6 +273,22 @@ class __$$FoodProfileBuildableStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      cards: freezed == cards
+          ? _value._cards
+          : cards // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
+      userInfo: freezed == userInfo
+          ? _value.userInfo
+          : userInfo // ignore: cast_nullable_to_non_nullable
+              as UserInfoss?,
+      token: freezed == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
@@ -203,7 +308,12 @@ class _$FoodProfileBuildableStateImpl implements _FoodProfileBuildableState {
       this.success = false,
       this.failure = false,
       this.errorMessage = '',
-      this.imagePath = ''});
+      final List<dynamic>? cards,
+      this.user,
+      this.userInfo,
+      this.token,
+      this.imagePath = ''})
+      : _cards = cards;
 
   @override
   @JsonKey()
@@ -226,13 +336,29 @@ class _$FoodProfileBuildableStateImpl implements _FoodProfileBuildableState {
   @override
   @JsonKey()
   final String errorMessage;
+  final List<dynamic>? _cards;
+  @override
+  List<dynamic>? get cards {
+    final value = _cards;
+    if (value == null) return null;
+    if (_cards is EqualUnmodifiableListView) return _cards;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final UserModel? user;
+  @override
+  final UserInfoss? userInfo;
+  @override
+  final dynamic token;
   @override
   @JsonKey()
   final String imagePath;
 
   @override
   String toString() {
-    return 'FoodProfileBuildableState(userName: $userName, notificationValue: $notificationValue, profileUser: $profileUser, loading: $loading, success: $success, failure: $failure, errorMessage: $errorMessage, imagePath: $imagePath)';
+    return 'FoodProfileBuildableState(userName: $userName, notificationValue: $notificationValue, profileUser: $profileUser, loading: $loading, success: $success, failure: $failure, errorMessage: $errorMessage, cards: $cards, user: $user, userInfo: $userInfo, token: $token, imagePath: $imagePath)';
   }
 
   @override
@@ -251,13 +377,30 @@ class _$FoodProfileBuildableStateImpl implements _FoodProfileBuildableState {
             (identical(other.failure, failure) || other.failure == failure) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
+            const DeepCollectionEquality().equals(other._cards, _cards) &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.userInfo, userInfo) ||
+                other.userInfo == userInfo) &&
+            const DeepCollectionEquality().equals(other.token, token) &&
             (identical(other.imagePath, imagePath) ||
                 other.imagePath == imagePath));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userName, notificationValue,
-      profileUser, loading, success, failure, errorMessage, imagePath);
+  int get hashCode => Object.hash(
+      runtimeType,
+      userName,
+      notificationValue,
+      profileUser,
+      loading,
+      success,
+      failure,
+      errorMessage,
+      const DeepCollectionEquality().hash(_cards),
+      user,
+      userInfo,
+      const DeepCollectionEquality().hash(token),
+      imagePath);
 
   /// Create a copy of FoodProfileBuildableState
   /// with the given fields replaced by the non-null parameter values.
@@ -278,6 +421,10 @@ abstract class _FoodProfileBuildableState implements FoodProfileBuildableState {
       final bool success,
       final bool failure,
       final String errorMessage,
+      final List<dynamic>? cards,
+      final UserModel? user,
+      final UserInfoss? userInfo,
+      final dynamic token,
       final String imagePath}) = _$FoodProfileBuildableStateImpl;
 
   @override
@@ -294,6 +441,14 @@ abstract class _FoodProfileBuildableState implements FoodProfileBuildableState {
   bool get failure;
   @override
   String get errorMessage;
+  @override
+  List<dynamic>? get cards;
+  @override
+  UserModel? get user;
+  @override
+  UserInfoss? get userInfo;
+  @override
+  dynamic get token;
   @override
   String get imagePath;
 

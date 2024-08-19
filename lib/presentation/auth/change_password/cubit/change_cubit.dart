@@ -11,7 +11,8 @@ part 'change_cubit.freezed.dart';
 @Injectable()
 class ChangePasswordCubit
     extends BuildableCubit<ChangePasswordState, ChangePasswordBuildableState> {
-  ChangePasswordCubit(this.authRepo) : super(const ChangePasswordBuildableState());
+  ChangePasswordCubit(this.authRepo)
+      : super(const ChangePasswordBuildableState());
 
   final AuthRepository authRepo;
 

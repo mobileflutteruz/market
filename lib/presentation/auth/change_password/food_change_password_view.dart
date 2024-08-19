@@ -67,6 +67,11 @@ class _ChangePasswordViewState extends State<FoodChangePasswordView> {
                               context.read<ChangePasswordCubit>().resetPassword(
                                   passwordController.text,
                                   repasswordController.text);
+                                 Navigator.pushNamed(
+                                  context,
+                                  FoodNavigatorConst.foodLoginScreen,
+                                  arguments: passwordController.text,
+                                ); 
                             }
                             // if (formKey.currentState!.validate()) {
                             //     context.read<CHangePasswordCubit>().change(passwordController.text,);

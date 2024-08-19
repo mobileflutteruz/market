@@ -76,11 +76,13 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
                         left: 16.0,
                         right: index == widget.products.length - 1 ? 16 : 0),
                     child: FoodProductItemWidget(
+                      
                       likeTapped: () {
+                         context.read<FavouritesCubit>().setLikeId(product.id!);
                         print("Product to  added to Favorite");
                         // context
                         //     .read<FavouritesCubit>().setLikeId(widget.products![index].id!);
-                        context.read<FavouritesCubit>().setLikeId(product.id!);
+                       
                       },
                       isLiked: state.likeIds.contains(product.id!),
                       product: widget.products[index],
@@ -111,6 +113,6 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
     return showCupertinoModalBottomSheet(
         expand: true,
         context: context,
-        builder: (homeContext) => DetailsPage(productId: product.id!));
+        builder: (homeContext) => DetailsPage(productId: product.id!, ));
   }
 }

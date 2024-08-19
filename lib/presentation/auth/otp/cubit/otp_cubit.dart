@@ -4,7 +4,6 @@ import 'package:karmango/domain/repository/auth_repository.dart';
 import 'package:karmango/presentation/components/buildable_cubit.dart';
 
 part 'otp_state.dart';
-
 part 'otp_cubit.freezed.dart';
 
 @Injectable()

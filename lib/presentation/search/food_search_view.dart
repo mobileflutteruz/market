@@ -23,13 +23,13 @@ class _FoodSearchViewState extends State<FoodSearchView> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         title: TextField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             hintText: 'Найти продукты',
             border: InputBorder.none,
             suffixIcon: Icon(Icons.search),
@@ -110,7 +110,7 @@ class _FoodSearchViewState extends State<FoodSearchView> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               'Последний поиск',
               style: TextStyle(
                 fontSize: 16,
@@ -122,7 +122,7 @@ class _FoodSearchViewState extends State<FoodSearchView> {
                 // Search historyni tozalash
                 context.read<SearchedCubit>().deleteAll();
               },
-              child: Text(
+              child: const Text(
                 'Очистить',
                 style: TextStyle(color: Colors.red),
               ),
@@ -134,15 +134,15 @@ class _FoodSearchViewState extends State<FoodSearchView> {
             state.searched!.result?.search_history?.isNotEmpty == true)
           ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: state.searched!.result!.search_history!.length,
             itemBuilder: (context, index) {
               return ListTile(
-                leading: Icon(Icons.history),
+                leading: const Icon(Icons.history),
                 title:
                     Text(state.searched!.result!.search_history![index].word!),
                 trailing: IconButton(
-                  icon: Icon(Icons.clear),
+                  icon: const Icon(Icons.clear),
                   onPressed: () {
                     // Tanlangan historyni o'chirish
                     context.read<SearchedCubit>().deletById(index);
@@ -159,7 +159,7 @@ class _FoodSearchViewState extends State<FoodSearchView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Популярные запросы',
           style: TextStyle(
             fontSize: 16,
@@ -170,13 +170,13 @@ class _FoodSearchViewState extends State<FoodSearchView> {
         if (state.searched?.result?.top_search != null)
           ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: state.searched!.result!.top_search!.length,
             itemBuilder: (context, index) {
               final product = state.searched!.result!.top_search![index];
               return ListTile(
                 trailing: IconButton(
-                  icon: Icon(Icons.clear),
+                  icon: const Icon(Icons.clear),
                   onPressed: () {
                     // Tanlangan historyni o'chirish
                     context.read<SearchedCubit>().deletById(index);

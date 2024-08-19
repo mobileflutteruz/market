@@ -13,6 +13,11 @@ class FoodProfileBuildableState extends FoodProfileState
     @Default(false) bool success,
     @Default(false) bool failure,
     @Default('') String errorMessage,
+    List? cards,
+    UserModel? user,
+    
+    UserInfoss? userInfo,
+    dynamic token,
     @Default('') String imagePath,
   }) = _FoodProfileBuildableState;
 }

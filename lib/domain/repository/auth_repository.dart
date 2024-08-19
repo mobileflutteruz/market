@@ -15,12 +15,24 @@ import '../../data/preferences/token_preferences.dart';
 
 @Injectable()
 class AuthRepository {
-  AuthRepository(this._token, this._api, this.authApi, );
+  AuthRepository(
+    this._token,
+    this._api,
+    this.authApi,
+  );
 
   final Api _api;
   final AuthApi authApi;
   final TokenPreference _token;
   final LoggingService log = LoggingService();
+
+
+ 
+
+
+
+
+
 
   Future<RegisterModel> register({
     required String password,
@@ -49,20 +61,20 @@ class AuthRepository {
     }
   }
 
-  
-Future<Map<String, dynamic>> updatePassword(String newPass, String confirmPass) async {
-  try {
-    final response = await authApi.resetPassword(newPass, confirmPass);
-    // Javobni JSON formatida dekod qilamiz
-    final Map<String, dynamic> result = Map<String, dynamic>.from(jsonDecode(response.body));
-    return result;
-  } catch (e) {
-    // Xatolikni log qilish va qayta otish
-    print('Error updating password: $e');
-    rethrow;
+  Future<Map<String, dynamic>> updatePassword(
+      String newPass, String confirmPass) async {
+    try {
+      final response = await authApi.resetPassword(newPass, confirmPass);
+      // Javobni JSON formatida dekod qilamiz
+      final Map<String, dynamic> result =
+          Map<String, dynamic>.from(jsonDecode(response.body));
+      return result;
+    } catch (e) {
+      // Xatolikni log qilish va qayta otish
+      print('Error updating password: $e');
+      rethrow;
+    }
   }
-}
-
 
   Future<AuthResponse> login({
     required String phone,

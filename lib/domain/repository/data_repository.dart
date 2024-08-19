@@ -56,51 +56,55 @@ class DataRepository {
   }
 
   /// Favorites
-  Future<Favourite> getFavorites() async {
-    final response = await api.getWithToken(path: Urls.favorite);
-    var data = jsonDecode(response.body);
-    return Favourite.fromJson(data);
+  Future<Favourite?> getFavorites() async {
+    try {
+      final response = await api.getWithToken(path: "/cart");
+      if (response.statusCode == 200) {
+        final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
+        final resultData = jsonData['result'] as List<dynamic>;
+        final favourite =
+            Favourite.fromJson(jsonData['result']); // Parse single object
+        return favourite;
+      } else {
+        throw Exception('Sevimlilarni olishda xatolik: ${response.statusCode}');
+      }
+    } catch (error) {
+      rethrow;
+    }
   }
-
-  // Future<Favourite> createFavorite(int productId) async {
-  //   try {
-  //     final response = await api.postWithToken(
-  //       path: '/favorite/create',
-  //       body: {'product_id': productId},
-  //     );
-
-  //     if (response.statusCode == 200) {
-  //       // Javobni dekodlash
-  //       final data = jsonDecode(response.body);
-  //       // `Favourite` ob'ektini yaratish
-  //       return Favourite.fromJson(data);
-  //     } else {
-  //       // Xatolikni qayd etish
-  //       print('Failed to create favorite: ${response.body}');
-  //       throw Exception('Failed to create favorite: ${response.body}');
-  //     }
-  //   } catch (e) {
-  //     print('Error creating favorite: $e');
-  //     rethrow;
-  //   }
-  // }
 
   Future<Favourite> createFavorite({required int product_id}) async {
     final body = {
       "product_id": product_id,
     };
-    final response =
-        await api.post(path: "/favorite/delete/$product_id", body: body);
-    var data = jsonDecode(response.body);
-    print("ADDEEEEEEED FAVORIT ${response.body}");
-    return data["status"];
+
+    try {
+      final response =
+          await api.postWithToken(path: "/favorite/create", body: body);
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+
+        // Assuming you have a Favourite model and a fromJson method
+        if (data["status"]) {
+          return Favourite.fromJson(data);
+        } else {
+          throw Exception("Failed to add to favorites: ${data["message"]}");
+        }
+      } else {
+        throw Exception(
+            "Failed to add to favorites with status code: ${response.statusCode}");
+      }
+    } catch (error) {
+      print("Error in adding to favorites: $error");
+      rethrow;
+    }
   }
 
   Future<bool> deleteFavorite({required int productId}) async {
     final response =
-        await api.deleteWithToken(path: Urls.deleteFavorite(productId));
-    return response.statusCode ==
-        200; // Return true if the deletion was successful
+        await api.deleteWithToken(path: "/favorite/delete/$productId");
+    return response.statusCode == 200;
   }
 
   //Basket

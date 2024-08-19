@@ -38,7 +38,7 @@ class FoodChangePasswordPage extends StatelessWidget {
             return ModalProgressHUD(
                 inAsyncCall: state.loading,
                 // dismissible: true,
-                child: const FoodRegisterView());
+                child: const FoodChangePasswordView());
           },
         ),
       ),

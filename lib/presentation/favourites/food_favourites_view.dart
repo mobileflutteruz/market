@@ -36,8 +36,7 @@ class FavouritesView extends StatelessWidget {
             }
           }
         },
-        child: Buildable<FavouritesCubit, FavouritesState,
-            FavouritesBuildableState>(
+        child: Buildable<FavouritesCubit, FavouritesState, FavouritesBuildableState>(
           properties: (buildable) => [
             buildable.failure,
             buildable.loading,
@@ -54,67 +53,17 @@ class FavouritesView extends StatelessWidget {
             if (state.loading) {
               return const LoaderWidget();
             }
-            if (state.failure) {
-              return Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * .6,
-                      child: Image.asset("assets/images/home_error.png"),
-                    ),
-                    const SizedBox(height: 20),
-                    const Text(
-                      'что-то пошло не так',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF0E1923),
-                        fontSize: 20,
-                        fontFamily: 'Manrope',
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    const Text(
-                      'Нет результатов поиска, мы не можем найти товар, который вы ищете.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF7C8A9D),
-                        fontSize: 13,
-                        fontFamily: 'Manrope',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                    CommonButtonWidget(
-                      title: "Retry",
-                      onTap: () {
-                        context.read<FavouritesCubit>().fetchFavourites();
-                      },
-                    ),
-                  ],
-                ),
-              );
-            }
-
-            if (state.favourites != null &&
-                state.favourites!.result!.isNotEmpty) {
+            if (state.favourites != null && state.favourites!.result!.isNotEmpty) {
               return Scaffold(
                 appBar: CommonAppBar(title: context.l10n.favorites),
                 body: CustomScrollView(
                   slivers: [
-                    FoodInfoWidget(
-                        favouritesCount: state.favourites!.result!.length),
+                    FoodInfoWidget(favouritesCount: state.favourites!.result!.length),
                     SliverPadding(
                       padding: AppUtils.kPaddingHorizontal16,
                       sliver: SliverGrid.builder(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount:
-                              crossAxisCount == 0 || crossAxisCount == 1
-                                  ? 2
-                                  : crossAxisCount,
+                          crossAxisCount: crossAxisCount == 0 || crossAxisCount == 1 ? 2 : crossAxisCount,
                           mainAxisSpacing: 16,
                           crossAxisSpacing: 16,
                           childAspectRatio: .52,
@@ -125,9 +74,7 @@ class FavouritesView extends StatelessWidget {
                             productList: [product],
                             onTap: () {},
                             likeTapped: () {
-                              context
-                                  .read<FavouritesCubit>()
-                                  .deleteLikeId(product.product_id!);
+                              context.read<FavouritesCubit>().deleteLikeId(product.product_id!);
                             },
                             isLiked: state.likeIds.contains(product.id!),
                             smallButton: () {},
@@ -141,6 +88,7 @@ class FavouritesView extends StatelessWidget {
               );
             }
 
+            // Empty state when there are no favorites
             return Scaffold(
               appBar: CommonAppBar(title: context.l10n.favorites),
               body: CustomScrollView(
@@ -148,9 +96,32 @@ class FavouritesView extends StatelessWidget {
                   const FoodInfoWidget(favouritesCount: 0),
                   SliverToBoxAdapter(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        AppUtils.kGap40,
                         Lottie.asset('assets/animation/food_empty.json'),
+                        const SizedBox(height: 20),
+                        const Text(
+                          'Ваши избранные товары отсутствуют',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Color(0xFF7C8A9D),
+                            fontSize: 15,
+                            fontFamily: 'Manrope',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        const Text(
+                          'Добавьте товары в избранное, чтобы быстро находить их здесь.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Color(0xFF7C8A9D),
+                            fontSize: 13,
+                            fontFamily: 'Manrope',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ],
                     ),
                   ),
