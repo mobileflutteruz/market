@@ -1,12 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:karmango/domain/expections/invalid_credentials_exceptions.dart';
 import 'package:karmango/domain/model/favourite/favourite.dart';
 import 'package:karmango/domain/repository/data_repository.dart';
 import '../../components/buildable_cubit.dart';
 
 part 'favourites_state.dart';
-
 part 'favourites_cubit.freezed.dart';
 
 @Injectable()
@@ -23,24 +21,54 @@ class FavouritesCubit
     await fetchFavourites();
   }
 
-Future<void> fetchFavourites() async {
-  build((buildable) => buildable.copyWith(loading: true));
+  fetchFavourites() async {
+    build(
+      (buildable) => buildable.copyWith(
+        loading: true,
+      ),
+    );
+    try {
+      final Favourite? favourites = await _dataRepository.getFavorites();
 
-  try {
-    final favourites = await _dataRepository.getFavorites();
-    build((buildable) => buildable.copyWith(
-      loading: false,
-      success: true,
-      favourites: favourites, // List<Favourite> tipiga o'zgartirildi
-    ));
-  } catch (e) {
-    build((buildable) => buildable.copyWith(
-      loading: false,
-      failure: true,
-      errorMessage: 'Sevimlilarni olishda xatolik yuz berdi: $e',
-    ));
+      print("Favorite fetched successfully: $favourites");
+
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          success: true,
+          favourites: favourites, // Bitta favourite obyekti qaytariladi
+        ),
+      );
+    } catch (e) {
+      print("fetch Favorit error: $e");
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          failure: true,
+          errorMessage: e.toString(),
+        ),
+      );
+    }
   }
-}
+
+// Future<void> fetchFavourites() async {
+//   build((buildable) => buildable.copyWith(loading: true));
+
+//   try {
+//     final favourites = await _dataRepository.getFavorites();
+//     build((buildable) => buildable.copyWith(
+//       loading: false,
+//       success: true,
+//       favourites: favourites, // List<Favourite> tipiga o'zgartirildi
+//     ));
+//   } catch (e) {
+//     build((buildable) => buildable.copyWith(
+//       loading: false,
+//       failure: true,
+//       errorMessage: 'Sevimlilarni olishda xatolik yuz berdi: $e',
+//     ));
+//   }
+// }
 
   Future<Favourite?> setLikeId(int productId) async {
     build((buildable) => buildable.copyWith(loading: true));
@@ -84,56 +112,46 @@ Future<void> fetchFavourites() async {
   //   print("$ids");
   // }
 
-  Future<void> deleteLikeId(int productId) async {
-    try {
-      print(
-          "deleteLikeId -------------------------------${productId.toString()}");
+  void deleteLikeId(int productId) async {
+  build((buildable) =>
+      buildable.copyWith(
+        loading: true,
+        success: false,
+        failure: false,
+        errorMessage: '', // Error message reset
+      ));
 
-      // Loading holatini yangilash
+  try {
+    final bool isSuccess = await _dataRepository.deleteFavorite(productId: productId);
+
+    if (isSuccess) {
+      // Hozirgi state dan likeIds ni olish
+      final List<String> updatedLikeIds = List<String>.from(
+        (state as FavouritesBuildableState).likeIds
+      )..remove(productId.toString());
+
       build((buildable) => buildable.copyWith(
-            loading: true,
-            success: false,
-            failure: false,
-            errorMessage: '',
-          ));
-
-      // deleteFavorite metodi chaqiriladi va natijasi tekshiriladi
-      bool success = await _dataRepository.deleteFavorite(productId: productId);
-
-      if (success) {
-        print("deleteLike -------------------------------");
-
-        // Muvaffaqiyatli bo'lganda UI holatini yangilash
-        build((buildable) => buildable.copyWith(
-              loading: false,
-              success: true,
-              failure: false,
-              errorMessage: '',
-            ));
-      } else {
-        // Muvaffaqiyatsiz bo'lsa, xatolik holatini yangilash
-        build(
-          (buildable) => buildable.copyWith(
             loading: false,
-            failure: true,
+            success: true,
+            failure: false,
+            likeIds: updatedLikeIds,
+          ));
+    } else {
+      build((buildable) => buildable.copyWith(
+            loading: false,
             success: false,
+            failure: true,
             errorMessage: 'Failed to delete the favorite item.',
-          ),
-        );
-      }
-    } catch (e) {
-      print(
-          "deleteLikeId error -------------------------------${e.toString()}");
-      // Xatolik holatini yangilash
-      build(
-        (buildable) => buildable.copyWith(
-          loading: false,
-          failure: true,
-          success: false,
-          errorMessage:
-              'Something went wrong: ${e.runtimeType == UserNotFoundException ? 'User not found' : e.toString()}',
-        ),
-      );
+          ));
     }
+  } catch (e) {
+    build((buildable) => buildable.copyWith(
+          loading: false,
+          success: false,
+          failure: true,
+          errorMessage: 'Something went wrong: $e',
+        ));
   }
+}
+
 }

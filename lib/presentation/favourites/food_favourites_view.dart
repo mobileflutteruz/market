@@ -15,28 +15,28 @@ import '../../../../core/utils/app_layouts.dart';
 
 class FavouritesView extends StatelessWidget {
   const FavouritesView({super.key});
-
   @override
   Widget build(BuildContext context) {
     int crossAxisCount = (AppLayout.getScreenWidth(context) / 187.5).floor();
 
     return BlocProvider(
       create: (context) {
-        var cubit = locator<FavouritesCubit>();
+        final cubit = locator<FavouritesCubit>();
+        // Ensuring fetch only occurs once
         cubit.fetchFavourites();
         return cubit;
       },
       child: BlocListener<FavouritesCubit, FavouritesState>(
         listener: (context, state) {
-          if (state is FavouritesBuildableState) {
-            if (state.errorMessage.isNotEmpty) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.errorMessage)),
-              );
-            }
+          if (state is FavouritesBuildableState &&
+              state.errorMessage.isNotEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.errorMessage)),
+            );
           }
         },
-        child: Buildable<FavouritesCubit, FavouritesState, FavouritesBuildableState>(
+        child: Buildable<FavouritesCubit, FavouritesState,
+            FavouritesBuildableState>(
           properties: (buildable) => [
             buildable.failure,
             buildable.loading,
@@ -45,25 +45,25 @@ class FavouritesView extends StatelessWidget {
             buildable.likeIds,
           ],
           builder: (context, state) {
+            // Handle different states
             if (state.failure) {
-              return const Center(
-                child: Text("Something went wrong"),
-              );
+              return const Center(child: Text("Something went wrong"));
             }
             if (state.loading) {
               return const LoaderWidget();
             }
-            if (state.favourites != null && state.favourites!.result!.isNotEmpty) {
+            if (state.favourites?.result?.isNotEmpty ?? false) {
               return Scaffold(
                 appBar: CommonAppBar(title: context.l10n.favorites),
                 body: CustomScrollView(
                   slivers: [
-                    FoodInfoWidget(favouritesCount: state.favourites!.result!.length),
+                    // FoodInfoWidget(favouriteCount: state.favourites!.result!.length),
                     SliverPadding(
                       padding: AppUtils.kPaddingHorizontal16,
                       sliver: SliverGrid.builder(
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: crossAxisCount == 0 || crossAxisCount == 1 ? 2 : crossAxisCount,
+                          crossAxisCount: crossAxisCount.clamp(
+                              2, 4), // Ensure min/max values
                           mainAxisSpacing: 16,
                           crossAxisSpacing: 16,
                           childAspectRatio: .52,
@@ -74,7 +74,9 @@ class FavouritesView extends StatelessWidget {
                             productList: [product],
                             onTap: () {},
                             likeTapped: () {
-                              context.read<FavouritesCubit>().deleteLikeId(product.product_id!);
+                              context
+                                  .read<FavouritesCubit>()
+                                  .deleteLikeId(product.product_id!);
                             },
                             isLiked: state.likeIds.contains(product.id!),
                             smallButton: () {},
@@ -88,7 +90,7 @@ class FavouritesView extends StatelessWidget {
               );
             }
 
-            // Empty state when there are no favorites
+            // Empty state returns here
             return Scaffold(
               appBar: CommonAppBar(title: context.l10n.favorites),
               body: CustomScrollView(

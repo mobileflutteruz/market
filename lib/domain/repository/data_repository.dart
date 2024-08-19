@@ -55,22 +55,11 @@ class DataRepository {
     return ProductModel.fromJson(data);
   }
 
-  /// Favorites
-  Future<Favourite?> getFavorites() async {
-    try {
-      final response = await api.getWithToken(path: "/cart");
-      if (response.statusCode == 200) {
-        final jsonData = jsonDecode(response.body) as Map<String, dynamic>;
-        final resultData = jsonData['result'] as List<dynamic>;
-        final favourite =
-            Favourite.fromJson(jsonData['result']); // Parse single object
-        return favourite;
-      } else {
-        throw Exception('Sevimlilarni olishda xatolik: ${response.statusCode}');
-      }
-    } catch (error) {
-      rethrow;
-    }
+  // Category
+  Future<Favourite> getFavorites() async {
+    final response = await api.getWithToken(path: Urls.favorite);
+    var data = jsonDecode(response.body);
+    return Favourite.fromJson(data);
   }
 
   Future<Favourite> createFavorite({required int product_id}) async {
@@ -102,10 +91,28 @@ class DataRepository {
   }
 
   Future<bool> deleteFavorite({required int productId}) async {
+  try {
     final response =
-        await api.deleteWithToken(path: "/favorite/delete/$productId");
-    return response.statusCode == 200;
+        await api.deleteWithToken(path: "favorite/delete/$productId");
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+
+      if (data["status"]) {
+        return true; // muvaffaqiyatli holat
+      } else {
+        throw Exception("Failed to remove from favorites: ${data["message"]}");
+      }
+    } else {
+      throw Exception(
+          "Failed to remove from favorites with status code: ${response.statusCode}");
+    }
+  } catch (error) {
+    print("Error in removing from favorites: $error");
+    rethrow;
   }
+}
+
 
   //Basket
   Future<BasketProducts> getBasketProducts() async {
