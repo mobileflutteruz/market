@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/data/api/auth_api.dart';
+import 'package:karmango/domain/expections/token_not_provided_credential.dart';
 import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
 
 import 'package:karmango/presentation/components/buildable_cubit.dart';
@@ -30,36 +31,20 @@ class LoginCubit extends BuildableCubit<LoginState, LoginBuildableState> {
       (buildable) => buildable.copyWith(loading: true, failure: false),
     );
     try {
-      final AuthResponse response = await authRepo.login(
+      await authRepo.login(
         phone: phone,
         password: password,
       );
-
-      if (response.token != null && response.user_id != null) {
-        String accessToken = response.token!;
-        String userId = response.user_id.toString();
-
-        await _userSessionManager.saveUserToken(accessToken);
-        await _userSessionManager.saveUserId(userId);
-        build(
-          (buildable) => buildable.copyWith(
-            success: true,
-            loading: false,
-            failure: false,
-            message: "Successfully",
-          ),
-        );
-      } else {
-        build(
-          (buildable) => buildable.copyWith(
-            success: false,
-            loading: false,
-            failure: true,
-            message: "Error",
-          ),
-        );
-      }
+      build(
+        (buildable) => buildable.copyWith(
+          success: true,
+          loading: false,
+          failure: false,
+          message: "Successfully",
+        ),
+      );
     } catch (e) {
+      print('error----------------------------------------');
       print(e.toString());
       build(
         (buildable) => buildable.copyWith(

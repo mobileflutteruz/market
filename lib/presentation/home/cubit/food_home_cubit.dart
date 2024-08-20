@@ -15,9 +15,7 @@ part 'food_home_cubit.freezed.dart';
 class FoodHomeCubit
     extends BuildableCubit<FoodHomeState, FoodHomeBuildableState> {
   FoodHomeCubit(this._repository, this.repo, this.auth)
-      : super(const FoodHomeBuildableState()) {
-    getLikeIds();
-  }
+      : super(const FoodHomeBuildableState()) {}
 
   final DataRepository repo;
   final MainRepository _repository;
@@ -29,22 +27,6 @@ class FoodHomeCubit
 
   void changeTabs(int index) {
     build((buildable) => buildable.copyWith(currentIndex: index));
-  }
-
-  Future<void> setLikeId(int likeId) async {
-    List<String> ids = await _repository.getLikeIds() ?? [];
-    if (!ids.contains(likeId.toString())) {
-      ids.add(likeId.toString());
-    } else {
-      ids.removeWhere((p) => p == likeId.toString());
-    }
-    await _repository.setLikeIds(ids);
-    build((buildable) => buildable.copyWith(likeIds: ids));
-  }
-
-  Future<void> getLikeIds() async {
-    List<String> ids = await _repository.getLikeIds() ?? [];
-    build((buildable) => buildable.copyWith(likeIds: ids));
   }
 
   void changeTabIndex(int index) {

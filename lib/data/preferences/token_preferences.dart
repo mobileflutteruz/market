@@ -52,11 +52,14 @@ class TokenPreference {
     return localeDb.getString(_key);
   }
 
+
   Future<void> clear() async {
+     print("TOKEEEEEEEEEEEEEN CLEAR : ${_key}");
     await localeDb.remove(_key);
   }
 
   Future<void> clearUser() async {
+     print("TOKEEEEEEEEEEEEEN REMOVE USER : ${_key}");
     await localeDb.remove(_user);
   }
 

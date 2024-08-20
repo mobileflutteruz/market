@@ -18,7 +18,7 @@ class DataRepository {
   DataRepository(this.api);
   // Home
   Future getHomeProducts() async {
-    final response = await api.getWithToken(path: "/HomePage/");
+    final response = await api.getWithToken(path: "/HomePage");
     var data = jsonDecode(response.body);
     return MobileHomeProducts.fromJson(data);
   }

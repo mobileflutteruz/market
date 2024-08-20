@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/data/api/api.dart';
+import 'package:karmango/domain/expections/token_not_provided_credential.dart';
+import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
 
 @Injectable()
 class AuthApi {
@@ -15,19 +19,12 @@ class AuthApi {
     return data.body;
   }
 
-  Future<Response> login(
-    String phone,
-    String password,
-  ) async {
-    final body = {
-      "phone": phone,
-      "password": password,
-    };
-
-    var data = await _api.post(path: "/login", body: body);
+  Future<Response> login(String phone, String password, ) async {
+    final body = {"phone": phone, "password": password, };
+   
+    var data = await _api.post(path: "login", body: body);
     return data;
   }
-
   Future<Response> logOut() async {
     var data = await _api.post(path: Urls.logout);
     return data;

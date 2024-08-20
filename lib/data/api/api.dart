@@ -13,7 +13,9 @@ import 'package:pretty_http_logger/pretty_http_logger.dart';
 class Api {
   final TokenDataSource _token;
 
-  Api(this._token, );
+  Api(
+    this._token,
+  );
 
   final String _host = "karmango.shop.dukan.uz";
   final String _root = "/api";
@@ -217,8 +219,7 @@ class Api {
   //   }
   // }
 
-
-   Future<Response> putWithToken({
+  Future<Response> putWithToken({
     required String path,
     Map<String, dynamic>? body,
     Map<String, Object>? params,

@@ -21,30 +21,37 @@ class RegisterCubit
 
   Future<void> register() async {
     build(
-      (buildable) => buildable.copyWith(
-        loading: true,
-        failure: false,
-      ),
+      (buildable) => buildable.copyWith(loading: true, failure: false),
     );
     try {
-      await authRepo.register(
-        name: nameController.text,
-        phone: phoneController.text,
-        password: passwordController.text,
+      // Foydalanuvchini ro'yxatdan o'tkazish uchun API chaqiruvini amalga oshirishingiz kerak
+      final response = await authRepo.register(
+        name: nameController.text.trim(),
+        phone: phoneController.text.trim(),
+        password: passwordController.text.trim(),
       );
+
+      // Agar muvaffaqiyatli bo'lsa
       build(
         (buildable) => buildable.copyWith(
           success: true,
           loading: false,
           failure: false,
+          message: "Successfully registered",
         ),
       );
     } catch (e) {
+      String errorMessage = "Something went wrong";
+      if (e.toString().contains("Phone number already in use")) {
+        errorMessage = "This phone number is already registered";
+      }
+
+      // Xato holatida
       build(
         (buildable) => buildable.copyWith(
           loading: false,
           failure: true,
-          error: e.toString(),
+          message: errorMessage,
         ),
       );
     }

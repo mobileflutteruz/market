@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:karmango/core/constants/logger_service.dart';
 import 'package:karmango/data/api/auth_api.dart';
+import 'package:karmango/domain/expections/token_not_provided_credential.dart';
 import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
 import 'package:karmango/domain/model/auth/register/register.dart';
 import 'package:karmango/domain/model/mobile/user/user.dart';
@@ -25,14 +26,6 @@ class AuthRepository {
   final AuthApi authApi;
   final TokenPreference _token;
   final LoggingService log = LoggingService();
-
-
- 
-
-
-
-
-
 
   Future<RegisterModel> register({
     required String password,
@@ -75,28 +68,70 @@ class AuthRepository {
       rethrow;
     }
   }
+  // login(String phone, String password, ) async {
+  //   final response = await authApi.login(phone, password,);
+  //   var decodedData = jsonDecode(response.body);
+  //   return AuthResponse.fromJson(decodedData);
+  // }
 
-  Future<AuthResponse> login({
+  login({
     required String phone,
     required String password,
   }) async {
-    final query = {
+    final body = {
       "phone": phone,
       "password": password,
     };
-
-    final response = await _api.post(path: '/login', body: query);
-    final result = jsonDecode(response.body);
-
-    final AuthResponse data =
-        AuthResponse.fromJson(result as Map<String, dynamic>);
-
-    return data;
+    final response = await _api.postWithToken(path: Urls.login, body: body);
+    await _onAuthResponse(response);
   }
+
+  // login({required String phone, required String password}) async {
+  //   final body = {
+  //     "phone": phone,
+  //     "password": password,
+  //   };
+  //   final response = await _api.post(path: Urls.login, body: body);
+  //   print("LOGIIIIIIIIIIIIIN: ${response}");
+
+  //   await _onAuthResponse(response);
+  // }
+
+  // Future<AuthResponse> login({
+  //   required String phone,
+  //   required String password,
+  // }) async {
+  //   final query = {
+  //     "phone": phone,
+  //     "password": password,
+  //   };
+
+  //   try {
+  //     final response = await _api.postWithToken(path: '/login', body: query);
+  //     final result = jsonDecode(response.body);
+
+  //     if (response.statusCode == 200) {
+  //       final AuthResponse data =
+  //           AuthResponse.fromJson(result as Map<String, dynamic>);
+  //       return data;
+  //     } else if (response.statusCode == 401) {
+  //       final errorMessage = result['error'] ?? 'Invalid login credentials';
+  //       throw TokenCredentialExceptions(errorMessage);
+  //     } else {
+  //       throw Exception('Failed to login: ${response.reasonPhrase}');
+  //     }
+  //   } catch (e) {
+  //     if (e is TokenCredentialExceptions) {
+  //       print(e);
+  //     } else {
+  //       print('Login error: $e');
+  //     }
+  //     rethrow;
+  //   }
+  // }
 
   Future<void> logout() async {
     try {
-      await authApi.logOut();
       await _token.clear();
       await _token.clearUser();
     } catch (e) {
@@ -278,19 +313,29 @@ class AuthRepository {
     }
   }
 
-  Future<void> _onAuthResponse(http.Response response) async {
-    if (response.statusCode == 200) {
-      final body = jsonDecode(response.body);
-      if (body["token"] == null) {
-        log.logDebug("TOKEN: $body");
-      } else {
-        await _token.set(body["token"]);
-      }
+  _onAuthResponse(http.Response response) async {
+    final body = jsonDecode(response.body);
+
+    if (body["token"] == null) {
+      throw Exception(body);
     } else {
-      log.logError(
-          "Auth Response Error: ${response.statusCode} - ${response.reasonPhrase}");
+      await _token.set(body["token"]);
     }
   }
+
+  // Future<void> _onAuthResponse(http.Response response) async {
+  //   if (response.statusCode == 200) {
+  //     final body = jsonDecode(response.body);
+  //     if (body["token"] == null) {
+  //       log.logDebug("TOKEN: $body");
+  //     } else {
+  //       await _token.set(body["token"]);
+  //     }
+  //   } else {
+  //     log.logError(
+  //         "Auth Response Error: ${response.statusCode} - ${response.reasonPhrase}");
+  //   }
+  // }
 
   Future<void> _onAuthResponseGuest(http.Response response) async {
     if (response.statusCode == 200) {

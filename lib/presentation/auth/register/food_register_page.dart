@@ -1,5 +1,4 @@
 part of '../widgets/all_components.dart';
-
 class FoodRegisterPage extends StatelessWidget {
   const FoodRegisterPage({super.key});
 
@@ -14,21 +13,20 @@ class FoodRegisterPage extends StatelessWidget {
               if (state.success == true) {
                 AppUtils.msg(context, state.message ?? "Success",
                     color: Colors.green);
-                print(
-                    'success-----------------------------------------------------------');
-                // Navigator.pushNamed(context, NavigatorConst.home);
+                Navigator.pushNamed(
+                  context,
+                  FoodNavigatorConst.foodOtpScreen,
+                  arguments: context.read<RegisterCubit>().phoneController.text,
+                );
               }
 
               if (state.failure == true) {
-                print(
-                    'failure-----------------------------------------------------------');
-
                 AppUtils.msg(context, state.message ?? "Something went wrong",
                     color: Colors.red);
               }
             }
           },
-          child: Buildable<LoginCubit, LoginState, LoginBuildableState>(
+          child: Buildable<RegisterCubit, RegisterState, RegisterBuildableState>(
             properties: (buildable) => [
               buildable.loading,
               buildable.failure,
@@ -38,7 +36,6 @@ class FoodRegisterPage extends StatelessWidget {
             builder: (context, state) {
               return ModalProgressHUD(
                   inAsyncCall: state.loading,
-                  // dismissible: true,
                   child: const FoodRegisterView());
             },
           ),

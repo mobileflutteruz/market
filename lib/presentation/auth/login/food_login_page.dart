@@ -5,8 +5,8 @@ import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/core/utils/utils.dart';
 import 'package:karmango/presentation/auth/login/cubit/login_cubit.dart';
 import 'package:karmango/presentation/auth/widgets/all_components.dart';
-import 'package:karmango/presentation/components/modal_progress_hud.dart';
 import 'package:karmango/presentation/components/buildable.dart';
+import 'package:karmango/presentation/components/modal_progress_hud.dart';
 
 class FoodLoginPage extends StatelessWidget {
   const FoodLoginPage({super.key});
@@ -19,12 +19,18 @@ class FoodLoginPage extends StatelessWidget {
         listener: (context, state) {
           if (state is LoginBuildableState) {
             if (state.success == true) {
+              // Muvaffaqiyatli login
               AppUtils.msg(context, state.message ?? "Success",
                   color: Colors.green);
-              Navigator.pushNamed(context, FoodNavigatorConst.foodHome);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                FoodNavigatorConst.foodHome,
+                (route) => false,
+              );
             }
 
             if (state.failure == true) {
+              // Login muvaffaqiyatsiz
               AppUtils.msg(context, state.message ?? "Something went wrong",
                   color: Colors.red);
             }
