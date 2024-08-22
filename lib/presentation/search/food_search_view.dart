@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/presentation/search/cubit/search_cubit.dart';
+import 'dart:async';
 
 class FoodSearchView extends StatefulWidget {
   const FoodSearchView({Key? key}) : super(key: key);
@@ -11,11 +12,33 @@ class FoodSearchView extends StatefulWidget {
 }
 
 class _FoodSearchViewState extends State<FoodSearchView> {
+  late TextEditingController _searchController;
+  Timer? _debounce;
+
   @override
   void initState() {
     super.initState();
-    // Searched historyni yuklash
-    context.read<SearchedCubit>().searchedHistory();
+    _searchController = TextEditingController();
+    context.read<SearchedCubit>().searchedHistory(); // Load search history
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onSearchChanged(String query) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 300), () {
+      final trimmedQuery = query.trim();
+      if (trimmedQuery.isNotEmpty) {
+        context.read<SearchedCubit>().searchProducts(trimmedQuery);
+      } else {
+        context.read<SearchedCubit>().searchedHistory(); // Reload search history if input is cleared
+      }
+    });
   }
 
   @override
@@ -24,24 +47,16 @@ class _FoodSearchViewState extends State<FoodSearchView> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: () => Navigator.of(context).pop(),
         ),
         title: TextField(
+          controller: _searchController,
+          onChanged: _onSearchChanged,
           decoration: const InputDecoration(
             hintText: 'Найти продукты',
             border: InputBorder.none,
             suffixIcon: Icon(Icons.search),
           ),
-          onChanged: (value) {
-            // Input o'zgarganda qidiruvni boshlash
-            context.read<SearchedCubit>().searchProducts(value);
-          },
-          onSubmitted: (value) {
-            // Search qilish uchun
-            context.read<SearchedCubit>().searchProducts(value);
-          },
         ),
       ),
       body: Padding(
@@ -58,45 +73,43 @@ class _FoodSearchViewState extends State<FoodSearchView> {
           builder: (context, state) {
             if (state.loading) {
               return const Center(child: CircularProgressIndicator());
-            }
-
-            if (state.failure) {
+            } else if (state.failure) {
               return const Center(child: Text('Что-то пошло не так.'));
-            }
-
-            // Qidiruv natijalarini ko'rsatish
-            if (state.success && state.product?.length != null) {
+            } else if (state.success && state.product != null && state.product!.isNotEmpty) {
               return _buildSearchResults(state);
+            } else if (_searchController.text.isEmpty) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildRecentSearches(state),
+                  const SizedBox(height: 16),
+                  _buildPopularSearches(state),
+                ],
+              );
             }
-
-            // Agar qidiruv natijalari bo'lmasa, recent va popular qidiruvlarni ko'rsatish
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildRecentSearches(state),
-                const SizedBox(height: 16),
-                _buildPopularSearches(state),
-              ],
-            );
+            return const Center(child: Text('Ничего не найдено.'));
           },
         ),
       ),
     );
   }
 
-  // Qidiruv natijalarini ko'rsatuvchi vidjet
   Widget _buildSearchResults(SearchdBuildableState state) {
     return ListView.builder(
       itemCount: state.product!.length,
       itemBuilder: (context, index) {
         final product = state.product![index];
         return ListTile(
-          leading: Image.network(product.image ?? '',
-              width: 50, height: 50, fit: BoxFit.cover),
+          leading: Image.network(
+            product.image ?? '',
+            width: 50,
+            height: 50,
+            fit: BoxFit.cover,
+          ),
           title: Text(product.name ?? 'No name'),
           subtitle: Text('${product.price ?? 0} \$'),
           onTap: () {
-            // Mahsulot tanlanganida bajariladigan amal
+            // Handle product selection
           },
         );
       },
@@ -112,16 +125,10 @@ class _FoodSearchViewState extends State<FoodSearchView> {
           children: [
             const Text(
               'Последний поиск',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             TextButton(
-              onPressed: () {
-                // Search historyni tozalash
-                context.read<SearchedCubit>().deleteAll();
-              },
+              onPressed: () => context.read<SearchedCubit>().deleteAll(),
               child: const Text(
                 'Очистить',
                 style: TextStyle(color: Colors.red),
@@ -130,22 +137,21 @@ class _FoodSearchViewState extends State<FoodSearchView> {
           ],
         ),
         const SizedBox(height: 8),
-        if (state.searched != null &&
-            state.searched!.result?.search_history?.isNotEmpty == true)
+        if (state.searched != null && state.searched!.result?.search_history?.isNotEmpty == true)
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: state.searched!.result!.search_history!.length,
             itemBuilder: (context, index) {
+              final historyItem = state.searched!.result!.search_history![index];
               return ListTile(
                 leading: const Icon(Icons.history),
-                title:
-                    Text(state.searched!.result!.search_history![index].word!),
+                title: Text(historyItem.word!),
                 trailing: IconButton(
                   icon: const Icon(Icons.clear),
                   onPressed: () {
-                    // Tanlangan historyni o'chirish
-                    context.read<SearchedCubit>().deletById(index);
+                    final int id = int.parse(historyItem.id.toString());
+                    context.read<SearchedCubit>().deletById(id);
                   },
                 ),
               );
@@ -161,10 +167,7 @@ class _FoodSearchViewState extends State<FoodSearchView> {
       children: [
         const Text(
           'Популярные запросы',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
         if (state.searched?.result?.top_search != null)
@@ -173,16 +176,9 @@ class _FoodSearchViewState extends State<FoodSearchView> {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: state.searched!.result!.top_search!.length,
             itemBuilder: (context, index) {
-              final product = state.searched!.result!.top_search![index];
+              final popularItem = state.searched!.result!.top_search![index];
               return ListTile(
-                trailing: IconButton(
-                  icon: const Icon(Icons.clear),
-                  onPressed: () {
-                    // Tanlangan historyni o'chirish
-                    context.read<SearchedCubit>().deletById(index);
-                  },
-                ),
-                title: Text(product.word!),
+                title: Text(popularItem.word!),
               );
             },
           ),

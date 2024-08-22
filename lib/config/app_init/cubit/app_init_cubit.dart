@@ -17,17 +17,22 @@ class AppInitCubit extends Cubit<AppInitState> {
   ) : super(const AppInitLoadingState());
 
   Future<void> checkAuth() async {
-    emit(const AppInitLoadingState());
+  emit(const AppInitLoadingState());
 
-    // Qurilma ma'lumotlarini olish
+  try {
+    // Check if a valid token already exists
+    final existingToken = await _userSessionManager.getToken();
+    if (existingToken != null && existingToken.isNotEmpty) {
+      emit(const AuthorizedState());
+      return;
+    }
+
+    // No valid token, retrieve device information and make API call
     final deviceInfo = DeviceInfoPlugin();
     final androidInfo = await deviceInfo.androidInfo;
     final deviceModel = androidInfo.model;
-
-    // Eski 'androidId' o'rniga yangi 'id' xususiyatidan foydalanamiz
     final deviceUuid = androidInfo.id;
 
-    // Backendga qurilma ma'lumotlarini yuborish
     final response = await _api.post(
       path: "/guest/enters",
       body: {
@@ -36,21 +41,24 @@ class AppInitCubit extends Cubit<AppInitState> {
       },
     );
 
-    // Backenddan token olish va saqlash
-    final responseBody = jsonDecode(response.body);
-    if (responseBody['status'] == true) {
-      final guestToken = responseBody['token'];
-      print("Token saqlanmoqda (Guest)APPP INIT: $guestToken");
-      await _userSessionManager.saveUserToken(guestToken);
-    }
+    if (response.statusCode == 200) {
+      final responseBody = jsonDecode(response.body);
 
-    // Mavjud foydalanuvchini tekshirish
-    final loggedIn = await _userSessionManager.isUserLoggedIn();
-
-    if (loggedIn) {
-      emit(const AuthorizedState());
+      if (responseBody['status'] == true) {
+        final guestToken = responseBody['token'];
+        print("Saving guest token (AppInit): $guestToken");
+        await _userSessionManager.saveUserToken(guestToken);
+        emit(const AuthorizedState());
+      } else {
+        emit(const UnauthorizedState());
+      }
     } else {
       emit(const UnauthorizedState());
     }
+  } catch (e) {
+    print('Error in checkAuth: $e');
+    emit(const UnauthorizedState());
   }
+}
+
 }

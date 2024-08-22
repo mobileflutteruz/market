@@ -22,18 +22,18 @@ SearchProduct _$SearchProductFromJson(Map<String, dynamic> json) {
 mixin _$SearchProduct {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
-  String? get details_of_product => throw _privateConstructorUsedError;
+  dynamic get description => throw _privateConstructorUsedError;
+  dynamic get details_of_product => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
-  int? get quantity => throw _privateConstructorUsedError;
-  int? get quantity_rest => throw _privateConstructorUsedError;
+  dynamic get quantity => throw _privateConstructorUsedError;
+  dynamic get quantity_rest => throw _privateConstructorUsedError;
   int? get discount => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   String? get product_type => throw _privateConstructorUsedError;
   int? get category_id => throw _privateConstructorUsedError;
-  DateTime? get created_at => throw _privateConstructorUsedError;
-  DateTime? get updated_at => throw _privateConstructorUsedError;
+  dynamic get created_at => throw _privateConstructorUsedError;
+  dynamic get updated_at => throw _privateConstructorUsedError;
 
   /// Serializes this SearchProduct to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,18 +54,18 @@ abstract class $SearchProductCopyWith<$Res> {
   $Res call(
       {int? id,
       String? name,
-      String? description,
-      String? details_of_product,
+      dynamic description,
+      dynamic details_of_product,
       int? price,
-      int? quantity,
-      int? quantity_rest,
+      dynamic quantity,
+      dynamic quantity_rest,
       int? discount,
       String? image,
       String? status,
       String? product_type,
       int? category_id,
-      DateTime? created_at,
-      DateTime? updated_at});
+      dynamic created_at,
+      dynamic updated_at});
 }
 
 /// @nodoc
@@ -110,11 +110,11 @@ class _$SearchProductCopyWithImpl<$Res, $Val extends SearchProduct>
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       details_of_product: freezed == details_of_product
           ? _value.details_of_product
           : details_of_product // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -122,11 +122,11 @@ class _$SearchProductCopyWithImpl<$Res, $Val extends SearchProduct>
       quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as dynamic,
       quantity_rest: freezed == quantity_rest
           ? _value.quantity_rest
           : quantity_rest // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as dynamic,
       discount: freezed == discount
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
@@ -150,11 +150,11 @@ class _$SearchProductCopyWithImpl<$Res, $Val extends SearchProduct>
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as dynamic,
       updated_at: freezed == updated_at
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as dynamic,
     ) as $Val);
   }
 }
@@ -170,18 +170,18 @@ abstract class _$$SearchProductImplCopyWith<$Res>
   $Res call(
       {int? id,
       String? name,
-      String? description,
-      String? details_of_product,
+      dynamic description,
+      dynamic details_of_product,
       int? price,
-      int? quantity,
-      int? quantity_rest,
+      dynamic quantity,
+      dynamic quantity_rest,
       int? discount,
       String? image,
       String? status,
       String? product_type,
       int? category_id,
-      DateTime? created_at,
-      DateTime? updated_at});
+      dynamic created_at,
+      dynamic updated_at});
 }
 
 /// @nodoc
@@ -224,11 +224,11 @@ class __$$SearchProductImplCopyWithImpl<$Res>
       description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       details_of_product: freezed == details_of_product
           ? _value.details_of_product
           : details_of_product // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as dynamic,
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -236,11 +236,11 @@ class __$$SearchProductImplCopyWithImpl<$Res>
       quantity: freezed == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as dynamic,
       quantity_rest: freezed == quantity_rest
           ? _value.quantity_rest
           : quantity_rest // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as dynamic,
       discount: freezed == discount
           ? _value.discount
           : discount // ignore: cast_nullable_to_non_nullable
@@ -264,11 +264,11 @@ class __$$SearchProductImplCopyWithImpl<$Res>
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as dynamic,
       updated_at: freezed == updated_at
           ? _value.updated_at
           : updated_at // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as dynamic,
     ));
   }
 }
@@ -300,15 +300,15 @@ class _$SearchProductImpl implements _SearchProduct {
   @override
   final String? name;
   @override
-  final String? description;
+  final dynamic description;
   @override
-  final String? details_of_product;
+  final dynamic details_of_product;
   @override
   final int? price;
   @override
-  final int? quantity;
+  final dynamic quantity;
   @override
-  final int? quantity_rest;
+  final dynamic quantity_rest;
   @override
   final int? discount;
   @override
@@ -320,9 +320,9 @@ class _$SearchProductImpl implements _SearchProduct {
   @override
   final int? category_id;
   @override
-  final DateTime? created_at;
+  final dynamic created_at;
   @override
-  final DateTime? updated_at;
+  final dynamic updated_at;
 
   @override
   String toString() {
@@ -336,15 +336,14 @@ class _$SearchProductImpl implements _SearchProduct {
             other is _$SearchProductImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.details_of_product, details_of_product) ||
-                other.details_of_product == details_of_product) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other.details_of_product, details_of_product) &&
             (identical(other.price, price) || other.price == price) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity) &&
-            (identical(other.quantity_rest, quantity_rest) ||
-                other.quantity_rest == quantity_rest) &&
+            const DeepCollectionEquality().equals(other.quantity, quantity) &&
+            const DeepCollectionEquality()
+                .equals(other.quantity_rest, quantity_rest) &&
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
             (identical(other.image, image) || other.image == image) &&
@@ -353,10 +352,10 @@ class _$SearchProductImpl implements _SearchProduct {
                 other.product_type == product_type) &&
             (identical(other.category_id, category_id) ||
                 other.category_id == category_id) &&
-            (identical(other.created_at, created_at) ||
-                other.created_at == created_at) &&
-            (identical(other.updated_at, updated_at) ||
-                other.updated_at == updated_at));
+            const DeepCollectionEquality()
+                .equals(other.created_at, created_at) &&
+            const DeepCollectionEquality()
+                .equals(other.updated_at, updated_at));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -365,18 +364,18 @@ class _$SearchProductImpl implements _SearchProduct {
       runtimeType,
       id,
       name,
-      description,
-      details_of_product,
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(details_of_product),
       price,
-      quantity,
-      quantity_rest,
+      const DeepCollectionEquality().hash(quantity),
+      const DeepCollectionEquality().hash(quantity_rest),
       discount,
       image,
       status,
       product_type,
       category_id,
-      created_at,
-      updated_at);
+      const DeepCollectionEquality().hash(created_at),
+      const DeepCollectionEquality().hash(updated_at));
 
   /// Create a copy of SearchProduct
   /// with the given fields replaced by the non-null parameter values.
@@ -398,18 +397,18 @@ abstract class _SearchProduct implements SearchProduct {
   const factory _SearchProduct(
       {final int? id,
       final String? name,
-      final String? description,
-      final String? details_of_product,
+      final dynamic description,
+      final dynamic details_of_product,
       final int? price,
-      final int? quantity,
-      final int? quantity_rest,
+      final dynamic quantity,
+      final dynamic quantity_rest,
       final int? discount,
       final String? image,
       final String? status,
       final String? product_type,
       final int? category_id,
-      final DateTime? created_at,
-      final DateTime? updated_at}) = _$SearchProductImpl;
+      final dynamic created_at,
+      final dynamic updated_at}) = _$SearchProductImpl;
 
   factory _SearchProduct.fromJson(Map<String, dynamic> json) =
       _$SearchProductImpl.fromJson;
@@ -419,15 +418,15 @@ abstract class _SearchProduct implements SearchProduct {
   @override
   String? get name;
   @override
-  String? get description;
+  dynamic get description;
   @override
-  String? get details_of_product;
+  dynamic get details_of_product;
   @override
   int? get price;
   @override
-  int? get quantity;
+  dynamic get quantity;
   @override
-  int? get quantity_rest;
+  dynamic get quantity_rest;
   @override
   int? get discount;
   @override
@@ -439,9 +438,9 @@ abstract class _SearchProduct implements SearchProduct {
   @override
   int? get category_id;
   @override
-  DateTime? get created_at;
+  dynamic get created_at;
   @override
-  DateTime? get updated_at;
+  dynamic get updated_at;
 
   /// Create a copy of SearchProduct
   /// with the given fields replaced by the non-null parameter values.

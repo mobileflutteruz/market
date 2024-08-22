@@ -3,20 +3,24 @@ import 'package:injectable/injectable.dart';
 import 'package:karmango/core/constants/logger_service.dart';
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/data/api/api.dart';
+import 'package:karmango/data/api/main_api.dart';
 import 'package:karmango/domain/model/favourite/favourite.dart';
 import 'package:karmango/domain/model/mobile/basket/basket_products.dart';
 import 'package:karmango/domain/model/mobile/cart_product/cart_product.dart';
 import 'package:karmango/domain/model/mobile/category/category.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
 import 'package:karmango/domain/model/mobile/product/product.dart';
+import 'package:karmango/domain/model/search/search_product.dart';
 
 @Injectable()
 class DataRepository {
   final Api api;
+  final MainApi mainApi;
   final LoggingService log = LoggingService();
-
-  DataRepository(this.api);
+  LoggingService logg = LoggingService();
+  DataRepository(this.api, this.mainApi);
   // Home
+
   Future getHomeProducts() async {
     final response = await api.getWithToken(path: "/HomePage");
     var data = jsonDecode(response.body);
@@ -28,6 +32,44 @@ class DataRepository {
     final data = jsonDecode(response.body);
     return ProductDataModel.fromJson(data);
   }
+
+ 
+  // Future<List<SearchProduct>?> searchProduct({
+  //   required String name,
+  // }) async {
+  //   try {
+  //     final response = await api.getWithToken(
+  //       path: '/search-product',
+  //       params: {'name': name},
+  //     );
+
+  //     if (response.statusCode == 200) {
+  //       final result = jsonDecode(response.body);
+  //       logg.logInfo('API Response: $result');
+
+  //       if (result['result'] is List) {
+  //         final List<SearchProduct> list = (result['result'] as List).map((el) {
+  //           logg.logDebug('Parsing element: $el');
+  //           print('Parsing element: $el');
+  //           return SearchProduct.fromJson(el);
+  //         }).toList();
+
+  //         return list;
+  //       } else {
+  //         logg.logError('Unexpected response format: ${result['result']}');
+  //         return [];
+  //       }
+  //     } else {
+  //       log.logError('Failed to load products: ${response.statusCode}');
+  //       return [];
+  //     }
+  //   } catch (e, stackTrace) {
+  //     log.logError(
+  //       'An error occurred: $e',
+  //     );
+  //     return [];
+  //   }
+  // }
 
 //  Future getCategories() async {
 //     final response = await api.getWithToken(path: Urls.categories);
@@ -91,28 +133,28 @@ class DataRepository {
   }
 
   Future<bool> deleteFavorite({required int productId}) async {
-  try {
-    final response =
-        await api.deleteWithToken(path: "favorite/delete/$productId");
+    try {
+      final response =
+          await api.deleteWithToken(path: "favorite/delete/$productId");
 
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
 
-      if (data["status"]) {
-        return true; // muvaffaqiyatli holat
+        if (data["status"]) {
+          return true; // muvaffaqiyatli holat
+        } else {
+          throw Exception(
+              "Failed to remove from favorites: ${data["message"]}");
+        }
       } else {
-        throw Exception("Failed to remove from favorites: ${data["message"]}");
+        throw Exception(
+            "Failed to remove from favorites with status code: ${response.statusCode}");
       }
-    } else {
-      throw Exception(
-          "Failed to remove from favorites with status code: ${response.statusCode}");
+    } catch (error) {
+      print("Error in removing from favorites: $error");
+      rethrow;
     }
-  } catch (error) {
-    print("Error in removing from favorites: $error");
-    rethrow;
   }
-}
-
 
   //Basket
   Future<BasketProducts> getBasketProducts() async {
@@ -164,14 +206,10 @@ class DataRepository {
         .toList();
   }
 
+  //? Create Cart
   Future<BasketProducts> createCart({
     required int product_id,
-    // required int attribute_id,
   }) async {
-    // final body = {
-    //   "product_id": "$product_id",
-    //   // "attribute_id": "$attribute_id",
-    // };
     final response = await api.postWithToken(
       path: "/cart/store",
       body: {'product_id': product_id},
@@ -180,15 +218,27 @@ class DataRepository {
     return BasketProducts.fromJson(data);
   }
 
-  // deleteCart({
-  //   required int productId,
-  //   required int attributeId,
-  // }) async {
-  //   final response = await api.deleteWithToken(
-  //       path: Urls.deleteCart(productId: productId, attributeId: attributeId));
-  //   var data = jsonDecode(response.body);
-  //   return data["status"];
-  // }
+  Future<bool> deleteCartById({required int productId}) async {
+    try {
+      final response =
+          await api.deleteWithToken(path: "/cart/delete/$productId");
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        if (data["status"]) {
+          return true; // muvaffaqiyatli holat
+        } else {
+          throw Exception(
+              "Failed to remove from favorites: ${data["message"]}");
+        }
+      } else {
+        throw Exception(
+            "Failed to remove from favorites with status code: ${response.statusCode}");
+      }
+    } catch (error) {
+      print("Error in removing from favorites: $error");
+      rethrow;
+    }
+  }
 
 //  Future<List<Search>> searchProducts(String inputText) async {
 //   final result = await api.get(

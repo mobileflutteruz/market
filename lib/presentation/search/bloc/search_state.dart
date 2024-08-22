@@ -2,25 +2,25 @@
 
 // class SearchState extends Equatable {
 //   final ApiStatus apiStatus;
-//   final SearchProduct searchProduct;
+//   final List<SearchProduct> searchProducts; // Ism to'g'ri ekanligini tekshiring
 
 //   const SearchState({
 //     this.apiStatus = ApiStatus.none,
-//     this.searchProduct = const SearchProduct(),
+//     this.searchProducts = const [],
 //   });
 
 //   SearchState copyWith({
 //     ApiStatus? apiStatus,
-//     SearchProduct? searchProduct,
+//     List<SearchProduct>? searchProducts,
 //   }) {
 //     return SearchState(
 //       apiStatus: apiStatus ?? this.apiStatus,
-//       searchProduct: searchProduct ?? this.searchProduct,
+//       searchProducts: searchProducts ?? this.searchProducts,
 //     );
 //   }
 
 //   @override
-//   List<Object?> get props => [apiStatus, searchProduct];
+//   List<Object?> get props => [apiStatus, searchProducts];
 // }
 
 // enum ApiStatus { none, loading, success, error }

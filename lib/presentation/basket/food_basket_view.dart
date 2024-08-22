@@ -67,7 +67,6 @@ class _BasketViewState extends State<FoodBasketView>
                 (state.products == null || state.products!.result!.isEmpty)) {
               return const LoaderWidget();
             }
-
             if (state.failed) {
               return Scaffold(
                 backgroundColor: Colors.white,

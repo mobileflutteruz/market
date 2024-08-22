@@ -7,7 +7,6 @@
 // part 'search_event.dart';
 
 // part 'search_state.dart';
-
 // @injectable
 // class SearchBloc extends Bloc<SearchEvent, SearchState> {
 //   SearchBloc(this.searchRepository) : super(const SearchState()) {
@@ -21,20 +20,19 @@
 //     Emitter<SearchState> emit,
 //   ) async {
 //     emit(state.copyWith(apiStatus: ApiStatus.loading));
-//     final SearchProduct? response =
-//         await searchRepository.searchProduct(name: event.text);
-//     print("TRUEEEEEEEEEEEEEEEe");
+    
+//  try {
+//   final List<SearchProduct> response = await searchRepository.searchProduct(name: event.text);
+//   print('Response: $response'); // Bu yerni qo'shing
 
-//     if (response == null) {
-//       emit(state.copyWith(apiStatus: ApiStatus.error));
-//       print("ERORRRRRRRRRRR");
-//     } else {
-//       emit(
-//         state.copyWith(
-//           apiStatus: ApiStatus.success,
-//           searchProduct: response,
-//         ),
-//       );
-//     }
+//   if (response.isEmpty) {
+//     emit(state.copyWith(apiStatus: ApiStatus.error));
+//   } else {
+//     emit(state.copyWith(apiStatus: ApiStatus.success, searchProducts: response));
+//   }
+// } catch (e) {
+//   print('Error: $e'); // Bu yerni qo'shing
+//   emit(state.copyWith(apiStatus: ApiStatus.error));
+// }
 //   }
 // }

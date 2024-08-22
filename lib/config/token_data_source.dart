@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
-import 'package:karmango/domain/model/user/user_model.dart';
 
 @Injectable()
 class TokenDataSource {
@@ -12,31 +11,30 @@ class TokenDataSource {
 
   final String _tokenKey = "token";
   final String _favouritesKey = "favourites";
-  final String _furnitureFavouritesKey = "furnitureFavourites";
   final String _basketsKey = "baskets";
   final String _ordersKey = "orders";
   final String _guestKey = "guest";
   final String _userKey = "user";
 
-  // Guest foydalanuvchini saqlash
+  // Save guest user data
   Future<void> saveGuestUser(String value) async {
-    print("Token saqlanmoqda (Guest): $value");
+    print("Saving guest token: $value");
     await _secureStorage.write(key: _guestKey, value: value);
   }
 
-  // Guest foydalanuvchini olish
+  // Retrieve guest user data
   Future<String?> getGuestUser() async {
-    print("Guest token olinmoqda TOKEEEEEN: $_guestKey");
+    print("Retrieving guest token: $_guestKey");
     return await _secureStorage.read(key: _guestKey);
   }
 
-  // Foydalanuvchi ma'lumotlarini saqlash
+  // Save user data
   Future<void> setUser(Map<String, dynamic> json) async {
     String user = jsonEncode(json);
     await _secureStorage.write(key: _userKey, value: user);
   }
 
-  // Foydalanuvchi ma'lumotlarini olish
+  // Retrieve user data
   Future<AuthResponse?> getUser() async {
     String? userString = await _secureStorage.read(key: _userKey);
     if (userString != null) {
@@ -44,7 +42,6 @@ class TokenDataSource {
         Map<String, dynamic> json = jsonDecode(userString);
         return AuthResponse.fromJson(json);
       } catch (e) {
-        // Handle decoding error (e.g., throw exception or return default AuthResponse)
         print("Error decoding user data: $e");
         return null;
       }
@@ -52,84 +49,66 @@ class TokenDataSource {
     return null;
   }
 
-  // Foydalanuvchi ma'lumotlarini tozalash
+  // Clear user data
   Future<void> clearUser() async {
     await _secureStorage.delete(key: _userKey);
   }
 
-  // Mobil do'kon uchun yoqtirganlarni olish
+  // Retrieve favourites list
   Future<List<String>?> getFavourites() async {
     String? favouritesString = await _secureStorage.read(key: _favouritesKey);
     if (favouritesString != null) {
-      return List<String>.from(jsonDecode(favouritesString));
+      try {
+        return List<String>.from(jsonDecode(favouritesString));
+      } catch (e) {
+        print("Error decoding favourites: $e");
+        return null;
+      }
     }
     return null;
   }
 
-  // Mobil do'kon uchun yoqtirganlarni saqlash
+  // Save favourites list
   Future<void> setFavourites({required List<String> values}) async {
     await _secureStorage.write(key: _favouritesKey, value: jsonEncode(values));
   }
 
-  // Mobil do'kon uchun yoqtirganlarni tozalash
+  // Clear favourites list
   Future<void> clearFavourites() async {
     await _secureStorage.delete(key: _favouritesKey);
   }
 
-  // Mebel do'koni uchun yoqtirganlarni olish
-  Future<List<String>?> getFurnitureFavourites() async {
-    String? favouritesString =
-        await _secureStorage.read(key: _furnitureFavouritesKey);
-    if (favouritesString != null) {
-      return List<String>.from(jsonDecode(favouritesString));
-    }
-    return null;
-  }
-
-  // Mebel do'koni uchun yoqtirganlarni saqlash
-  Future<void> setFurnitureFavourites({required List<String> values}) async {
-    await _secureStorage.write(
-        key: _furnitureFavouritesKey, value: jsonEncode(values));
-  }
-
-  // Mebel do'koni uchun yoqtirganlarni tozalash
-  Future<void> clearFurnitureFavourites() async {
-    await _secureStorage.delete(key: _furnitureFavouritesKey);
-  }
-
-  // Savatchalarni saqlash
+  // Save baskets data
   Future<void> setBaskets({required String value}) async {
     await _secureStorage.write(key: _basketsKey, value: value);
   }
 
-  // Savatchalarni olish
+  // Retrieve baskets data
   Future<String?> getBaskets() async {
     return await _secureStorage.read(key: _basketsKey);
   }
 
-  // Buyurtmani saqlash
+  // Save orders data
   Future<void> setMyOrder({required String value}) async {
-    await _secureStorage.write(
-        key: _ordersKey, value: value); // Use _ordersKey instead of _basketsKey
+    await _secureStorage.write(key: _ordersKey, value: value);
   }
 
-  // Buyurtmani olish
+  // Retrieve orders data
   Future<String?> getMyOrder() async {
-    return await _secureStorage.read(
-        key: _ordersKey); // Use _ordersKey instead of _basketsKey
+    return await _secureStorage.read(key: _ordersKey);
   }
 
-  // Tokenni saqlash
+  // Save token
   Future<void> saveToken(String token) async {
     await _secureStorage.write(key: _tokenKey, value: token);
   }
 
-  // Tokenni olish
+  // Retrieve token
   Future<String?> getToken() async {
     return await _secureStorage.read(key: _tokenKey);
   }
 
-  // Tokenni tozalash
+  // Clear token
   Future<void> clearToken() async {
     await _secureStorage.delete(key: _tokenKey);
   }

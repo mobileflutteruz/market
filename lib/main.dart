@@ -59,6 +59,7 @@ Future<void> main() async {
         BlocProvider(create: (context) => locator<RegisterCubit>()),
         BlocProvider(create: (context) => locator<FoodHomeCubit>()),
         BlocProvider(create: (context) => locator<ChangePasswordCubit>()),
+        // BlocProvider(create: (context) => locator<SearchBloc>()),
 
      
       ],
