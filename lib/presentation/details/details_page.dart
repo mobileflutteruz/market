@@ -159,7 +159,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                context.l10n.description ?? "",
+                                context.l10n.description,
                                 textAlign: TextAlign.center,
                                 style: Styles.manropeMedium16,
                               ),

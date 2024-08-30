@@ -47,7 +47,10 @@ class ChangePasswordCubit
     }
   }
 
-  Future<void> resetPassword(String newPass, String confirmPass) async {
+  Future<void> resetPassword(
+    String newPass,
+    String confirmPass,
+  ) async {
     build(
       (buildable) => buildable.copyWith(
         isModal_hud: true,
@@ -56,15 +59,25 @@ class ChangePasswordCubit
         error: null,
       ),
     );
+
     try {
-      await authRepo.updatePassword(newPass, confirmPass);
+      await authRepo.updatePassword(
+        newPass,
+        confirmPass,
+      );
+    print(
+          "------------------------------- SUCCESS -----------------------------");
       build(
+         
         (buildable) => buildable.copyWith(
           isModal_hud: false,
           success: true,
         ),
       );
     } catch (e) {
+      print(
+          "------------------------------- ERRROR -----------------------------");
+          print("ERROR:$e");
       build(
         (buildable) => buildable.copyWith(
           isModal_hud: false,
@@ -73,6 +86,7 @@ class ChangePasswordCubit
         ),
       );
     } finally {
+   
       build(
         (buildable) => buildable.copyWith(
           isModal_hud: false,
@@ -90,6 +104,9 @@ class ChangePasswordCubit
       build((buildable) =>
           buildable.copyWith(success: true, loading: false, failure: false));
     } catch (e) {
+        print(
+          "------------------------------- ERRROR  VERFY SMS-----------------------------");
+          print("ERROR SMS:$e");
       build(
         (buildable) => buildable.copyWith(
           loading: false,

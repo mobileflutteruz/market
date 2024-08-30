@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+
 import '../../core/constants/constants.dart';
 import '../../core/utils/app_layouts.dart';
 
@@ -36,7 +36,7 @@ class InputWidget extends StatelessWidget {
         controller: textEditingController,
         enabled: true,
 
-        inputFormatters: [],
+        inputFormatters: const [],
         validator: (value) {
           if (value == null || value.isEmpty) {
             return "This field is required";

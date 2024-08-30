@@ -5,10 +5,10 @@ class FoodBasketContainerItem extends StatelessWidget {
   final String imageUrl;
 
   FoodBasketContainerItem({
-    Key? key,
+    super.key,
     this.onTap,
     required this.imageUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

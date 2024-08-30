@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:karmango/domain/repository/auth_repository.dart';
 import 'package:karmango/presentation/components/buildable_cubit.dart';
 import 'package:karmango/data/preferences/token_preferences.dart';
 

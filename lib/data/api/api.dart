@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'package:karmango/config/token_data_source.dart';
-import 'package:karmango/config/user_session_manager.dart';
+
 import 'package:karmango/domain/expections/error_exception.dart';
 import 'package:karmango/domain/expections/invalid_credentials_exceptions.dart';
 import 'package:karmango/domain/expections/token_not_provided_credential.dart';
@@ -50,6 +50,7 @@ class Api {
       "Content-Type": "application/json",
       if (token != null) "Authorization": "Bearer $token",
     };
+    // ignore: avoid_print
     print(headers);
     final result =
         await _httpClient.get(uri, headers: headers).timeout(_timeout);
@@ -183,13 +184,16 @@ class Api {
   Future<String?> gettokens() async {
     var token = await _token.getToken();
     if (token == null) {
+          // ignore: avoid_print
       print("Token mavjud emas, guest token olinmoqda...");
       token = await _token.getGuestUser();
     }
 
     if (token == null) {
+          // ignore: avoid_print
       print("Guest token ham mavjud emas.");
     } else {
+          // ignore: avoid_print
       print("Token olingan: $token");
     }
 

@@ -15,7 +15,7 @@ part 'food_home_cubit.freezed.dart';
 class FoodHomeCubit
     extends BuildableCubit<FoodHomeState, FoodHomeBuildableState> {
   FoodHomeCubit(this._repository, this.repo, this.auth)
-      : super(const FoodHomeBuildableState()) {}
+      : super(const FoodHomeBuildableState());
 
   final DataRepository repo;
   final MainRepository _repository;

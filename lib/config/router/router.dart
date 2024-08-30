@@ -26,7 +26,7 @@ import 'package:karmango/presentation/my_order/components/my_order_cart.dart';
 import 'package:karmango/presentation/notification/components/notification_item_page.dart';
 import 'package:karmango/presentation/notification/notification_page.dart';
 import 'package:karmango/presentation/order/food_order_view.dart';
-import 'package:karmango/presentation/search/food_search_page.dart';
+
 import 'package:flutter/material.dart';
 
 class OngenerateRoutes {

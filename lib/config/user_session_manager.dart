@@ -4,10 +4,7 @@ import 'user_data_source.dart';
 
 @Singleton()
 class UserSessionManager {
-  @Injectable()
   final TokenDataSource _tokenDataSource;
-
-  @Injectable()
   final UserDataDataSource _userDataDataSource;
 
   UserSessionManager(
@@ -15,26 +12,28 @@ class UserSessionManager {
     this._userDataDataSource,
   );
 
-  Future<bool> isFirstRun() async {
-    return _userDataDataSource.isFirstRun();
-  }
-
-  Future<bool> isUserLoggedIn() async {
-    final token = await getToken();
-    return token != null && token.isNotEmpty;
-  }
-
   Future<void> saveUserToken(String token) async {
     await _tokenDataSource.saveToken(token);
   }
 
+  Future<void> saveGuestToken(String token) async {
+    await _tokenDataSource.saveGuestUser(token);
+  }
+
   Future<String?> getToken() async {
+    return await _tokenDataSource.getToken();
+  }
+
+  Future<String?> getGuestToken() async {
     return await _tokenDataSource.getGuestUser();
   }
 
+  Future<bool> isFirstRun() async {
+    return await _userDataDataSource.isFirstRun();
+  }
+
   Future<String?> getUserId() async {
-    final userData = await _userDataDataSource.getUserId();
-    return userData;
+    return await _userDataDataSource.getUserId();
   }
 
   Future<void> saveUserId(String userId) async {
@@ -44,9 +43,5 @@ class UserSessionManager {
   Future<void> clearUserSession() async {
     await _tokenDataSource.clearUser();
     await _tokenDataSource.clearToken();
-  }
-
-  Future<void> saveToken(String token) async {
-    await _tokenDataSource.saveGuestUser(token);
   }
 }

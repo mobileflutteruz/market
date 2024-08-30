@@ -80,14 +80,18 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i985.TokenDataSource>(),
         gh<_i358.UserDataDataSource>(),
       ));
-  gh.factory<_i677.AuthApi>(() => _i677.AuthApi(gh<_i1.Api>()));
   gh.factory<_i767.MainApi>(() => _i767.MainApi(gh<_i1.Api>()));
   gh.factory<_i89.SearchRepository>(() => _i89.SearchRepository(gh<_i1.Api>()));
+  gh.factory<_i677.AuthApi>(() => _i677.AuthApi(
+        gh<_i1.Api>(),
+        gh<_i358.UserDataDataSource>(),
+      ));
   gh.factory<_i153.MainService>(() => _i153.MainService(gh<_i767.MainApi>()));
   gh.factory<_i614.AuthRepository>(() => _i614.AuthRepository(
         gh<_i401.TokenPreference>(),
         gh<_i1.Api>(),
         gh<_i677.AuthApi>(),
+        gh<_i716.UserSessionManager>(),
       ));
   gh.factory<_i398.ChangePasswordCubit>(
       () => _i398.ChangePasswordCubit(gh<_i614.AuthRepository>()));

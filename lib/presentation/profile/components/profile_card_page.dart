@@ -7,7 +7,7 @@ import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/presentation/components/common_app_bar.dart';
 import '../../../../core/utils/utils.dart';
 import '../cubit/food_profile_cubit.dart';
-import 'my_card_item.dart';
+
 
 class FoodProfileCardPage extends StatelessWidget {
   const FoodProfileCardPage({super.key});

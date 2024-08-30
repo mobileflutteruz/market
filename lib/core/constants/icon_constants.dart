@@ -60,9 +60,9 @@ class IconConstants {
   static final starEmpty = SvgPicture.asset("assets/icons/star_empty.svg");
   static final shoppingCartWhite =
       SvgPicture.asset("assets/icons/shopping_cart_white.svg");
-  static final rightArrow = const Icon(
+  static const rightArrow = Icon(
     Icons.chevron_right,
-    color: const Color(0xFF2472F2),
+    color:  Color(0xFF2472F2),
   );
   static final upload = SvgPicture.asset("assets/icons/upload.svg");
   static final camera = SvgPicture.asset("assets/icons/camera.svg");

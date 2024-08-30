@@ -17,48 +17,83 @@ class AppInitCubit extends Cubit<AppInitState> {
   ) : super(const AppInitLoadingState());
 
   Future<void> checkAuth() async {
-  emit(const AppInitLoadingState());
+    emit(const AppInitLoadingState());
 
-  try {
-    // Check if a valid token already exists
-    final existingToken = await _userSessionManager.getToken();
-    if (existingToken != null && existingToken.isNotEmpty) {
-      emit(const AuthorizedState());
-      return;
-    }
-
-    // No valid token, retrieve device information and make API call
-    final deviceInfo = DeviceInfoPlugin();
-    final androidInfo = await deviceInfo.androidInfo;
-    final deviceModel = androidInfo.model;
-    final deviceUuid = androidInfo.id;
-
-    final response = await _api.post(
-      path: "/guest/enters",
-      body: {
-        "uuid": deviceUuid,
-        "model": deviceModel,
-      },
-    );
-
-    if (response.statusCode == 200) {
-      final responseBody = jsonDecode(response.body);
-
-      if (responseBody['status'] == true) {
-        final guestToken = responseBody['token'];
-        print("Saving guest token (AppInit): $guestToken");
-        await _userSessionManager.saveUserToken(guestToken);
+    try {
+      // Foydalanuvchi tokenini tekshirish
+      final userToken = await _userSessionManager.getToken();
+      if (userToken != null && userToken.isNotEmpty) {
         emit(const AuthorizedState());
+        return;
+      }
+
+      // Mehmon tokenini tekshirish
+      final guestToken = await _userSessionManager.getGuestToken();
+      if (guestToken != null && guestToken.isNotEmpty) {
+        emit(const AuthorizedState());
+        return;
+      }
+
+      // Token mavjud emas, qurilma ma'lumotlarini olish va API chaqiruvini amalga oshirish
+      final deviceInfo = DeviceInfoPlugin();
+      final androidInfo = await deviceInfo.androidInfo;
+      final deviceModel = androidInfo.model;
+      final deviceUuid = androidInfo.id;
+
+      final response = await _api.post(
+        path: "/guest/enters",
+        body: {
+          "uuid": deviceUuid,
+          "model": deviceModel,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final responseBody = jsonDecode(response.body);
+
+        if (responseBody['status'] == true) {
+          final guestToken = responseBody['token'];
+          print("Saving guest token (AppInit): $guestToken");
+          await _userSessionManager.saveGuestToken(guestToken);
+          emit(const AuthorizedState());
+        } else {
+          emit(const UnauthorizedState());
+        }
       } else {
         emit(const UnauthorizedState());
       }
-    } else {
+    } catch (e) {
+      print('Error in checkAuth: $e');
       emit(const UnauthorizedState());
     }
-  } catch (e) {
-    print('Error in checkAuth: $e');
-    emit(const UnauthorizedState());
   }
-}
 
+  Future<void> loginUser(String username, String password) async {
+    try {
+      final response = await _api.post(
+        path: "/auth/login",
+        body: {
+          "username": username,
+          "password": password,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final responseBody = jsonDecode(response.body);
+        final userToken = responseBody['token'];
+
+        if (userToken != null) {
+          await _userSessionManager.saveUserToken(userToken);
+          emit(const AuthorizedState());
+        } else {
+          emit(const UnauthorizedState());
+        }
+      } else {
+        emit(const UnauthorizedState());
+      }
+    } catch (e) {
+      print('Error in loginUser: $e');
+      emit(const UnauthorizedState());
+    }
+  }
 }

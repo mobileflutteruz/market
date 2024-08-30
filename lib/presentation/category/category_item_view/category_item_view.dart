@@ -2,23 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/core/constants/constants.dart';
-import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/core/utils/app_layouts.dart';
 import 'package:karmango/core/utils/utils.dart';
-
 import 'package:karmango/presentation/category/category_item_view/cubit/category_cubit.dart';
 import 'package:karmango/presentation/category/components/category_product.dart';
 import 'package:karmango/presentation/components/buildable.dart';
-import 'package:karmango/presentation/components/common_app_bar.dart';
 import 'package:karmango/presentation/components/common_blue_button.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
-import 'package:karmango/presentation/favourites/components/food_info.dart';
+
 import 'package:lottie/lottie.dart';
 
 class CategoryProductScreen extends StatelessWidget {
   final int id;
 
-  CategoryProductScreen(this.id);
+  CategoryProductScreen(this.id, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +30,9 @@ class CategoryProductScreen extends StatelessWidget {
         child: Buildable<CategoryProductCubit, CategoryProductState,
             CategoryProductBuildableState>(
           properties: (buildable) => [
-            buildable.loading ?? false,
-            buildable.success ?? false,
-            buildable.failed ?? false,
+            buildable.loading,
+            buildable.success,
+            buildable.failed,
             buildable.categoryProduct,
           ],
           builder: (context, state) {

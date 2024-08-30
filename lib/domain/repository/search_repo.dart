@@ -61,40 +61,62 @@ class SearchRepository {
   //   return list;
   // }
 
-  Future<List<SearchProduct>> searchProduct({
-    required String name,
-  }) async {
+    Future<List<SearchProduct>> searchProduct({required String name}) async {
     try {
-      // Encode the name parameter to handle special characters
-      final encodedName = Uri.encodeComponent(name);
-      final response = await _api.getWithToken(
-        path: '/search-product?name=${encodedName}',
+      // Make the API request
+      final response = await _api.get(
+        path: '/search-product?name=$name',
       );
 
-      if (response.statusCode == 200) {
-        final result = jsonDecode(response.body);
+      // Decode the JSON response
+      final Map<String, dynamic> result = jsonDecode(response.body);
 
-        if (result['result'] is List) {
-          // Safely map the JSON list to the SearchProduct model
-          final List<SearchProduct> list = (result['result'] as List)
-              .map((el) => SearchProduct.fromJson(el as Map<String, dynamic>))
-              .toList();
+      // Map the JSON to a list of SearchProduct
+      final List<SearchProduct> products = List.from(result['result'] ?? [])
+          .map((el) => SearchProduct.fromJson(el))
+          .toList();
 
-          return list;
-        } else {
-          // Handle unexpected response structure
-          throw Exception('Unexpected response format: ${result['result']}');
-        }
-      } else {
-        // Handle non-200 status codes
-        throw Exception('Failed to load products: ${response.statusCode}');
-      }
-    } catch (e) {
-      // Log the error and rethrow it or return an empty list based on your app's requirements
-      print('An error occurred: $e');
-      return []; // or rethrow e; if you want to propagate the error
+      return products;
+    } catch (error) {
+      print('Error fetching products: $error');
+      rethrow; // Propagate the error so it can be handled by the calling function
     }
   }
+
+  // Future<List<SearchProduct>> searchProduct({
+  //   required String name,
+  // }) async {
+  //   try {
+  //     // Encode the name parameter to handle special characters
+  //     final encodedName = Uri.encodeComponent(name);
+  //     final response = await _api.getWithToken(
+  //       path: '/search-product?name=${encodedName}',
+  //     );
+
+  //     if (response.statusCode == 200) {
+  //       final result = jsonDecode(response.body);
+
+  //       if (result['result'] is List) {
+  //         // Safely map the JSON list to the SearchProduct model
+  //         final List<SearchProduct> list = (result['result'] as List)
+  //             .map((el) => SearchProduct.fromJson(el as Map<String, dynamic>))
+  //             .toList();
+
+  //         return list;
+  //       } else {
+  //         // Handle unexpected response structure
+  //         throw Exception('Unexpected response format: ${result['result']}');
+  //       }
+  //     } else {
+  //       // Handle non-200 status codes
+  //       throw Exception('Failed to load products: ${response.statusCode}');
+  //     }
+  //   } catch (e) {
+  //     // Log the error and rethrow it or return an empty list based on your app's requirements
+  //     print('An error occurred: $e');
+  //     return []; // or rethrow e; if you want to propagate the error
+  //   }
+  // }
 
   Future<SearchedHistory?> searchedHistory() async {
     try {

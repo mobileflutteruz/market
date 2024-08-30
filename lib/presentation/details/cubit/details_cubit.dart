@@ -12,7 +12,7 @@ part 'details_cubit.freezed.dart';
 @Injectable()
 class DetailsCubit extends BuildableCubit<DetailsState, DetailsBuildableState> {
   DetailsCubit(this.mainRepo, this.repo)
-      : super(const DetailsBuildableState()) {}
+      : super(const DetailsBuildableState());
 
   final MainRepository mainRepo;
   final DataRepository repo;

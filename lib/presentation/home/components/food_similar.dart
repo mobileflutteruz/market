@@ -152,7 +152,7 @@ class _FoodSimilarItemWidgetState extends State<FoodSimilarItemWidget> {
               textAlign: TextAlign.start,
             ),
             Text(
-              product.product_type! ?? "",
+              product.product_type!,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: Styles.manropeBold14.copyWith(

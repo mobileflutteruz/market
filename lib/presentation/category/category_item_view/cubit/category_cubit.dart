@@ -18,7 +18,7 @@ class CategoryProductCubit extends BuildableCubit<CategoryProductState,
   fetchCategoryProduct(int productId) async {
     build((buildable) => buildable.copyWith(loading: true));
     try {
-      final ProductModel? categoryProduct =
+      final ProductModel categoryProduct =
           await _dataRepository.getCategoryProducts(productId);
       print(_dataRepository.getCategoryProducts(
           productId)); // Assuming you have a way to get this data
@@ -31,7 +31,8 @@ class CategoryProductCubit extends BuildableCubit<CategoryProductState,
         ),
       );
     } catch (e, s) {
-      print("fetchCategoryProduct error---------------${e.toString()}");
+      print(
+          "fetchCategoryProduct error---------------${e.toString()} ${s.toString()}");
       build(
         (buildable) => buildable.copyWith(
           loading: false,

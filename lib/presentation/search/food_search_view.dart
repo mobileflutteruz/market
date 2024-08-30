@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:karmango/domain/model/search/search_product.dart';
 import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/presentation/search/cubit/search_cubit.dart';
 import 'dart:async';
 
 class FoodSearchView extends StatefulWidget {
-  const FoodSearchView({Key? key}) : super(key: key);
+  const FoodSearchView({super.key});
 
   @override
   _FoodSearchViewState createState() => _FoodSearchViewState();
@@ -19,24 +20,26 @@ class _FoodSearchViewState extends State<FoodSearchView> {
   void initState() {
     super.initState();
     _searchController = TextEditingController();
-    context.read<SearchedCubit>().searchedHistory(); // Load search history
+    context.read<SearchedCubit>().searchedHistory();
+    _searchController.addListener(_onSearchChanged);
   }
 
   @override
   void dispose() {
     _debounce?.cancel();
+    _searchController.removeListener(_onSearchChanged);
     _searchController.dispose();
     super.dispose();
   }
 
-  void _onSearchChanged(String query) {
+  void _onSearchChanged() {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 300), () {
-      final trimmedQuery = query.trim();
-      if (trimmedQuery.isNotEmpty) {
-        context.read<SearchedCubit>().searchProducts(trimmedQuery);
+      final query = _searchController.text.trim();
+      if (query.isNotEmpty) {
+        context.read<SearchedCubit>().searchProducts(query);
       } else {
-        context.read<SearchedCubit>().searchedHistory(); // Reload search history if input is cleared
+        context.read<SearchedCubit>().searchedHistory();
       }
     });
   }
@@ -47,11 +50,12 @@ class _FoodSearchViewState extends State<FoodSearchView> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         title: TextField(
           controller: _searchController,
-          onChanged: _onSearchChanged,
           decoration: const InputDecoration(
             hintText: 'Найти продукты',
             border: InputBorder.none,
@@ -62,22 +66,24 @@ class _FoodSearchViewState extends State<FoodSearchView> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Buildable<SearchedCubit, SearchState, SearchdBuildableState>(
-          properties: (state) => [
-            state.loading,
-            state.success,
-            state.failure,
-            state.searched,
-            state.allDeleted,
-            state.product,
+          properties: (p) => [
+            p.loading,
+            p.failure,
+            p.success,
+            p.product,
+            p.searched, // Added properties to track
           ],
           builder: (context, state) {
             if (state.loading) {
               return const Center(child: CircularProgressIndicator());
-            } else if (state.failure) {
+            }
+            if (state.failure) {
               return const Center(child: Text('Что-то пошло не так.'));
-            } else if (state.success && state.product != null && state.product!.isNotEmpty) {
-              return _buildSearchResults(state);
-            } else if (_searchController.text.isEmpty) {
+            }
+            if (state.success && state.product != null && state.product!.isNotEmpty) {
+              return _buildSearchResults(state.product!);
+            }
+            if (_searchController.text.isEmpty) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -94,11 +100,11 @@ class _FoodSearchViewState extends State<FoodSearchView> {
     );
   }
 
-  Widget _buildSearchResults(SearchdBuildableState state) {
+  Widget _buildSearchResults(List<SearchProduct> products) {
     return ListView.builder(
-      itemCount: state.product!.length,
+      itemCount: products.length,
       itemBuilder: (context, index) {
-        final product = state.product![index];
+        final product = products[index];
         return ListTile(
           leading: Image.network(
             product.image ?? '',
@@ -128,7 +134,9 @@ class _FoodSearchViewState extends State<FoodSearchView> {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             TextButton(
-              onPressed: () => context.read<SearchedCubit>().deleteAll(),
+              onPressed: () {
+                context.read<SearchedCubit>().deleteAll();
+              },
               child: const Text(
                 'Очистить',
                 style: TextStyle(color: Colors.red),
@@ -137,7 +145,8 @@ class _FoodSearchViewState extends State<FoodSearchView> {
           ],
         ),
         const SizedBox(height: 8),
-        if (state.searched != null && state.searched!.result?.search_history?.isNotEmpty == true)
+        if (state.searched?.result?.search_history != null &&
+            state.searched!.result!.search_history!.isNotEmpty)
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

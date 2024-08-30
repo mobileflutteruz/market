@@ -28,7 +28,7 @@ class FavouritesCubit
       ),
     );
     try {
-      final Favourite? favourites = await _dataRepository.getFavorites();
+      final Favourite favourites = await _dataRepository.getFavorites();
 
       print("Favorite fetched successfully: $favourites");
 
@@ -73,7 +73,7 @@ class FavouritesCubit
   Future<Favourite?> setLikeId(int productId) async {
     build((buildable) => buildable.copyWith(loading: true));
     try {
-      final Favourite? favourite =
+      final Favourite favourite =
           await _dataRepository.createFavorite(product_id: productId);
       build((buildable) => buildable.copyWith(
             loading: false,

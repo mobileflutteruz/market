@@ -29,11 +29,9 @@ Future<void> searchProducts(String text) async {
   build(
     (buildable) => buildable.copyWith(loading: true),
   );
-  
-  try {
-    final List<SearchProduct>? products = await _dataRepository.searchProduct(name: text);
 
-    build(
+    final List<SearchProduct>? products = await _dataRepository.searchProduct(name: text);
+  build(
       (buildable) => buildable.copyWith(
         loading: false,
         success: true,
@@ -41,29 +39,19 @@ Future<void> searchProducts(String text) async {
         product: products,
       ),
     );
-  } catch (e) {
-    print("fetchProducts error: $e");
 
-    if (e.toString().contains('UserNotFoundException')) {
-      // Handle the specific UserNotFoundException
-      build(
-        (buildable) => buildable.copyWith(
-          loading: false,
-          failure: true,
-          error: "User not found. Please log in again.",
-        ),
-      );
-    } else {
-      // Handle other errors
-      build(
+        
+    
+       build(
         (buildable) => buildable.copyWith(
           loading: false,
           failure: true,
           error: "An unexpected error occurred.",
         ),
       );
-    }
-  }
+
+  
+
 }
 
 

@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'dart:convert';
 
 part 'deletedId.freezed.dart';
 part 'deletedId.g.dart';

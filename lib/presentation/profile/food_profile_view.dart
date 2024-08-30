@@ -174,10 +174,10 @@ class _FoodProfileViewState extends State<FoodProfileView> {
               AppUtils.kGap16,
               FoodProfileCardWidget(
                 isProfileCard: true,
-                balance: "${foodUser.cards!.first.balance} UZS",
-                cardNumber: "${foodUser.cards!.first.cardNumber}",
+                balance: "${foodUser.cards.first.balance} UZS",
+                cardNumber: "${foodUser.cards.first.cardNumber}",
                 cardData:
-                    "${foodUser.cards!.first.expirationMonth}/${foodUser.cards!.first.expirationYear}",
+                    "${foodUser.cards.first.expirationMonth}/${foodUser.cards.first.expirationYear}",
               ),
             ],
           ],

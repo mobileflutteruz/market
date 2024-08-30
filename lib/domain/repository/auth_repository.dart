@@ -1,31 +1,34 @@
 import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
+import 'package:karmango/config/user_session_manager.dart';
+import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/core/constants/logger_service.dart';
+import 'package:karmango/data/api/api.dart';
 import 'package:karmango/data/api/auth_api.dart';
-import 'package:karmango/domain/expections/token_not_provided_credential.dart';
+import 'package:karmango/data/preferences/token_preferences.dart';
+import 'package:karmango/domain/expections/invalid_credentials_exceptions.dart';
 import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
+import 'package:uuid/uuid.dart';
+
+import 'package:karmango/domain/model/auth/change_password/change_password_model.dart';
 import 'package:karmango/domain/model/auth/register/register.dart';
 import 'package:karmango/domain/model/mobile/user/user.dart';
-import 'package:uuid/uuid.dart';
-import '../../core/constants/constants.dart';
-import '../../data/api/api.dart';
-import '../../data/preferences/token_preferences.dart';
 
 @Injectable()
 class AuthRepository {
-  AuthRepository(
-    this._token,
-    this._api,
-    this.authApi,
-  );
+  AuthRepository(this._token, this._api, this.authApi, this._userSessionManager);
 
   final Api _api;
   final AuthApi authApi;
   final TokenPreference _token;
   final LoggingService log = LoggingService();
+  final UserSessionManager _userSessionManager;
+
+
 
   Future<RegisterModel> register({
     required String password,
@@ -49,32 +52,82 @@ class AuthRepository {
             'Registration failed with status: ${response.statusCode}');
       }
     } catch (e) {
-      print('Error during registration: $e');
+      log.logError('Error during registration', error: e);
       rethrow;
     }
   }
 
-  Future<Map<String, dynamic>> updatePassword(
+  Future<ChangePasswordModel> updatePassword(
       String newPass, String confirmPass) async {
     try {
-      final response = await authApi.resetPassword(newPass, confirmPass);
-      // Javobni JSON formatida dekod qilamiz
+      final String? userId = await _userSessionManager
+          .getUserId(); // await bilan String turiga o'zgartiriladi
+          
+      print("__________________________USER ID: $userId");
+
+      if (userId == null) {
+        throw AuthenticationException('User not found');
+      }
+
+      final response = await authApi.resetPassword(
+        newPass,
+        confirmPass,
+        userId,
+      );
+
       final Map<String, dynamic> result =
           Map<String, dynamic>.from(jsonDecode(response.body));
-      return result;
+      return ChangePasswordModel.fromJson(result);
     } catch (e) {
       // Xatolikni log qilish va qayta otish
       print('Error updating password: $e');
       rethrow;
     }
   }
-  // login(String phone, String password, ) async {
-  //   final response = await authApi.login(phone, password,);
-  //   var decodedData = jsonDecode(response.body);
-  //   return AuthResponse.fromJson(decodedData);
+
+  bool isValidPassword(String password, String confirmPassword) {
+    return password.length >= 8 && password == confirmPassword;
+  }
+
+  // Future<void> login({
+  //   required String phone,
+  //   required String password,
+  // }) async {
+  //   final body = {
+  //     "phone": phone,
+  //     "password": password,
+  //   };
+
+  //   try {
+  //     final response = await _api.postWithToken(path: Urls.login, body: body);
+
+  //     if (response.statusCode == 200) {
+  //       final responseBody = jsonDecode(response.body);
+  //       final String? userId = responseBody['user_id'];
+  //       final String? token = responseBody['token'];
+
+  //       if (userId != null && token != null) {
+  //         // Save the user ID and token
+  //         await _userSessionManager.saveUserId(userId);
+  //         await _userSessionManager.saveUserToken(token);
+
+  //         // Handle the authenticated state
+  //         await _onAuthResponse(response);
+  //       } else {
+  //         throw AuthenticationException(
+  //             'User ID or token is missing in the response.');
+  //       }
+  //     } else {
+  //       throw HttpException(
+  //           'Failed to login. Status code: ${response.statusCode}');
+  //     }
+  //   } catch (e) {
+  //     print('Error during login: $e');
+  //     rethrow;
+  //   }
   // }
 
-  login({
+  Future<void> login({
     required String phone,
     required String password,
   }) async {
@@ -85,50 +138,6 @@ class AuthRepository {
     final response = await _api.postWithToken(path: Urls.login, body: body);
     await _onAuthResponse(response);
   }
-
-  // login({required String phone, required String password}) async {
-  //   final body = {
-  //     "phone": phone,
-  //     "password": password,
-  //   };
-  //   final response = await _api.post(path: Urls.login, body: body);
-  //   print("LOGIIIIIIIIIIIIIN: ${response}");
-
-  //   await _onAuthResponse(response);
-  // }
-
-  // Future<AuthResponse> login({
-  //   required String phone,
-  //   required String password,
-  // }) async {
-  //   final query = {
-  //     "phone": phone,
-  //     "password": password,
-  //   };
-
-  //   try {
-  //     final response = await _api.postWithToken(path: '/login', body: query);
-  //     final result = jsonDecode(response.body);
-
-  //     if (response.statusCode == 200) {
-  //       final AuthResponse data =
-  //           AuthResponse.fromJson(result as Map<String, dynamic>);
-  //       return data;
-  //     } else if (response.statusCode == 401) {
-  //       final errorMessage = result['error'] ?? 'Invalid login credentials';
-  //       throw TokenCredentialExceptions(errorMessage);
-  //     } else {
-  //       throw Exception('Failed to login: ${response.reasonPhrase}');
-  //     }
-  //   } catch (e) {
-  //     if (e is TokenCredentialExceptions) {
-  //       print(e);
-  //     } else {
-  //       print('Login error: $e');
-  //     }
-  //     rethrow;
-  //   }
-  // }
 
   Future<void> logout() async {
     try {
@@ -148,89 +157,28 @@ class AuthRepository {
     }
   }
 
-  Future<void> resetPassword(String oldPassword, String newPassword) async {
-    try {
-      final response = await authApi.resetPassword(oldPassword, newPassword);
-      await _onAuthResponse(response);
-    } catch (e) {
-      log.logError("Error resetting password", error: e);
-    }
-  }
-
-//  Future<bool> forgetPassword(String phone) async {
-//     try {
-//       final response = await _authApi.forgetPassword(phone);
-//       await _onAuthResponse(response);
-//       return true;
-//     } catch (e) {
-//       log.logError("Error initiating password reset", error: e);
-//       return false;
-//     }
-//   }
-  Future<ResendActivation> forgetPassword({
-    required String phone,
-  }) async {
-    final query = {
-      "phone": phone,
-    };
-
-    final response = await _api.post(path: '/resend-activation', body: query);
-    final result = jsonDecode(response.body);
-
-    final ResendActivation data =
-        ResendActivation.fromJson(result as Map<String, dynamic>);
-
-    return data;
-  }
-
-  // Future<void> forgetPassword(String phone) async {
-  //   try {
-  //     final response = await http.post(
-  //       Uri.parse('https://karmango.shop.dukan.uz/api/resend-activation'),
-  //       body: jsonEncode({'phone': phone}),
-  //       headers: <String, String>{
-  //         'Content-Type': 'application/json; charset=UTF-8',
-  //       },
-  //     );
-
-  //     if (response.statusCode == 200) {
-  //       // Handle successful password reset
-  //     } else {
-  //       log.logError('Failed to reset password');
-  //       throw Exception('Failed to reset password');
-  //     }
-  //   } catch (e) {
-  //     // Handle exceptions
-  //     rethrow; // or handle appropriately
-  //   }
-  // }
-
   Future<void> loginAsGuest() async {
     try {
-      // Get device info
       final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
       String uuid;
       String model;
 
       if (Platform.isAndroid) {
         AndroidDeviceInfo androidInfo = await deviceInfoPlugin.androidInfo;
-        uuid = androidInfo.id ?? const Uuid().v1(); // Fallback if id is null
-        model = androidInfo.model ?? "Unknown Android Model";
+        // ignore: prefer_const_constructors
+        uuid = androidInfo.id;
+        model = androidInfo.model;
       } else if (Platform.isIOS) {
         IosDeviceInfo iosInfo = await deviceInfoPlugin.iosInfo;
-        uuid = iosInfo.identifierForVendor ??
-            const Uuid().v1(); // Fallback if identifierForVendor is null
-        model = iosInfo.utsname.machine ?? "Unknown iOS Model";
+        uuid = iosInfo.identifierForVendor ?? Uuid().v1();
+        model = iosInfo.utsname.machine;
       } else {
-        // Handle other platforms or set defaults
         uuid = const Uuid().v1();
         model = "Unknown Model";
       }
 
-      // Call the API to create a guest login
       final response = await authApi.createGuestLogin(uuid, model);
 
-      // Handle the authentication response
       if (response.statusCode == 200) {
         await _onAuthResponseGuest(response);
       } else {
@@ -252,42 +200,21 @@ class AuthRepository {
     }
   }
 
-  Future<void> activateUser({
+  Future<ResendActivation> forgetPassword({
     required String phone,
-    required String code,
   }) async {
-    final body = {
+    final query = {
       "phone": phone,
-      "password": code,
     };
 
-    try {
-      final response =
-          await _api.postWithToken(path: Urls.activateUser, body: body);
-      await _onAuthResponse(response);
-    } catch (e) {
-      log.logError("Error activating user", error: e);
-    }
-  }
+    final response = await _api.post(path: '/resend-activation', body: query);
+    final result = jsonDecode(response.body);
+    await _onAuthResponse(result);
 
-  Future<void> changePassword({
-    required String userId,
-    required String password,
-    required String confirmPassword,
-  }) async {
-    final body = {
-      "user_id": userId,
-      "password": password,
-      "confirm_password": confirmPassword,
-    };
+    final ResendActivation data =
+        ResendActivation.fromJson(result as Map<String, dynamic>);
 
-    try {
-      final response =
-          await _api.postWithToken(path: Urls.changePassword, body: body);
-      await _onAuthResponse(response);
-    } catch (e) {
-      log.logError("Error changing password", error: e);
-    }
+    return data;
   }
 
   Future<void> resendActivationCode({
@@ -306,14 +233,37 @@ class AuthRepository {
 
   Future<void> verifySms(String phone, String code) async {
     try {
-      final response = await authApi.verfy(removePlus(phone), code);
-      await _onAuthResponse(response);
+      final response = await authApi.verfy(phone, code);
+      final responseBody = jsonDecode(response.body);
+
+      // Javobni tekshirish
+      if (responseBody['status'] == true) {
+        log.logInfo('User verified successfully: ${responseBody['message']}');
+        // Agar kerak bo'lsa, qo'shimcha harakatlar qiling
+      } else {
+        // Agar xatolik bo'lsa, xatolik tashlash
+        throw AuthenticationException(
+            'Verification failed: ${responseBody['message']}');
+      }
     } catch (e) {
-      log.logError("Error verifying SMS", error: e);
+      log.logError("Error verifying user", error: e);
+      rethrow;
     }
   }
 
-  _onAuthResponse(http.Response response) async {
+  // Future<void> verifySms(String phone, String code) async {
+  //   try {
+  //     final response = await authApi.verfy(removePlus(phone), code);
+  //     // await _onAuthResponse(response);
+  //   } catch (e) {
+  //     // log.logError("Error verifying SMS", error: e);
+  //     print(
+  //         "------------------------ ERROR VERFY REPOSITORY -------------------");
+  //     print("ERROR VERFY REPOSITORY: $e");
+  //   }
+  // }
+
+  _onAuthResponse(Response response) async {
     final body = jsonDecode(response.body);
 
     if (body["token"] == null) {
@@ -323,21 +273,7 @@ class AuthRepository {
     }
   }
 
-  // Future<void> _onAuthResponse(http.Response response) async {
-  //   if (response.statusCode == 200) {
-  //     final body = jsonDecode(response.body);
-  //     if (body["token"] == null) {
-  //       log.logDebug("TOKEN: $body");
-  //     } else {
-  //       await _token.set(body["token"]);
-  //     }
-  //   } else {
-  //     log.logError(
-  //         "Auth Response Error: ${response.statusCode} - ${response.reasonPhrase}");
-  //   }
-  // }
-
-  Future<void> _onAuthResponseGuest(http.Response response) async {
+  Future<void> _onAuthResponseGuest(Response response) async {
     if (response.statusCode == 200) {
       final body = jsonDecode(response.body);
       if (body["token"] == null) {
@@ -355,9 +291,10 @@ class AuthRepository {
   String removePlus(String input) {
     List<String> list1 = input.split("");
     if (list1[0] == "+") {
-      list1.removeAt(0);
+      return input.substring(1, input.length);
+    } else {
+      return input;
     }
-    return list1.join();
   }
 
   String? passWordvalidator(String value) {

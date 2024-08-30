@@ -1,17 +1,16 @@
-import 'dart:convert';
-
 import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
+import 'package:karmango/config/user_data_source.dart';
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/data/api/api.dart';
-import 'package:karmango/domain/expections/token_not_provided_credential.dart';
-import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
 
 @Injectable()
 class AuthApi {
   final Api _api;
 
-  AuthApi(this._api);
+  AuthApi(this._api, this._userData);
+  // ignore: unused_field
+  final UserDataDataSource _userData;
 
   register(String password, String phone, String email) async {
     final body = {"password": password, "phone": phone, "email": email};
@@ -19,12 +18,19 @@ class AuthApi {
     return data.body;
   }
 
-  Future<Response> login(String phone, String password, ) async {
-    final body = {"phone": phone, "password": password, };
-   
+  Future<Response> login(
+    String phone,
+    String password,
+  ) async {
+    final body = {
+      "phone": phone,
+      "password": password,
+    };
+
     var data = await _api.post(path: "login", body: body);
     return data;
   }
+
   Future<Response> logOut() async {
     var data = await _api.post(path: Urls.logout);
     return data;
@@ -32,21 +38,47 @@ class AuthApi {
 
   Future<Response> verfy(String phone, String code) async {
     final body = {"code": code, "phone": phone};
-    var data = await _api.post(path: Urls.insertCode, body: body);
+    var data = await _api.post(path: "/insert-code", body: body);
     return data;
   }
 
-  Future<Response> resetPassword(String oldPassword, String newPassword) async {
-    final body = {"old_password": oldPassword, "new_password": newPassword};
-    var data = await _api.postWithToken(path: Urls.changePassword, body: body);
+  Future<Response> resetPassword(
+      String password, String confirmPassword, String userId) async {
+    final body = {
+      "password": password,
+      "confirm_password": confirmPassword,
+    };
+    var data =
+        await _api.postWithToken(path: "/restore-password/$userId", body: body);
+            // ignore: avoid_print
+    print("RESET PASSWORD: $data");
     return data;
   }
 
-  Future<Response> forgetPassword(String phone) async {
-    final body = {"phone": phone};
-    var data = await _api.postWithToken(path: "/resend-activation", body: body);
+
+  
+  Future<Response> updatePassword(
+      String newPass, String confirmPass, String userId) async {
+    final Map<String, Object> params = {
+      'password': newPass,
+      'password_confirmation': confirmPass
+    };
+    var data = await _api.postWithToken(
+      path: "/restore-password/$userId",
+      body: params,
+      
+    );
+        // ignore: avoid_print
+    print("-------------here-------");
+        // ignore: avoid_print
+    print(data);
     return data;
   }
+  // Future<Response> forgetPassword(String phone) async {
+  //   final body = {"phone": phone};
+  //   var data = await _api.postWithToken(path: "/resend-activation", body: body);
+  //   return data;
+  // }
 
   Future<Response> createGuestLogin(String uuid, String model) async {
     final Map<String, dynamic> params = {
@@ -62,17 +94,17 @@ class AuthApi {
     return response;
   }
 
-  Future<Response> updatePassword(String newPass, String confirmPass) async {
-    final Map<String, Object> params = {
-      'password': newPass,
-      'password_confirmation': confirmPass
-    };
-    var data = await _api.post(
-      path: "updatePassword",
-      body: params,
-    );
-    print("-------------here-------");
-    print(data);
-    return data;
-  }
+  // Future<Response> updatePassword(String newPass, String confirmPass) async {
+  //   final Map<String, Object> params = {
+  //     'password': newPass,
+  //     'password_confirmation': confirmPass
+  //   };
+  //   var data = await _api.post(
+  //     path: "updatePassword",
+  //     body: params,
+  //   );
+  //   print("-------------here-------");
+  //   print(data);
+  //   return data;
+  // }
 }

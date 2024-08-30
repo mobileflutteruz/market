@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'dart:convert';
 
 part 'searched_history.freezed.dart';
 part 'searched_history.g.dart';

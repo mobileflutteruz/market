@@ -110,7 +110,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                             smallButton: () {
                               context
                                   .read<FoodBasketCubit>()
-                                  .setBasketProducts(product!.top_id!);
+                                  .setBasketProducts(product.top_id!);
                               print("Basket");
                             },
                             leftBtnTapped: () {
