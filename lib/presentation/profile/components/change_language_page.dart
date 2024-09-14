@@ -14,6 +14,7 @@ class FoodChangeLanguagePage extends StatefulWidget {
 }
 
 class _FoodChangeLanguagePageState extends State<FoodChangeLanguagePage> {
+  
   int _site = AppOptions.instance.locale == const Locale("uz")
       ? 0
       : AppOptions.instance.locale == const Locale("ru")

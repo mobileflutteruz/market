@@ -168,15 +168,15 @@ class Api {
     switch (response.statusCode) {
       case 401:
         throw TokenCredentialExceptions();
-      case 404:
-        throw UserNotFoundException();
+      // case 404:
+      //   throw UserNotFoundException();
       case 400:
         throw ErrorException(response);
       case 403:
         await _token.clearToken();
         throw InvalidCredentialsExceptions();
       default:
-        throw Exception([response.body]);
+        throw Exception("ERRRORRRR DEFAULT: ${response.body}");
     }
   }
 

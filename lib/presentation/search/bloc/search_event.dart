@@ -1,14 +1,32 @@
-// part of 'search_bloc.dart';
-// sealed class SearchEvent extends Equatable {
-//   const SearchEvent();
+part of 'search_bloc.dart';
+sealed class SearchEvent extends Equatable {
+  const SearchEvent();
+}
+
+class OnSearchEvent extends SearchEvent {
+  const OnSearchEvent({required this.text});
+
+  final String text;
+
+  @override
+  List<Object> get props => [text];
+}
+
+// import 'package:equatable/equatable.dart';
+
+// abstract class PostEvent extends Equatable {
+//   @override
+//   List<Object> get props => [];
 // }
 
-// class OnSearchEvent extends SearchEvent {
-//   const OnSearchEvent({required this.text});
+// class FetchPosts extends PostEvent {}
 
-//   final String text;
+// class SearchPosts extends PostEvent {
+//   final String query;
+
+//   SearchPosts(this.query);
 
 //   @override
-//   List<Object> get props => [text];
+//   List<Object> get props => [query];
 // }
 

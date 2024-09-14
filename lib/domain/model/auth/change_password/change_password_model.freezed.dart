@@ -21,10 +21,13 @@ ChangePasswordModel _$ChangePasswordModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ChangePasswordModel {
   bool? get status => throw _privateConstructorUsedError;
-  String? get message => throw _privateConstructorUsedError;
-  int? get user_id => throw _privateConstructorUsedError;
+  String? get message =>
+      throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
+  int? get user_id =>
+      throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
   String? get user_name => throw _privateConstructorUsedError;
-  String? get token => throw _privateConstructorUsedError;
+  String? get token =>
+      throw _privateConstructorUsedError; // ignore: non_constant_identifier_names
   String? get token_type => throw _privateConstructorUsedError;
 
   /// Serializes this ChangePasswordModel to a JSON map.
@@ -187,12 +190,15 @@ class _$ChangePasswordModelImpl implements _ChangePasswordModel {
   final bool? status;
   @override
   final String? message;
+// ignore: non_constant_identifier_names
   @override
   final int? user_id;
+// ignore: non_constant_identifier_names
   @override
   final String? user_name;
   @override
   final String? token;
+// ignore: non_constant_identifier_names
   @override
   final String? token_type;
 
@@ -253,13 +259,13 @@ abstract class _ChangePasswordModel implements ChangePasswordModel {
   @override
   bool? get status;
   @override
-  String? get message;
+  String? get message; // ignore: non_constant_identifier_names
   @override
-  int? get user_id;
+  int? get user_id; // ignore: non_constant_identifier_names
   @override
   String? get user_name;
   @override
-  String? get token;
+  String? get token; // ignore: non_constant_identifier_names
   @override
   String? get token_type;
 

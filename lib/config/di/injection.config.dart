@@ -87,18 +87,6 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i358.UserDataDataSource>(),
       ));
   gh.factory<_i153.MainService>(() => _i153.MainService(gh<_i767.MainApi>()));
-  gh.factory<_i614.AuthRepository>(() => _i614.AuthRepository(
-        gh<_i401.TokenPreference>(),
-        gh<_i1.Api>(),
-        gh<_i677.AuthApi>(),
-        gh<_i716.UserSessionManager>(),
-      ));
-  gh.factory<_i398.ChangePasswordCubit>(
-      () => _i398.ChangePasswordCubit(gh<_i614.AuthRepository>()));
-  gh.factory<_i827.RegisterCubit>(
-      () => _i827.RegisterCubit(gh<_i614.AuthRepository>()));
-  gh.factory<_i205.FoodProfileCubit>(
-      () => _i205.FoodProfileCubit(gh<_i614.AuthRepository>()));
   gh.factory<_i675.AppInitCubit>(() => _i675.AppInitCubit(
         gh<_i716.UserSessionManager>(),
         gh<_i1.Api>(),
@@ -107,12 +95,6 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i1.Api>(),
         gh<_i767.MainApi>(),
       ));
-  gh.factory<_i344.OtpCubit>(() => _i344.OtpCubit(gh<_i614.AuthRepository>()));
-  gh.factory<_i653.FoodHomeCubit>(() => _i653.FoodHomeCubit(
-        gh<_i259.MainRepository>(),
-        gh<_i98.DataRepository>(),
-        gh<_i614.AuthRepository>(),
-      ));
   gh.factory<_i964.DetailsCubit>(() => _i964.DetailsCubit(
         gh<_i259.MainRepository>(),
         gh<_i98.DataRepository>(),
@@ -120,6 +102,12 @@ Future<_i174.GetIt> $initGetIt(
   gh.factory<_i270.SearchedCubit>(() => _i270.SearchedCubit(
         gh<_i89.SearchRepository>(),
         gh<_i98.DataRepository>(),
+      ));
+  gh.factory<_i614.AuthRepository>(() => _i614.AuthRepository(
+        gh<_i401.TokenPreference>(),
+        gh<_i1.Api>(),
+        gh<_i677.AuthApi>(),
+        gh<_i716.UserSessionManager>(),
       ));
   gh.factory<_i165.FoodBasketCubit>(() => _i165.FoodBasketCubit(
         gh<_i259.MainRepository>(),
@@ -136,6 +124,18 @@ Future<_i174.GetIt> $initGetIt(
       () => _i1068.CategoryCubit(gh<_i98.DataRepository>()));
   gh.factory<_i702.FavouritesCubit>(
       () => _i702.FavouritesCubit(gh<_i98.DataRepository>()));
+  gh.factory<_i398.ChangePasswordCubit>(
+      () => _i398.ChangePasswordCubit(gh<_i614.AuthRepository>()));
+  gh.factory<_i827.RegisterCubit>(
+      () => _i827.RegisterCubit(gh<_i614.AuthRepository>()));
+  gh.factory<_i205.FoodProfileCubit>(
+      () => _i205.FoodProfileCubit(gh<_i614.AuthRepository>()));
+  gh.factory<_i344.OtpCubit>(() => _i344.OtpCubit(gh<_i614.AuthRepository>()));
+  gh.factory<_i653.FoodHomeCubit>(() => _i653.FoodHomeCubit(
+        gh<_i259.MainRepository>(),
+        gh<_i98.DataRepository>(),
+        gh<_i614.AuthRepository>(),
+      ));
   return getIt;
 }
 

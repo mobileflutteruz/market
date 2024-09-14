@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/core/extension/context_extension.dart';
-import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/presentation/components/common_app_bar.dart';
-
 import 'package:karmango/presentation/components/loader_widget.dart';
 import 'package:karmango/presentation/favourites/components/food_info.dart';
 import 'package:karmango/presentation/favourites/components/food_product.dart';
@@ -15,6 +13,7 @@ import '../../../../core/utils/app_layouts.dart';
 
 class FavouritesView extends StatelessWidget {
   const FavouritesView({super.key});
+
   @override
   Widget build(BuildContext context) {
     int crossAxisCount = (AppLayout.getScreenWidth(context) / 187.5).floor();
@@ -22,116 +21,126 @@ class FavouritesView extends StatelessWidget {
     return BlocProvider(
       create: (context) {
         final cubit = locator<FavouritesCubit>();
-        // Ensuring fetch only occurs once
         cubit.fetchFavourites();
         return cubit;
       },
       child: BlocListener<FavouritesCubit, FavouritesState>(
         listener: (context, state) {
-          if (state is FavouritesBuildableState &&
-              state.errorMessage.isNotEmpty) {
+          if (state is FavouritesBuildableState && state.failure) {
+            // Hatolik bo'lsa xabar chiqarish
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.errorMessage)),
+              SnackBar(content: Text('Something went wrong!')),
             );
           }
         },
-        child: Buildable<FavouritesCubit, FavouritesState,
-            FavouritesBuildableState>(
-          properties: (buildable) => [
-            buildable.failure,
-            buildable.loading,
-            buildable.success,
-            buildable.favourites,
-            buildable.likeIds,
-          ],
+        child: BlocBuilder<FavouritesCubit, FavouritesState>(
+          buildWhen: (previous, current) {
+            // Faqat holat o'zgarganda UI yangilanishini cheklash
+            return previous != current;
+          },
           builder: (context, state) {
-            // Handle different states
-            if (state.failure) {
-              return const Center(child: Text("Something went wrong"));
-            }
-            if (state.loading) {
-              return const LoaderWidget();
-            }
-            if (state.favourites?.result?.isNotEmpty ?? false) {
-              return Scaffold(
-                appBar: CommonAppBar(title: context.l10n.favorites),
-                body: CustomScrollView(
-                  slivers: [
-                    // FoodInfoWidget(favouriteCount: state.favourites!.result!.length),
-                    SliverPadding(
-                      padding: AppUtils.kPaddingHorizontal16,
-                      sliver: SliverGrid.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: crossAxisCount.clamp(
-                              2, 4), // Ensure min/max values
-                          mainAxisSpacing: 16,
-                          crossAxisSpacing: 16,
-                          childAspectRatio: .52,
-                        ),
-                        itemBuilder: (context, index) {
-                          final product = state.favourites!.result![index];
-                          return FoodFavoriteItemWidget(
-                            productList: [product],
-                            onTap: () {},
-                            likeTapped: () {
-                              context
-                                  .read<FavouritesCubit>()
-                                  .deleteLikeId(product.product_id!);
-                            },
-                            isLiked: state.likeIds.contains(product.id!),
-                            smallButton: () {},
-                          );
-                        },
-                        itemCount: state.favourites!.result!.length,
-                      ),
-                    ),
+            if (state is FavouritesBuildableState) {
+              if (state.loading) {
+                // Orqa fonni yangilamasdan, loader ko'rsatish
+                return Stack(
+                  children: [
+                    _buildMainContent(context, state, crossAxisCount),
+                    const LoaderWidget(),
                   ],
-                ),
-              );
+                );
+              }
+
+              return _buildMainContent(context, state, crossAxisCount);
             }
 
-            // Empty state returns here
-            return Scaffold(
-              appBar: CommonAppBar(title: context.l10n.favorites),
-              body: CustomScrollView(
-                slivers: [
-                  const FoodInfoWidget(favouritesCount: 0),
-                  SliverToBoxAdapter(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Lottie.asset('assets/animation/food_empty.json'),
-                        const SizedBox(height: 20),
-                        const Text(
-                          'Ваши избранные товары отсутствуют',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xFF7C8A9D),
-                            fontSize: 15,
-                            fontFamily: 'Manrope',
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        const Text(
-                          'Добавьте товары в избранное, чтобы быстро находить их здесь.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xFF7C8A9D),
-                            fontSize: 13,
-                            fontFamily: 'Manrope',
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            );
+            // Default loader
+            return const LoaderWidget();
           },
         ),
+      ),
+    );
+  }
+
+  Widget _buildMainContent(BuildContext context, FavouritesBuildableState state,
+      int crossAxisCount) {
+    if (state.favourites?.result?.isNotEmpty ?? false) {
+      return Scaffold(
+        backgroundColor: Colors.white, // Orqa fon rangini o'zgarmas qoldirish
+        appBar: CommonAppBar(title: context.l10n.favorites),
+        body: CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: AppUtils.kPaddingHorizontal16,
+              sliver: SliverGrid.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount:
+                      crossAxisCount.clamp(2, 4), // Min/max qiymatlar
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                  childAspectRatio: .52,
+                ),
+                itemBuilder: (context, index) {
+                  final product = state.favourites!.result![index];
+                  return FoodFavoriteItemWidget(
+                    productList: [product],
+                    onTap: () {},
+                    likeTapped: () {
+                      context
+                          .read<FavouritesCubit>()
+                          .deleteLikeId(product.product_id!);
+                      context.read<FavouritesCubit>().fetchFavourites();
+                    },
+                    isLiked: state.likeIds.contains(product.id!),
+                    smallButton: () {},
+                  );
+                },
+                itemCount: state.favourites!.result!.length,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    // Empty state
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: CommonAppBar(title: context.l10n.favorites),
+      body: CustomScrollView(
+        slivers: [
+          const FoodInfoWidget(favouritesCount: 0),
+          SliverToBoxAdapter(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Lottie.asset('assets/animation/food_empty.json'),
+                const SizedBox(height: 20),
+                const Text(
+                  'Ваши избранные товары отсутствуют',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFF7C8A9D),
+                    fontSize: 15,
+                    fontFamily: 'Manrope',
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                const Text(
+                  'Добавьте товары в избранное, чтобы быстро находить их здесь.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFF7C8A9D),
+                    fontSize: 13,
+                    fontFamily: 'Manrope',
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

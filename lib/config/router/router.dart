@@ -58,6 +58,9 @@ class OngenerateRoutes {
             phoneNumber: phoneNumber,
           ),
         );
+        //!FAQSCREEN
+      // case FoodNavigatorConst.foodFaqScreen:
+      //   return sampleRoute(const FoodFa());
       case FoodNavigatorConst.foodRegisterScreen:
         return sampleRoute(const FoodRegisterPage());
       case FoodNavigatorConst.foodReOtpScreen:

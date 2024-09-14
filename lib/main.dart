@@ -23,7 +23,6 @@ import 'package:karmango/presentation/profile/cubit/food_profile_cubit.dart';
 import 'package:karmango/presentation/my_order/cubit/food_my_order_cubit.dart';
 import 'dart:io';
 
-
 import 'package:karmango/presentation/search/cubit/search_cubit.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -60,8 +59,6 @@ Future<void> main() async {
         BlocProvider(create: (context) => locator<FoodHomeCubit>()),
         BlocProvider(create: (context) => locator<ChangePasswordCubit>()),
         // BlocProvider(create: (context) => locator<SearchBloc>()),
-
-     
       ],
       child: const MyApp(),
     ),

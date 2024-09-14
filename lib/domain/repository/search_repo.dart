@@ -46,42 +46,55 @@ class SearchRepository {
   //   }
   // }
 
-  // Future<List<SearchProduct>> searchProduct({
-  //   required String name,
-  // }) async {
-  //   final response = await _api.getWithToken(
-  //     path: '/search-product?name=$name',
-  //   );
-  //   final result = jsonDecode(response.body);
+ Future<List<SearchProduct>> searchProduct({
+  required String name,
+}) async {
+  // Token bilan so'rov qilish
+  final response = await _api.getWithToken(
+    path: '/search-product?name=$name',
+  );
 
-  //   final List<SearchProduct> list = List.from(result['result'])
-  //       .map((el) => SearchProduct.fromJson(el))
-  //       .toList();
+  // Javob status kodi va body ni chiqaramiz
+  print('Response status: ${response.statusCode}');
+  print('Response body: ${response.body}');
 
-  //   return list;
-  // }
+  // Javobni JSON formatida dekodlash
+  final result = jsonDecode(response.body);
 
-    Future<List<SearchProduct>> searchProduct({required String name}) async {
-    try {
-      // Make the API request
-      final response = await _api.get(
-        path: '/search-product?name=$name',
-      );
-
-      // Decode the JSON response
-      final Map<String, dynamic> result = jsonDecode(response.body);
-
-      // Map the JSON to a list of SearchProduct
-      final List<SearchProduct> products = List.from(result['result'] ?? [])
-          .map((el) => SearchProduct.fromJson(el))
-          .toList();
-
-      return products;
-    } catch (error) {
-      print('Error fetching products: $error');
-      rethrow; // Propagate the error so it can be handled by the calling function
-    }
+  // JSON ichida 'result' degan kalit borligiga ishonch hosil qilish
+  if (result.containsKey('result')) {
+    final List<SearchProduct> list = List.from(result['result'])
+        .map((el) => SearchProduct.fromJson(el))
+        .toList();
+    
+    return list;
+  } else {
+    throw Exception('API javobida "result" kaliti topilmadi');
   }
+}
+
+
+  //   Future<List<SearchProduct>> searchProduct({required String name}) async {
+  //   try {
+  //     // Make the API request
+  //     final response = await _api.get(
+  //       path: '/search-product?name=$name',
+  //     );
+
+  //     // Decode the JSON response
+  //     final Map<String, dynamic> result = jsonDecode(response.body);
+
+  //     // Map the JSON to a list of SearchProduct
+  //     final List<SearchProduct> products = List.from(result['result'] ?? [])
+  //         .map((el) => SearchProduct.fromJson(el))
+  //         .toList();
+
+  //     return products;
+  //   } catch (error) {
+  //     print('Error fetching products: $error');
+  //     rethrow; // Propagate the error so it can be handled by the calling function
+  //   }
+  // }
 
   // Future<List<SearchProduct>> searchProduct({
   //   required String name,

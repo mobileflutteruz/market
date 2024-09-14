@@ -188,9 +188,9 @@ class FoodCustomPin extends StatelessWidget {
             focusNode: otpFocusNode,
             defaultPinTheme: FoodPinThemes.defaultPinTheme,
             onCompleted: (pin) {
-              Future.delayed(const Duration(milliseconds: 500)).then((value) =>
-                  Navigator.pushNamed(
-                      context, FoodNavigatorConst.foodFaqScreen));
+              // Future.delayed(const Duration(milliseconds: 500)).then((value) =>
+              //     Navigator.pushNamed(
+              //         context, FoodNavigatorConst.foodFaqScreen));
             },
             focusedPinTheme: FoodPinThemes.defaultPinTheme.copyWith(
               height: AppSizes.getH(context, .066),
