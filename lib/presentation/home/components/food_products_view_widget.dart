@@ -66,36 +66,36 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
             ),
             AppUtils.kGap16,
             SizedBox(
-              height: AppLayout.getHeight(320, context), //320,
+              height: AppLayout.getHeight(320, context),
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   final product = widget.products[index];
                   return Padding(
                     padding: EdgeInsets.only(
-                        left: 16.0,
-                        right: index == widget.products.length - 1 ? 16 : 0),
+                      left: 16.0,
+                      right: index == widget.products.length - 1 ? 16 : 0,
+                    ),
                     child: FoodProductItemWidget(
-                      
                       likeTapped: () {
-                         context.read<FavouritesCubit>().setLikeId(product.id!);
-                        print("Product to  added to Favorite");
-                        // context
-                        //     .read<FavouritesCubit>().setLikeId(widget.products![index].id!);
-                       
+                        final favouritesCubit = context.read<FavouritesCubit>();
+
+                        if (state.likeIds.contains(product.product_id!)) {
+                          // Agar mahsulot allaqachon sevimlilar ro'yxatida bo'lsa, uni olib tashlaymiz
+
+                          favouritesCubit.deleteLikeId(product.product_id!);
+                        } else {
+                          // Agar mahsulot sevimlilar ro'yxatida bo'lmasa, uni qo'shamiz
+
+                          favouritesCubit.setLikeId(product.product_id!);
+                        }
                       },
-                      isLiked: state.likeIds.contains(product.id!),
-                      product: widget.products[index],
-                      onTap: () {
-                        showModalView(context, widget.products[index]);
-                      },
-                      smallButton: () {
-                        context
-                            .read<FoodBasketCubit>()
-                            .setBasketProducts(product.id!);
-                        print(
-                            "BASKEEEEEEEEEEEEEEEEET SEEET ITEEEEEM:   ${context.read<FoodBasketCubit>().setBasketProducts(product.id!)}");
-                      },
+                      isLiked: state.likeIds.contains(product.product_id!),
+                      product: product,
+                      onTap: () => showModalView(context, product),
+                      smallButton: () => context
+                          .read<FoodBasketCubit>()
+                          .setBasketProducts(product.product_id!),
                     ),
                   );
                 },
@@ -113,6 +113,8 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
     return showCupertinoModalBottomSheet(
         expand: true,
         context: context,
-        builder: (homeContext) => DetailsPage(productId: product.id!, ));
+        builder: (homeContext) => DetailsPage(
+              productId: product.product_id!,
+            ));
   }
 }

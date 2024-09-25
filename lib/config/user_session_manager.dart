@@ -2,14 +2,14 @@ import 'package:injectable/injectable.dart';
 import 'token_data_source.dart';
 import 'user_data_source.dart';
 
-@Singleton()
+@singleton
 class UserSessionManager {
   final TokenDataSource _tokenDataSource;
-  final UserDataDataSource _userDataDataSource;
+  final UserDataDataSource _userDataSource;
 
   UserSessionManager(
     this._tokenDataSource,
-    this._userDataDataSource,
+    this._userDataSource,
   );
 
   Future<void> saveUserToken(String token) async {
@@ -17,7 +17,7 @@ class UserSessionManager {
   }
 
   Future<void> saveGuestToken(String token) async {
-    await _tokenDataSource.saveGuestUser(token);
+    await _tokenDataSource.saveGuestToken(token);
   }
 
   Future<String?> getToken() async {
@@ -25,19 +25,19 @@ class UserSessionManager {
   }
 
   Future<String?> getGuestToken() async {
-    return await _tokenDataSource.getGuestUser();
+    return await _tokenDataSource.getGuestToken();
   }
 
   Future<bool> isFirstRun() async {
-    return await _userDataDataSource.isFirstRun();
+    return await _userDataSource.isFirstRun();
   }
 
   Future<String?> getUserId() async {
-    return await _userDataDataSource.getUserId();
+    return await _userDataSource.getUserId();
   }
 
   Future<void> saveUserId(String userId) async {
-    await _userDataDataSource.saveUserId(userId);
+    await _userDataSource.saveUserId(userId);
   }
 
   Future<void> clearUserSession() async {

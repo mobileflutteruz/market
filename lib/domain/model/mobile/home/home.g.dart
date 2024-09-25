@@ -79,7 +79,7 @@ Map<String, dynamic> _$$TopProductImplToJson(_$TopProductImpl instance) =>
 
 _$MobileProductImpl _$$MobileProductImplFromJson(Map<String, dynamic> json) =>
     _$MobileProductImpl(
-      id: (json['id'] as num?)?.toInt(),
+      product_id: (json['product_id'] as num?)?.toInt(),
       name: json['name'] as String?,
       status: json['status'] as String?,
       discount: (json['discount'] as num?)?.toInt(),
@@ -91,7 +91,7 @@ _$MobileProductImpl _$$MobileProductImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$MobileProductImplToJson(_$MobileProductImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'product_id': instance.product_id,
       'name': instance.name,
       'status': instance.status,
       'discount': instance.discount,

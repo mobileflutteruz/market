@@ -22,10 +22,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     emit(state.copyWith(apiStatus: ApiStatus.loading));
     
  try {
-  final List<SearchProduct> response = await searchRepository.searchProduct(name: event.text);
+  final List<SearchProduct>? response = await searchRepository.searchProduct(name: event.text);
   print('Response: $response'); // Bu yerni qo'shing
 
-  if (response.isEmpty) {
+  if (response!.isEmpty) {
     emit(state.copyWith(apiStatus: ApiStatus.error));
   } else {
     emit(state.copyWith(apiStatus: ApiStatus.success, searchProducts: response));

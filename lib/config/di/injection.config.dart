@@ -37,6 +37,7 @@ import '../../presentation/favourites/cubit/favourites_cubit.dart' as _i702;
 import '../../presentation/home/cubit/food_home_cubit.dart' as _i653;
 import '../../presentation/my_order/cubit/food_my_order_cubit.dart' as _i835;
 import '../../presentation/profile/cubit/food_profile_cubit.dart' as _i205;
+import '../../presentation/search/bloc/search_bloc.dart' as _i532;
 import '../../presentation/search/cubit/search_cubit.dart' as _i270;
 import '../app_init/cubit/app_init_cubit.dart' as _i675;
 import '../token_data_source.dart' as _i985;
@@ -73,13 +74,13 @@ Future<_i174.GetIt> $initGetIt(
       () => _i259.MainRepository(gh<_i401.TokenPreference>()));
   gh.factory<_i30.SplashCubit>(
       () => _i30.SplashCubit(gh<_i401.TokenPreference>()));
-  gh.factory<_i835.FoodMyOrderCubit>(
-      () => _i835.FoodMyOrderCubit(gh<_i259.MainRepository>()));
-  gh.factory<_i1.Api>(() => _i1.Api(gh<_i985.TokenDataSource>()));
   gh.singleton<_i716.UserSessionManager>(() => _i716.UserSessionManager(
         gh<_i985.TokenDataSource>(),
         gh<_i358.UserDataDataSource>(),
       ));
+  gh.factory<_i835.FoodMyOrderCubit>(
+      () => _i835.FoodMyOrderCubit(gh<_i259.MainRepository>()));
+  gh.factory<_i1.Api>(() => _i1.Api(gh<_i985.TokenDataSource>()));
   gh.factory<_i767.MainApi>(() => _i767.MainApi(gh<_i1.Api>()));
   gh.factory<_i89.SearchRepository>(() => _i89.SearchRepository(gh<_i1.Api>()));
   gh.factory<_i677.AuthApi>(() => _i677.AuthApi(
@@ -99,6 +100,8 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i259.MainRepository>(),
         gh<_i98.DataRepository>(),
       ));
+  gh.factory<_i532.SearchBloc>(
+      () => _i532.SearchBloc(gh<_i89.SearchRepository>()));
   gh.factory<_i270.SearchedCubit>(() => _i270.SearchedCubit(
         gh<_i89.SearchRepository>(),
         gh<_i98.DataRepository>(),

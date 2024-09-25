@@ -83,7 +83,7 @@ class AllProdact extends StatelessWidget {
     return showCupertinoModalBottomSheet(
       expand: true,
       context: context,
-      builder: (context) => DetailsPage(productId: product!.id!),
+      builder: (context) => DetailsPage(productId: product!.product_id!),
     );
   }
 }

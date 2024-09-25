@@ -14,7 +14,7 @@ class _FoodHomeViewState extends State<FoodHomeView> {
   void initState() {
     super.initState();
     pageController = PageController();
-   
+
     context.read<FoodHomeCubit>().fetchProducts();
   }
 
@@ -107,12 +107,16 @@ class _FoodHomeViewState extends State<FoodHomeView> {
                           padding: const EdgeInsets.only(bottom: 24),
                           child: FoodProductsViewWidget(
                             title: product.name!,
-                            smallButton: () {
-                              context
-                                  .read<FoodBasketCubit>()
-                                  .setBasketProducts(product.top_id!);
-                              print("Basket");
-                            },
+                            smallButton: (){},
+                            // smallButton: () {
+                            //   print("Basket");
+                            //   context
+                            //       .read<FoodBasketCubit>()
+                            //       .setBasketProducts(product.top_id!);
+                            //   context
+                            //       .read<FoodBasketCubit>()
+                            //       .setBasketProducts(product.top_id!);
+                            // },
                             leftBtnTapped: () {
                               Navigator.push(
                                 context,

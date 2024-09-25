@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/config/di/injection.dart';
+import 'package:karmango/presentation/basket/components/basket_bottom_bar.dart';
 import 'package:karmango/presentation/basket/components/basket_cart_item.dart';
 import 'package:karmango/presentation/basket/components/basket_components.dart';
 import 'package:karmango/presentation/basket/cubit/food_basket_cubit.dart';
@@ -7,9 +8,7 @@ import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/core/utils/app_layouts.dart';
 import 'package:flutter/material.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
-import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 import 'package:lottie/lottie.dart';
-
 import '../../domain/model/mobile/basket/basket_products.dart';
 
 class FoodBasketView extends StatefulWidget {
@@ -39,8 +38,8 @@ class _BasketViewState extends State<FoodBasketView>
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) {
-        var cubit = locator<FavouritesCubit>();
-        cubit.fetchFavourites();
+        var cubit = locator<FoodBasketCubit>();
+        cubit.basketProducts();
         return cubit;
       },
       child: BlocListener<FoodBasketCubit, FoodBasketState>(
@@ -62,12 +61,14 @@ class _BasketViewState extends State<FoodBasketView>
             buildable.products,
             // buildable.likeIds,
           ],
+          
           builder: (context, state) {
-            if (state.loading &&
-                (state.products == null || state.products!.result!.isEmpty)) {
+            if (state.loading && (state.products == null)) {
               return const LoaderWidget();
             }
             if (state.failed) {
+              print("ERROR: state.failed");
+            
               return Scaffold(
                 backgroundColor: Colors.white,
                 appBar: const FoodBasketAppBarWidget(),
@@ -89,35 +90,32 @@ class _BasketViewState extends State<FoodBasketView>
                   ],
                 ),
                 bottomNavigationBar:
-                    FoodBasketBottomBarWidget(currentIndex: state.tabIndex),
+                    FoodBasketBottomBarWidget(currentIndex: state.tabIndex, product: state.products ,),
               );
             }
+              print("CARTTTTTTTTTTTTTTTTTTTTttt}");
             return Scaffold(
               backgroundColor: Colors.white,
               appBar: const FoodBasketAppBarWidget(),
               body: Column(
                 children: [
                   Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ListView.builder(
-                          itemBuilder: (BuildContext context, int index) {
-                            final Result? product =
-                                state.products?.result?[index];
-                            return FoodBasketCartItem(
-                              product: [product],
-                            );
-                          },
-                          itemCount: state.products?.result?.length ?? 0,
-                        ),
-                      ],
+                    child: ListView.builder(
+                      itemBuilder: (BuildContext context, int index) {
+                        final Result? product =
+                            state.products![index].result?[index];
+                        print("CAAAAAAAAAAAAAAAAAAAAAART: ${ state.products!}");
+                        return FoodBasketCartItem(
+                          product: [product],
+                        );
+                      },
+                      itemCount: 1,
                     ),
-                  )
+                  ),
                 ],
               ),
               bottomNavigationBar:
-                  FoodBasketBottomBarWidget(currentIndex: state.tabIndex),
+                  FoodBasketBottomBarWidget(currentIndex: state.tabIndex,product: state.products, ),
             );
           },
         ),

@@ -844,7 +844,7 @@ MobileProduct _$MobileProductFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MobileProduct {
-  int? get id => throw _privateConstructorUsedError;
+  int? get product_id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   int? get discount => throw _privateConstructorUsedError;
@@ -870,7 +870,7 @@ abstract class $MobileProductCopyWith<$Res> {
       _$MobileProductCopyWithImpl<$Res, MobileProduct>;
   @useResult
   $Res call(
-      {int? id,
+      {int? product_id,
       String? name,
       String? status,
       int? discount,
@@ -895,7 +895,7 @@ class _$MobileProductCopyWithImpl<$Res, $Val extends MobileProduct>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? product_id = freezed,
     Object? name = freezed,
     Object? status = freezed,
     Object? discount = freezed,
@@ -905,9 +905,9 @@ class _$MobileProductCopyWithImpl<$Res, $Val extends MobileProduct>
     Object? price_to_pay = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      product_id: freezed == product_id
+          ? _value.product_id
+          : product_id // ignore: cast_nullable_to_non_nullable
               as int?,
       name: freezed == name
           ? _value.name
@@ -950,7 +950,7 @@ abstract class _$$MobileProductImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
+      {int? product_id,
       String? name,
       String? status,
       int? discount,
@@ -973,7 +973,7 @@ class __$$MobileProductImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? product_id = freezed,
     Object? name = freezed,
     Object? status = freezed,
     Object? discount = freezed,
@@ -983,9 +983,9 @@ class __$$MobileProductImplCopyWithImpl<$Res>
     Object? price_to_pay = freezed,
   }) {
     return _then(_$MobileProductImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      product_id: freezed == product_id
+          ? _value.product_id
+          : product_id // ignore: cast_nullable_to_non_nullable
               as int?,
       name: freezed == name
           ? _value.name
@@ -1023,7 +1023,7 @@ class __$$MobileProductImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MobileProductImpl implements _MobileProduct {
   const _$MobileProductImpl(
-      {this.id,
+      {this.product_id,
       this.name,
       this.status,
       this.discount,
@@ -1036,7 +1036,7 @@ class _$MobileProductImpl implements _MobileProduct {
       _$$MobileProductImplFromJson(json);
 
   @override
-  final int? id;
+  final int? product_id;
   @override
   final String? name;
   @override
@@ -1054,7 +1054,7 @@ class _$MobileProductImpl implements _MobileProduct {
 
   @override
   String toString() {
-    return 'MobileProduct(id: $id, name: $name, status: $status, discount: $discount, price: $price, image: $image, product_type: $product_type, price_to_pay: $price_to_pay)';
+    return 'MobileProduct(product_id: $product_id, name: $name, status: $status, discount: $discount, price: $price, image: $image, product_type: $product_type, price_to_pay: $price_to_pay)';
   }
 
   @override
@@ -1062,7 +1062,8 @@ class _$MobileProductImpl implements _MobileProduct {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MobileProductImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.product_id, product_id) ||
+                other.product_id == product_id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.discount, discount) ||
@@ -1077,8 +1078,8 @@ class _$MobileProductImpl implements _MobileProduct {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, status, discount,
-      price, image, product_type, price_to_pay);
+  int get hashCode => Object.hash(runtimeType, product_id, name, status,
+      discount, price, image, product_type, price_to_pay);
 
   /// Create a copy of MobileProduct
   /// with the given fields replaced by the non-null parameter values.
@@ -1098,7 +1099,7 @@ class _$MobileProductImpl implements _MobileProduct {
 
 abstract class _MobileProduct implements MobileProduct {
   const factory _MobileProduct(
-      {final int? id,
+      {final int? product_id,
       final String? name,
       final String? status,
       final int? discount,
@@ -1111,7 +1112,7 @@ abstract class _MobileProduct implements MobileProduct {
       _$MobileProductImpl.fromJson;
 
   @override
-  int? get id;
+  int? get product_id;
   @override
   String? get name;
   @override

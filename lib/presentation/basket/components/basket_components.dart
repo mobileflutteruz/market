@@ -17,7 +17,7 @@ import '../../../core/utils/app_layouts.dart';
 import '../../../../core/utils/utils.dart';
 
 part 'basket_app_bar.dart';
-part 'basket_bottom_bar.dart';
+
 
 part 'basket_container_item.dart';
 part 'basket_not_cart_page.dart';

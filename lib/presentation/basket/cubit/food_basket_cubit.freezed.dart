@@ -24,7 +24,7 @@ mixin _$FoodBasketBuildableState {
   int get tabIndex => throw _privateConstructorUsedError;
   bool get isChoosedAll => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
-  BasketProducts? get products =>
+  List<BasketProducts>? get products =>
       throw _privateConstructorUsedError; // @Default(false) bool isModal_hud,
   bool get success => throw _privateConstructorUsedError;
   bool get failed => throw _privateConstructorUsedError;
@@ -52,12 +52,10 @@ abstract class $FoodBasketBuildableStateCopyWith<$Res> {
       int tabIndex,
       bool isChoosedAll,
       bool loading,
-      BasketProducts? products,
+      List<BasketProducts>? products,
       bool success,
       bool failed,
       bool error});
-
-  $BasketProductsCopyWith<$Res>? get products;
 }
 
 /// @nodoc
@@ -125,7 +123,7 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
       products: freezed == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as BasketProducts?,
+              as List<BasketProducts>?,
       success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
@@ -139,20 +137,6 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
-  }
-
-  /// Create a copy of FoodBasketBuildableState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $BasketProductsCopyWith<$Res>? get products {
-    if (_value.products == null) {
-      return null;
-    }
-
-    return $BasketProductsCopyWith<$Res>(_value.products!, (value) {
-      return _then(_value.copyWith(products: value) as $Val);
-    });
   }
 }
 
@@ -174,13 +158,10 @@ abstract class _$$FoodBasketBuildableStateImplCopyWith<$Res>
       int tabIndex,
       bool isChoosedAll,
       bool loading,
-      BasketProducts? products,
+      List<BasketProducts>? products,
       bool success,
       bool failed,
       bool error});
-
-  @override
-  $BasketProductsCopyWith<$Res>? get products;
 }
 
 /// @nodoc
@@ -245,9 +226,9 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
       products: freezed == products
-          ? _value.products
+          ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as BasketProducts?,
+              as List<BasketProducts>?,
       success: null == success
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
@@ -278,13 +259,14 @@ class _$FoodBasketBuildableStateImpl
       this.tabIndex = 0,
       this.isChoosedAll = false,
       this.loading = false,
-      this.products,
+      final List<BasketProducts>? products,
       this.success = false,
       this.failed = false,
       this.error = false})
       : _selectedIds = selectedIds,
         _cardProducts = cardProducts,
-        _cardProductIds = cardProductIds;
+        _cardProductIds = cardProductIds,
+        _products = products;
 
   @override
   @JsonKey()
@@ -328,8 +310,16 @@ class _$FoodBasketBuildableStateImpl
   @override
   @JsonKey()
   final bool loading;
+  final List<BasketProducts>? _products;
   @override
-  final BasketProducts? products;
+  List<BasketProducts>? get products {
+    final value = _products;
+    if (value == null) return null;
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
 // @Default(false) bool isModal_hud,
   @override
   @JsonKey()
@@ -385,8 +375,7 @@ class _$FoodBasketBuildableStateImpl
             (identical(other.isChoosedAll, isChoosedAll) ||
                 other.isChoosedAll == isChoosedAll) &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.products, products) ||
-                other.products == products) &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
             (identical(other.success, success) || other.success == success) &&
             (identical(other.failed, failed) || other.failed == failed) &&
             (identical(other.error, error) || other.error == error));
@@ -403,7 +392,7 @@ class _$FoodBasketBuildableStateImpl
       tabIndex,
       isChoosedAll,
       loading,
-      products,
+      const DeepCollectionEquality().hash(_products),
       success,
       failed,
       error);
@@ -428,7 +417,7 @@ abstract class _FoodBasketBuildableState implements FoodBasketBuildableState {
       final int tabIndex,
       final bool isChoosedAll,
       final bool loading,
-      final BasketProducts? products,
+      final List<BasketProducts>? products,
       final bool success,
       final bool failed,
       final bool error}) = _$FoodBasketBuildableStateImpl;
@@ -450,7 +439,7 @@ abstract class _FoodBasketBuildableState implements FoodBasketBuildableState {
   @override
   bool get loading;
   @override
-  BasketProducts? get products; // @Default(false) bool isModal_hud,
+  List<BasketProducts>? get products; // @Default(false) bool isModal_hud,
   @override
   bool get success;
   @override

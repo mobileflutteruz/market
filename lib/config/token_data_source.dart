@@ -3,7 +3,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
 
-@Injectable()
+
+@injectable
 class TokenDataSource {
   final FlutterSecureStorage _secureStorage;
 
@@ -16,12 +17,12 @@ class TokenDataSource {
   final String _guestKey = "guest";
   final String _userKey = "user";
 
-  Future<void> saveGuestUser(String value) async {
+  Future<void> saveGuestToken(String value) async {
     print("Saving guest token: $value");
     await _secureStorage.write(key: _guestKey, value: value);
   }
 
-  Future<String?> getGuestUser() async {
+  Future<String?> getGuestToken() async {
     print("Retrieving guest token: $_guestKey");
     return await _secureStorage.read(key: _guestKey);
   }
@@ -62,7 +63,7 @@ class TokenDataSource {
     return null;
   }
 
-  Future<void> setFavourites({required List<String> values}) async {
+  Future<void> setFavourites(List<String> values) async {
     await _secureStorage.write(key: _favouritesKey, value: jsonEncode(values));
   }
 
@@ -70,7 +71,7 @@ class TokenDataSource {
     await _secureStorage.delete(key: _favouritesKey);
   }
 
-  Future<void> setBaskets({required String value}) async {
+  Future<void> setBaskets(String value) async {
     await _secureStorage.write(key: _basketsKey, value: value);
   }
 
@@ -78,7 +79,7 @@ class TokenDataSource {
     return await _secureStorage.read(key: _basketsKey);
   }
 
-  Future<void> setMyOrder({required String value}) async {
+  Future<void> setMyOrder(String value) async {
     await _secureStorage.write(key: _ordersKey, value: value);
   }
 

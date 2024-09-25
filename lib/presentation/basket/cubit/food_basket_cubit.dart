@@ -50,6 +50,17 @@ class FoodBasketCubit
     );
   }
 
+  // Future<void> basketProducts() async {
+  //   try {
+  //     emit(FoodBasketLoading());
+
+  //     final products = await _dataRepo.getBasketProducts(); // Ma'lumot olish
+  //     emit(FoodBasketLoaded(products));
+  //   } catch (e) {
+  //     emit(FoodBasketError('Failed to load basket products'));
+  //   }
+  // }
+
   Future basketProducts() async {
     build(
       (buildable) => buildable.copyWith(
@@ -57,7 +68,7 @@ class FoodBasketCubit
       ),
     );
     try {
-      final BasketProducts products = await _dataRepo.getAllCarts();
+      final List<BasketProducts> products = await _dataRepo.getBasketProducts();
 
       build(
         (buildable) => buildable.copyWith(
@@ -68,7 +79,7 @@ class FoodBasketCubit
       );
     } catch (e) {
       print("basketProducts error------------------------------------------");
-      print(e);
+      print("ERROR:${e}");
       build(
         (buildable) => buildable.copyWith(
           loading: false,
@@ -79,35 +90,49 @@ class FoodBasketCubit
     }
   }
 
-  Future setBasketProducts(int product_id) async {
+  Future<void> setBasketProducts(int product_id) async {
+  // Yaratish jarayonida yuklanish holatini ko'rsatish
+  build(
+    (buildable) => buildable.copyWith(
+      loading: true,
+    ),
+  );
+
+  try {
+    // API chaqiruvini amalga oshirish va muvaffaqiyatni tekshirish
+    final bool success = await _dataRepo.createBasket(productId: product_id);
+    
+    if (success) {
+      print("Basket creation success------------------------------------------");
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          success: true,
+          // products o'rniga faqat muvaffaqiyat holatini saqlaymiz
+        ),
+      );
+    } else {
+      print("Basket creation failed------------------------------------------");
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          failed: true,
+        ),
+      );
+    }
+  } catch (e) {
+    print("Basket creation error------------------------------------------");
+    print(e);
     build(
       (buildable) => buildable.copyWith(
-        loading: true,
+        loading: false,
+        failed: true,
+        error: true,
       ),
     );
-    try {
-      final BasketProducts products =
-          await _dataRepo.createBasket(productId: product_id);
-      print("basketProducts success------------------------------------------");
-      build(
-        (buildable) => buildable.copyWith(
-          loading: false,
-          success: true,
-          products: products,
-        ),
-      );
-    } catch (e) {
-      print("basketProducts error------------------------------------------");
-      print(e);
-      build(
-        (buildable) => buildable.copyWith(
-          loading: false,
-          failed: true,
-          error: true,
-        ),
-      );
-    }
   }
+}
+
 
   void updateBasket(Map<int, int> values) async {
     Map<int, int> ids = await _repo.getBasketIds();

@@ -26,12 +26,17 @@ class FavouritesView extends StatelessWidget {
       },
       child: BlocListener<FavouritesCubit, FavouritesState>(
         listener: (context, state) {
-          if (state is FavouritesBuildableState && state.failure) {
-            // Hatolik bo'lsa xabar chiqarish
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Something went wrong!')),
-            );
-          }
+          // if (state is FavouritesBuildableState && state.failure) {
+          //   // Hatolik bo'lsa xabar chiqarish
+          //   ScaffoldMessenger.of(context).showSnackBar(
+          //     SnackBar(content: Text('')),
+          //   );
+          // }
+          // if(state is Error){
+          //     ScaffoldMessenger.of(context).showSnackBar(
+          //     SnackBar(content: Text('Something went wrong!')),
+          //   );
+          // }
         },
         child: BlocBuilder<FavouritesCubit, FavouritesState>(
           buildWhen: (previous, current) {
@@ -84,10 +89,11 @@ class FavouritesView extends StatelessWidget {
                   return FoodFavoriteItemWidget(
                     productList: [product],
                     onTap: () {},
-                    likeTapped: () {
+                    likeTapped: () async {
                       context
                           .read<FavouritesCubit>()
                           .deleteLikeId(product.product_id!);
+                      if (!context.mounted) return;
                       context.read<FavouritesCubit>().fetchFavourites();
                     },
                     isLiked: state.likeIds.contains(product.id!),

@@ -35,6 +35,7 @@ mixin _$FoodHomeBuildableState {
   MobileHomeProducts? get homeProducts => throw _privateConstructorUsedError;
   MobileHomeProducts? get banner => throw _privateConstructorUsedError;
   ProductDataModel? get product => throw _privateConstructorUsedError;
+  BasketProducts? get basket => throw _privateConstructorUsedError;
 
   /// Create a copy of FoodHomeBuildableState
   /// with the given fields replaced by the non-null parameter values.
@@ -68,11 +69,13 @@ abstract class $FoodHomeBuildableStateCopyWith<$Res> {
       int count,
       MobileHomeProducts? homeProducts,
       MobileHomeProducts? banner,
-      ProductDataModel? product});
+      ProductDataModel? product,
+      BasketProducts? basket});
 
   $MobileHomeProductsCopyWith<$Res>? get homeProducts;
   $MobileHomeProductsCopyWith<$Res>? get banner;
   $ProductDataModelCopyWith<$Res>? get product;
+  $BasketProductsCopyWith<$Res>? get basket;
 }
 
 /// @nodoc
@@ -110,6 +113,7 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
     Object? homeProducts = freezed,
     Object? banner = freezed,
     Object? product = freezed,
+    Object? basket = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -188,6 +192,10 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as ProductDataModel?,
+      basket: freezed == basket
+          ? _value.basket
+          : basket // ignore: cast_nullable_to_non_nullable
+              as BasketProducts?,
     ) as $Val);
   }
 
@@ -232,6 +240,20 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
       return _then(_value.copyWith(product: value) as $Val);
     });
   }
+
+  /// Create a copy of FoodHomeBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $BasketProductsCopyWith<$Res>? get basket {
+    if (_value.basket == null) {
+      return null;
+    }
+
+    return $BasketProductsCopyWith<$Res>(_value.basket!, (value) {
+      return _then(_value.copyWith(basket: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -262,7 +284,8 @@ abstract class _$$FoodHomeBuildableStateImplCopyWith<$Res>
       int count,
       MobileHomeProducts? homeProducts,
       MobileHomeProducts? banner,
-      ProductDataModel? product});
+      ProductDataModel? product,
+      BasketProducts? basket});
 
   @override
   $MobileHomeProductsCopyWith<$Res>? get homeProducts;
@@ -270,6 +293,8 @@ abstract class _$$FoodHomeBuildableStateImplCopyWith<$Res>
   $MobileHomeProductsCopyWith<$Res>? get banner;
   @override
   $ProductDataModelCopyWith<$Res>? get product;
+  @override
+  $BasketProductsCopyWith<$Res>? get basket;
 }
 
 /// @nodoc
@@ -306,6 +331,7 @@ class __$$FoodHomeBuildableStateImplCopyWithImpl<$Res>
     Object? homeProducts = freezed,
     Object? banner = freezed,
     Object? product = freezed,
+    Object? basket = freezed,
   }) {
     return _then(_$FoodHomeBuildableStateImpl(
       loading: null == loading
@@ -384,6 +410,10 @@ class __$$FoodHomeBuildableStateImplCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as ProductDataModel?,
+      basket: freezed == basket
+          ? _value.basket
+          : basket // ignore: cast_nullable_to_non_nullable
+              as BasketProducts?,
     ));
   }
 }
@@ -410,7 +440,8 @@ class _$FoodHomeBuildableStateImpl implements _FoodHomeBuildableState {
       this.count = 0,
       this.homeProducts,
       this.banner,
-      this.product})
+      this.product,
+      this.basket})
       : _likeIds = likeIds,
         _data = data;
 
@@ -479,10 +510,12 @@ class _$FoodHomeBuildableStateImpl implements _FoodHomeBuildableState {
   final MobileHomeProducts? banner;
   @override
   final ProductDataModel? product;
+  @override
+  final BasketProducts? basket;
 
   @override
   String toString() {
-    return 'FoodHomeBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, imageIndex: $imageIndex, cardProductCount: $cardProductCount, likeIds: $likeIds, infoTabIndex: $infoTabIndex, descriptionIsExpandable: $descriptionIsExpandable, characteristicsIsExpandable: $characteristicsIsExpandable, isSuccess: $isSuccess, isUser: $isUser, currentIndex: $currentIndex, data: $data, count: $count, homeProducts: $homeProducts, banner: $banner, product: $product)';
+    return 'FoodHomeBuildableState(loading: $loading, isModal_hud: $isModal_hud, success: $success, failed: $failed, error: $error, imageIndex: $imageIndex, cardProductCount: $cardProductCount, likeIds: $likeIds, infoTabIndex: $infoTabIndex, descriptionIsExpandable: $descriptionIsExpandable, characteristicsIsExpandable: $characteristicsIsExpandable, isSuccess: $isSuccess, isUser: $isUser, currentIndex: $currentIndex, data: $data, count: $count, homeProducts: $homeProducts, banner: $banner, product: $product, basket: $basket)';
   }
 
   @override
@@ -520,7 +553,8 @@ class _$FoodHomeBuildableStateImpl implements _FoodHomeBuildableState {
             (identical(other.homeProducts, homeProducts) ||
                 other.homeProducts == homeProducts) &&
             (identical(other.banner, banner) || other.banner == banner) &&
-            (identical(other.product, product) || other.product == product));
+            (identical(other.product, product) || other.product == product) &&
+            (identical(other.basket, basket) || other.basket == basket));
   }
 
   @override
@@ -544,7 +578,8 @@ class _$FoodHomeBuildableStateImpl implements _FoodHomeBuildableState {
         count,
         homeProducts,
         banner,
-        product
+        product,
+        basket
       ]);
 
   /// Create a copy of FoodHomeBuildableState
@@ -577,7 +612,8 @@ abstract class _FoodHomeBuildableState implements FoodHomeBuildableState {
       final int count,
       final MobileHomeProducts? homeProducts,
       final MobileHomeProducts? banner,
-      final ProductDataModel? product}) = _$FoodHomeBuildableStateImpl;
+      final ProductDataModel? product,
+      final BasketProducts? basket}) = _$FoodHomeBuildableStateImpl;
 
   @override
   bool get loading;
@@ -617,6 +653,8 @@ abstract class _FoodHomeBuildableState implements FoodHomeBuildableState {
   MobileHomeProducts? get banner;
   @override
   ProductDataModel? get product;
+  @override
+  BasketProducts? get basket;
 
   /// Create a copy of FoodHomeBuildableState
   /// with the given fields replaced by the non-null parameter values.

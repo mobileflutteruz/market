@@ -54,7 +54,7 @@ class TopProduct with _$TopProduct {
 @freezed
 class MobileProduct with _$MobileProduct {
   const factory MobileProduct({
-    int? id,
+    int? product_id,
     String? name,
     String? status,
     int? discount,

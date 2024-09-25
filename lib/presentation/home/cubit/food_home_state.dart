@@ -25,5 +25,6 @@ class FoodHomeBuildableState extends FoodHomeState
     MobileHomeProducts? homeProducts,
     MobileHomeProducts? banner,
     ProductDataModel? product,
+     BasketProducts? basket,
   }) = _FoodHomeBuildableState;
 }

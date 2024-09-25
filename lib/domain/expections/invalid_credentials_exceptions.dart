@@ -35,12 +35,17 @@ class AuthenticationException implements Exception {
   final String message;
 
   AuthenticationException(this.message);
-}
 
+}
 class NetworkException implements Exception {
   final String message;
 
   NetworkException(this.message);
+}
+class TimeoutException implements Exception {
+  // final String message;
+
+  TimeoutException();
 }
 
 class InvalidPasswordException implements Exception {

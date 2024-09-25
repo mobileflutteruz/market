@@ -90,7 +90,7 @@ class DataRepository {
         var data = jsonDecode(response.body);
 
         if (data["status"]) {
-          return true; // muvaffaqiyatli holat
+          return true;
         } else {
           throw Exception(
               "Failed to remove from favorites: ${data["message"]}");
@@ -106,92 +106,135 @@ class DataRepository {
   }
 
   //Basket
-  Future<BasketProducts> getBasketProducts() async {
-    try {
-      final response = await api.getWithToken(path: "/cart");
+Future<List<BasketProducts>> getBasketProducts() async {
+  try {
+    final response = await api.getWithToken(path: "/cart");
 
-      if (response.statusCode == 200) {
-        // Javobni dekodlash
-        final data = jsonDecode(response.body);
-        // `BasketProducts` ob'ektini yaratish
-        return BasketProducts.fromJson(data);
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      // Debug: print the data structure to understand the response format
+      print('Response body data: $data');
+
+      // Check if the data is a list or a single object and handle accordingly
+      if (data is List) {
+        // Parse the list of BasketProducts
+        return data.map<BasketProducts>((item) => BasketProducts.fromJson(item)).toList();
+      } else if (data is Map<String, dynamic>) {
+        // Handle the case where a single object is returned and wrap it in a list
+        return [BasketProducts.fromJson(data)];
       } else {
-        // Xatolikni qayd etish
-        print('Failed to fetch basket products: ${response.body}');
-        throw Exception('Failed to fetch basket products: ${response.body}');
+        throw Exception('Unexpected data format: Expected a list or an object');
       }
-    } catch (e) {
-      print('Error fetching basket products: $e');
-      rethrow;
+    } else {
+      print('Failed to fetch basket products: ${response.body}');
+      throw Exception('Failed to fetch basket products: ${response.body}');
     }
+  } catch (e) {
+    print('Error fetching basket products: $e');
+    rethrow;
   }
+}
 
-  Future<BasketProducts> createBasket({
-    required int productId,
-  }) async {
-    try {
-      final response = await api.postWithToken(
-        path: "/cart/store",
-        body: {'product_id': productId},
-      );
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        return BasketProducts.fromJson(data);
-      } else {
-        throw Exception('Failed to create basket: ${response.body}');
-      }
-    } catch (e) {
-      print('Error creating basket: $e');
-      rethrow;
+
+
+
+
+
+ Future<bool> createBasket({required int productId}) async {
+  try {
+    final response = await api.postWithToken(
+      path: "/cart/store",
+      body: {'product_id': productId},
+    );
+
+    print('Response status code: ${response.statusCode}');
+    print('Response body: ${response.body}');
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      print('Response data: $data');
+
+      // Consider any 200 status code as success
+      return true;
+    } else {
+      print('Failed to create basket: ${response.body}');
+      return false;
     }
+  } catch (e) {
+    print('Error creating basket: $e');
+    return false;
   }
+}
 
-  /// Cart
-  getAllCarts() async {
-    final response = await api.getWithToken(path: Urls.favorite);
-    var data = jsonDecode(response.body);
-    return (data["data"] as List)
-        .map((e) => MobileProduct.fromJson(e))
-        .toList();
-  }
+  // /// Cart
+  // getAllCarts() async {
+  //   final response = await api.getWithToken(path: "/cart");
+  //   // Ensure the response body is not null
+  //   if (response.body != null) {
+  //     var data = jsonDecode(response.body);
+  //     // Check if 'data' is not null and is a list
+  //     if (data != null && data["data"] != null && data["data"] is List) {
+  //       return (data["data"] as List)
+  //           .map((e) => BasketProducts.fromJson(e) )
+  //           .toList();
+  //     } else {
+  //       // If the 'data' key is null or not a list, return an empty list
+  //       return [];
+  //     }
+  //   } else {
+
+  //     throw Exception('Response body is null');
+  //   }
+  // }
+
+  // Future<List<BasketProducts>> getAllCarts() async {
+  //   final response = await api.getWithToken(path: "/cart");
+  //   var data = jsonDecode(response.body) as List;
+  //   return data.map((json) => BasketProducts.fromJson(json)).toList();
+  // }
 
   //? Create Cart
   Future<BasketProducts> createCart({
     required int product_id,
   }) async {
-    final response = await api.postWithToken(
+    final response = await api.post(
       path: "/cart/store",
       body: {'product_id': product_id},
     );
     var data = jsonDecode(response.body);
-    return BasketProducts.fromJson(data);
+    final products = data['products'] as List<
+        dynamic>; // Assuming 'products' is the key for the list of products
+    return BasketProducts.fromJson(products as Map<String, dynamic>);
   }
 
- Future<bool> deleteCartById({required int productId}) async {
-  try {
-    final response = await api.deleteWithToken(path: "/cart/delete/$productId"); // Replace with correct endpoint
+  Future<bool> deleteCartById({required int productId}) async {
+    try {
+      final response = await api.deleteWithToken(
+          path: "/cart/delete/$productId"); // Replace with correct endpoint
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
 
-      if (data["status"]) {
-        return true; // Successful deletion
+        if (data["status"]) {
+          return true; // Successful deletion
+        } else {
+          throw ApiException("Failed to remove from cart: ${data["message"]}");
+        }
       } else {
-        throw ApiException("Failed to remove from cart: ${data["message"]}");
+        throw ApiException(
+            "Failed to remove from cart: HTTP status ${response.statusCode}");
       }
-    } else {
-      throw ApiException("Failed to remove from cart: HTTP status ${response.statusCode}");
+    } catch (e) {
+      if (e is ApiException) {
+        // Handle specific API exceptions
+        print("API Error: ${e.message}");
+      } else {
+        // Handle other exceptions
+        print("Error deleting cart item: $e");
+      }
+      rethrow;
     }
-  } catch (e) {
-    if (e is ApiException) {
-      // Handle specific API exceptions
-      print("API Error: ${e.message}");
-    } else {
-      // Handle other exceptions
-      print("Error deleting cart item: $e");
-    }
-    rethrow;
-  }
 
 //  Future<List<Search>> searchProducts(String inputText) async {
 //   final result = await api.get(
@@ -202,8 +245,7 @@ class DataRepository {
 
 //   return data.data;
 // }
-}
-
+  }
 }
 
 class ApiException implements Exception {

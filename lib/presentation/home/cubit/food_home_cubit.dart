@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:karmango/domain/model/mobile/basket/basket_products.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
 import 'package:karmango/domain/model/mobile/product/product.dart';
 import 'package:karmango/domain/repository/auth_repository.dart';

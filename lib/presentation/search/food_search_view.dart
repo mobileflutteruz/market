@@ -56,10 +56,21 @@ class _FoodSearchViewState extends State<FoodSearchView> {
         ),
         title: TextField(
           controller: _searchController,
-          decoration: const InputDecoration(
+          onSubmitted: (value) {
+            context.read<SearchedCubit>().searchProducts(_searchController.text);
+          },
+          decoration: InputDecoration(
             hintText: 'Найти продукты',
             border: InputBorder.none,
-            suffixIcon: Icon(Icons.search),
+            suffixIcon: _searchController.text.isNotEmpty
+                ? IconButton(
+                    icon: Icon(Icons.clear),
+                    onPressed: () {
+                      _searchController.clear();
+                      context.read<SearchedCubit>().searchedHistory();
+                    },
+                  )
+                : Icon(Icons.search),
           ),
         ),
       ),
@@ -71,7 +82,7 @@ class _FoodSearchViewState extends State<FoodSearchView> {
             p.failure,
             p.success,
             p.product,
-            p.searched, // Added properties to track
+            p.searched,
           ],
           builder: (context, state) {
             if (state.loading) {
@@ -80,7 +91,9 @@ class _FoodSearchViewState extends State<FoodSearchView> {
             if (state.failure) {
               return const Center(child: Text('Что-то пошло не так.'));
             }
-            if (state.success && state.product != null && state.product!.isNotEmpty) {
+            if (state.success &&
+                state.product != null &&
+                state.product!.isNotEmpty) {
               return _buildSearchResults(state.product!);
             }
             if (_searchController.text.isEmpty) {
@@ -106,12 +119,27 @@ class _FoodSearchViewState extends State<FoodSearchView> {
       itemBuilder: (context, index) {
         final product = products[index];
         return ListTile(
-          leading: Image.network(
-            product.image ?? '',
-            width: 50,
-            height: 50,
-            fit: BoxFit.cover,
-          ),
+          leading: product.image != null && product.image!.isNotEmpty
+              ? Image.network(
+                  product.image!,
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      width: 50,
+                      height: 50,
+                      color: Colors.grey,
+                      child: Icon(Icons.error),
+                    );
+                  },
+                )
+              : Container(
+                  width: 50,
+                  height: 50,
+                  color: Colors.grey,
+                  child: Icon(Icons.image_not_supported),
+                ),
           title: Text(product.name ?? 'No name'),
           subtitle: Text('${product.price ?? 0} \$'),
           onTap: () {
@@ -152,7 +180,8 @@ class _FoodSearchViewState extends State<FoodSearchView> {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: state.searched!.result!.search_history!.length,
             itemBuilder: (context, index) {
-              final historyItem = state.searched!.result!.search_history![index];
+              final historyItem =
+                  state.searched!.result!.search_history![index];
               return ListTile(
                 leading: const Icon(Icons.history),
                 title: Text(historyItem.word!),

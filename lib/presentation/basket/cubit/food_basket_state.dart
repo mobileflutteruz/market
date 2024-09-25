@@ -14,10 +14,24 @@ class FoodBasketBuildableState extends FoodBasketState
     @Default(0) int tabIndex,
     @Default(false) bool isChoosedAll,
     @Default(false) bool loading,
-    BasketProducts? products,
+
+        List<BasketProducts>? products,
     // @Default(false) bool isModal_hud,
     @Default(false) bool success,
     @Default(false) bool failed,
     @Default(false) bool error,
   }) = _FoodBasketBuildableState;
+}
+class FoodBasketLoading extends FoodBasketState {}
+
+class FoodBasketLoaded extends FoodBasketState {
+  final List<BasketProducts> basketProducts;
+
+  FoodBasketLoaded(this.basketProducts);
+}
+
+class FoodBasketError extends FoodBasketState {
+  final String error;
+
+  FoodBasketError(this.error);
 }

@@ -18,41 +18,40 @@ class SearchedCubit extends BuildableCubit<SearchState, SearchdBuildableState> {
   SearchedCubit(this._dataRepository, this.repo)
       : super(SearchdBuildableState());
 
- 
   final DataRepository repo;
   final SearchRepository _dataRepository;
- 
-  
 
 
-Future<void> searchProducts(String text) async {
-  build(
-    (buildable) => buildable.copyWith(loading: true),
-  );
+ Future<void> searchProducts(String query) async {
+    try {
+       (buildable) => buildable.copyWith(loading: true);
 
-    final List<SearchProduct>? products = await _dataRepository.searchProduct(name: text);
-  build(
-      (buildable) => buildable.copyWith(
-        loading: false,
-        success: true,
-        failure: false,
-        product: products,
-      ),
-    );
+      final List<SearchProduct>? products = await _dataRepository.searchProduct(name: query);
 
-        
-    
-       build(
+      if (products != null && products.isNotEmpty) {
         (buildable) => buildable.copyWith(
           loading: false,
-          failure: true,
-          error: "An unexpected error occurred.",
-        ),
+          success: true,
+          failure: false,
+          product: products,
+        );
+      } else {
+        (buildable) => buildable.copyWith(
+          loading: false,
+          success: true,
+          failure: false,
+          product: [],
+        );
+      }
+    } catch (e) {
+      (buildable) => buildable.copyWith(
+        loading: false,
+        failure: true,
+        error: e.toString(),
       );
+    }
+  }
 
-  
-
-}
 
 
   Future<void> searchedHistory() async {
