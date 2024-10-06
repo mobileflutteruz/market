@@ -65,10 +65,9 @@ class ChangePasswordCubit
         newPass,
         confirmPass,
       );
-    print(
+      print(
           "------------------------------- SUCCESS -----------------------------");
       build(
-         
         (buildable) => buildable.copyWith(
           isModal_hud: false,
           success: true,
@@ -77,7 +76,7 @@ class ChangePasswordCubit
     } catch (e) {
       print(
           "------------------------------- ERRROR -----------------------------");
-          print("ERROR:$e");
+      print("ERROR:$e");
       build(
         (buildable) => buildable.copyWith(
           isModal_hud: false,
@@ -86,7 +85,6 @@ class ChangePasswordCubit
         ),
       );
     } finally {
-   
       build(
         (buildable) => buildable.copyWith(
           isModal_hud: false,
@@ -104,9 +102,9 @@ class ChangePasswordCubit
       build((buildable) =>
           buildable.copyWith(success: true, loading: false, failure: false));
     } catch (e) {
-        print(
+      print(
           "------------------------------- ERRROR  VERFY SMS-----------------------------");
-          print("ERROR SMS:$e");
+      print("ERROR SMS:$e");
       build(
         (buildable) => buildable.copyWith(
           loading: false,

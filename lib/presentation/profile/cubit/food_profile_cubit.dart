@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:karmango/domain/model/mobile/user/user.dart';
-// import 'package:karmango/domain/model/user/user_model.dart';
+import 'package:karmango/domain/model/mobile/user_info/user_info.dart';
 import 'package:karmango/domain/repository/auth_repository.dart';
 import 'package:karmango/presentation/components/buildable_cubit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -113,8 +113,31 @@ class FoodProfileCubit
     }
   }
 
-  logout() async {
-    authRepo.logout();
-    // emit(const ProfileState.update());
+Future<void> logout() async {
+    build(
+      (buildable) => buildable.copyWith(
+        loading: true,
+        failure: false,
+      ),
+    );
+    try {
+      authRepo.logout();
+      build(
+        (buildable) => buildable.copyWith(
+          success: true,
+          loading: false,
+          failure: false,
+        ),
+      );
+    } catch (e) {
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          failure: true,
+          errorMessage: e.toString(),
+        ),
+      );
+    }
   }
+  
 }

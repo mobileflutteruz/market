@@ -55,7 +55,7 @@ class _FoodLoginView extends State<FoodLoginView> {
                             hintText: context.l10n.enterPhoneNumber,
                             validator: (value) {
                               return locator<AuthRepository>()
-                                  .phoneValidator(value!);
+                                  .phoneValidator(value);
                             },
                           ),
                           AppUtils.kGap24,

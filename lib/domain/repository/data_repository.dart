@@ -106,66 +106,53 @@ class DataRepository {
   }
 
   //Basket
-Future<List<BasketProducts>> getBasketProducts() async {
-  try {
-    final response = await api.getWithToken(path: "/cart");
-
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-
-      // Debug: print the data structure to understand the response format
-      print('Response body data: $data');
-
-      // Check if the data is a list or a single object and handle accordingly
-      if (data is List) {
-        // Parse the list of BasketProducts
-        return data.map<BasketProducts>((item) => BasketProducts.fromJson(item)).toList();
-      } else if (data is Map<String, dynamic>) {
-        // Handle the case where a single object is returned and wrap it in a list
-        return [BasketProducts.fromJson(data)];
+  Future<List<BasketProducts>> getBasketProducts() async {
+    try {
+      final response = await api.getWithToken(path: "/cart");
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        print('Response body data: $data');
+        if (data is List) {
+          return data
+              .map<BasketProducts>((item) => BasketProducts.fromJson(item))
+              .toList();
+        } else if (data is Map<String, dynamic>) {
+          return [BasketProducts.fromJson(data)];
+        } else {
+          throw Exception(
+              'Unexpected data format: Expected a list or an object');
+        }
       } else {
-        throw Exception('Unexpected data format: Expected a list or an object');
+        print('Failed to fetch basket products: ${response.body}');
+        throw Exception('Failed to fetch basket products: ${response.body}');
       }
-    } else {
-      print('Failed to fetch basket products: ${response.body}');
-      throw Exception('Failed to fetch basket products: ${response.body}');
+    } catch (e) {
+      print('Error fetching basket products: $e');
+      rethrow;
     }
-  } catch (e) {
-    print('Error fetching basket products: $e');
-    rethrow;
   }
-}
 
-
-
-
-
-
- Future<bool> createBasket({required int productId}) async {
-  try {
-    final response = await api.postWithToken(
-      path: "/cart/store",
-      body: {'product_id': productId},
-    );
-
-    print('Response status code: ${response.statusCode}');
-    print('Response body: ${response.body}');
-
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print('Response data: $data');
-
-      // Consider any 200 status code as success
-      return true;
-    } else {
-      print('Failed to create basket: ${response.body}');
+  Future<bool> createBasket({required int product_id}) async {
+    try {
+      final response = await api.post(
+        path: "/cart/store",
+        body: {'product_id': product_id},
+      );
+      print('Response status code: ${response.statusCode}');
+      print('Response body: ${response.body}');
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        print('Response data: $data');
+        return true;
+      } else {
+        print('Failed to create basket: ${response.body}');
+        return false;
+      }
+    } catch (e) {
+      print('Error creating basket: $e');
       return false;
     }
-  } catch (e) {
-    print('Error creating basket: $e');
-    return false;
   }
-}
 
   // /// Cart
   // getAllCarts() async {

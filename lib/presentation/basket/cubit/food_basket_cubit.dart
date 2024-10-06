@@ -100,7 +100,7 @@ class FoodBasketCubit
 
   try {
     // API chaqiruvini amalga oshirish va muvaffaqiyatni tekshirish
-    final bool success = await _dataRepo.createBasket(productId: product_id);
+    final bool success = await _dataRepo.createBasket(product_id: product_id);
     
     if (success) {
       print("Basket creation success------------------------------------------");

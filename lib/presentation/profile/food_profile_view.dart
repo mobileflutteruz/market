@@ -6,6 +6,7 @@ import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/core/utils/app_layouts.dart';
 import 'package:karmango/core/utils/utils.dart';
+import 'package:karmango/domain/model/mobile/user_info/user_info.dart';
 
 import 'package:karmango/domain/model/user/user_model.dart';
 import 'package:karmango/presentation/components/buildable.dart';
@@ -31,6 +32,8 @@ class _FoodProfileViewState extends State<FoodProfileView> {
         FoodProfileBuildableState>(
       properties: (buildable) => [
         buildable.user,
+        buildable.userInfo,
+        buildable.token,
       ],
       builder: (context, state) {
         return Scaffold(
@@ -64,7 +67,6 @@ class _FoodProfileViewState extends State<FoodProfileView> {
                     context, FoodNavigatorConst.foodProfileEdit)
                 .then((value) {
               if (value != null) {
-             
                 context.read<FoodProfileCubit>().foodSetUser(user);
               }
             });
@@ -130,7 +132,7 @@ class _FoodProfileViewState extends State<FoodProfileView> {
     );
   }
 
-  Widget _buildUserProfileSection(BuildContext context, UserModel foodUser) {
+  Widget _buildUserProfileSection(BuildContext context, UserModel foodUser,) {
     return Row(
       children: [
         Container(

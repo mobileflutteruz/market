@@ -32,7 +32,7 @@ class AuthApi {
   }
 
   Future<Response> logOut() async {
-    var data = await _api.post(path: Urls.logout);
+    var data = await _api.post(path: "/logout");
     return data;
   }
 
@@ -49,7 +49,7 @@ class AuthApi {
       "confirm_password": confirmPassword,
     };
     var data =
-        await _api.postWithToken(path: "/restore-password/$userId", body: body);
+        await _api.post(path: "/restore-password/$userId", body: body);
             // ignore: avoid_print
     print("RESET PASSWORD: $data");
     return data;

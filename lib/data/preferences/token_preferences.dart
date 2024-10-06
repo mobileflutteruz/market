@@ -16,6 +16,16 @@ class TokenPreference {
   final String _baskets = "baskets";
   final String _guest = "guest";
   final String _user = "user";
+  final String _userIdKey = "user_id_to_restore_password";
+
+
+  Future<void> setUserId(String userId) async {
+    await localeDb.setString(_userIdKey, userId);
+  }
+
+  Future<String?> getUserId() async {
+    return localeDb.getString(_userIdKey);
+  }
 
   Future<void> saveGuestUser(String value) async {
     print("TOKEEEEEEEEEEEEEN saveGuestUser : ${value}");

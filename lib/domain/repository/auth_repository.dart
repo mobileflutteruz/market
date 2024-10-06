@@ -20,15 +20,14 @@ import 'package:karmango/domain/model/mobile/user/user.dart';
 
 @Injectable()
 class AuthRepository {
-  AuthRepository(this._token, this._api, this.authApi, this._userSessionManager);
+  AuthRepository(
+      this._token, this._api, this.authApi, this._userSessionManager);
 
   final Api _api;
   final AuthApi authApi;
   final TokenPreference _token;
   final LoggingService log = LoggingService();
   final UserSessionManager _userSessionManager;
-
-
 
   Future<RegisterModel> register({
     required String password,
@@ -60,9 +59,9 @@ class AuthRepository {
   Future<ChangePasswordModel> updatePassword(
       String newPass, String confirmPass) async {
     try {
-      final String? userId = await _userSessionManager
-          .getUserId(); // await bilan String turiga o'zgartiriladi
-          
+      // Saqlangan User ID-ni olish
+      final String? userId = await _token.getUserId();
+
       print("__________________________USER ID: $userId");
 
       if (userId == null) {
@@ -89,44 +88,6 @@ class AuthRepository {
     return password.length >= 8 && password == confirmPassword;
   }
 
-  // Future<void> login({
-  //   required String phone,
-  //   required String password,
-  // }) async {
-  //   final body = {
-  //     "phone": phone,
-  //     "password": password,
-  //   };
-
-  //   try {
-  //     final response = await _api.postWithToken(path: Urls.login, body: body);
-
-  //     if (response.statusCode == 200) {
-  //       final responseBody = jsonDecode(response.body);
-  //       final String? userId = responseBody['user_id'];
-  //       final String? token = responseBody['token'];
-
-  //       if (userId != null && token != null) {
-  //         // Save the user ID and token
-  //         await _userSessionManager.saveUserId(userId);
-  //         await _userSessionManager.saveUserToken(token);
-
-  //         // Handle the authenticated state
-  //         await _onAuthResponse(response);
-  //       } else {
-  //         throw AuthenticationException(
-  //             'User ID or token is missing in the response.');
-  //       }
-  //     } else {
-  //       throw HttpException(
-  //           'Failed to login. Status code: ${response.statusCode}');
-  //     }
-  //   } catch (e) {
-  //     print('Error during login: $e');
-  //     rethrow;
-  //   }
-  // }
-
   Future<void> login({
     required String phone,
     required String password,
@@ -139,23 +100,36 @@ class AuthRepository {
     await _onAuthResponse(response);
   }
 
-  Future<void> logout() async {
-    try {
-      await _token.clear();
-      await _token.clearUser();
-    } catch (e) {
-      log.logError("Error logging out", error: e);
-    }
+  Future<Response> logout() async {
+    var data = await _api.post(path: "/logout");
+    // try {
+    //   await _token.clear();
+    //   await _token.clearUser();
+    // } catch (e) {
+    //   log.logError("Error logging out", error: e);
+    // }
+    return data;
   }
 
   Future<void> verify(String phone, String code) async {
-    try {
-      final response = await authApi.verfy(phone, code);
-      await _onAuthResponse(response);
-    } catch (e) {
-      log.logError("Error verifying user", error: e);
+  try {
+    final response = await authApi.verfy(phone, code);
+
+    // Response body'sini JSON formatga o'zgartirish
+    final Map<String, dynamic> responseBody = jsonDecode(response.body);
+
+    if (responseBody['status'] == true) {
+      final userId = responseBody['user_id_to_restore_password'].toString();
+
+      // User ID-ni saqlash
+      await _token.setUserId(userId);
     }
+
+    await _onAuthResponse(responseBody as Response);
+  } catch (e) {
+    log.logError("Error verifying user", error: e);
   }
+}
 
   Future<void> loginAsGuest() async {
     try {
@@ -236,12 +210,9 @@ class AuthRepository {
       final response = await authApi.verfy(phone, code);
       final responseBody = jsonDecode(response.body);
 
-      // Javobni tekshirish
       if (responseBody['status'] == true) {
         log.logInfo('User verified successfully: ${responseBody['message']}');
-        // Agar kerak bo'lsa, qo'shimcha harakatlar qiling
       } else {
-        // Agar xatolik bo'lsa, xatolik tashlash
         throw AuthenticationException(
             'Verification failed: ${responseBody['message']}');
       }
