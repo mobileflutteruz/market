@@ -112,24 +112,24 @@ class AuthRepository {
   }
 
   Future<void> verify(String phone, String code) async {
-  try {
-    final response = await authApi.verfy(phone, code);
+    try {
+      final response = await authApi.verfy(phone, code);
 
-    // Response body'sini JSON formatga o'zgartirish
-    final Map<String, dynamic> responseBody = jsonDecode(response.body);
+      // Response body'sini JSON formatga o'zgartirish
+      final Map<String, dynamic> responseBody = jsonDecode(response.body);
 
-    if (responseBody['status'] == true) {
-      final userId = responseBody['user_id_to_restore_password'].toString();
+      if (responseBody['status'] == true) {
+        final userId = responseBody['user_id_to_restore_password'].toString();
 
-      // User ID-ni saqlash
-      await _token.setUserId(userId);
+        // User ID-ni saqlash
+        await _token.setUserId(userId);
+      }
+
+      await _onAuthResponse(responseBody as Response);
+    } catch (e) {
+      log.logError("Error verifying user", error: e);
     }
-
-    await _onAuthResponse(responseBody as Response);
-  } catch (e) {
-    log.logError("Error verifying user", error: e);
   }
-}
 
   Future<void> loginAsGuest() async {
     try {
@@ -240,7 +240,7 @@ class AuthRepository {
     if (body["token"] == null) {
       throw Exception(body);
     } else {
-      await _token.set(body["token"]);
+      await _userSessionManager.saveUserToken(body["token"]);
     }
   }
 
@@ -250,7 +250,7 @@ class AuthRepository {
       if (body["token"] == null) {
         log.logDebug("ACCESS_TOKEN: $body");
       } else {
-        await _token.set(body["token"]);
+        await _userSessionManager.saveUserToken(body["token"]);
         await _token.saveGuestUser(body["token"]);
       }
     } else {

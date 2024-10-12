@@ -1,7 +1,6 @@
 import 'dart:core';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:karmango/core/constants/navigator_const.dart';
 
 import 'package:karmango/presentation/basket/cubit/food_basket_cubit.dart';
 

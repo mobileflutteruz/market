@@ -75,7 +75,7 @@ class FoodHomeCubit
         ),
       );
     } catch (e) {
-      print("fetchProducts error------------------------------------------");
+      print("fetchProducts error------------------------------------------${e.toString()}");
       print(e);
       build(
         (buildable) => buildable.copyWith(
