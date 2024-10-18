@@ -152,7 +152,7 @@ class FoodBasketCubit
 
     // Loop through each product and its result list
     for (var product in buildable.products!) {
-      for (var result in product!.result!) {
+      for (var result in product.result!) {
         // Use the result id for toggling checkbox state
         checkboxState[result.id!] = isSelected;
       }
