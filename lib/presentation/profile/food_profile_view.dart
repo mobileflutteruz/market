@@ -6,7 +6,6 @@ import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/core/utils/app_layouts.dart';
 import 'package:karmango/core/utils/utils.dart';
-import 'package:karmango/domain/model/mobile/user_info/user_info.dart';
 
 import 'package:karmango/domain/model/user/user_model.dart';
 import 'package:karmango/presentation/components/buildable.dart';

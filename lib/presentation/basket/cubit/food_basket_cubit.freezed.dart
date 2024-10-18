@@ -22,8 +22,10 @@ mixin _$FoodBasketBuildableState {
   List<int> get cardProductIds => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   int get tabIndex => throw _privateConstructorUsedError;
+  int get quantity => throw _privateConstructorUsedError;
   bool get isChoosedAll => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
+  Map<int, bool> get checkboxState => throw _privateConstructorUsedError;
   List<BasketProducts>? get products =>
       throw _privateConstructorUsedError; // @Default(false) bool isModal_hud,
   bool get success => throw _privateConstructorUsedError;
@@ -50,8 +52,10 @@ abstract class $FoodBasketBuildableStateCopyWith<$Res> {
       List<int> cardProductIds,
       String errorMessage,
       int tabIndex,
+      int quantity,
       bool isChoosedAll,
       bool loading,
+      Map<int, bool> checkboxState,
       List<BasketProducts>? products,
       bool success,
       bool failed,
@@ -80,8 +84,10 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
     Object? cardProductIds = null,
     Object? errorMessage = null,
     Object? tabIndex = null,
+    Object? quantity = null,
     Object? isChoosedAll = null,
     Object? loading = null,
+    Object? checkboxState = null,
     Object? products = freezed,
     Object? success = null,
     Object? failed = null,
@@ -112,6 +118,10 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
           ? _value.tabIndex
           : tabIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
       isChoosedAll: null == isChoosedAll
           ? _value.isChoosedAll
           : isChoosedAll // ignore: cast_nullable_to_non_nullable
@@ -120,6 +130,10 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      checkboxState: null == checkboxState
+          ? _value.checkboxState
+          : checkboxState // ignore: cast_nullable_to_non_nullable
+              as Map<int, bool>,
       products: freezed == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
@@ -156,8 +170,10 @@ abstract class _$$FoodBasketBuildableStateImplCopyWith<$Res>
       List<int> cardProductIds,
       String errorMessage,
       int tabIndex,
+      int quantity,
       bool isChoosedAll,
       bool loading,
+      Map<int, bool> checkboxState,
       List<BasketProducts>? products,
       bool success,
       bool failed,
@@ -185,8 +201,10 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
     Object? cardProductIds = null,
     Object? errorMessage = null,
     Object? tabIndex = null,
+    Object? quantity = null,
     Object? isChoosedAll = null,
     Object? loading = null,
+    Object? checkboxState = null,
     Object? products = freezed,
     Object? success = null,
     Object? failed = null,
@@ -217,6 +235,10 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
           ? _value.tabIndex
           : tabIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
       isChoosedAll: null == isChoosedAll
           ? _value.isChoosedAll
           : isChoosedAll // ignore: cast_nullable_to_non_nullable
@@ -225,6 +247,10 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
           ? _value.loading
           : loading // ignore: cast_nullable_to_non_nullable
               as bool,
+      checkboxState: null == checkboxState
+          ? _value._checkboxState
+          : checkboxState // ignore: cast_nullable_to_non_nullable
+              as Map<int, bool>,
       products: freezed == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
@@ -257,8 +283,10 @@ class _$FoodBasketBuildableStateImpl
       final List<int> cardProductIds = const [],
       this.errorMessage = '',
       this.tabIndex = 0,
+      this.quantity = 0,
       this.isChoosedAll = false,
       this.loading = false,
+      final Map<int, bool> checkboxState = const {},
       final List<BasketProducts>? products,
       this.success = false,
       this.failed = false,
@@ -266,6 +294,7 @@ class _$FoodBasketBuildableStateImpl
       : _selectedIds = selectedIds,
         _cardProducts = cardProducts,
         _cardProductIds = cardProductIds,
+        _checkboxState = checkboxState,
         _products = products;
 
   @override
@@ -306,10 +335,22 @@ class _$FoodBasketBuildableStateImpl
   final int tabIndex;
   @override
   @JsonKey()
+  final int quantity;
+  @override
+  @JsonKey()
   final bool isChoosedAll;
   @override
   @JsonKey()
   final bool loading;
+  final Map<int, bool> _checkboxState;
+  @override
+  @JsonKey()
+  Map<int, bool> get checkboxState {
+    if (_checkboxState is EqualUnmodifiableMapView) return _checkboxState;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_checkboxState);
+  }
+
   final List<BasketProducts>? _products;
   @override
   List<BasketProducts>? get products {
@@ -333,7 +374,7 @@ class _$FoodBasketBuildableStateImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FoodBasketBuildableState(currentIndex: $currentIndex, selectedIds: $selectedIds, cardProducts: $cardProducts, cardProductIds: $cardProductIds, errorMessage: $errorMessage, tabIndex: $tabIndex, isChoosedAll: $isChoosedAll, loading: $loading, products: $products, success: $success, failed: $failed, error: $error)';
+    return 'FoodBasketBuildableState(currentIndex: $currentIndex, selectedIds: $selectedIds, cardProducts: $cardProducts, cardProductIds: $cardProductIds, errorMessage: $errorMessage, tabIndex: $tabIndex, quantity: $quantity, isChoosedAll: $isChoosedAll, loading: $loading, checkboxState: $checkboxState, products: $products, success: $success, failed: $failed, error: $error)';
   }
 
   @override
@@ -347,8 +388,10 @@ class _$FoodBasketBuildableStateImpl
       ..add(DiagnosticsProperty('cardProductIds', cardProductIds))
       ..add(DiagnosticsProperty('errorMessage', errorMessage))
       ..add(DiagnosticsProperty('tabIndex', tabIndex))
+      ..add(DiagnosticsProperty('quantity', quantity))
       ..add(DiagnosticsProperty('isChoosedAll', isChoosedAll))
       ..add(DiagnosticsProperty('loading', loading))
+      ..add(DiagnosticsProperty('checkboxState', checkboxState))
       ..add(DiagnosticsProperty('products', products))
       ..add(DiagnosticsProperty('success', success))
       ..add(DiagnosticsProperty('failed', failed))
@@ -372,9 +415,13 @@ class _$FoodBasketBuildableStateImpl
                 other.errorMessage == errorMessage) &&
             (identical(other.tabIndex, tabIndex) ||
                 other.tabIndex == tabIndex) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
             (identical(other.isChoosedAll, isChoosedAll) ||
                 other.isChoosedAll == isChoosedAll) &&
             (identical(other.loading, loading) || other.loading == loading) &&
+            const DeepCollectionEquality()
+                .equals(other._checkboxState, _checkboxState) &&
             const DeepCollectionEquality().equals(other._products, _products) &&
             (identical(other.success, success) || other.success == success) &&
             (identical(other.failed, failed) || other.failed == failed) &&
@@ -390,8 +437,10 @@ class _$FoodBasketBuildableStateImpl
       const DeepCollectionEquality().hash(_cardProductIds),
       errorMessage,
       tabIndex,
+      quantity,
       isChoosedAll,
       loading,
+      const DeepCollectionEquality().hash(_checkboxState),
       const DeepCollectionEquality().hash(_products),
       success,
       failed,
@@ -415,8 +464,10 @@ abstract class _FoodBasketBuildableState implements FoodBasketBuildableState {
       final List<int> cardProductIds,
       final String errorMessage,
       final int tabIndex,
+      final int quantity,
       final bool isChoosedAll,
       final bool loading,
+      final Map<int, bool> checkboxState,
       final List<BasketProducts>? products,
       final bool success,
       final bool failed,
@@ -435,9 +486,13 @@ abstract class _FoodBasketBuildableState implements FoodBasketBuildableState {
   @override
   int get tabIndex;
   @override
+  int get quantity;
+  @override
   bool get isChoosedAll;
   @override
   bool get loading;
+  @override
+  Map<int, bool> get checkboxState;
   @override
   List<BasketProducts>? get products; // @Default(false) bool isModal_hud,
   @override

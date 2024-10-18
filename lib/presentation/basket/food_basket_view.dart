@@ -9,7 +9,6 @@ import 'package:karmango/core/utils/app_layouts.dart';
 import 'package:flutter/material.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
 import 'package:lottie/lottie.dart';
-import '../../domain/model/mobile/basket/basket_products.dart';
 
 class FoodBasketView extends StatefulWidget {
   const FoodBasketView({super.key});
@@ -59,16 +58,12 @@ class _BasketViewState extends State<FoodBasketView>
             buildable.loading,
             buildable.success,
             buildable.products,
-            // buildable.likeIds,
           ],
-          
           builder: (context, state) {
             if (state.loading && (state.products == null)) {
               return const LoaderWidget();
             }
             if (state.failed) {
-              print("ERROR: state.failed");
-            
               return Scaffold(
                 backgroundColor: Colors.white,
                 appBar: const FoodBasketAppBarWidget(),
@@ -89,11 +84,13 @@ class _BasketViewState extends State<FoodBasketView>
                     ),
                   ],
                 ),
-                bottomNavigationBar:
-                    FoodBasketBottomBarWidget(currentIndex: state.tabIndex, product: state.products ,),
+                bottomNavigationBar: FoodBasketBottomBarWidget(
+                  currentIndex: state.tabIndex,
+                  product: state.products,
+                ),
               );
             }
-              print("CARTTTTTTTTTTTTTTTTTTTTttt}");
+
             return Scaffold(
               backgroundColor: Colors.white,
               appBar: const FoodBasketAppBarWidget(),
@@ -101,21 +98,25 @@ class _BasketViewState extends State<FoodBasketView>
                 children: [
                   Expanded(
                     child: ListView.builder(
+                      itemCount: state.products?.length ?? 0,
                       itemBuilder: (BuildContext context, int index) {
-                        final Result? product =
-                            state.products![index].result?[index];
-                        print("CAAAAAAAAAAAAAAAAAAAAAART: ${ state.products!}");
-                        return FoodBasketCartItem(
-                          product: [product],
-                        );
+                        final product = state.products?[index].result;
+
+                        // Check if product is not null before passing it to the widget
+                        if (product != null && product.isNotEmpty) {
+                          return FoodBasketCartItem(product: product);
+                        } else {
+                          return const SizedBox.shrink(); // If no products, return empty widget
+                        }
                       },
-                      itemCount: 1,
                     ),
                   ),
                 ],
               ),
-              bottomNavigationBar:
-                  FoodBasketBottomBarWidget(currentIndex: state.tabIndex,product: state.products, ),
+              bottomNavigationBar: FoodBasketBottomBarWidget(
+                currentIndex: state.tabIndex,
+                product: state.products,
+              ),
             );
           },
         ),

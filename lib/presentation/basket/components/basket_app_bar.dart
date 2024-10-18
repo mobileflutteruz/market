@@ -54,36 +54,29 @@ class FoodBasketAppBarWidget extends StatelessWidget
                     SizedBox(
                       height: 16,
                       width: 16,
-                      child: Checkbox(
+                      child: Checkbox.adaptive(
                         activeColor: const Color(0xFF2473F2),
-                        side: BorderSide(
-                          color: FoodColors.c8D909B,
-                          width: 1,
-                        ),
+                        side: BorderSide(color: FoodColors.c8D909B, width: 1),
                         shape: const RoundedRectangleBorder(
-                          borderRadius: AppUtils.kBorderRadius4,
-                        ),
-                        value: state.isChoosedAll,
+                            borderRadius: AppUtils.kBorderRadius4),
+                        value: state.selectedIds.length ==
+                            state.cardProductIds
+                                .length, 
                         onChanged: (onChanged) {
-                          print("onChanged: $onChanged");
-                          List<int> productIds = [];
-                          for (int i = 0;
-                              i < state.cardProductIds.length;
-                              i++) {
-                            if (!state.selectedIds
-                                .contains(state.cardProductIds[i])) {
-                              productIds.add(state.cardProductIds[i]);
-                            }
-                          }
-
                           context
-                              .read<FoodBasketCubit>()
-                              .chooseAllItem(onChanged!);
-                          onChanged != true
-                              ? context.read<FoodBasketCubit>().clearSelectIds()
-                              : context
-                                  .read<FoodBasketCubit>()
-                                  .setSelectIds(productIds);
+                              .read<FoodBasketCubit>().toggleAllCheckboxes(onChanged!);
+
+                          if (onChanged != true) {
+                            // Mahsulotlarni tanlash
+                            context
+                                .read<FoodBasketCubit>()
+                                .clearSelectIds(state.cardProductIds);
+                          } else {
+                            // Mahsulotlarni bo'shatish
+                            context
+                                .read<FoodBasketCubit>()
+                                .setSelectIds(state.cardProductIds);
+                          }
                         },
                       ),
                     ),

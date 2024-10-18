@@ -12,8 +12,10 @@ class FoodBasketBuildableState extends FoodBasketState
     @Default([]) List<int> cardProductIds,
     @Default('') String errorMessage,
     @Default(0) int tabIndex,
+    @Default(0) int quantity,
     @Default(false) bool isChoosedAll,
     @Default(false) bool loading,
+      @Default({}) Map<int, bool> checkboxState, 
 
         List<BasketProducts>? products,
     // @Default(false) bool isModal_hud,

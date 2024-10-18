@@ -114,7 +114,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/core/constants/constants.dart';
-import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/presentation/auth/otp/components/pin_theme.dart';
 import 'package:karmango/presentation/auth/register/cubit/register_cubit.dart';
