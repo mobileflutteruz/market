@@ -10,14 +10,12 @@ class TokenPreference {
 
   TokenPreference(this.localeDb);
 
-  final String _key = "token";
   final String _favourites = "favourites";
   final String _furnitureFavourites = "furnitureFavourites";
   final String _baskets = "baskets";
   final String _guest = "guest";
   final String _user = "user";
   final String _userIdKey = "user_id_to_restore_password";
-
 
   Future<void> setUserId(String userId) async {
     await localeDb.setString(_userIdKey, userId);
@@ -50,27 +48,6 @@ class TokenPreference {
       return AuthResponse.fromJson(json);
     }
     return null;
-  }
-
-  Future<void> set(String value) async {
-    print("TOKEEEEEEEEEEEEEN SEEEEET : ${value}");
-    await localeDb.setString(_key, value);
-  }
-
-  Future<String?> get() async {
-    print("TOKEEEEEEEEEEEEEN GEEEEET : ${_key}");
-    return localeDb.getString(_key);
-  }
-
-
-  Future<void> clear() async {
-     print("TOKEEEEEEEEEEEEEN CLEAR : ${_key}");
-    await localeDb.remove(_key);
-  }
-
-  Future<void> clearUser() async {
-     print("TOKEEEEEEEEEEEEEN REMOVE USER : ${_key}");
-    await localeDb.remove(_user);
   }
 
   /// Mobile Shop Product Favourites
