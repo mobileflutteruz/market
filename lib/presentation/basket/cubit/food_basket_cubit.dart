@@ -21,26 +21,26 @@ class FoodBasketCubit
   final DataRepository _dataRepo;
 
   // Select or deselect product IDs based on the provided list.
-  void setSelectIds(List<int> productIds) {
-    final selectedIds = List<int>.from(buildable.selectedIds);
-    debugPrint("Current selected IDs: $selectedIds");
+  // void setSelectIds(List<int> productIds) {
+  //   final selectedIds = List<int>.from(buildable.selectedIds);
+  //   debugPrint("Current selected IDs: $selectedIds");
 
-    for (final productId in productIds) {
-      if (selectedIds.contains(productId)) {
-        selectedIds.remove(productId);
-      } else {
-        selectedIds.add(productId);
-      }
-    }
-    debugPrint("Updated selected IDs: $selectedIds");
+  //   for (final productId in productIds) {
+  //     if (selectedIds.contains(productId)) {
+  //       selectedIds.remove(productId);
+  //     } else {
+  //       selectedIds.add(productId);
+  //     }
+  //   }
+  //   debugPrint("Updated selected IDs: $selectedIds");
 
-    build((buildable) => buildable.copyWith(selectedIds: selectedIds));
-  }
+  //   build((buildable) => buildable.copyWith(selectedIds: selectedIds));
+  // }
 
   // Clear all selected IDs
-  void clearSelectIds(List<int> selectedIds) {
-    build((buildable) => buildable.copyWith(selectedIds: selectedIds));
-  }
+  // void clearSelectIds(List<int> selectedIds) {
+  //   build((buildable) => buildable.copyWith(selectedIds: selectedIds));
+  // }
 
   // Fetch basket products and handle loading states
   Future<void> basketProducts() async {
@@ -119,108 +119,100 @@ class FoodBasketCubit
         cardProducts: ids, cardProductIds: ids.keys.toList()));
   }
 
-  onAllClicked(BasketProducts clic) {
-    build((buildable) => buildable.copyWith());
+  // void setSelectIds(List<int> productIds) {
+  //   final selectedIds = List<int>.from(buildable.selectedIds);
+  //   debugPrint("Current selected IDs: $selectedIds");
+
+  //   for (final productId in productIds) {
+  //     if (selectedIds.contains(productId)) {
+  //       selectedIds.remove(productId);
+  //     } else {
+  //       selectedIds.add(productId);
+  //     }
+  //   }
+  //   debugPrint("Updated selected IDs: $selectedIds");
+
+  //   build((buildable) => buildable.copyWith(selectedIds: selectedIds));
+  // }
+
+  // Clear all selected IDs
+  // void clearSelectIds(List<int> selectedIds) {
+  //   build((buildable) => buildable.copyWith(selectedIds: selectedIds));
+  // }
+chooseAllItem(bool value) {
+    build(
+      (buildable) => buildable.copyWith(
+        isChoosedAll: value,
+
+      ),
+    );
+  }
+clearSelectIds() {
+    build(
+      (buildable) => buildable.copyWith(
+        selectedIds: [],
+      ),
+    );
   }
 
-  void chooseAllItem(bool isSelected) {
-    if (isSelected) {
-      build((buildable) =>
-          buildable.copyWith(selectedIds: List.from(buildable.cardProductIds)));
-    } else {
-      buildable.copyWith(selectedIds: []);
-    }
-  }
 
-  void toggleCheckbox(int productId) {
-    final Map<int, bool> checkboxState =
-        Map<int, bool>.from(buildable.checkboxState);
+  setSelectIds(List<int> productIds) {
+    List<int> resultIds = [];
+    resultIds.addAll(buildable.selectedIds);
+    debugPrint("resultIds: $resultIds");
 
-    if (checkboxState.containsKey(productId)) {
-      checkboxState[productId] = !checkboxState[productId]!; // Toggle state
-    } else {
-      checkboxState[productId] = true; // Default state to true if not present
-    }
-
-    build((buildable) => buildable.copyWith(checkboxState: checkboxState));
-  }
-
-  // Set checkbox state for all products
-
-  void toggleAllCheckboxes(bool isSelected) {
-    final Map<int, bool> checkboxState = {};
-
-    // Loop through each product and its result list
-    for (var product in buildable.products!) {
-      for (var result in product.result!) {
-        // Use the result id for toggling checkbox state
-        checkboxState[result.id!] = isSelected;
-      }
-    }
-
-//   // Update the state with the new checkboxState and isChoosedAll flag
-//   build((buildable) => buildable.copyWith(
-//     checkboxState: checkboxState,
-//     isChoosedAll: isSelected,
-//   ));
-// }
-
-    // Choose all items in the basket
-    // void chooseAllItem(bool isSelected) {
-    //   final List<int> updatedIds = isSelected ? buildable.cardProductIds : [];
-    //   build((buildable) =>
-    //       buildable.copyWith(selectedIds: updatedIds, isChoosedAll: isSelected));
-    // }
-
-    // Set a single product ID as selected or deselected
-    void setSelectId(int id) {
-      final selectedIds = List<int>.from(buildable.selectedIds);
-      if (selectedIds.contains(id)) {
-        selectedIds.remove(id);
+    for (int i = 0; i < productIds.length; i++) {
+      if (!resultIds.contains(productIds[i])) {
+        resultIds.add(productIds[i]);
       } else {
-        selectedIds.add(id);
+        resultIds.removeWhere((p) => p == productIds[i]);
       }
-      build((buildable) => buildable.copyWith(selectedIds: selectedIds));
     }
+    debugPrint("resultIdNext: $resultIds");
 
-    void clearCheckboxes() {
-      build((buildable) => buildable.copyWith(checkboxState: {}));
-    }
+    build(
+      (buildable) => buildable.copyWith(
+        selectedIds: resultIds,
+      ),
+    );
+  }
 
-    void increaseQuantity(int id) {
-      final products = buildable.products?.map((product) {
-        // Find the result that matches the id and increment its quantity
-        final updatedResults = product.result?.map((result) {
-          if (result.id == id) {
-            return result.copyWith(click_quantity: result.click_quantity! + 1);
-          }
-          return result;
-        }).toList();
 
-        return product.copyWith(result: updatedResults);
+
+
+  void increaseQuantity(int id) {
+    final products = buildable.products?.map((product) {
+      // Find the result that matches the id and increment its quantity
+      final updatedResults = product.result?.map((result) {
+        if (result.id == id) {
+          return result.copyWith(click_quantity: result.click_quantity! + 1);
+        }
+        return result;
       }).toList();
 
-      if (products != null) {
-        build((buildable) => buildable.copyWith(products: products));
-      }
+      return product.copyWith(result: updatedResults);
+    }).toList();
+
+    if (products != null) {
+      build((buildable) => buildable.copyWith(products: products));
     }
+  }
 
-    void decreaseQuantity(int id) {
-      final products = buildable.products?.map((product) {
-        // Find the result that matches the id and decrement its quantity if > 0
-        final updatedResults = product.result?.map((result) {
-          if (result.id == id && result.click_quantity! > 0) {
-            return result.copyWith(click_quantity: result.click_quantity! - 1);
-          }
-          return result;
-        }).toList();
-
-        return product.copyWith(result: updatedResults);
+  void decreaseQuantity(int id) {
+    final products = buildable.products?.map((product) {
+      // Find the result that matches the id and decrement its quantity if > 0
+      final updatedResults = product.result?.map((result) {
+        if (result.id == id && result.click_quantity! > 0) {
+          return result.copyWith(click_quantity: result.click_quantity! - 1);
+        }
+        return result;
       }).toList();
 
-      if (products != null) {
-        build((buildable) => buildable.copyWith(products: products));
-      }
+      return product.copyWith(result: updatedResults);
+    }).toList();
+
+    if (products != null) {
+      build((buildable) => buildable.copyWith(products: products));
     }
   }
 }

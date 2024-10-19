@@ -41,22 +41,27 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               final productItem = widget.product[index];
-
+              final isSelected = state.selectedIds
+                  .contains(widget.product[index]!.product_id!);
               return GestureDetector(
                 child: Column(
                   children: [
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Checkbox(
-                        //   value: state.selectedIds
-                        //       .contains(productItem!.product_id),
-                        //   onChanged: (onChanged) {
-                        //     context
-                        //         .read<FoodBasketCubit>()
-                        //         .setSelectId(productItem!.product_id!);
-                        //   },
-                        // ),
+                        // productItem!.product_id!
+                        Checkbox(
+                          activeColor: const Color(0xFF2473F2),
+                          side: BorderSide(color: FoodColors.c8D909B, width: 1),
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: AppUtils.kBorderRadius4),
+                          value: state.selectedIds.contains(productItem!.product_id!),
+                         onChanged: (value) =>
+                              context.read<FoodBasketCubit>().setSelectIds(
+                            [productItem!.product_id!],
+
+                          ),
+                        ),
                         // Checkbox(
                         //   value: state.isChoosedAll,
                         //   onChanged: (onChanged) {
@@ -67,7 +72,7 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
                         //     });
                         //   },
                         // ),
-                        _buildProductCheckbox(context, productItem!, state),
+                        // _buildProductCheckbox(context, productItem!, state),
                         AppUtils.kGap8,
                         _buildProductImage(productItem),
                         AppUtils.kGap16,
@@ -99,23 +104,23 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
     );
   }
 
-  Checkbox _buildProductCheckbox(
-    BuildContext context, Result product, FoodBasketBuildableState state) {
-  return Checkbox.adaptive(
-    activeColor: const Color(0xFF2473F2),
-    side: BorderSide(color: FoodColors.c8D909B, width: 1),
-    shape: const RoundedRectangleBorder(borderRadius: AppUtils.kBorderRadius4),
-    value: state.selectedIds.contains(product.id), // Agar tanlangan bo'lsa
-    onChanged: (onChanged) {
-      if (onChanged == true) {
-        context.read<FoodBasketCubit>().setSelectIds([product.id!]);
-      } else {
-        context.read<FoodBasketCubit>().clearSelectIds([product.id!]);
-      }
-    },
-  );
-}
-
+  // Checkbox _buildProductCheckbox(
+  //     BuildContext context, Result product, FoodBasketBuildableState state) {
+  //   return Checkbox.adaptive(
+  //     activeColor: const Color(0xFF2473F2),
+  //     side: BorderSide(color: FoodColors.c8D909B, width: 1),
+  //     shape:
+  //         const RoundedRectangleBorder(borderRadius: AppUtils.kBorderRadius4),
+  //     value: state.selectedIds.contains(product.id), // Agar tanlangan bo'lsa
+  //     onChanged: (onChanged) {
+  //       if (onChanged == true) {
+  //         context.read<FoodBasketCubit>().setSelectIds([product.id!]);
+  //       } else {
+  //         context.read<FoodBasketCubit>().clearSelectIds([product.id!]);
+  //       }
+  //     },
+  //   );
+  // }
 
   // Product image widget
   Container _buildProductImage(Result? productItem) {

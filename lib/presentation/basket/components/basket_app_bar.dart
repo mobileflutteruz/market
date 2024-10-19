@@ -5,7 +5,8 @@ class FoodBasketAppBarWidget extends StatelessWidget
   const FoodBasketAppBarWidget({
     super.key,
   });
-
+// <FoodBasketCubit, FoodBasketState,
+//             FoodBasketBuildableState>
   @override
   Widget build(BuildContext context) {
     return Buildable<FoodBasketCubit, FoodBasketState,
@@ -59,24 +60,27 @@ class FoodBasketAppBarWidget extends StatelessWidget
                         side: BorderSide(color: FoodColors.c8D909B, width: 1),
                         shape: const RoundedRectangleBorder(
                             borderRadius: AppUtils.kBorderRadius4),
-                        value: state.selectedIds.length ==
-                            state.cardProductIds
-                                .length, 
+                        value: state.isChoosedAll,
                         onChanged: (onChanged) {
-                          context
-                              .read<FoodBasketCubit>().toggleAllCheckboxes(onChanged!);
-
-                          if (onChanged != true) {
-                            // Mahsulotlarni tanlash
-                            context
-                                .read<FoodBasketCubit>()
-                                .clearSelectIds(state.cardProductIds);
-                          } else {
-                            // Mahsulotlarni bo'shatish
-                            context
-                                .read<FoodBasketCubit>()
-                                .setSelectIds(state.cardProductIds);
+                          print("onChanged: $onChanged");
+                          List<int> productIds = [];
+                          for (int i = 0;
+                              i < state.cardProductIds.length;
+                              i++) {
+                            if (!state.selectedIds
+                                .contains(state.cardProductIds[i])) {
+                              productIds.add(state.cardProductIds[i]);
+                            }
                           }
+
+                          context
+                              .read<FoodBasketCubit>()
+                              .chooseAllItem(onChanged!);
+                          onChanged != true
+                              ? context.read<FoodBasketCubit>().clearSelectIds()
+                              : context
+                                  .read<FoodBasketCubit>()
+                                  .setSelectIds(productIds);
                         },
                       ),
                     ),

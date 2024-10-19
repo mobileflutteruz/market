@@ -1,5 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/config/di/injection.dart';
+import 'package:karmango/core/constants/constants.dart';
+import 'package:karmango/core/extension/context_extension.dart';
+import 'package:karmango/core/utils/utils.dart';
 import 'package:karmango/presentation/basket/components/basket_bottom_bar.dart';
 import 'package:karmango/presentation/basket/components/basket_cart_item.dart';
 import 'package:karmango/presentation/basket/components/basket_components.dart';
@@ -106,7 +109,8 @@ class _BasketViewState extends State<FoodBasketView>
                         if (product != null && product.isNotEmpty) {
                           return FoodBasketCartItem(product: product);
                         } else {
-                          return const SizedBox.shrink(); // If no products, return empty widget
+                          return const SizedBox
+                              .shrink(); // If no products, return empty widget
                         }
                       },
                     ),
