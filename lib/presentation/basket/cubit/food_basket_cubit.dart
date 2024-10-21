@@ -104,13 +104,44 @@ class FoodBasketCubit
   }
 
   // Remove a specific basket ID
+
   Future<void> removeBasketId(int id) async {
-    Map<int, int> ids = await _repo.getBasketIds();
-    ids.removeWhere((key, _) => key == id);
-    await _repo.setBasketIds(ids);
-    build((buildable) => buildable.copyWith(
-        cardProducts: ids, cardProductIds: ids.keys.toList()));
+    try {
+      // Assuming _dataRepo.deleteCartById returns a Future<bool> or similar
+      bool isDeleted = await _dataRepo.deleteBasket(productId: id);
+
+      if (isDeleted) {
+        // Fetch the current basket IDs from the repo
+        Map<int, int> ids = await _repo.getBasketIds();
+
+        // Remove the item with the given ID
+        ids.remove(id);
+
+        // Save the updated basket IDs back to the repo
+        await _repo.setBasketIds(ids);
+
+        // Update the buildable state with the new basket IDs
+        build((buildable) => buildable.copyWith(
+            cardProducts: ids, cardProductIds: ids.keys.toList()));
+      } else {
+        // Handle the case where the item wasn't deleted successfully
+        // You can throw an exception or show an error message
+        throw Exception('Failed to delete the item from the basket');
+      }
+    } catch (e) {
+      // Handle any errors that occur during the process
+      print('Error while removing basket ID: $e');
+    }
   }
+
+  // Future<void> removeBasketId(int id) async {
+  //   // Map<int, int> ids = await _repo.getBasketIds();
+  //   Map<int, int> ids = (await _dataRepo.deleteCartById(productId: id)) as Map<int, int>;
+  //   ids.removeWhere((key, _) => key == id);
+  //   await _repo.setBasketIds(ids);
+  //   build((buildable) => buildable.copyWith(
+  //       cardProducts: ids, cardProductIds: ids.keys.toList()));
+  // }
 
   // Fetch basket IDs and update the state
   Future<void> getBasketIds() async {
@@ -139,22 +170,52 @@ class FoodBasketCubit
   // void clearSelectIds(List<int> selectedIds) {
   //   build((buildable) => buildable.copyWith(selectedIds: selectedIds));
   // }
-chooseAllItem(bool value) {
-    build(
-      (buildable) => buildable.copyWith(
-        isChoosedAll: value,
+  // chooseAllItem(bool value) {
+  //   build(
+  //     (buildable) => buildable.copyWith(
+  //       isChoosedAll: value,
+  //     ),
+  //   );
+  // }
 
-      ),
-    );
-  }
-clearSelectIds() {
-    build(
-      (buildable) => buildable.copyWith(
-        selectedIds: [],
-      ),
-    );
+  // clearSelectIds() {
+  //   build(
+  //     (buildable) => buildable.copyWith(
+  //      selectedIds: [], isChoosedAll: false
+  //     ),
+  //   );
+  // }
+  void toggleAllCheckboxes(bool isSelected) {
+    if (isSelected) {
+      setSelectIds(buildable.cardProductIds); // Barcha mahsulotlarni tanlash
+    } else {
+      clearSelectIds(); // Barcha tanlovlarni tozalash
+    }
   }
 
+  void toggleIndividualCheckbox(int productId, bool isSelected) {
+    List<int> updatedSelectedIds = List<int>.from(buildable.selectedIds);
+
+    if (isSelected) {
+      updatedSelectedIds.add(productId); // Add the productId if selected
+    } else {
+      updatedSelectedIds
+          .remove(productId); // Remove the productId if deselected
+    }
+
+    // Update state with new selectedIds and check if all items are selected
+    build((buildable) => buildable.copyWith(
+        selectedIds: updatedSelectedIds,
+        isChoosedAll:
+            updatedSelectedIds.length == buildable.cardProductIds.length));
+  }
+
+  // void setSelectIds(List<int> productIds) {
+  //   build((buildable) =>
+  //       buildable.copyWith(      selectedIds: productIds,
+  //     isAllSelected: productIds.length == buildable.cardProductIds.length));
+
+  // }
 
   setSelectIds(List<int> productIds) {
     List<int> resultIds = [];
@@ -177,8 +238,21 @@ clearSelectIds() {
     );
   }
 
+  clearSelectIds() {
+    build(
+      (buildable) => buildable.copyWith(
+        selectedIds: [],
+      ),
+    );
+  }
 
-
+  chooseAllItem(bool value) {
+    build(
+      (buildable) => buildable.copyWith(
+        isChoosedAll: value,
+      ),
+    );
+  }
 
   void increaseQuantity(int id) {
     final products = buildable.products?.map((product) {

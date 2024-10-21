@@ -78,6 +78,26 @@ class Api {
     }
   }
 
+//! delete
+  Future<Response> delete({
+    required String path,
+    Map<String, Object>? params,
+    Map<String, dynamic>? body, // Optional body if needed for delete requests
+  }) async {
+    final uri = Uri.https(_host, "$_root$path", params);
+    final headers = await headerswithToken;
+    try {
+      final result = await _httpClient
+          .delete(uri,
+              headers: headers,
+              body: jsonEncode(body)) // Use .delete instead of .post
+          .timeout(_timeout);
+      return propagateErrors(result);
+    } on TimeoutException {
+      throw Exception('Request timed out');
+    }
+  }
+
   //!deleteWithToken
   Future<Response> deleteWithToken({
     required String path,
@@ -175,7 +195,7 @@ class Api {
       case 401:
         throw TokenCredentialExceptions();
       case 400:
-        throw ErrorException(response); 
+        throw ErrorException(response);
       case 403:
         _token.clearToken(); // Clear token on invalid credentials
         throw InvalidCredentialsExceptions();

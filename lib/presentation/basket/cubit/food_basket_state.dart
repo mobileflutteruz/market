@@ -13,6 +13,7 @@ class FoodBasketBuildableState extends FoodBasketState
     @Default('') String errorMessage,
     @Default(0) int tabIndex,
     @Default(0) int quantity,
+    @Default(false) bool isAllSelected,
     @Default(false) bool isChoosedAll,
     @Default(false) bool loading,
       @Default({}) Map<int, bool> checkboxState, 

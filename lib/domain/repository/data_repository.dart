@@ -154,6 +154,30 @@ class DataRepository {
     }
   }
 
+ Future<bool> deleteBasket({required int productId}) async {
+    try {
+      final response =
+          await api.deleteWithToken(path: "/cart/delete/$productId");
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+
+        if (data["status"]) {
+          return true;
+        } else {
+          throw Exception(
+              "Failed to remove from favorites: ${data["message"]}");
+        }
+      } else {
+        throw Exception(
+            "Failed to remove from favorites with status code: ${response.statusCode}");
+      }
+    } catch (error) {
+      print("Error in removing from favorites: $error");
+      rethrow;
+    }
+  }
+
   // /// Cart
   // getAllCarts() async {
   //   final response = await api.getWithToken(path: "/cart");

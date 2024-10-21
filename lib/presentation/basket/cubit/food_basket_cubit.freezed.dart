@@ -23,6 +23,7 @@ mixin _$FoodBasketBuildableState {
   String get errorMessage => throw _privateConstructorUsedError;
   int get tabIndex => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
+  bool get isAllSelected => throw _privateConstructorUsedError;
   bool get isChoosedAll => throw _privateConstructorUsedError;
   bool get loading => throw _privateConstructorUsedError;
   Map<int, bool> get checkboxState => throw _privateConstructorUsedError;
@@ -53,6 +54,7 @@ abstract class $FoodBasketBuildableStateCopyWith<$Res> {
       String errorMessage,
       int tabIndex,
       int quantity,
+      bool isAllSelected,
       bool isChoosedAll,
       bool loading,
       Map<int, bool> checkboxState,
@@ -85,6 +87,7 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
     Object? errorMessage = null,
     Object? tabIndex = null,
     Object? quantity = null,
+    Object? isAllSelected = null,
     Object? isChoosedAll = null,
     Object? loading = null,
     Object? checkboxState = null,
@@ -122,6 +125,10 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      isAllSelected: null == isAllSelected
+          ? _value.isAllSelected
+          : isAllSelected // ignore: cast_nullable_to_non_nullable
+              as bool,
       isChoosedAll: null == isChoosedAll
           ? _value.isChoosedAll
           : isChoosedAll // ignore: cast_nullable_to_non_nullable
@@ -171,6 +178,7 @@ abstract class _$$FoodBasketBuildableStateImplCopyWith<$Res>
       String errorMessage,
       int tabIndex,
       int quantity,
+      bool isAllSelected,
       bool isChoosedAll,
       bool loading,
       Map<int, bool> checkboxState,
@@ -202,6 +210,7 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
     Object? errorMessage = null,
     Object? tabIndex = null,
     Object? quantity = null,
+    Object? isAllSelected = null,
     Object? isChoosedAll = null,
     Object? loading = null,
     Object? checkboxState = null,
@@ -239,6 +248,10 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      isAllSelected: null == isAllSelected
+          ? _value.isAllSelected
+          : isAllSelected // ignore: cast_nullable_to_non_nullable
+              as bool,
       isChoosedAll: null == isChoosedAll
           ? _value.isChoosedAll
           : isChoosedAll // ignore: cast_nullable_to_non_nullable
@@ -284,6 +297,7 @@ class _$FoodBasketBuildableStateImpl
       this.errorMessage = '',
       this.tabIndex = 0,
       this.quantity = 0,
+      this.isAllSelected = false,
       this.isChoosedAll = false,
       this.loading = false,
       final Map<int, bool> checkboxState = const {},
@@ -338,6 +352,9 @@ class _$FoodBasketBuildableStateImpl
   final int quantity;
   @override
   @JsonKey()
+  final bool isAllSelected;
+  @override
+  @JsonKey()
   final bool isChoosedAll;
   @override
   @JsonKey()
@@ -374,7 +391,7 @@ class _$FoodBasketBuildableStateImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FoodBasketBuildableState(currentIndex: $currentIndex, selectedIds: $selectedIds, cardProducts: $cardProducts, cardProductIds: $cardProductIds, errorMessage: $errorMessage, tabIndex: $tabIndex, quantity: $quantity, isChoosedAll: $isChoosedAll, loading: $loading, checkboxState: $checkboxState, products: $products, success: $success, failed: $failed, error: $error)';
+    return 'FoodBasketBuildableState(currentIndex: $currentIndex, selectedIds: $selectedIds, cardProducts: $cardProducts, cardProductIds: $cardProductIds, errorMessage: $errorMessage, tabIndex: $tabIndex, quantity: $quantity, isAllSelected: $isAllSelected, isChoosedAll: $isChoosedAll, loading: $loading, checkboxState: $checkboxState, products: $products, success: $success, failed: $failed, error: $error)';
   }
 
   @override
@@ -389,6 +406,7 @@ class _$FoodBasketBuildableStateImpl
       ..add(DiagnosticsProperty('errorMessage', errorMessage))
       ..add(DiagnosticsProperty('tabIndex', tabIndex))
       ..add(DiagnosticsProperty('quantity', quantity))
+      ..add(DiagnosticsProperty('isAllSelected', isAllSelected))
       ..add(DiagnosticsProperty('isChoosedAll', isChoosedAll))
       ..add(DiagnosticsProperty('loading', loading))
       ..add(DiagnosticsProperty('checkboxState', checkboxState))
@@ -417,6 +435,8 @@ class _$FoodBasketBuildableStateImpl
                 other.tabIndex == tabIndex) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
+            (identical(other.isAllSelected, isAllSelected) ||
+                other.isAllSelected == isAllSelected) &&
             (identical(other.isChoosedAll, isChoosedAll) ||
                 other.isChoosedAll == isChoosedAll) &&
             (identical(other.loading, loading) || other.loading == loading) &&
@@ -438,6 +458,7 @@ class _$FoodBasketBuildableStateImpl
       errorMessage,
       tabIndex,
       quantity,
+      isAllSelected,
       isChoosedAll,
       loading,
       const DeepCollectionEquality().hash(_checkboxState),
@@ -465,6 +486,7 @@ abstract class _FoodBasketBuildableState implements FoodBasketBuildableState {
       final String errorMessage,
       final int tabIndex,
       final int quantity,
+      final bool isAllSelected,
       final bool isChoosedAll,
       final bool loading,
       final Map<int, bool> checkboxState,
@@ -487,6 +509,8 @@ abstract class _FoodBasketBuildableState implements FoodBasketBuildableState {
   int get tabIndex;
   @override
   int get quantity;
+  @override
+  bool get isAllSelected;
   @override
   bool get isChoosedAll;
   @override

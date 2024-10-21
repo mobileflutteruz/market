@@ -49,30 +49,22 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // productItem!.product_id!
-                        Checkbox(
+                        Checkbox.adaptive(
+                          value: state.selectedIds.contains(productItem!.id!),
                           activeColor: const Color(0xFF2473F2),
-                          side: BorderSide(color: FoodColors.c8D909B, width: 1),
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: AppUtils.kBorderRadius4),
-                          value: state.selectedIds.contains(productItem!.product_id!),
-                         onChanged: (value) =>
+                          side: const BorderSide(
+                            color: Color(0xFF8D909B),
+                            width: 1,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          checkColor: ColorConstants.cffffff,
+                          onChanged: (value) =>
                               context.read<FoodBasketCubit>().setSelectIds(
-                            [productItem!.product_id!],
-
+                            [productItem!.id!],
                           ),
                         ),
-                        // Checkbox(
-                        //   value: state.isChoosedAll,
-                        //   onChanged: (onChanged) {
-                        //     setState(() {
-                        //       context
-                        //           .read<FoodBasketCubit>()
-                        //           .chooseAllItem(onChanged!);
-                        //     });
-                        //   },
-                        // ),
-                        // _buildProductCheckbox(context, productItem!, state),
                         AppUtils.kGap8,
                         _buildProductImage(productItem),
                         AppUtils.kGap16,
@@ -85,7 +77,74 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
                               AppUtils.kGap8,
                               _buildProductPrices(productItem, screenWidth),
                               AppUtils.kGap20,
-                              _buildActions(context, productItem),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  GestureDetector(
+                                    onTap: () {
+                                      print("REMOVE ITEEEM");
+                                      BlocProvider.of<FoodBasketCubit>(context)
+                                          .removeBasketId(
+                                              productItem?.product_id ?? 0);
+                                    },
+                                    child: Row(
+                                      children: [
+                                        IconConstants.trash,
+                                        AppUtils.kGap8,
+                                        Text(
+                                          context.l10n.delete,
+                                          style:
+                                              Styles.manropeMedium14.copyWith(
+                                            color: ColorConstants.c8D909B,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            print("MINUUUUUUUUS");
+                                            context
+                                                .read<FoodBasketCubit>()
+                                                .decreaseQuantity(
+                                                    productItem!.product_id!);
+                                          });
+                                        },
+                                        child: _buildIconButton(
+                                            icon: Icons.remove),
+                                      ),
+                                      AppUtils.kGap16,
+                                      Text(
+                                        productItem!.click_quantity!
+                                            .toString(), // Display the current quantity
+                                        style: Styles.manropeMedium14.copyWith(
+                                          color: ColorConstants.c0E1A23,
+                                        ),
+                                      ),
+                                      AppUtils.kGap16,
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            print("PLUUUUUUUUUUS");
+                                            context
+                                                .read<FoodBasketCubit>()
+                                                .increaseQuantity(
+                                                    productItem!.product_id!);
+                                          });
+                                        },
+                                        child:
+                                            _buildIconButton(icon: Icons.add),
+                                      ),
+                                    ],
+                                  ),
+                                  // _buildCounter(productItem), // Updated here
+                                ],
+                              ),
                             ],
                           ),
                         ),
@@ -103,24 +162,6 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
       },
     );
   }
-
-  // Checkbox _buildProductCheckbox(
-  //     BuildContext context, Result product, FoodBasketBuildableState state) {
-  //   return Checkbox.adaptive(
-  //     activeColor: const Color(0xFF2473F2),
-  //     side: BorderSide(color: FoodColors.c8D909B, width: 1),
-  //     shape:
-  //         const RoundedRectangleBorder(borderRadius: AppUtils.kBorderRadius4),
-  //     value: state.selectedIds.contains(product.id), // Agar tanlangan bo'lsa
-  //     onChanged: (onChanged) {
-  //       if (onChanged == true) {
-  //         context.read<FoodBasketCubit>().setSelectIds([product.id!]);
-  //       } else {
-  //         context.read<FoodBasketCubit>().clearSelectIds([product.id!]);
-  //       }
-  //     },
-  //   );
-  // }
 
   // Product image widget
   Container _buildProductImage(Result? productItem) {
@@ -201,48 +242,24 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
     );
   }
 
-  // Action buttons (delete and counter)
-  Row _buildActions(BuildContext context, Result? productItem) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        InkWell(
-          onTap: () {
-            BlocProvider.of<FoodBasketCubit>(context)
-                .removeBasketId(productItem?.id ?? 0);
-          },
-          child: Row(
-            children: [
-              IconConstants.trash,
-              AppUtils.kGap8,
-              Text(
-                context.l10n.delete,
-                style: Styles.manropeMedium14.copyWith(
-                  color: ColorConstants.c8D909B,
-                ),
-              ),
-            ],
-          ),
-        ),
-        _buildCounter(),
-      ],
-    );
-  }
-
   // Counter buttons (increment/decrement)
-  Row _buildCounter() {
+  Row _buildCounter(Result? productItem) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GestureDetector(
           onTap: () {
-            // Handle decrement logic
+            // Correctly call the decreaseQuantity method for minus button
+            context
+                .read<FoodBasketCubit>()
+                .decreaseQuantity(productItem!.product_id!);
           },
           child: _buildIconButton(icon: Icons.remove),
         ),
         AppUtils.kGap16,
         Text(
-          '0', // Replace with your counter state
+          productItem!.click_quantity!
+              .toString(), // Display the current quantity
           style: Styles.manropeMedium14.copyWith(
             color: ColorConstants.c0E1A23,
           ),
@@ -250,7 +267,10 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
         AppUtils.kGap16,
         GestureDetector(
           onTap: () {
-            // Handle increment logic
+            // Correctly call the increaseQuantity method for plus button
+            context
+                .read<FoodBasketCubit>()
+                .increaseQuantity(productItem!.product_id!);
           },
           child: _buildIconButton(icon: Icons.add),
         ),

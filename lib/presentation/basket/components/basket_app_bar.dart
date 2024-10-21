@@ -14,7 +14,8 @@ class FoodBasketAppBarWidget extends StatelessWidget
         properties: (buildable) => [
               buildable.cardProductIds,
               buildable.selectedIds,
-              buildable.isChoosedAll
+              buildable.isChoosedAll,
+              buildable.products,
             ],
         builder: (context, state) {
           return AppBar(
@@ -60,27 +61,20 @@ class FoodBasketAppBarWidget extends StatelessWidget
                         side: BorderSide(color: FoodColors.c8D909B, width: 1),
                         shape: const RoundedRectangleBorder(
                             borderRadius: AppUtils.kBorderRadius4),
-                        value: state.isChoosedAll,
-                        onChanged: (onChanged) {
-                          print("onChanged: $onChanged");
-                          List<int> productIds = [];
-                          for (int i = 0;
-                              i < state.cardProductIds.length;
-                              i++) {
-                            if (!state.selectedIds
-                                .contains(state.cardProductIds[i])) {
-                              productIds.add(state.cardProductIds[i]);
-                            }
-                          }
+                        value: state
+                            .isChoosedAll, // Hammasi tanlanganmi (bu state bilan bog'langan)
+                        onChanged: (isChecked) {
+                          print("onChanged: $isChecked");
 
-                          context
-                              .read<FoodBasketCubit>()
-                              .chooseAllItem(onChanged!);
-                          onChanged != true
-                              ? context.read<FoodBasketCubit>().clearSelectIds()
-                              : context
-                                  .read<FoodBasketCubit>()
-                                  .setSelectIds(productIds);
+                          if (isChecked == true) {
+                            // Agar checkbox bosilgan bo'lsa, barcha mahsulot IDlarini tanlash
+                            context
+                                .read<FoodBasketCubit>()
+                                .setSelectIds(state.cardProductIds);
+                          } else {
+                            // Agar checkbox ochirilib qo'yilsa, tanlashni tozalash
+                            context.read<FoodBasketCubit>().clearSelectIds();
+                          }
                         },
                       ),
                     ),
