@@ -15,33 +15,35 @@ class SearchRepository {
   final LoggingService log = LoggingService();
 
 
+Future<List<SearchProduct>> searchProduct({required String name}) async {
+  const baseUrl = 'https://karmango.shop.dukan.uz'; // Replace with your actual API endpoint
 
- Future<List<SearchProduct>> searchProduct({
-  required String name,
-}) async {
-  // Token bilan so'rov qilish
-  final response = await _api.getWithToken(
-    path: '/search-product?name=$name',
-  );
+  // Debugging step: Print the constructed URL
+  final url = Uri.parse('$baseUrl/api/search-product?name=$name');
+  print('Sending request to: $url');
 
-  // Javob status kodi va body ni chiqaramiz
-  print('Response status: ${response.statusCode}');
-  print('Response body: ${response.body}');
+  // Simplified request for testing (remove if using token-based authentication)
+  // final response = await http.get(url);
 
-  // Javobni JSON formatida dekodlash
-  final result = jsonDecode(response.body);
+  final response = await _api.getWithToken(path: '/api/search-product?name=$name'); // Assuming _api.getWithToken handles tokens
 
-  // JSON ichida 'result' degan kalit borligiga ishonch hosil qilish
-  if (result.containsKey('result')) {
-    final List<SearchProduct> list = List.from(result['result'])
-        .map((el) => SearchProduct.fromJson(el))
-        .toList();
-    
-    return list;
+  if (response.statusCode == 200) {
+    final result = jsonDecode(response.body);
+
+    if (result.containsKey('result')) {
+      final List<SearchProduct> searchResults = List.from(result['result'])
+          .map((el) => SearchProduct.fromJson(el))
+          .toList();
+
+      return searchResults;
+    } else {
+      throw Exception('API response does not contain "result" key');
+    }
   } else {
-    throw Exception('API javobida "result" kaliti topilmadi');
+    throw Exception('API request failed with status code ${response.statusCode}');
   }
 }
+
 
 
 

@@ -15,7 +15,7 @@ class FoodProfileCardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Buildable<FoodProfileCubit, FoodProfileState, FoodProfileBuildableState>(
-      properties: (buildable) => [buildable.user],
+      properties: (buildable) => [buildable.userInfo],
       builder: (context, state) {
         return Scaffold(
           appBar: CommonAppBar(
@@ -27,7 +27,7 @@ class FoodProfileCardPage extends StatelessWidget {
           body: Padding(
             padding: AppUtils.kPaddingHorizontal16,
             // child: state.user != null && state.user
-            child: state.user  != null
+            child: state.userInfo  != null
                 ? _buildCardList(state)
                 : _buildNoCardContent(context),
           ),

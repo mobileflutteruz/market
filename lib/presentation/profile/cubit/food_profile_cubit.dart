@@ -28,10 +28,10 @@ class FoodProfileCubit
     );
   }
 
-  foodSetUser(UserModel? user) {
+  foodSetUser(UserInfo? userInfo) {
     build(
       (buildable) => buildable.copyWith(
-        user: user,
+        userInfo: userInfo,
       ),
     );
   }

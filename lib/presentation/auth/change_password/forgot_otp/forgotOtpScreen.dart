@@ -26,7 +26,7 @@ class _FoodOtpScreenState extends State<ForgotOtpScreen> {
   }
 
   final controller = TextEditingController();
-
+  final formKey = GlobalKey<FormState>();
   @override
   void dispose() {
     controller.dispose();
@@ -45,29 +45,38 @@ class _FoodOtpScreenState extends State<ForgotOtpScreen> {
             constraints: BoxConstraints(
                 minWidth: constraints.maxWidth,
                 minHeight: constraints.maxHeight),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      const FoodLogoWidget(),
-                      SizedBox(height: AppSizes.getH(context, .07)),
-                      _customPin(),
-                    ],
-                  ),
-                  Padding(
-                    padding: AppUtils.kPaddingAll16,
-                    child: CommonFoodButtonWidget(
-                        title: context.l10n.next,
-                        onTap: () {
-                          context
-                              .read<ChangePasswordCubit>()
-                              .verifySms(widget.phoneNumber, controller.text);
-                          Navigator.pushNamed(
-                              context, FoodNavigatorConst.foodChangePassword);
-                        }),
-                  )
-                ]),
+            child: Form(
+              key: formKey,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        const FoodLogoWidget(),
+                        SizedBox(height: AppSizes.getH(context, .07)),
+                        _customPin(),
+                      ],
+                    ),
+                    Padding(
+                      padding: AppUtils.kPaddingAll16,
+                      child: CommonFoodButtonWidget(
+                          title: context.l10n.next,
+                          onTap: () {
+                            if (formKey.currentState!.validate()) {
+                              context
+                                  .read<ChangePasswordCubit>()
+                                  .verifySms(widget.phoneNumber, controller.text);
+                              Navigator.pushNamed(
+                                context,
+                                FoodNavigatorConst.foodChangePassword,
+                                arguments: controller.text,
+                              );
+                            }
+                           
+                          }),
+                    )
+                  ]),
+            ),
           ),
         );
       }),

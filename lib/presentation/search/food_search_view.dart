@@ -1,226 +1,234 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:karmango/domain/model/search/search_product.dart';
+import 'package:karmango/core/constants/navigator_const.dart';
+import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/presentation/components/buildable.dart';
+import 'package:karmango/presentation/my_order/my_order_page.dart';
+import 'package:karmango/presentation/profile/components/exit_button.dart';
+import 'package:karmango/presentation/profile/components/profile_card_item.dart';
+import 'package:karmango/presentation/profile/cubit/food_profile_cubit.dart';
+import 'package:karmango/presentation/search/components/search_components.dart';
 import 'package:karmango/presentation/search/cubit/search_cubit.dart';
-import 'dart:async';
+import '../../../../../core/constants/constants.dart';
+import '../../../../../core/utils/utils.dart';
 
 class FoodSearchView extends StatefulWidget {
   const FoodSearchView({super.key});
 
   @override
-  _FoodSearchViewState createState() => _FoodSearchViewState();
+  State<FoodSearchView> createState() => _FoodSearchViewState();
 }
 
 class _FoodSearchViewState extends State<FoodSearchView> {
-  late TextEditingController _searchController;
-  Timer? _debounce;
-
   @override
-  void initState() {
-    super.initState();
-    _searchController = TextEditingController();
-    context.read<SearchedCubit>().searchedHistory();
-    _searchController.addListener(_onSearchChanged);
+  Widget build(BuildContext context) {
+    return BlocListener<SearchedCubit, SearchState>(
+      listener: (context, state) {},
+      child: Buildable<SearchedCubit, SearchState, SearchdBuildableState>(
+        properties: (buildable) => [
+          buildable.notificationValue,
+          buildable.profileUser,
+        ],
+        builder: (context, state) {
+          final isGuest = state.foodUser == null;
+
+          return Scaffold(
+            backgroundColor: ColorConstants.cF6F6F6,
+            appBar: FoodSearchAppBarWidget(),
+            body: ListView(
+              padding: AppUtils.kPaddingAll16,
+              children: [
+                _buildProfileCard(state, isGuest),
+                const SizedBox(height: 16),
+                _buildSettingsOptions(context, isGuest),
+              ],
+            ),
+          );
+        },
+      ),
+    );
   }
 
-  @override
-  void dispose() {
-    _debounce?.cancel();
-    _searchController.removeListener(_onSearchChanged);
-    _searchController.dispose();
-    super.dispose();
+  Widget _buildProfileCard(SearchdBuildableState state, bool isGuest) {
+    return GestureDetector(
+      onTap: () {
+        if (isGuest) {
+          Navigator.pushNamed(context, FoodNavigatorConst.foodLoginScreen);
+        } else {
+          _navigateToProfileEdit(context, state);
+        }
+      },
+      child: isGuest ? _buildGuestPrompt() : _buildUserProfileCard(state),
+    );
   }
 
-  void _onSearchChanged() {
-    if (_debounce?.isActive ?? false) _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 300), () {
-      final query = _searchController.text.trim();
-      if (query.isNotEmpty) {
-        context.read<SearchedCubit>().searchProducts(query);
-      } else {
-        context.read<SearchedCubit>().searchedHistory();
+  Widget _buildGuestPrompt() {
+    return Container(
+      padding: AppUtils.kPaddingHor16Ver20,
+      decoration: BoxDecoration(
+        color: ColorConstants.white,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Welcome, Guest!',
+            style: Styles.manropeSemiBold20.copyWith(color: ColorConstants.c0E1A23),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Log in to access personalized features.',
+            style: Styles.manropeMedium14.copyWith(color: FoodColors.c909090),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () => Navigator.pushNamed(context, FoodNavigatorConst.foodLoginScreen),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: ColorConstants.c2472F2,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            ),
+            child: Text(
+              'Login',
+              style: Styles.manropeSemiBold16.copyWith(color: Colors.white),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildUserProfileCard(SearchdBuildableState state) {
+    final user = state.foodUser!.result;
+
+    return Row(
+      children: [
+        Container(
+          width: 56,
+          height: 56,
+          decoration: BoxDecoration(
+            color: ColorConstants.cF5F5F5,
+            shape: BoxShape.circle,
+            image: user.image != null
+                ? DecorationImage(image: FileImage(File(user.image)), fit: BoxFit.fill)
+                : null,
+          ),
+          child: user.image == null ? IconConstants.user : null,
+        ),
+        const SizedBox(width: 10),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              user.name ?? 'Your Name',
+              style: Styles.interMedium16.copyWith(color: ColorConstants.c0E1A23),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              user.phone ?? '',
+              style: Styles.interRegular12.copyWith(color: ColorConstants.c8D909B),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  void _navigateToProfileEdit(BuildContext context, SearchdBuildableState state) {
+    final cubit = context.read<FoodProfileCubit>();
+    Navigator.pushNamed(context, FoodNavigatorConst.foodProfileEdit).then((value) {
+      if (value != null && state.foodUser != null) {
+        cubit.foodSetUser(state.foodUser!);
       }
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        title: TextField(
-          controller: _searchController,
-          onSubmitted: (value) {
-            context.read<SearchedCubit>().searchProducts(_searchController.text);
-          },
-          decoration: InputDecoration(
-            hintText: 'Найти продукты',
-            border: InputBorder.none,
-            suffixIcon: _searchController.text.isNotEmpty
-                ? IconButton(
-                    icon: Icon(Icons.clear),
-                    onPressed: () {
-                      _searchController.clear();
-                      context.read<SearchedCubit>().searchedHistory();
-                    },
-                  )
-                : Icon(Icons.search),
-          ),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Buildable<SearchedCubit, SearchState, SearchdBuildableState>(
-          properties: (p) => [
-            p.loading,
-            p.failure,
-            p.success,
-            p.product,
-            p.searched,
-          ],
-          builder: (context, state) {
-            if (state.loading) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (state.failure) {
-              return const Center(child: Text('Что-то пошло не так.'));
-            }
-            if (state.success &&
-                state.product != null &&
-                state.product!.isNotEmpty) {
-              return _buildSearchResults(state.product!);
-            }
-            if (_searchController.text.isEmpty) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildRecentSearches(state),
-                  const SizedBox(height: 16),
-                  _buildPopularSearches(state),
-                ],
-              );
-            }
-            return const Center(child: Text('Ничего не найдено.'));
-          },
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSearchResults(List<SearchProduct> products) {
-    return ListView.builder(
-      itemCount: products.length,
-      itemBuilder: (context, index) {
-        final product = products[index];
-        return ListTile(
-          leading: product.image != null && product.image!.isNotEmpty
-              ? Image.network(
-                  product.image!,
-                  width: 50,
-                  height: 50,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      width: 50,
-                      height: 50,
-                      color: Colors.grey,
-                      child: Icon(Icons.error),
-                    );
-                  },
-                )
-              : Container(
-                  width: 50,
-                  height: 50,
-                  color: Colors.grey,
-                  child: Icon(Icons.image_not_supported),
-                ),
-          title: Text(product.name ?? 'No name'),
-          subtitle: Text('${product.price ?? 0} \$'),
+  Widget _buildSettingsOptions(BuildContext context, bool isGuest) {
+    return Column(
+      children: [
+        FoodProfileCardItemWidget(
+          icon: IconConstants.myOrder,
+          text: context.l10n.myOrder,
           onTap: () {
-            // Handle product selection
+            if (isGuest) {
+              _showLoginPrompt(context);
+            } else {
+              Navigator.push(context, MaterialPageRoute(builder: (_) => FoodMyOrderPage()));
+            }
           },
-        );
-      },
-    );
-  }
-
-  Widget _buildRecentSearches(SearchdBuildableState state) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              'Последний поиск',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            TextButton(
-              onPressed: () {
-                context.read<SearchedCubit>().deleteAll();
-              },
-              child: const Text(
-                'Очистить',
-                style: TextStyle(color: Colors.red),
-              ),
-            ),
-          ],
         ),
-        const SizedBox(height: 8),
-        if (state.searched?.result?.search_history != null &&
-            state.searched!.result!.search_history!.isNotEmpty)
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: state.searched!.result!.search_history!.length,
-            itemBuilder: (context, index) {
-              final historyItem =
-                  state.searched!.result!.search_history![index];
-              return ListTile(
-                leading: const Icon(Icons.history),
-                title: Text(historyItem.word!),
-                trailing: IconButton(
-                  icon: const Icon(Icons.clear),
-                  onPressed: () {
-                    final int id = int.parse(historyItem.id.toString());
-                    context.read<SearchedCubit>().deletById(id);
-                  },
-                ),
-              );
-            },
-          ),
+        FoodProfileCardItemWidget(
+          icon: IconConstants.myCard,
+          text: context.l10n.myCards,
+          onTap: () {
+            if (isGuest) {
+              _showLoginPrompt(context);
+            } else {
+              Navigator.pushNamed(context, FoodNavigatorConst.foodProfileCard);
+            }
+          },
+        ),
+        FoodProfileCardItemWidget(
+          icon: IconConstants.setting,
+          text: context.l10n.settings,
+          onTap: () {
+            if (isGuest) {
+              _showLoginPrompt(context);
+            } else {
+              Navigator.pushNamed(context, FoodNavigatorConst.foodSettings);
+            }
+          },
+        ),
+        FoodExitButtonWidget(
+          onTap: () => _showExitDialog(context),
+        ),
+        const SizedBox(height: 16),
       ],
     );
   }
 
-  Widget _buildPopularSearches(SearchdBuildableState state) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Популярные запросы',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 8),
-        if (state.searched?.result?.top_search != null)
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: state.searched!.result!.top_search!.length,
-            itemBuilder: (context, index) {
-              final popularItem = state.searched!.result!.top_search![index];
-              return ListTile(
-                title: Text(popularItem.word!),
-              );
-            },
+  void _showLoginPrompt(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Login Required'),
+        content: const Text('Please log in to access this feature.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
           ),
-      ],
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, FoodNavigatorConst.foodLoginScreen);
+            },
+            child: const Text('Login'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showExitDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Exit App'),
+        content: const Text('Do you want to exit?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('No'),
+          ),
+          TextButton(
+            onPressed: () => exit(0),
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
     );
   }
 }

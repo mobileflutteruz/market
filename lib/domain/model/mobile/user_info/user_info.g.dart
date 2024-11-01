@@ -8,10 +8,8 @@ part of 'user_info.dart';
 
 _$UserInfoImpl _$$UserInfoImplFromJson(Map<String, dynamic> json) =>
     _$UserInfoImpl(
-      status: json['status'] as bool?,
-      result: json['result'] == null
-          ? null
-          : Result.fromJson(json['result'] as Map<String, dynamic>),
+      status: json['status'] as bool,
+      result: Result.fromJson(json['result'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$UserInfoImplToJson(_$UserInfoImpl instance) =>
@@ -21,9 +19,10 @@ Map<String, dynamic> _$$UserInfoImplToJson(_$UserInfoImpl instance) =>
     };
 
 _$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
-      user_id: (json['user_id'] as num?)?.toInt(),
-      name: json['name'] as String?,
-      phone: json['phone'],
+      user_id: (json['user_id'] as num).toInt(),
+      name: json['name'] as String,
+      phone: json['phone'] as String,
+      image: json['image'] as String,
     );
 
 Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
@@ -31,4 +30,5 @@ Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
       'user_id': instance.user_id,
       'name': instance.name,
       'phone': instance.phone,
+      'image': instance.image,
     };

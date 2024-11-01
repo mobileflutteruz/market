@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:karmango/data/preferences/token_preferences.dart';
 import 'package:karmango/domain/model/mobile/basket/basket_products.dart';
 import 'package:karmango/domain/repository/data_repository.dart';
 import 'package:karmango/domain/repository/main_repository.dart';
@@ -12,11 +13,11 @@ part 'food_basket_cubit.freezed.dart';
 @Injectable()
 class FoodBasketCubit
     extends BuildableCubit<FoodBasketState, FoodBasketBuildableState> {
-  FoodBasketCubit(this._repo, this._dataRepo)
+  FoodBasketCubit(this._repo, this._dataRepo, this.tokenPreference)
       : super(const FoodBasketBuildableState()) {
     getBasketIds();
   }
-
+  final TokenPreference tokenPreference;
   final MainRepository _repo;
   final DataRepository _dataRepo;
 
@@ -42,6 +43,17 @@ class FoodBasketCubit
   //   build((buildable) => buildable.copyWith(selectedIds: selectedIds));
   // }
 
+  // Future<void> checkUserStatus() async {
+  //   final user = await tokenPreference.getUser();
+  //   if (user != null) {
+  //     build((buildable) =>
+  //         buildable.copyWith(FoodProfileLoggedIn(user: user)));
+  //     emit(FoodProfileLoggedIn(user: user));
+  //   } else {
+  //     emit(FoodProfileGuest());
+  //   }
+  // }
+
   // Fetch basket products and handle loading states
   Future<void> basketProducts() async {
     build((buildable) => buildable.copyWith(loading: true));
@@ -57,6 +69,7 @@ class FoodBasketCubit
   }
 
   // Add a product to the basket
+  // Todo  sat
   Future<void> setBasketProducts(int productId) async {
     build((buildable) => buildable.copyWith(loading: true));
     try {
@@ -70,16 +83,30 @@ class FoodBasketCubit
     }
   }
 
-  // Update basket IDs in the repository
-  Future<void> updateBasket(Map<int, int> values) async {
-    Map<int, int> ids = await _repo.getBasketIds();
-    if (values.isNotEmpty) {
-      ids.addAll(values); // Merge the new values into the existing IDs
-      await _repo.setBasketIds(ids); // Update the repository
-      build((buildable) => buildable.copyWith(
-          cardProducts: ids, cardProductIds: ids.keys.toList()));
+  Future<void> removeBasketProductsById(int product_id) async {
+    build((buildable) => buildable.copyWith(loading: true));
+    try {
+      final bool success =
+          await _dataRepo.deleteBasketById(product_id: product_id);
+      build(
+          (buildable) => buildable.copyWith(loading: false, success: success));
+    } catch (e) {
+      debugPrint("Error creating basket: $e");
+      build((buildable) =>
+          buildable.copyWith(loading: false, failed: true, error: true));
     }
   }
+
+  // // Update basket IDs in the repository
+  // Future<void> updateBasket(Map<int, int> values) async {
+  //   Map<int, int> ids = await _repo.getBasketIds();
+  //   if (values.isNotEmpty) {
+  //     ids.addAll(values); // Merge the new values into the existing IDs
+  //     await _repo.setBasketIds(ids); // Update the repository
+  //     build((buildable) => buildable.copyWith(
+  //         cardProducts: ids, cardProductIds: ids.keys.toList()));
+  //   }
+  // }
 
   // Clear basket IDs
   Future<void> clearBasketIds() async {
@@ -105,32 +132,60 @@ class FoodBasketCubit
 
   // Remove a specific basket ID
 
-  Future<void> removeBasketId(int id) async {
+  // Future<void> removeBasketId(int id) async {
+  //   try {
+  //     // Assuming _dataRepo.deleteCartById returns a Future<bool> or similar
+  //     bool isDeleted = await _dataRepo.deleteBasket(productId: id);
+
+  //     if (isDeleted) {
+  //       // Fetch the current basket IDs from the repo
+  //       Map<int, int> ids = await _repo.getBasketIds();
+
+  //       // Remove the item with the given ID
+  //       ids.remove(id);
+
+  //       // Save the updated basket IDs back to the repo
+  //       await _repo.setBasketIds(ids);
+
+  //       // Update the buildable state with the new basket IDs
+  //       build((buildable) => buildable.copyWith(
+  //           cardProducts: ids, cardProductIds: ids.keys.toList()));
+  //     } else {
+  //       // Handle the case where the item wasn't deleted successfully
+  //       // You can throw an exception or show an error message
+  //       throw Exception('Failed to delete the item from the basket');
+  //     }
+  //   } catch (e) {
+  //     // Handle any errors that occur during the process
+  //     print('Error while removing basket ID: $e');
+  //   }
+  // }
+
+  Future<void> removeAllBasket() async {
     try {
-      // Assuming _dataRepo.deleteCartById returns a Future<bool> or similar
-      bool isDeleted = await _dataRepo.deleteBasket(productId: id);
+      // Assuming _dataRepo.deleteAllBasket() returns a Future<bool>
+      bool isDeleted = await _dataRepo.deleteAllBasket();
 
       if (isDeleted) {
         // Fetch the current basket IDs from the repo
         Map<int, int> ids = await _repo.getBasketIds();
 
-        // Remove the item with the given ID
-        ids.remove(id);
+        // Clear all items from the basket
+        ids.clear();
 
-        // Save the updated basket IDs back to the repo
+        // Save the updated (empty) basket IDs back to the repo
         await _repo.setBasketIds(ids);
 
-        // Update the buildable state with the new basket IDs
-        build((buildable) => buildable.copyWith(
-            cardProducts: ids, cardProductIds: ids.keys.toList()));
+        // Update the buildable state with the new empty basket
+        build((buildable) =>
+            buildable.copyWith(cardProducts: {}, cardProductIds: []));
       } else {
-        // Handle the case where the item wasn't deleted successfully
-        // You can throw an exception or show an error message
-        throw Exception('Failed to delete the item from the basket');
+        // Handle the case where the basket wasn't deleted successfully
+        throw Exception('Failed to delete all items from the basket');
       }
     } catch (e) {
       // Handle any errors that occur during the process
-      print('Error while removing basket ID: $e');
+      print('Error while removing all items from basket: $e');
     }
   }
 

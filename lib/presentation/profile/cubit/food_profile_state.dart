@@ -13,7 +13,7 @@ class FoodProfileBuildableState extends FoodProfileState
     @Default(false) bool success,
     @Default(false) bool failure,
     @Default('') String errorMessage,
-    UserModel? user,
+    // UserModel? user,
     UserInfo? userInfo,
     List? cards,
  
@@ -21,4 +21,10 @@ class FoodProfileBuildableState extends FoodProfileState
     @Default('') String imagePath,
   }) = _FoodProfileBuildableState;
   
+}
+class FoodProfileInitial extends FoodProfileState {}
+class FoodProfileGuest extends FoodProfileState {}
+class FoodProfileLoggedIn extends FoodProfileState {
+  final UserModel user;
+  FoodProfileLoggedIn({required this.user});
 }

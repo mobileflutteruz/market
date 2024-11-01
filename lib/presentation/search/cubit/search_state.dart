@@ -13,6 +13,10 @@ class SearchdBuildableState extends SearchState with _$SearchdBuildableState {
     SearchedHistory? searched,
     AllProductDeleted? allDeleted,
     DeletedId? deletedId,
+     @Default(null) String? userName,
+    @Default(false) bool notificationValue,
+    @Default(null) UserModel? profileUser,
+    @Default(null) UserInfo? foodUser,
   }) = _SearchedBuildableState;
 }
 

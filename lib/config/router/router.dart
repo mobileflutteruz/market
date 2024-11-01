@@ -2,7 +2,7 @@ import 'package:karmango/app_container_screen.dart';
 import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
 import 'package:karmango/presentation/auth/change_password/components/const_comp.dart';
-import 'package:karmango/presentation/auth/change_password/components/forgotOtpScreen.dart';
+import 'package:karmango/presentation/auth/change_password/forgot_otp/forgotOtpScreen.dart';
 import 'package:karmango/presentation/auth/change_password/components/phone_input.dart';
 import 'package:karmango/presentation/auth/login/food_login_page.dart';
 import 'package:karmango/presentation/auth/splash/food_splash_view.dart';

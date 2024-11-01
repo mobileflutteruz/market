@@ -33,6 +33,8 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
       properties: (buildable) =>
           [buildable.selectedIds, buildable.cardProductIds],
       builder: (context, state) {
+
+        
         return Padding(
           padding: AppUtils.kPaddingAll16,
           child: ListView.builder(
@@ -62,7 +64,7 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
                           checkColor: ColorConstants.cffffff,
                           onChanged: (value) =>
                               context.read<FoodBasketCubit>().setSelectIds(
-                            [productItem!.id!],
+                            [productItem.id!],
                           ),
                         ),
                         AppUtils.kGap8,
@@ -81,12 +83,17 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
+                                  //! bu remove cart item
                                   GestureDetector(
                                     onTap: () {
-                                      print("REMOVE ITEEEM");
+                                      print(
+                                          "REMOVE ITEEEM:: ${productItem.product_id}");
                                       BlocProvider.of<FoodBasketCubit>(context)
-                                          .removeBasketId(
-                                              productItem?.product_id ?? 0);
+                                          .removeBasketProductsById(
+                                              productItem.product_id!);
+                                      context
+                                          .read<FoodBasketCubit>()
+                                          .basketProducts();
                                     },
                                     child: Row(
                                       children: [
@@ -112,7 +119,7 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
                                             context
                                                 .read<FoodBasketCubit>()
                                                 .decreaseQuantity(
-                                                    productItem!.product_id!);
+                                                    productItem.product_id!);
                                           });
                                         },
                                         child: _buildIconButton(
@@ -120,7 +127,7 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
                                       ),
                                       AppUtils.kGap16,
                                       Text(
-                                        productItem!.click_quantity!
+                                        productItem.click_quantity!
                                             .toString(), // Display the current quantity
                                         style: Styles.manropeMedium14.copyWith(
                                           color: ColorConstants.c0E1A23,
@@ -134,7 +141,7 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
                                             context
                                                 .read<FoodBasketCubit>()
                                                 .increaseQuantity(
-                                                    productItem!.product_id!);
+                                                    productItem.product_id!);
                                           });
                                         },
                                         child:
@@ -270,7 +277,7 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
             // Correctly call the increaseQuantity method for plus button
             context
                 .read<FoodBasketCubit>()
-                .increaseQuantity(productItem!.product_id!);
+                .increaseQuantity(productItem.product_id!);
           },
           child: _buildIconButton(icon: Icons.add),
         ),

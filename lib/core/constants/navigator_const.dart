@@ -8,6 +8,7 @@ sealed class FoodNavigatorConst {
   static const String foodChangePassword = "/foodChangePassword";
   static const String foodReOtpScreen = "/foodReOtpScreen";
   static const String foodOtpScreen = "/foodOtpScreen";
+  static const String forgotOtp = "/forgotOtp";
   static const String foodSearchPage = "/foodSearchPage";
   static const String forgotOtpScreen = "/forgotOtpScreen";
   static const String foodChooseApp = "/foodChooseApp";

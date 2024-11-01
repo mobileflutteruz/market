@@ -30,7 +30,7 @@ class _FoodProfileViewState extends State<FoodProfileView> {
     return Buildable<FoodProfileCubit, FoodProfileState,
         FoodProfileBuildableState>(
       properties: (buildable) => [
-        buildable.user,
+        buildable.userInfo,
         buildable.userInfo,
         buildable.token,
       ],
@@ -43,7 +43,7 @@ class _FoodProfileViewState extends State<FoodProfileView> {
           body: ListView(
             shrinkWrap: true,
             children: [
-              _buildProfileHeader(context, state.user),
+              _buildProfileHeader(context, state.userInfo),
               _buildProfileOptions(context),
             ],
           ),
@@ -60,8 +60,10 @@ class _FoodProfileViewState extends State<FoodProfileView> {
       child: GestureDetector(
         onTap: () async {
           if (foodUser == null) {
-            Navigator.pushNamed(context, FoodNavigatorConst.foodProfileEdit);
+            print("NULLLLLLLLLLL EMAAAAAAAAAAAAAAAAS");
+            Navigator.pushNamed(context, FoodNavigatorConst.foodLoginScreen);
           } else {
+             print("NULLLLLLLLLLL ");
             await Navigator.pushNamed(
                     context, FoodNavigatorConst.foodProfileEdit)
                 .then((value) {
@@ -107,7 +109,7 @@ class _FoodProfileViewState extends State<FoodProfileView> {
           AppUtils.kGap16,
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, FoodNavigatorConst.foodProfileEdit);
+              Navigator.pushNamed(context, FoodNavigatorConst.foodLoginScreen);
             },
             child: Container(
               padding: AppUtils.kPaddingVertical8,
@@ -132,6 +134,7 @@ class _FoodProfileViewState extends State<FoodProfileView> {
   }
 
   Widget _buildUserProfileSection(BuildContext context, UserModel foodUser,) {
+    print("DATA KELDI: ${foodUser}");
     return Row(
       children: [
         Container(

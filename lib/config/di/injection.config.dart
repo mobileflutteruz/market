@@ -112,14 +112,15 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i677.AuthApi>(),
         gh<_i716.UserSessionManager>(),
       ));
-  gh.factory<_i165.FoodBasketCubit>(() => _i165.FoodBasketCubit(
-        gh<_i259.MainRepository>(),
-        gh<_i98.DataRepository>(),
-      ));
   gh.factory<_i540.LoginCubit>(() => _i540.LoginCubit(
         gh<_i677.AuthApi>(),
         gh<_i614.AuthRepository>(),
         gh<_i716.UserSessionManager>(),
+      ));
+  gh.factory<_i165.FoodBasketCubit>(() => _i165.FoodBasketCubit(
+        gh<_i259.MainRepository>(),
+        gh<_i98.DataRepository>(),
+        gh<_i401.TokenPreference>(),
       ));
   gh.factory<_i569.CategoryProductCubit>(
       () => _i569.CategoryProductCubit(gh<_i98.DataRepository>()));
@@ -127,8 +128,6 @@ Future<_i174.GetIt> $initGetIt(
       () => _i1068.CategoryCubit(gh<_i98.DataRepository>()));
   gh.factory<_i702.FavouritesCubit>(
       () => _i702.FavouritesCubit(gh<_i98.DataRepository>()));
-  gh.factory<_i398.ChangePasswordCubit>(
-      () => _i398.ChangePasswordCubit(gh<_i614.AuthRepository>()));
   gh.factory<_i827.RegisterCubit>(
       () => _i827.RegisterCubit(gh<_i614.AuthRepository>()));
   gh.factory<_i205.FoodProfileCubit>(
@@ -138,6 +137,11 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i259.MainRepository>(),
         gh<_i98.DataRepository>(),
         gh<_i614.AuthRepository>(),
+      ));
+  gh.factory<_i398.ChangePasswordCubit>(() => _i398.ChangePasswordCubit(
+        gh<_i614.AuthRepository>(),
+        gh<_i401.TokenPreference>(),
+        gh<_i716.UserSessionManager>(),
       ));
   return getIt;
 }

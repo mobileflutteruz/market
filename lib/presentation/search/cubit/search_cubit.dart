@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:injectable/injectable.dart';
+import 'package:karmango/domain/model/mobile/user/user.dart';
+import 'package:karmango/domain/model/mobile/user_info/user_info.dart';
 import 'package:karmango/domain/model/search/all_product_deleted/all_product_deleted.dart';
 import 'package:karmango/domain/model/search/search_product.dart';
 import 'package:karmango/domain/model/search/searched/searched_history.dart';
@@ -20,37 +22,35 @@ class SearchedCubit extends BuildableCubit<SearchState, SearchdBuildableState> {
 
   final DataRepository repo;
   final SearchRepository _dataRepository;
+Future<void> searchProducts(String query) async {
+  try {
+    build((buildable) => buildable.copyWith(loading: true));
 
+    final List<SearchProduct>? products = await _dataRepository.searchProduct(name: query);
 
- Future<void> searchProducts(String query) async {
-    try {
-       (buildable) => buildable.copyWith(loading: true);
-
-      final List<SearchProduct>? products = await _dataRepository.searchProduct(name: query);
-
-      if (products != null && products.isNotEmpty) {
-        (buildable) => buildable.copyWith(
-          loading: false,
-          success: true,
-          failure: false,
-          product: products,
-        );
-      } else {
-        (buildable) => buildable.copyWith(
-          loading: false,
-          success: true,
-          failure: false,
-          product: [],
-        );
-      }
-    } catch (e) {
-      (buildable) => buildable.copyWith(
+    if (products != null && products.isNotEmpty) {
+      build((buildable) => buildable.copyWith(
         loading: false,
-        failure: true,
-        error: e.toString(),
-      );
+        success: true,
+        failure: false,
+        product: products,
+      ));
+    } else {
+      build((buildable) => buildable.copyWith(
+        loading: false,
+        success: true,
+        failure: false,
+        product: [],
+      ));
     }
+  } catch (e) {
+    build((buildable) => buildable.copyWith(
+      loading: false,
+      failure: true,
+      error: e.toString(),
+    ));
   }
+}
 
 
 
@@ -119,6 +119,9 @@ class SearchedCubit extends BuildableCubit<SearchState, SearchdBuildableState> {
         ),
       );
     }
+  }
+  setUser(){
+
   }
 
   Future<void> deleteAll() async {

@@ -5,7 +5,7 @@ import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/core/utils/utils.dart';
 import 'package:karmango/domain/repository/auth_repository.dart';
-import 'package:karmango/presentation/auth/change_password/components/forgotOtpScreen.dart';
+import 'package:karmango/presentation/auth/change_password/forgot_otp/forgotOtpScreen.dart';
 import 'package:karmango/presentation/auth/change_password/cubit/change_cubit.dart';
 import 'package:karmango/presentation/auth/widgets/app_logo.dart';
 import 'package:karmango/presentation/auth/widgets/common_food_button.dart';

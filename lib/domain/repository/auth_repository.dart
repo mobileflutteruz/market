@@ -56,33 +56,27 @@ class AuthRepository {
     }
   }
 
-  Future<ChangePasswordModel> updatePassword(
-      String newPass, String confirmPass) async {
-    try {
-      // Saqlangan User ID-ni olish
-      final String? userId = await _token.getUserId();
+  Future<ChangePasswordModel> updatePassword(String newPass, String confirmPass) async {
+  try {
+    final String? userId = await _token.getUserId();
+    print("__________________________USER ID: $userId");
 
-      print("__________________________USER ID: $userId");
-
-      if (userId == null) {
-        throw AuthenticationException('User not found');
-      }
-
-      final response = await authApi.resetPassword(
-        newPass,
-        confirmPass,
-        userId,
-      );
-
-      final Map<String, dynamic> result =
-          Map<String, dynamic>.from(jsonDecode(response.body));
-      return ChangePasswordModel.fromJson(result);
-    } catch (e) {
-      // Xatolikni log qilish va qayta otish
-      print('Error updating password: $e');
-      rethrow;
+    if (userId == null) {
+      print("User ID mavjud emas.");
+      throw AuthenticationException('User ID topilmadi');
     }
+
+    final response = await authApi.resetPassword(newPass, confirmPass, userId);
+    final Map<String, dynamic> result = jsonDecode(response.body);
+
+    return ChangePasswordModel.fromJson(result);
+  } catch (e) {
+    print('Error updating password: $e');
+    rethrow;
   }
+}
+
+
 
   bool isValidPassword(String password, String confirmPassword) {
     return password.length >= 8 && password == confirmPassword;
@@ -111,25 +105,36 @@ class AuthRepository {
     return data;
   }
 
-  Future<void> verify(String phone, String code) async {
+  // Future<void> verify(String phone, String code) async {
+  //   try {
+  //     final response = await authApi.verfy(phone, code);
+  //     final responseBody = jsonDecode(response.body);
+
+  //     if (responseBody['status'] == true) {
+  //       final userId = responseBody['user_id_to_restore_password'];
+
+  //       // Saqlangan User ID
+  //       await _token
+  //           .saveUserId(userId); // _token obyekti orqali user_id ni saqlaymiz
+
+  //       log.logInfo('User verified successfully: ${responseBody['message']}');
+  //     } else {
+  //       throw AuthenticationException(
+  //           'Verification failed: ${responseBody['message']}');
+  //     }
+  //   } catch (e) {
+  //     log.logError("Error verifying user", error: e);
+  //     rethrow;
+  //   }
+  // }
+  Future<void> verifySms(String phone, String code) async {
     try {
       final response = await authApi.verfy(phone, code);
-
-      // Response body'sini JSON formatga o'zgartirish
-      final Map<String, dynamic> responseBody = jsonDecode(response.body);
-
-      if (responseBody['status'] == true) {
-        final userId = responseBody['user_id_to_restore_password'].toString();
-
-        // User ID-ni saqlash
-        await _token.setUserId(userId);
-      }
-
-      await _onAuthResponse(responseBody as Response);
+      await _onAuthResponse(response);
     } catch (e) {
       log.logError("Error verifying user", error: e);
     }
-  }
+  } 
 
   Future<void> loginAsGuest() async {
     try {
@@ -205,22 +210,22 @@ class AuthRepository {
     }
   }
 
-  Future<void> verifySms(String phone, String code) async {
-    try {
-      final response = await authApi.verfy(phone, code);
-      final responseBody = jsonDecode(response.body);
+  // Future<void> verifySms(String phone, String code) async {
+  //   try {
+  //     final response = await authApi.verfy(phone, code);
+  //     final responseBody = jsonDecode(response.body);
 
-      if (responseBody['status'] == true) {
-        log.logInfo('User verified successfully: ${responseBody['message']}');
-      } else {
-        throw AuthenticationException(
-            'Verification failed: ${responseBody['message']}');
-      }
-    } catch (e) {
-      log.logError("Error verifying user", error: e);
-      rethrow;
-    }
-  }
+  //     if (responseBody['status'] == true) {
+  //       log.logInfo('User verified successfully: ${responseBody['message']}');
+  //     } else {
+  //       throw AuthenticationException(
+  //           'Verification failed: ${responseBody['message']}');
+  //     }
+  //   } catch (e) {
+  //     log.logError("Error verifying user", error: e);
+  //     rethrow;
+  //   }
+  // }
 
   // Future<void> verifySms(String phone, String code) async {
   //   try {

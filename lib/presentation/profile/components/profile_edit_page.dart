@@ -141,7 +141,7 @@ class _FoodProfileEditPageState extends State<FoodProfileEditPage> {
             FoodProfileBuildableState>(
           properties: (buildable) => [
             buildable.cards,
-            buildable.user,
+            buildable.userInfo,
             buildable.profileUser,
           ],
           builder: (context, state) {

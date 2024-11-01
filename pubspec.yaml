@@ -22,7 +22,7 @@ dependencies:
 
   # Networking and HTTP
   pretty_http_logger: ^1.0.3
-  http: ^1.2.0
+  http: ^1.2.2
   dio: ^5.5.0+1
 
   # NoSQL Database

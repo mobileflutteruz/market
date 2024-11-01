@@ -37,7 +37,9 @@ class TokenPreference {
   }
 
   Future<void> setUser(Map<String, dynamic> json) async {
+    
     String user = jsonEncode(UserModel.fromJson(json));
+      print("TOKEEEEEEEEEEEEEN getGuestUser : ${user}");
     await localeDb.setString(_user, user);
   }
 
@@ -90,5 +92,28 @@ class TokenPreference {
 
   Future<String?> getMyOrder() async {
     return localeDb.getString(_baskets);
+  }
+
+
+  Future<void> saveUserId(String userId) async {
+    final prefs = await SharedPreferences.getInstance();
+    
+    // Log qo'shish orqali ID ni saqlayotganini tekshiring
+    print("Saqlanayotgan User ID: $userId");
+    
+    final result = await prefs.setString('user_id_to_restore_password', userId);
+    
+    // ID muvaffaqiyatli saqlandi yoki yo'qligini tekshirish
+    if (result) {
+      print("User ID muvaffaqiyatli saqlandi.");
+    } else {
+      print("User ID saqlashda xatolik yuz berdi.");
+    }
+  }
+
+  // Qayta olish uchun metod ham qo'shishingiz mumkin:
+  Future<String?> getUserSmsId() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('user_id_to_restore_password');
   }
 }

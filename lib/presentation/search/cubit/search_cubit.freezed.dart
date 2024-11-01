@@ -24,6 +24,10 @@ mixin _$SearchdBuildableState {
   SearchedHistory? get searched => throw _privateConstructorUsedError;
   AllProductDeleted? get allDeleted => throw _privateConstructorUsedError;
   DeletedId? get deletedId => throw _privateConstructorUsedError;
+  String? get userName => throw _privateConstructorUsedError;
+  bool get notificationValue => throw _privateConstructorUsedError;
+  UserModel? get profileUser => throw _privateConstructorUsedError;
+  UserInfo? get foodUser => throw _privateConstructorUsedError;
 
   /// Create a copy of SearchdBuildableState
   /// with the given fields replaced by the non-null parameter values.
@@ -46,11 +50,17 @@ abstract class $SearchdBuildableStateCopyWith<$Res> {
       List<SearchProduct>? product,
       SearchedHistory? searched,
       AllProductDeleted? allDeleted,
-      DeletedId? deletedId});
+      DeletedId? deletedId,
+      String? userName,
+      bool notificationValue,
+      UserModel? profileUser,
+      UserInfo? foodUser});
 
   $SearchedHistoryCopyWith<$Res>? get searched;
   $AllProductDeletedCopyWith<$Res>? get allDeleted;
   $DeletedIdCopyWith<$Res>? get deletedId;
+  $UserModelCopyWith<$Res>? get profileUser;
+  $UserInfoCopyWith<$Res>? get foodUser;
 }
 
 /// @nodoc
@@ -77,6 +87,10 @@ class _$SearchdBuildableStateCopyWithImpl<$Res,
     Object? searched = freezed,
     Object? allDeleted = freezed,
     Object? deletedId = freezed,
+    Object? userName = freezed,
+    Object? notificationValue = null,
+    Object? profileUser = freezed,
+    Object? foodUser = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -111,6 +125,22 @@ class _$SearchdBuildableStateCopyWithImpl<$Res,
           ? _value.deletedId
           : deletedId // ignore: cast_nullable_to_non_nullable
               as DeletedId?,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      notificationValue: null == notificationValue
+          ? _value.notificationValue
+          : notificationValue // ignore: cast_nullable_to_non_nullable
+              as bool,
+      profileUser: freezed == profileUser
+          ? _value.profileUser
+          : profileUser // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
+      foodUser: freezed == foodUser
+          ? _value.foodUser
+          : foodUser // ignore: cast_nullable_to_non_nullable
+              as UserInfo?,
     ) as $Val);
   }
 
@@ -155,6 +185,34 @@ class _$SearchdBuildableStateCopyWithImpl<$Res,
       return _then(_value.copyWith(deletedId: value) as $Val);
     });
   }
+
+  /// Create a copy of SearchdBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res>? get profileUser {
+    if (_value.profileUser == null) {
+      return null;
+    }
+
+    return $UserModelCopyWith<$Res>(_value.profileUser!, (value) {
+      return _then(_value.copyWith(profileUser: value) as $Val);
+    });
+  }
+
+  /// Create a copy of SearchdBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserInfoCopyWith<$Res>? get foodUser {
+    if (_value.foodUser == null) {
+      return null;
+    }
+
+    return $UserInfoCopyWith<$Res>(_value.foodUser!, (value) {
+      return _then(_value.copyWith(foodUser: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -174,7 +232,11 @@ abstract class _$$SearchedBuildableStateImplCopyWith<$Res>
       List<SearchProduct>? product,
       SearchedHistory? searched,
       AllProductDeleted? allDeleted,
-      DeletedId? deletedId});
+      DeletedId? deletedId,
+      String? userName,
+      bool notificationValue,
+      UserModel? profileUser,
+      UserInfo? foodUser});
 
   @override
   $SearchedHistoryCopyWith<$Res>? get searched;
@@ -182,6 +244,10 @@ abstract class _$$SearchedBuildableStateImplCopyWith<$Res>
   $AllProductDeletedCopyWith<$Res>? get allDeleted;
   @override
   $DeletedIdCopyWith<$Res>? get deletedId;
+  @override
+  $UserModelCopyWith<$Res>? get profileUser;
+  @override
+  $UserInfoCopyWith<$Res>? get foodUser;
 }
 
 /// @nodoc
@@ -207,6 +273,10 @@ class __$$SearchedBuildableStateImplCopyWithImpl<$Res>
     Object? searched = freezed,
     Object? allDeleted = freezed,
     Object? deletedId = freezed,
+    Object? userName = freezed,
+    Object? notificationValue = null,
+    Object? profileUser = freezed,
+    Object? foodUser = freezed,
   }) {
     return _then(_$SearchedBuildableStateImpl(
       loading: null == loading
@@ -241,6 +311,22 @@ class __$$SearchedBuildableStateImplCopyWithImpl<$Res>
           ? _value.deletedId
           : deletedId // ignore: cast_nullable_to_non_nullable
               as DeletedId?,
+      userName: freezed == userName
+          ? _value.userName
+          : userName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      notificationValue: null == notificationValue
+          ? _value.notificationValue
+          : notificationValue // ignore: cast_nullable_to_non_nullable
+              as bool,
+      profileUser: freezed == profileUser
+          ? _value.profileUser
+          : profileUser // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
+      foodUser: freezed == foodUser
+          ? _value.foodUser
+          : foodUser // ignore: cast_nullable_to_non_nullable
+              as UserInfo?,
     ));
   }
 }
@@ -256,7 +342,11 @@ class _$SearchedBuildableStateImpl implements _SearchedBuildableState {
       final List<SearchProduct>? product,
       this.searched,
       this.allDeleted,
-      this.deletedId})
+      this.deletedId,
+      this.userName = null,
+      this.notificationValue = false,
+      this.profileUser = null,
+      this.foodUser = null})
       : _product = product;
 
   @override
@@ -286,10 +376,22 @@ class _$SearchedBuildableStateImpl implements _SearchedBuildableState {
   final AllProductDeleted? allDeleted;
   @override
   final DeletedId? deletedId;
+  @override
+  @JsonKey()
+  final String? userName;
+  @override
+  @JsonKey()
+  final bool notificationValue;
+  @override
+  @JsonKey()
+  final UserModel? profileUser;
+  @override
+  @JsonKey()
+  final UserInfo? foodUser;
 
   @override
   String toString() {
-    return 'SearchdBuildableState(loading: $loading, success: $success, failure: $failure, error: $error, product: $product, searched: $searched, allDeleted: $allDeleted, deletedId: $deletedId)';
+    return 'SearchdBuildableState(loading: $loading, success: $success, failure: $failure, error: $error, product: $product, searched: $searched, allDeleted: $allDeleted, deletedId: $deletedId, userName: $userName, notificationValue: $notificationValue, profileUser: $profileUser, foodUser: $foodUser)';
   }
 
   @override
@@ -307,7 +409,15 @@ class _$SearchedBuildableStateImpl implements _SearchedBuildableState {
             (identical(other.allDeleted, allDeleted) ||
                 other.allDeleted == allDeleted) &&
             (identical(other.deletedId, deletedId) ||
-                other.deletedId == deletedId));
+                other.deletedId == deletedId) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
+            (identical(other.notificationValue, notificationValue) ||
+                other.notificationValue == notificationValue) &&
+            (identical(other.profileUser, profileUser) ||
+                other.profileUser == profileUser) &&
+            (identical(other.foodUser, foodUser) ||
+                other.foodUser == foodUser));
   }
 
   @override
@@ -320,7 +430,11 @@ class _$SearchedBuildableStateImpl implements _SearchedBuildableState {
       const DeepCollectionEquality().hash(_product),
       searched,
       allDeleted,
-      deletedId);
+      deletedId,
+      userName,
+      notificationValue,
+      profileUser,
+      foodUser);
 
   /// Create a copy of SearchdBuildableState
   /// with the given fields replaced by the non-null parameter values.
@@ -341,7 +455,11 @@ abstract class _SearchedBuildableState implements SearchdBuildableState {
       final List<SearchProduct>? product,
       final SearchedHistory? searched,
       final AllProductDeleted? allDeleted,
-      final DeletedId? deletedId}) = _$SearchedBuildableStateImpl;
+      final DeletedId? deletedId,
+      final String? userName,
+      final bool notificationValue,
+      final UserModel? profileUser,
+      final UserInfo? foodUser}) = _$SearchedBuildableStateImpl;
 
   @override
   bool get loading;
@@ -359,6 +477,14 @@ abstract class _SearchedBuildableState implements SearchdBuildableState {
   AllProductDeleted? get allDeleted;
   @override
   DeletedId? get deletedId;
+  @override
+  String? get userName;
+  @override
+  bool get notificationValue;
+  @override
+  UserModel? get profileUser;
+  @override
+  UserInfo? get foodUser;
 
   /// Create a copy of SearchdBuildableState
   /// with the given fields replaced by the non-null parameter values.

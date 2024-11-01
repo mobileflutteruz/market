@@ -20,8 +20,8 @@ UserInfo _$UserInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserInfo {
-  bool? get status => throw _privateConstructorUsedError;
-  Result? get result => throw _privateConstructorUsedError;
+  bool get status => throw _privateConstructorUsedError;
+  Result get result => throw _privateConstructorUsedError;
 
   /// Serializes this UserInfo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,9 +38,9 @@ abstract class $UserInfoCopyWith<$Res> {
   factory $UserInfoCopyWith(UserInfo value, $Res Function(UserInfo) then) =
       _$UserInfoCopyWithImpl<$Res, UserInfo>;
   @useResult
-  $Res call({bool? status, Result? result});
+  $Res call({bool status, Result result});
 
-  $ResultCopyWith<$Res>? get result;
+  $ResultCopyWith<$Res> get result;
 }
 
 /// @nodoc
@@ -58,18 +58,18 @@ class _$UserInfoCopyWithImpl<$Res, $Val extends UserInfo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? result = freezed,
+    Object? status = null,
+    Object? result = null,
   }) {
     return _then(_value.copyWith(
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      result: freezed == result
+              as bool,
+      result: null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
-              as Result?,
+              as Result,
     ) as $Val);
   }
 
@@ -77,12 +77,8 @@ class _$UserInfoCopyWithImpl<$Res, $Val extends UserInfo>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ResultCopyWith<$Res>? get result {
-    if (_value.result == null) {
-      return null;
-    }
-
-    return $ResultCopyWith<$Res>(_value.result!, (value) {
+  $ResultCopyWith<$Res> get result {
+    return $ResultCopyWith<$Res>(_value.result, (value) {
       return _then(_value.copyWith(result: value) as $Val);
     });
   }
@@ -96,10 +92,10 @@ abstract class _$$UserInfoImplCopyWith<$Res>
       __$$UserInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool? status, Result? result});
+  $Res call({bool status, Result result});
 
   @override
-  $ResultCopyWith<$Res>? get result;
+  $ResultCopyWith<$Res> get result;
 }
 
 /// @nodoc
@@ -115,18 +111,18 @@ class __$$UserInfoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? result = freezed,
+    Object? status = null,
+    Object? result = null,
   }) {
     return _then(_$UserInfoImpl(
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      result: freezed == result
+              as bool,
+      result: null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
-              as Result?,
+              as Result,
     ));
   }
 }
@@ -134,15 +130,15 @@ class __$$UserInfoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserInfoImpl implements _UserInfo {
-  const _$UserInfoImpl({this.status, this.result});
+  const _$UserInfoImpl({required this.status, required this.result});
 
   factory _$UserInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserInfoImplFromJson(json);
 
   @override
-  final bool? status;
+  final bool status;
   @override
-  final Result? result;
+  final Result result;
 
   @override
   String toString() {
@@ -179,16 +175,17 @@ class _$UserInfoImpl implements _UserInfo {
 }
 
 abstract class _UserInfo implements UserInfo {
-  const factory _UserInfo({final bool? status, final Result? result}) =
-      _$UserInfoImpl;
+  const factory _UserInfo(
+      {required final bool status,
+      required final Result result}) = _$UserInfoImpl;
 
   factory _UserInfo.fromJson(Map<String, dynamic> json) =
       _$UserInfoImpl.fromJson;
 
   @override
-  bool? get status;
+  bool get status;
   @override
-  Result? get result;
+  Result get result;
 
   /// Create a copy of UserInfo
   /// with the given fields replaced by the non-null parameter values.
@@ -204,9 +201,10 @@ Result _$ResultFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Result {
-  int? get user_id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  dynamic get phone => throw _privateConstructorUsedError;
+  int get user_id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
 
   /// Serializes this Result to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -222,7 +220,7 @@ abstract class $ResultCopyWith<$Res> {
   factory $ResultCopyWith(Result value, $Res Function(Result) then) =
       _$ResultCopyWithImpl<$Res, Result>;
   @useResult
-  $Res call({int? user_id, String? name, dynamic phone});
+  $Res call({int user_id, String name, String phone, String image});
 }
 
 /// @nodoc
@@ -240,23 +238,28 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user_id = freezed,
-    Object? name = freezed,
-    Object? phone = freezed,
+    Object? user_id = null,
+    Object? name = null,
+    Object? phone = null,
+    Object? image = null,
   }) {
     return _then(_value.copyWith(
-      user_id: freezed == user_id
+      user_id: null == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
+              as int,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
+              as String,
+      phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -268,7 +271,7 @@ abstract class _$$ResultImplCopyWith<$Res> implements $ResultCopyWith<$Res> {
       __$$ResultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? user_id, String? name, dynamic phone});
+  $Res call({int user_id, String name, String phone, String image});
 }
 
 /// @nodoc
@@ -284,23 +287,28 @@ class __$$ResultImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user_id = freezed,
-    Object? name = freezed,
-    Object? phone = freezed,
+    Object? user_id = null,
+    Object? name = null,
+    Object? phone = null,
+    Object? image = null,
   }) {
     return _then(_$ResultImpl(
-      user_id: freezed == user_id
+      user_id: null == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
+              as int,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
+              as String,
+      phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -308,21 +316,27 @@ class __$$ResultImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResultImpl implements _Result {
-  const _$ResultImpl({this.user_id, this.name, this.phone});
+  const _$ResultImpl(
+      {required this.user_id,
+      required this.name,
+      required this.phone,
+      required this.image});
 
   factory _$ResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResultImplFromJson(json);
 
   @override
-  final int? user_id;
+  final int user_id;
   @override
-  final String? name;
+  final String name;
   @override
-  final dynamic phone;
+  final String phone;
+  @override
+  final String image;
 
   @override
   String toString() {
-    return 'Result(user_id: $user_id, name: $name, phone: $phone)';
+    return 'Result(user_id: $user_id, name: $name, phone: $phone, image: $image)';
   }
 
   @override
@@ -332,13 +346,13 @@ class _$ResultImpl implements _Result {
             other is _$ResultImpl &&
             (identical(other.user_id, user_id) || other.user_id == user_id) &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other.phone, phone));
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, user_id, name, const DeepCollectionEquality().hash(phone));
+  int get hashCode => Object.hash(runtimeType, user_id, name, phone, image);
 
   /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
@@ -358,18 +372,21 @@ class _$ResultImpl implements _Result {
 
 abstract class _Result implements Result {
   const factory _Result(
-      {final int? user_id,
-      final String? name,
-      final dynamic phone}) = _$ResultImpl;
+      {required final int user_id,
+      required final String name,
+      required final String phone,
+      required final String image}) = _$ResultImpl;
 
   factory _Result.fromJson(Map<String, dynamic> json) = _$ResultImpl.fromJson;
 
   @override
-  int? get user_id;
+  int get user_id;
   @override
-  String? get name;
+  String get name;
   @override
-  dynamic get phone;
+  String get phone;
+  @override
+  String get image;
 
   /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.

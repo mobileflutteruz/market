@@ -132,6 +132,7 @@ class DataRepository {
     }
   }
 
+ //Todo ishlavotdi shu
   Future<bool> createBasket({required int product_id}) async {
     try {
       final response = await api.post(
@@ -154,10 +155,34 @@ class DataRepository {
     }
   }
 
- Future<bool> deleteBasket({required int productId}) async {
+ Future<bool> deleteBasketById({required int product_id}) async {
     try {
       final response =
-          await api.deleteWithToken(path: "/cart/delete/$productId");
+          await api.deleteWithToken(path: "/cart/delete/$product_id");
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+
+        if (data["status"]) {
+          return true;
+        } else {
+          throw Exception(
+              "Failed to remove from favorites: ${data["message"]}");
+        }
+      } else {
+        throw Exception(
+            "Failed to remove from favorites with status code: ${response.statusCode}");
+      }
+    } catch (error) {
+      print("Error in removing from favorites: $error");
+      rethrow;
+    }
+  }
+
+  Future<bool> deleteAllBasket() async {
+    try {
+      final response =
+          await api.deleteWithToken(path: "/del-sel-prod-user-cart");
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);

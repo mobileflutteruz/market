@@ -59,6 +59,8 @@ Future<void> main() async {
         BlocProvider(create: (context) => locator<FoodHomeCubit>()),
         BlocProvider(create: (context) => locator<ChangePasswordCubit>()),
         // BlocProvider(create: (context) => locator<SearchBloc>()),
+
+        
       ],
       child: const MyApp(),
     ),

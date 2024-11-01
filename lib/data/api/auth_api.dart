@@ -35,28 +35,35 @@ class AuthApi {
     var data = await _api.post(path: "/logout");
     return data;
   }
+ 
 
+  // Future<Response> verfy(String phone, String code) async {
+  //   final body = {"code": code, "phone": phone};
+  //   var data = await _api.post(path: "/insert-code", body: body);
+  //   return data;
+  // }
   Future<Response> verfy(String phone, String code) async {
     final body = {"code": code, "phone": phone};
     var data = await _api.post(path: "/insert-code", body: body);
     return data;
-  }
+  } 
 
   Future<Response> resetPassword(
       String password, String confirmPassword, String userId) async {
     final body = {
-      "password": password,
-      "confirm_password": confirmPassword,
+      "password": password, // Parol
+      "confirm_password": confirmPassword // Parolni tasdiqlash
     };
-    var data =
-        await _api.post(path: "/restore-password/$userId", body: body);
-            // ignore: avoid_print
+    print('USER ID IS HEREEEEEEEE: ${userId}');
+    // POST so'rovini "/restore-password/$userId" endpointiga yuborish
+    var data = await _api.postWithToken(path: "/restore-password/$userId", body: body);
+
+    // So'rov natijasini konsolga chiqarish
     print("RESET PASSWORD: $data");
-    return data;
+
+    return data; // Javobni qaytarish
   }
 
-
-  
   Future<Response> updatePassword(
       String newPass, String confirmPass, String userId) async {
     final Map<String, Object> params = {
@@ -66,11 +73,10 @@ class AuthApi {
     var data = await _api.postWithToken(
       path: "/restore-password/$userId",
       body: params,
-      
     );
-        // ignore: avoid_print
+    // ignore: avoid_print
     print("-------------here-------");
-        // ignore: avoid_print
+    // ignore: avoid_print
     print(data);
     return data;
   }

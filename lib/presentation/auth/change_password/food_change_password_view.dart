@@ -59,20 +59,23 @@ class _FoodChangePasswordViewState extends State<FoodChangePasswordView> {
                             validator: (value) {
                               return locator<AuthRepository>()
                                   .confirmationValidator(
-                                    repasswordController.text,
-                                    value!,
-                                  );
+                                repasswordController.text,
+                                value!,
+                              );
                             },
                           ),
                           AppUtils.kGap24,
                           CommonFoodButtonWidget(
                             title: context.l10n.save,
                             onTap: () {
+                              // print(TokenPreference().getUserSmsId());
                               if (formKey.currentState!.validate()) {
-                                context.read<ChangePasswordCubit>().resetPassword(
-                                  passwordController.text,
-                                  repasswordController.text,
-                                );
+                                context
+                                    .read<ChangePasswordCubit>()
+                                    .resetPassword(
+                                      passwordController.text,
+                                      repasswordController.text,
+                                    );
                                 // Navigator.pushNamed(
                                 //   context,
                                 //   FoodNavigatorConst.foodLoginScreen,
@@ -102,7 +105,7 @@ class _FoodChangePasswordViewState extends State<FoodChangePasswordView> {
       ),
     );
   }
-  
+
   @override
   void dispose() {
     // Dispose the controllers to avoid memory leaks
