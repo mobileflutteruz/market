@@ -74,7 +74,7 @@ class _FoodProductItemWidgetState extends State<FoodProductItemWidget> {
                     child: Padding(
                       padding: const EdgeInsets.all(36),
                       child: ImageViewWidget(
-                        imageLink: widget.product!.image!,
+                        imageLink: widget.product!.image! ?? "",
                         isNetImg: true,
                       ),
                     ),

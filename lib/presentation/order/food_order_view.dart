@@ -1,3 +1,4 @@
+import 'package:karmango/core/constants/image_const.dart';
 import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/data/locale_db/food_db.dart';
 import 'package:karmango/presentation/auth/register/components/checkbox_widget.dart';

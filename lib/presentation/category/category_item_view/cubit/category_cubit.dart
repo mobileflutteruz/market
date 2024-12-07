@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:karmango/domain/model/mobile/cart_product/cart_product.dart';
 import 'package:karmango/domain/repository/data_repository.dart';
+import 'package:karmango/presentation/category/cubit/category_cubit.dart';
 import 'package:karmango/presentation/components/buildable_cubit.dart';
 
 part 'category_state.dart';
@@ -40,6 +41,51 @@ class CategoryProductCubit extends BuildableCubit<CategoryProductState,
           error: e.toString(),
         ),
       );
+    }
+  }
+
+
+
+
+  void deleteLikeId(int productId) async {
+    build((buildable) =>
+        buildable.copyWith(
+          loading: true,
+          success: false,
+          failed: false,
+          errorMessage: '', // Error message reset
+        ));
+
+    try {
+      final bool isSuccess = await _dataRepository.deleteFavorite(productId: productId);
+
+      if (isSuccess) {
+        // Hozirgi state dan likeIds ni olish
+        final List<String> updatedLikeIds = List<String>.from(
+            (state as CategoryBuildableState).likeIds
+        )..remove(productId.toString());
+
+        build((buildable) => buildable.copyWith(
+          loading: false,
+          success: true,
+          failed: false,
+          likeIds: updatedLikeIds,
+        ));
+      } else {
+        build((buildable) => buildable.copyWith(
+          loading: false,
+          success: false,
+          failed: true,
+          errorMessage: 'Failed to delete the favorite item.',
+        ));
+      }
+    } catch (e) {
+      build((buildable) => buildable.copyWith(
+        loading: false,
+        success: false,
+        failed: true,
+        errorMessage: 'Something went wrong: $e',
+      ));
     }
   }
 }

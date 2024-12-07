@@ -1,7 +1,7 @@
-part of "constants.dart";
-
 class ImageConstants {
+
   static String logo = "assets/images/logo.png";
+  static String error = "assets/images/error.png";
 
   static String success = "assets/images/success.svg";
   static String laptop = "assets/images/laptop.png";
@@ -24,6 +24,7 @@ class ImageConstants {
   static String en = "assets/images/en.png";
   static String profileImage = "assets/images/profile_image.png";
   static String person = "assets/images/person.png";
+  
 }
 
 class FurnitureImages {

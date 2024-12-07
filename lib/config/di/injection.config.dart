@@ -16,7 +16,6 @@ import 'package:shared_preferences/shared_preferences.dart' as _i460;
 import '../../data/api/api.dart' as _i1;
 import '../../data/api/auth_api.dart' as _i677;
 import '../../data/api/main_api.dart' as _i767;
-import '../../data/preferences/token_preferences.dart' as _i401;
 import '../../domain/repository/auth_repository.dart' as _i614;
 import '../../domain/repository/data_repository.dart' as _i98;
 import '../../domain/repository/main_repository.dart' as _i259;
@@ -42,7 +41,6 @@ import '../../presentation/search/cubit/search_cubit.dart' as _i270;
 import '../app_init/cubit/app_init_cubit.dart' as _i675;
 import '../token_data_source.dart' as _i985;
 import '../user_data_source.dart' as _i358;
-import '../user_session_manager.dart' as _i716;
 import 'data_module.dart' as _i444;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -62,25 +60,19 @@ Future<_i174.GetIt> $initGetIt(
     preResolve: true,
   );
   gh.singleton<_i558.FlutterSecureStorage>(() => dataModule.secureStorage);
-  gh.factory<_i401.TokenPreference>(
-      () => _i401.TokenPreference(gh<_i460.SharedPreferences>()));
-  gh.factory<_i985.TokenDataSource>(
-      () => _i985.TokenDataSource(gh<_i558.FlutterSecureStorage>()));
+  gh.factory<_i985.TokenPreference>(
+      () => _i985.TokenPreference(gh<_i558.FlutterSecureStorage>()));
+  gh.factory<_i30.SplashCubit>(
+      () => _i30.SplashCubit(gh<_i985.TokenPreference>()));
   gh.factory<_i358.UserDataDataSource>(() => _i358.UserDataDataSource(
         gh<_i558.FlutterSecureStorage>(),
         gh<_i460.SharedPreferences>(),
       ));
   gh.factory<_i259.MainRepository>(
-      () => _i259.MainRepository(gh<_i401.TokenPreference>()));
-  gh.factory<_i30.SplashCubit>(
-      () => _i30.SplashCubit(gh<_i401.TokenPreference>()));
-  gh.singleton<_i716.UserSessionManager>(() => _i716.UserSessionManager(
-        gh<_i985.TokenDataSource>(),
-        gh<_i358.UserDataDataSource>(),
-      ));
+      () => _i259.MainRepository(gh<_i985.TokenPreference>()));
+  gh.factory<_i1.Api>(() => _i1.Api(gh<_i985.TokenPreference>()));
   gh.factory<_i835.FoodMyOrderCubit>(
       () => _i835.FoodMyOrderCubit(gh<_i259.MainRepository>()));
-  gh.factory<_i1.Api>(() => _i1.Api(gh<_i985.TokenDataSource>()));
   gh.factory<_i767.MainApi>(() => _i767.MainApi(gh<_i1.Api>()));
   gh.factory<_i89.SearchRepository>(() => _i89.SearchRepository(gh<_i1.Api>()));
   gh.factory<_i677.AuthApi>(() => _i677.AuthApi(
@@ -89,12 +81,17 @@ Future<_i174.GetIt> $initGetIt(
       ));
   gh.factory<_i153.MainService>(() => _i153.MainService(gh<_i767.MainApi>()));
   gh.factory<_i675.AppInitCubit>(() => _i675.AppInitCubit(
-        gh<_i716.UserSessionManager>(),
         gh<_i1.Api>(),
+        gh<_i985.TokenPreference>(),
       ));
   gh.factory<_i98.DataRepository>(() => _i98.DataRepository(
         gh<_i1.Api>(),
         gh<_i767.MainApi>(),
+      ));
+  gh.factory<_i165.FoodBasketCubit>(() => _i165.FoodBasketCubit(
+        gh<_i259.MainRepository>(),
+        gh<_i98.DataRepository>(),
+        gh<_i985.TokenPreference>(),
       ));
   gh.factory<_i964.DetailsCubit>(() => _i964.DetailsCubit(
         gh<_i259.MainRepository>(),
@@ -107,20 +104,14 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i98.DataRepository>(),
       ));
   gh.factory<_i614.AuthRepository>(() => _i614.AuthRepository(
-        gh<_i401.TokenPreference>(),
+        gh<_i985.TokenPreference>(),
         gh<_i1.Api>(),
         gh<_i677.AuthApi>(),
-        gh<_i716.UserSessionManager>(),
       ));
   gh.factory<_i540.LoginCubit>(() => _i540.LoginCubit(
         gh<_i677.AuthApi>(),
         gh<_i614.AuthRepository>(),
-        gh<_i716.UserSessionManager>(),
-      ));
-  gh.factory<_i165.FoodBasketCubit>(() => _i165.FoodBasketCubit(
-        gh<_i259.MainRepository>(),
-        gh<_i98.DataRepository>(),
-        gh<_i401.TokenPreference>(),
+        gh<_i985.TokenPreference>(),
       ));
   gh.factory<_i569.CategoryProductCubit>(
       () => _i569.CategoryProductCubit(gh<_i98.DataRepository>()));
@@ -128,10 +119,13 @@ Future<_i174.GetIt> $initGetIt(
       () => _i1068.CategoryCubit(gh<_i98.DataRepository>()));
   gh.factory<_i702.FavouritesCubit>(
       () => _i702.FavouritesCubit(gh<_i98.DataRepository>()));
+  gh.factory<_i205.FoodProfileCubit>(() => _i205.FoodProfileCubit(
+        gh<_i614.AuthRepository>(),
+        gh<_i985.TokenPreference>(),
+        gh<_i98.DataRepository>(),
+      ));
   gh.factory<_i827.RegisterCubit>(
       () => _i827.RegisterCubit(gh<_i614.AuthRepository>()));
-  gh.factory<_i205.FoodProfileCubit>(
-      () => _i205.FoodProfileCubit(gh<_i614.AuthRepository>()));
   gh.factory<_i344.OtpCubit>(() => _i344.OtpCubit(gh<_i614.AuthRepository>()));
   gh.factory<_i653.FoodHomeCubit>(() => _i653.FoodHomeCubit(
         gh<_i259.MainRepository>(),
@@ -140,8 +134,7 @@ Future<_i174.GetIt> $initGetIt(
       ));
   gh.factory<_i398.ChangePasswordCubit>(() => _i398.ChangePasswordCubit(
         gh<_i614.AuthRepository>(),
-        gh<_i401.TokenPreference>(),
-        gh<_i716.UserSessionManager>(),
+        gh<_i985.TokenPreference>(),
       ));
   return getIt;
 }

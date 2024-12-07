@@ -24,55 +24,53 @@ class AllProdact extends StatelessWidget {
     return Buildable<FoodHomeCubit, FoodHomeState, FoodHomeBuildableState>(
       properties: (buildable) => [buildable.likeIds, buildable.homeProducts],
       builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-            appBar: CommonAppBar(
-              title: context.l10n.all,
-              backOnTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            body: CustomScrollView(
-              slivers: [
-                SliverPadding(
-                  padding: AppUtils.kPaddingHor14Ver16,
-                  sliver: SliverGrid.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: crossAxisCount == 0 || crossAxisCount == 1
-                          ? 2
-                          : crossAxisCount, //4,
-                      mainAxisSpacing: 16,
-                      crossAxisSpacing: 16,
-                      childAspectRatio: .52, //.52,
-                    ),
-                    itemBuilder: (context, index) {
-                      return SizedBox(
-                        height: 320,
-                        child: FoodProductItemWidget(
-                          smallButton: () {},
-                          likeTapped: () {
-                            // context
-                            //     .read<FoodHomeCubit>()
-                            //     .setLikeId(products[index].id);
-                          },
-                          isLiked: false,
-                          //  state.likeIds
-                          //     .contains(products[index].id.toString()),
-                          product: products?.products![index],
-                          onTap: () {
-                            showModalView(
-                              context,
-                              products!.products![index],
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    itemCount: products?.products!.length,
+        return Scaffold(
+          appBar: CommonAppBar(
+            title: context.l10n.all,
+            backOnTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          body: CustomScrollView(
+            slivers: [
+              SliverPadding(
+                padding: AppUtils.kPaddingHor14Ver16,
+                sliver: SliverGrid.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount == 0 || crossAxisCount == 1
+                        ? 2
+                        : crossAxisCount, //4,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                    childAspectRatio: .52, //.52,
                   ),
-                )
-              ],
-            ),
+                  itemBuilder: (context, index) {
+                    return SizedBox(
+                      height: 320,
+                      child: FoodProductItemWidget(
+                        smallButton: () {},
+                        likeTapped: () {
+                          // context
+                          //     .read<FoodHomeCubit>()
+                          //     .setLikeId(products[index].id);
+                        },
+                        isLiked: false,
+                        //  state.likeIds
+                        //     .contains(products[index].id.toString()),
+                        product: products?.products![index],
+                        onTap: () {
+                          showModalView(
+                            context,
+                            products!.products![index],
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  itemCount: products?.products!.length,
+                ),
+              )
+            ],
           ),
         );
       },

@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$FoodBasketBuildableState {
   int get currentIndex => throw _privateConstructorUsedError;
   List<int> get selectedIds => throw _privateConstructorUsedError;
+  List<int> get chooseIds => throw _privateConstructorUsedError;
   Map<int, int> get cardProducts => throw _privateConstructorUsedError;
   List<int> get cardProductIds => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
@@ -49,6 +50,7 @@ abstract class $FoodBasketBuildableStateCopyWith<$Res> {
   $Res call(
       {int currentIndex,
       List<int> selectedIds,
+      List<int> chooseIds,
       Map<int, int> cardProducts,
       List<int> cardProductIds,
       String errorMessage,
@@ -82,6 +84,7 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
   $Res call({
     Object? currentIndex = null,
     Object? selectedIds = null,
+    Object? chooseIds = null,
     Object? cardProducts = null,
     Object? cardProductIds = null,
     Object? errorMessage = null,
@@ -104,6 +107,10 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
       selectedIds: null == selectedIds
           ? _value.selectedIds
           : selectedIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      chooseIds: null == chooseIds
+          ? _value.chooseIds
+          : chooseIds // ignore: cast_nullable_to_non_nullable
               as List<int>,
       cardProducts: null == cardProducts
           ? _value.cardProducts
@@ -173,6 +180,7 @@ abstract class _$$FoodBasketBuildableStateImplCopyWith<$Res>
   $Res call(
       {int currentIndex,
       List<int> selectedIds,
+      List<int> chooseIds,
       Map<int, int> cardProducts,
       List<int> cardProductIds,
       String errorMessage,
@@ -205,6 +213,7 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
   $Res call({
     Object? currentIndex = null,
     Object? selectedIds = null,
+    Object? chooseIds = null,
     Object? cardProducts = null,
     Object? cardProductIds = null,
     Object? errorMessage = null,
@@ -227,6 +236,10 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
       selectedIds: null == selectedIds
           ? _value._selectedIds
           : selectedIds // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      chooseIds: null == chooseIds
+          ? _value._chooseIds
+          : chooseIds // ignore: cast_nullable_to_non_nullable
               as List<int>,
       cardProducts: null == cardProducts
           ? _value._cardProducts
@@ -292,6 +305,7 @@ class _$FoodBasketBuildableStateImpl
   const _$FoodBasketBuildableStateImpl(
       {this.currentIndex = 0,
       final List<int> selectedIds = const [],
+      final List<int> chooseIds = const [],
       final Map<int, int> cardProducts = const {},
       final List<int> cardProductIds = const [],
       this.errorMessage = '',
@@ -306,6 +320,7 @@ class _$FoodBasketBuildableStateImpl
       this.failed = false,
       this.error = false})
       : _selectedIds = selectedIds,
+        _chooseIds = chooseIds,
         _cardProducts = cardProducts,
         _cardProductIds = cardProductIds,
         _checkboxState = checkboxState,
@@ -321,6 +336,15 @@ class _$FoodBasketBuildableStateImpl
     if (_selectedIds is EqualUnmodifiableListView) return _selectedIds;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_selectedIds);
+  }
+
+  final List<int> _chooseIds;
+  @override
+  @JsonKey()
+  List<int> get chooseIds {
+    if (_chooseIds is EqualUnmodifiableListView) return _chooseIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_chooseIds);
   }
 
   final Map<int, int> _cardProducts;
@@ -391,7 +415,7 @@ class _$FoodBasketBuildableStateImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FoodBasketBuildableState(currentIndex: $currentIndex, selectedIds: $selectedIds, cardProducts: $cardProducts, cardProductIds: $cardProductIds, errorMessage: $errorMessage, tabIndex: $tabIndex, quantity: $quantity, isAllSelected: $isAllSelected, isChoosedAll: $isChoosedAll, loading: $loading, checkboxState: $checkboxState, products: $products, success: $success, failed: $failed, error: $error)';
+    return 'FoodBasketBuildableState(currentIndex: $currentIndex, selectedIds: $selectedIds, chooseIds: $chooseIds, cardProducts: $cardProducts, cardProductIds: $cardProductIds, errorMessage: $errorMessage, tabIndex: $tabIndex, quantity: $quantity, isAllSelected: $isAllSelected, isChoosedAll: $isChoosedAll, loading: $loading, checkboxState: $checkboxState, products: $products, success: $success, failed: $failed, error: $error)';
   }
 
   @override
@@ -401,6 +425,7 @@ class _$FoodBasketBuildableStateImpl
       ..add(DiagnosticsProperty('type', 'FoodBasketBuildableState'))
       ..add(DiagnosticsProperty('currentIndex', currentIndex))
       ..add(DiagnosticsProperty('selectedIds', selectedIds))
+      ..add(DiagnosticsProperty('chooseIds', chooseIds))
       ..add(DiagnosticsProperty('cardProducts', cardProducts))
       ..add(DiagnosticsProperty('cardProductIds', cardProductIds))
       ..add(DiagnosticsProperty('errorMessage', errorMessage))
@@ -425,6 +450,8 @@ class _$FoodBasketBuildableStateImpl
                 other.currentIndex == currentIndex) &&
             const DeepCollectionEquality()
                 .equals(other._selectedIds, _selectedIds) &&
+            const DeepCollectionEquality()
+                .equals(other._chooseIds, _chooseIds) &&
             const DeepCollectionEquality()
                 .equals(other._cardProducts, _cardProducts) &&
             const DeepCollectionEquality()
@@ -453,6 +480,7 @@ class _$FoodBasketBuildableStateImpl
       runtimeType,
       currentIndex,
       const DeepCollectionEquality().hash(_selectedIds),
+      const DeepCollectionEquality().hash(_chooseIds),
       const DeepCollectionEquality().hash(_cardProducts),
       const DeepCollectionEquality().hash(_cardProductIds),
       errorMessage,
@@ -481,6 +509,7 @@ abstract class _FoodBasketBuildableState implements FoodBasketBuildableState {
   const factory _FoodBasketBuildableState(
       {final int currentIndex,
       final List<int> selectedIds,
+      final List<int> chooseIds,
       final Map<int, int> cardProducts,
       final List<int> cardProductIds,
       final String errorMessage,
@@ -499,6 +528,8 @@ abstract class _FoodBasketBuildableState implements FoodBasketBuildableState {
   int get currentIndex;
   @override
   List<int> get selectedIds;
+  @override
+  List<int> get chooseIds;
   @override
   Map<int, int> get cardProducts;
   @override

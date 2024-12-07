@@ -205,6 +205,7 @@ mixin _$Result {
   String get name => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
+  String get token => throw _privateConstructorUsedError;
 
   /// Serializes this Result to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -220,7 +221,8 @@ abstract class $ResultCopyWith<$Res> {
   factory $ResultCopyWith(Result value, $Res Function(Result) then) =
       _$ResultCopyWithImpl<$Res, Result>;
   @useResult
-  $Res call({int user_id, String name, String phone, String image});
+  $Res call(
+      {int user_id, String name, String phone, String image, String token});
 }
 
 /// @nodoc
@@ -242,6 +244,7 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
     Object? name = null,
     Object? phone = null,
     Object? image = null,
+    Object? token = null,
   }) {
     return _then(_value.copyWith(
       user_id: null == user_id
@@ -260,6 +263,10 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -271,7 +278,8 @@ abstract class _$$ResultImplCopyWith<$Res> implements $ResultCopyWith<$Res> {
       __$$ResultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int user_id, String name, String phone, String image});
+  $Res call(
+      {int user_id, String name, String phone, String image, String token});
 }
 
 /// @nodoc
@@ -291,6 +299,7 @@ class __$$ResultImplCopyWithImpl<$Res>
     Object? name = null,
     Object? phone = null,
     Object? image = null,
+    Object? token = null,
   }) {
     return _then(_$ResultImpl(
       user_id: null == user_id
@@ -309,6 +318,10 @@ class __$$ResultImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -320,7 +333,8 @@ class _$ResultImpl implements _Result {
       {required this.user_id,
       required this.name,
       required this.phone,
-      required this.image});
+      required this.image,
+      required this.token});
 
   factory _$ResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResultImplFromJson(json);
@@ -333,10 +347,12 @@ class _$ResultImpl implements _Result {
   final String phone;
   @override
   final String image;
+  @override
+  final String token;
 
   @override
   String toString() {
-    return 'Result(user_id: $user_id, name: $name, phone: $phone, image: $image)';
+    return 'Result(user_id: $user_id, name: $name, phone: $phone, image: $image, token: $token)';
   }
 
   @override
@@ -347,12 +363,14 @@ class _$ResultImpl implements _Result {
             (identical(other.user_id, user_id) || other.user_id == user_id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.token, token) || other.token == token));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, user_id, name, phone, image);
+  int get hashCode =>
+      Object.hash(runtimeType, user_id, name, phone, image, token);
 
   /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.
@@ -375,7 +393,8 @@ abstract class _Result implements Result {
       {required final int user_id,
       required final String name,
       required final String phone,
-      required final String image}) = _$ResultImpl;
+      required final String image,
+      required final String token}) = _$ResultImpl;
 
   factory _Result.fromJson(Map<String, dynamic> json) = _$ResultImpl.fromJson;
 
@@ -387,6 +406,8 @@ abstract class _Result implements Result {
   String get phone;
   @override
   String get image;
+  @override
+  String get token;
 
   /// Create a copy of Result
   /// with the given fields replaced by the non-null parameter values.

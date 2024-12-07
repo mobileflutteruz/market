@@ -20,6 +20,7 @@ mixin _$CategoryBuildableState {
   bool get success => throw _privateConstructorUsedError;
   bool get failed => throw _privateConstructorUsedError;
   List<CategoryModel>? get category => throw _privateConstructorUsedError;
+  List<String> get likeIds => throw _privateConstructorUsedError;
   ProductModel? get products => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
 
@@ -41,6 +42,7 @@ abstract class $CategoryBuildableStateCopyWith<$Res> {
       bool success,
       bool failed,
       List<CategoryModel>? category,
+      List<String> likeIds,
       ProductModel? products,
       dynamic error});
 
@@ -67,6 +69,7 @@ class _$CategoryBuildableStateCopyWithImpl<$Res,
     Object? success = null,
     Object? failed = null,
     Object? category = freezed,
+    Object? likeIds = null,
     Object? products = freezed,
     Object? error = freezed,
   }) {
@@ -87,6 +90,10 @@ class _$CategoryBuildableStateCopyWithImpl<$Res,
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel>?,
+      likeIds: null == likeIds
+          ? _value.likeIds
+          : likeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       products: freezed == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
@@ -127,6 +134,7 @@ abstract class _$$CategoryBuildableStateImplCopyWith<$Res>
       bool success,
       bool failed,
       List<CategoryModel>? category,
+      List<String> likeIds,
       ProductModel? products,
       dynamic error});
 
@@ -153,6 +161,7 @@ class __$$CategoryBuildableStateImplCopyWithImpl<$Res>
     Object? success = null,
     Object? failed = null,
     Object? category = freezed,
+    Object? likeIds = null,
     Object? products = freezed,
     Object? error = freezed,
   }) {
@@ -173,6 +182,10 @@ class __$$CategoryBuildableStateImplCopyWithImpl<$Res>
           ? _value._category
           : category // ignore: cast_nullable_to_non_nullable
               as List<CategoryModel>?,
+      likeIds: null == likeIds
+          ? _value._likeIds
+          : likeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       products: freezed == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
@@ -193,9 +206,11 @@ class _$CategoryBuildableStateImpl implements _CategoryBuildableState {
       this.success = false,
       this.failed = false,
       final List<CategoryModel>? category,
+      final List<String> likeIds = const [],
       this.products,
       this.error})
-      : _category = category;
+      : _category = category,
+        _likeIds = likeIds;
 
   @override
   @JsonKey()
@@ -216,6 +231,15 @@ class _$CategoryBuildableStateImpl implements _CategoryBuildableState {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<String> _likeIds;
+  @override
+  @JsonKey()
+  List<String> get likeIds {
+    if (_likeIds is EqualUnmodifiableListView) return _likeIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_likeIds);
+  }
+
   @override
   final ProductModel? products;
   @override
@@ -223,7 +247,7 @@ class _$CategoryBuildableStateImpl implements _CategoryBuildableState {
 
   @override
   String toString() {
-    return 'CategoryBuildableState(loading: $loading, success: $success, failed: $failed, category: $category, products: $products, error: $error)';
+    return 'CategoryBuildableState(loading: $loading, success: $success, failed: $failed, category: $category, likeIds: $likeIds, products: $products, error: $error)';
   }
 
   @override
@@ -235,6 +259,7 @@ class _$CategoryBuildableStateImpl implements _CategoryBuildableState {
             (identical(other.success, success) || other.success == success) &&
             (identical(other.failed, failed) || other.failed == failed) &&
             const DeepCollectionEquality().equals(other._category, _category) &&
+            const DeepCollectionEquality().equals(other._likeIds, _likeIds) &&
             (identical(other.products, products) ||
                 other.products == products) &&
             const DeepCollectionEquality().equals(other.error, error));
@@ -247,6 +272,7 @@ class _$CategoryBuildableStateImpl implements _CategoryBuildableState {
       success,
       failed,
       const DeepCollectionEquality().hash(_category),
+      const DeepCollectionEquality().hash(_likeIds),
       products,
       const DeepCollectionEquality().hash(error));
 
@@ -266,6 +292,7 @@ abstract class _CategoryBuildableState implements CategoryBuildableState {
       final bool success,
       final bool failed,
       final List<CategoryModel>? category,
+      final List<String> likeIds,
       final ProductModel? products,
       final dynamic error}) = _$CategoryBuildableStateImpl;
 
@@ -277,6 +304,8 @@ abstract class _CategoryBuildableState implements CategoryBuildableState {
   bool get failed;
   @override
   List<CategoryModel>? get category;
+  @override
+  List<String> get likeIds;
   @override
   ProductModel? get products;
   @override

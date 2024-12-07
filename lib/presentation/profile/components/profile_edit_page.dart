@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/core/constants/constants.dart';
+import 'package:karmango/core/constants/image_const.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/domain/model/user/user_model.dart';
 import 'package:karmango/domain/repository/auth_repository.dart';

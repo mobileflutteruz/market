@@ -1,11 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:karmango/data/preferences/token_preferences.dart';
 import 'package:karmango/domain/model/mobile/basket/basket_products.dart';
 import 'package:karmango/domain/repository/data_repository.dart';
 import 'package:karmango/domain/repository/main_repository.dart';
 import 'package:karmango/presentation/components/buildable_cubit.dart';
+
+import '../../../config/token_data_source.dart';
 
 part 'food_basket_state.dart';
 part 'food_basket_cubit.freezed.dart';
@@ -20,39 +21,6 @@ class FoodBasketCubit
   final TokenPreference tokenPreference;
   final MainRepository _repo;
   final DataRepository _dataRepo;
-
-  // Select or deselect product IDs based on the provided list.
-  // void setSelectIds(List<int> productIds) {
-  //   final selectedIds = List<int>.from(buildable.selectedIds);
-  //   debugPrint("Current selected IDs: $selectedIds");
-
-  //   for (final productId in productIds) {
-  //     if (selectedIds.contains(productId)) {
-  //       selectedIds.remove(productId);
-  //     } else {
-  //       selectedIds.add(productId);
-  //     }
-  //   }
-  //   debugPrint("Updated selected IDs: $selectedIds");
-
-  //   build((buildable) => buildable.copyWith(selectedIds: selectedIds));
-  // }
-
-  // Clear all selected IDs
-  // void clearSelectIds(List<int> selectedIds) {
-  //   build((buildable) => buildable.copyWith(selectedIds: selectedIds));
-  // }
-
-  // Future<void> checkUserStatus() async {
-  //   final user = await tokenPreference.getUser();
-  //   if (user != null) {
-  //     build((buildable) =>
-  //         buildable.copyWith(FoodProfileLoggedIn(user: user)));
-  //     emit(FoodProfileLoggedIn(user: user));
-  //   } else {
-  //     emit(FoodProfileGuest());
-  //   }
-  // }
 
   // Fetch basket products and handle loading states
   Future<void> basketProducts() async {
@@ -69,7 +37,6 @@ class FoodBasketCubit
   }
 
   // Add a product to the basket
-  // Todo  sat
   Future<void> setBasketProducts(int productId) async {
     build((buildable) => buildable.copyWith(loading: true));
     try {
@@ -97,17 +64,6 @@ class FoodBasketCubit
     }
   }
 
-  // // Update basket IDs in the repository
-  // Future<void> updateBasket(Map<int, int> values) async {
-  //   Map<int, int> ids = await _repo.getBasketIds();
-  //   if (values.isNotEmpty) {
-  //     ids.addAll(values); // Merge the new values into the existing IDs
-  //     await _repo.setBasketIds(ids); // Update the repository
-  //     build((buildable) => buildable.copyWith(
-  //         cardProducts: ids, cardProductIds: ids.keys.toList()));
-  //   }
-  // }
-
   // Clear basket IDs
   Future<void> clearBasketIds() async {
     await _repo.setBasketIds({});
@@ -130,74 +86,6 @@ class FoodBasketCubit
     }
   }
 
-  // Remove a specific basket ID
-
-  // Future<void> removeBasketId(int id) async {
-  //   try {
-  //     // Assuming _dataRepo.deleteCartById returns a Future<bool> or similar
-  //     bool isDeleted = await _dataRepo.deleteBasket(productId: id);
-
-  //     if (isDeleted) {
-  //       // Fetch the current basket IDs from the repo
-  //       Map<int, int> ids = await _repo.getBasketIds();
-
-  //       // Remove the item with the given ID
-  //       ids.remove(id);
-
-  //       // Save the updated basket IDs back to the repo
-  //       await _repo.setBasketIds(ids);
-
-  //       // Update the buildable state with the new basket IDs
-  //       build((buildable) => buildable.copyWith(
-  //           cardProducts: ids, cardProductIds: ids.keys.toList()));
-  //     } else {
-  //       // Handle the case where the item wasn't deleted successfully
-  //       // You can throw an exception or show an error message
-  //       throw Exception('Failed to delete the item from the basket');
-  //     }
-  //   } catch (e) {
-  //     // Handle any errors that occur during the process
-  //     print('Error while removing basket ID: $e');
-  //   }
-  // }
-
-  Future<void> removeAllBasket() async {
-    try {
-      // Assuming _dataRepo.deleteAllBasket() returns a Future<bool>
-      bool isDeleted = await _dataRepo.deleteAllBasket();
-
-      if (isDeleted) {
-        // Fetch the current basket IDs from the repo
-        Map<int, int> ids = await _repo.getBasketIds();
-
-        // Clear all items from the basket
-        ids.clear();
-
-        // Save the updated (empty) basket IDs back to the repo
-        await _repo.setBasketIds(ids);
-
-        // Update the buildable state with the new empty basket
-        build((buildable) =>
-            buildable.copyWith(cardProducts: {}, cardProductIds: []));
-      } else {
-        // Handle the case where the basket wasn't deleted successfully
-        throw Exception('Failed to delete all items from the basket');
-      }
-    } catch (e) {
-      // Handle any errors that occur during the process
-      print('Error while removing all items from basket: $e');
-    }
-  }
-
-  // Future<void> removeBasketId(int id) async {
-  //   // Map<int, int> ids = await _repo.getBasketIds();
-  //   Map<int, int> ids = (await _dataRepo.deleteCartById(productId: id)) as Map<int, int>;
-  //   ids.removeWhere((key, _) => key == id);
-  //   await _repo.setBasketIds(ids);
-  //   build((buildable) => buildable.copyWith(
-  //       cardProducts: ids, cardProductIds: ids.keys.toList()));
-  // }
-
   // Fetch basket IDs and update the state
   Future<void> getBasketIds() async {
     Map<int, int> ids = await _repo.getBasketIds();
@@ -205,113 +93,81 @@ class FoodBasketCubit
         cardProducts: ids, cardProductIds: ids.keys.toList()));
   }
 
-  // void setSelectIds(List<int> productIds) {
-  //   final selectedIds = List<int>.from(buildable.selectedIds);
-  //   debugPrint("Current selected IDs: $selectedIds");
-
-  //   for (final productId in productIds) {
-  //     if (selectedIds.contains(productId)) {
-  //       selectedIds.remove(productId);
-  //     } else {
-  //       selectedIds.add(productId);
-  //     }
-  //   }
-  //   debugPrint("Updated selected IDs: $selectedIds");
-
-  //   build((buildable) => buildable.copyWith(selectedIds: selectedIds));
-  // }
-
-  // Clear all selected IDs
-  // void clearSelectIds(List<int> selectedIds) {
-  //   build((buildable) => buildable.copyWith(selectedIds: selectedIds));
-  // }
-  // chooseAllItem(bool value) {
-  //   build(
-  //     (buildable) => buildable.copyWith(
-  //       isChoosedAll: value,
-  //     ),
-  //   );
-  // }
-
-  // clearSelectIds() {
-  //   build(
-  //     (buildable) => buildable.copyWith(
-  //      selectedIds: [], isChoosedAll: false
-  //     ),
-  //   );
-  // }
+  // Toggle select all or deselect all items in the basket
   void toggleAllCheckboxes(bool isSelected) {
     if (isSelected) {
-      setSelectIds(buildable.cardProductIds); // Barcha mahsulotlarni tanlash
+      setSelectIds(buildable.cardProductIds); // Select all products
     } else {
-      clearSelectIds(); // Barcha tanlovlarni tozalash
+      clearSelectIds(); // Deselect all products
     }
   }
 
+  // Toggle individual product selection
   void toggleIndividualCheckbox(int productId, bool isSelected) {
     List<int> updatedSelectedIds = List<int>.from(buildable.selectedIds);
 
     if (isSelected) {
-      updatedSelectedIds.add(productId); // Add the productId if selected
+      updatedSelectedIds.add(productId); // Add productId if selected
     } else {
-      updatedSelectedIds
-          .remove(productId); // Remove the productId if deselected
+      updatedSelectedIds.remove(productId); // Remove productId if deselected
     }
 
-    // Update state with new selectedIds and check if all items are selected
     build((buildable) => buildable.copyWith(
         selectedIds: updatedSelectedIds,
         isChoosedAll:
             updatedSelectedIds.length == buildable.cardProductIds.length));
   }
 
-  // void setSelectIds(List<int> productIds) {
-  //   build((buildable) =>
-  //       buildable.copyWith(      selectedIds: productIds,
-  //     isAllSelected: productIds.length == buildable.cardProductIds.length));
+  // Set selected product IDs
 
+  void setSelectIds(List<int> productIds) {
+  final updatedIds = List<int>.from(buildable.selectedIds)..addAll(productIds);
+  print("setSelectIds called. Updated IDs: $updatedIds");
+  build(
+    (buildable) => buildable.copyWith(selectedIds: updatedIds),
+  );
+}
+
+void clearSelectIds() {
+  print("clearSelectIds called. Clearing all IDs.");
+  build(
+    (buildable) => buildable.copyWith(selectedIds: []),
+  );
+}
+
+
+  // void setSelectIds(List<int> productIds) {
+  //   List<int> resultIds = [];
+  //   resultIds.addAll(buildable.selectedIds);
+
+  //   for (int i = 0; i < productIds.length; i++) {
+  //     if (!resultIds.contains(productIds[i])) {
+  //       resultIds.add(productIds[i]);
+  //     } else {
+  //       resultIds.removeWhere((p) => p == productIds[i]);
+  //     }
+  //   }
+
+  //   build(
+  //     (buildable) => buildable.copyWith(
+  //       selectedIds: resultIds,
+  //     ),
+  //   );
   // }
 
-  setSelectIds(List<int> productIds) {
-    List<int> resultIds = [];
-    resultIds.addAll(buildable.selectedIds);
-    debugPrint("resultIds: $resultIds");
+  // Clear all selected product IDs
 
-    for (int i = 0; i < productIds.length; i++) {
-      if (!resultIds.contains(productIds[i])) {
-        resultIds.add(productIds[i]);
-      } else {
-        resultIds.removeWhere((p) => p == productIds[i]);
-      }
-    }
-    debugPrint("resultIdNext: $resultIds");
-
+  // State management for "select all"
+  void chooseAllItem(bool value) {
     build(
-      (buildable) => buildable.copyWith(
-        selectedIds: resultIds,
-      ),
-    );
+    (buildable) => buildable.copyWith(isChoosedAll: value),
+  );
+    print("ISCHOOOCE: ${value}");
   }
 
-  clearSelectIds() {
-    build(
-      (buildable) => buildable.copyWith(
-        selectedIds: [],
-      ),
-    );
-  }
-
-  chooseAllItem(bool value) {
-    build(
-      (buildable) => buildable.copyWith(
-        isChoosedAll: value,
-      ),
-    );
-  }
-
+  // Increase the quantity of a product
   void increaseQuantity(int id) {
     final products = buildable.products?.map((product) {
-      // Find the result that matches the id and increment its quantity
       final updatedResults = product.result?.map((result) {
         if (result.id == id) {
           return result.copyWith(click_quantity: result.click_quantity! + 1);
@@ -327,9 +183,9 @@ class FoodBasketCubit
     }
   }
 
+  // Decrease the quantity of a product
   void decreaseQuantity(int id) {
     final products = buildable.products?.map((product) {
-      // Find the result that matches the id and decrement its quantity if > 0
       final updatedResults = product.result?.map((result) {
         if (result.id == id && result.click_quantity! > 0) {
           return result.copyWith(click_quantity: result.click_quantity! - 1);
@@ -342,6 +198,25 @@ class FoodBasketCubit
 
     if (products != null) {
       build((buildable) => buildable.copyWith(products: products));
+    }
+  }
+
+  // Remove all items from the basket
+  Future<void> removeAllBasket() async {
+    try {
+      bool isDeleted = await _dataRepo.deleteAllBasket(buildable.chooseIds);
+
+      if (isDeleted) {
+        Map<int, int> ids = await _repo.getBasketIds();
+        ids.clear();
+        await _repo.setBasketIds(ids);
+        build(
+            (buildable) => buildable.copyWith(chooseIds: buildable.chooseIds));
+      } else {
+        throw Exception('Failed to delete all items from the basket');
+      }
+    } catch (e) {
+      print('Error while removing all items from basket: $e');
     }
   }
 }

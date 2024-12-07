@@ -19,7 +19,8 @@ class FoodBasketView extends StatefulWidget {
   State<FoodBasketView> createState() => _BasketViewState();
 }
 
-class _BasketViewState extends State<FoodBasketView> with TickerProviderStateMixin {
+class _BasketViewState extends State<FoodBasketView>
+    with TickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -52,7 +53,8 @@ class _BasketViewState extends State<FoodBasketView> with TickerProviderStateMix
             }
           }
         },
-        child: Buildable<FoodBasketCubit, FoodBasketState, FoodBasketBuildableState>(
+        child: Buildable<FoodBasketCubit, FoodBasketState,
+            FoodBasketBuildableState>(
           properties: (buildable) => [
             buildable.failed,
             buildable.loading,
@@ -100,28 +102,31 @@ class _BasketViewState extends State<FoodBasketView> with TickerProviderStateMix
                         height: 16,
                         width: 16,
                         child: Checkbox.adaptive(
-                          activeColor: const Color(0xFF2473F2),
+                          activeColor: FoodColors.c2473F2,
                           side: BorderSide(color: FoodColors.c8D909B, width: 1),
                           shape: const RoundedRectangleBorder(
                             borderRadius: AppUtils.kBorderRadius4,
                           ),
                           value: state.isChoosedAll,
-                          onChanged: (onChanged) {
-                            List<int> productIds = [];
-
-                            // Add products to the selected list
-                            for (int i = 0; i < state.cardProductIds.length; i++) {
-                              if (!state.selectedIds.contains(state.cardProductIds[i])) {
-                                productIds.add(state.cardProductIds[i]);
+                          onChanged: (value) {
+                            if (value != null) {
+                              final foodBasketCubit =
+                                  context.read<FoodBasketCubit>();
+                              if (value) {
+                                foodBasketCubit
+                                    .setSelectIds(state.cardProductIds);
+                                foodBasketCubit.chooseAllItem(false);
+                                setState(() {
+                                  print("1");
+                                });
+                              } else {
+                                foodBasketCubit.clearSelectIds(); // С
+                                foodBasketCubit.chooseAllItem(true);
+                                setState(() {
+                                  print("2");
+                                });
                               }
-                            }
-
-                            context.read<FoodBasketCubit>().chooseAllItem(onChanged!);
-
-                            if (onChanged == true) {
-                              context.read<FoodBasketCubit>().setSelectIds(productIds);
-                            } else {
-                              context.read<FoodBasketCubit>().clearSelectIds();
+                              foodBasketCubit.chooseAllItem(value);
                             }
                           },
                         ),
@@ -131,14 +136,19 @@ class _BasketViewState extends State<FoodBasketView> with TickerProviderStateMix
                         child: Text(
                           context.l10n.chooseAll,
                           style: Styles.manropeRegular14.copyWith(
-                            color: state.isChoosedAll ? FoodColors.c0E1923 : FoodColors.c8B96A5,
+                            color: state.isChoosedAll
+                                ? FoodColors.c0E1923
+                                : FoodColors.c8B96A5,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          context.read<FoodBasketCubit>().removeAllBasket().then((_) {
+                          context
+                              .read<FoodBasketCubit>()
+                              .removeAllBasket()
+                              .then((_) {
                             // Refresh basket products after removal
                             context.read<FoodBasketCubit>().basketProducts();
                           });
@@ -146,7 +156,9 @@ class _BasketViewState extends State<FoodBasketView> with TickerProviderStateMix
                         child: Text(
                           context.l10n.deleteEverything,
                           style: Styles.manropeRegular14.copyWith(
-                            color: state.cardProductIds.isEmpty ? FoodColors.c8B96A5 : FoodColors.cF83333,
+                            color: state.cardProductIds.isEmpty
+                                ? FoodColors.c8B96A5
+                                : FoodColors.cF83333,
                           ),
                         ),
                       ),
@@ -207,7 +219,8 @@ class _BasketViewState extends State<FoodBasketView> with TickerProviderStateMix
                           if (product != null && product.isNotEmpty) {
                             return FoodBasketCartItem(product: product);
                           } else {
-                            return const SizedBox.shrink(); // If no products, return empty widget
+                            return const SizedBox
+                                .shrink(); // If no products, return empty widget
                           }
                         },
                       ),

@@ -12,6 +12,8 @@ class CategoryProductBuildableState extends CategoryProductState
     @Default(false) bool success,
     @Default(false) bool failed,
     ProductModel? categoryProduct,
+    @Default([]) List<String> likeIds,
+    @Default('') String errorMessage,
     dynamic error,
   }) = _CategoryProductBuildableState;
 }

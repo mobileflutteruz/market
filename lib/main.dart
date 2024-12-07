@@ -14,7 +14,7 @@ import 'package:karmango/presentation/auth/login/cubit/login_cubit.dart';
 import 'package:karmango/presentation/auth/otp/cubit/otp_cubit.dart';
 import 'package:karmango/presentation/auth/register/cubit/register_cubit.dart';
 import 'package:karmango/presentation/auth/splash/cubit/splash_cubit.dart';
-import 'package:karmango/presentation/category/category_item_view/cubit/category_cubit.dart';
+ import 'package:karmango/presentation/category/category_item_view/cubit/category_cubit.dart';
 import 'package:karmango/presentation/details/cubit/details_cubit.dart';
 import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 import 'package:karmango/presentation/basket/cubit/food_basket_cubit.dart';

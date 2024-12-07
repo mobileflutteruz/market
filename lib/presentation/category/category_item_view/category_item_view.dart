@@ -7,10 +7,14 @@ import 'package:karmango/core/utils/utils.dart';
 import 'package:karmango/presentation/category/category_item_view/cubit/category_cubit.dart';
 import 'package:karmango/presentation/category/components/category_product.dart';
 import 'package:karmango/presentation/components/buildable.dart';
+import 'package:karmango/presentation/components/common_app_bar.dart';
 import 'package:karmango/presentation/components/common_blue_button.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
 
 import 'package:lottie/lottie.dart';
+
+import '../../basket/cubit/food_basket_cubit.dart';
+import '../../favourites/cubit/favourites_cubit.dart';
 
 class CategoryProductScreen extends StatelessWidget {
   final int id;
@@ -21,8 +25,13 @@ class CategoryProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     int crossAxisCount = (AppLayout.getScreenWidth(context) / 187.5).floor();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Category Products"),
+      appBar: CommonAppBar(
+        title:  "Category Products",
+        backOnTap: (){
+          Navigator.pop(context);
+        },
+
+
       ),
       body: BlocProvider(
         create: (context) =>
@@ -103,18 +112,34 @@ class CategoryProductScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final product = state.categoryProduct!.products![index];
                   return CategoryProductItemWidget(
-                    isLiked: true,
-                    likeTapped: () {},
+                    isLiked: state.likeIds.contains(product.id),
+                    likeTapped: () {
+                      final favouritesCubit = context.read<FavouritesCubit>();
+
+                      if (state.likeIds.contains(product.id)) {
+                        // Agar mahsulot allaqachon sevimlilar ro'yxatida bo'lsa, uni olib tashlaymiz
+
+                        favouritesCubit.deleteLikeId(product.id!);
+                      } else {
+                        // Agar mahsulot sevimlilar ro'yxatida bo'lmasa, uni qo'shamiz
+
+                        favouritesCubit.setLikeId(product.id!);
+                      }
+                    },
                     product: product, // Pass the product directly
-                    smallButton: () {},
+                    smallButton: () {
+                      context
+                          .read<FoodBasketCubit>()
+                          .setBasketProducts(product.id!);
+                    },
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              CategoryProductScreen(product.id!),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) =>
+                      //         CategoryProductScreen(product.id!),
+                      //   ),
+                      // );
                     },
                   );
                 },

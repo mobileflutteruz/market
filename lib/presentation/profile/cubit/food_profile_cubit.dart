@@ -1,21 +1,26 @@
 import 'dart:convert';
-
+import 'package:karmango/config/token_data_source.dart';
+import 'package:karmango/domain/model/mobile/profile/profile_model.dart';
 import 'package:karmango/domain/model/mobile/user/user.dart';
-import 'package:karmango/domain/model/mobile/user_info/user_info.dart';
 import 'package:karmango/domain/repository/auth_repository.dart';
+import 'package:karmango/domain/repository/data_repository.dart';
 import 'package:karmango/presentation/components/buildable_cubit.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:http/http.dart' as http;
 part 'food_profile_state.dart';
-
 part 'food_profile_cubit.freezed.dart';
 
 @Injectable()
 class FoodProfileCubit
     extends BuildableCubit<FoodProfileState, FoodProfileBuildableState> {
-  FoodProfileCubit(this.authRepo) : super(const FoodProfileBuildableState());
+  FoodProfileCubit(this.authRepo, this.token, this.data)
+      : super(FoodProfileBuildableState());
   final AuthRepository authRepo;
+  final DataRepository data;
+  // final UserSessionManager userSessionManager;
+  final TokenPreference token;
+
   changeName(String name) {
     build(
       (buildable) => buildable.copyWith(userName: name),
@@ -28,16 +33,40 @@ class FoodProfileCubit
     );
   }
 
-  foodSetUser(UserInfo? userInfo) {
+  foodSetUser(ProfileModel? userInfo) {
     build(
       (buildable) => buildable.copyWith(
         userInfo: userInfo,
+        token: token.getUserToken(),
       ),
     );
   }
 
-
-
+  Future<void> prfileEditor() async {
+    build(
+      (buildable) => buildable.copyWith(
+        loading: true,
+        failure: false,
+      ),
+    );
+    try {
+      final user = await data.getProfile();
+      print("_________SUCCESSS_____: ${data.getProfile()}");
+      build(
+        (buildable) => buildable.copyWith(
+            success: true, loading: false, failure: false, userInfo: user),
+      );
+    } catch (e) {
+      print("_________ERROOOOOOOOOOOOOOORRRRRRRRRRRRR____: ${e}");
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          failure: true,
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
 
   Future<void> change({
     required String number,
@@ -68,10 +97,6 @@ class FoodProfileCubit
     }
   }
 
-
-
-
-
   Future<void> uploadProfileImage(String filePath) async {
     build((state) => state.copyWith(loading: true));
     try {
@@ -88,6 +113,7 @@ class FoodProfileCubit
           build((state) => state.copyWith(
                 loading: false,
                 success: true,
+                token: token.getUserToken(),
               ));
         } else {
           build((state) => state.copyWith(
@@ -113,7 +139,7 @@ class FoodProfileCubit
     }
   }
 
-Future<void> logout() async {
+  Future<void> logout() async {
     build(
       (buildable) => buildable.copyWith(
         loading: true,
@@ -139,5 +165,4 @@ Future<void> logout() async {
       );
     }
   }
-  
 }

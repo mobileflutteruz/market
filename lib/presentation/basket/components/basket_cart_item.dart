@@ -25,7 +25,6 @@ class FoodBasketCartItem extends StatefulWidget {
 class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
   @override
   Widget build(BuildContext context) {
-    // Ekran o'lchamlarini olish uchun MediaQuery
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Buildable<FoodBasketCubit, FoodBasketState,
@@ -33,8 +32,6 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
       properties: (buildable) =>
           [buildable.selectedIds, buildable.cardProductIds],
       builder: (context, state) {
-
-        
         return Padding(
           padding: AppUtils.kPaddingAll16,
           child: ListView.builder(
@@ -45,6 +42,7 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
               final productItem = widget.product[index];
               final isSelected = state.selectedIds
                   .contains(widget.product[index]!.product_id!);
+              print("IS SELECTED: ${isSelected}");
               return GestureDetector(
                 child: Column(
                   children: [
@@ -55,17 +53,24 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
                           value: state.selectedIds.contains(productItem!.id!),
                           activeColor: const Color(0xFF2473F2),
                           side: const BorderSide(
-                            color: Color(0xFF8D909B),
-                            width: 1,
-                          ),
+                              color: Color(0xFF8D909B), width: 1),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          checkColor: ColorConstants.cffffff,
-                          onChanged: (value) =>
-                              context.read<FoodBasketCubit>().setSelectIds(
-                            [productItem.id!],
-                          ),
+                              borderRadius: BorderRadius.circular(4)),
+                          onChanged: (value) {
+                            if (value == true) {
+                              context
+                                  .read<FoodBasketCubit>()
+                                  .setSelectIds([productItem.id!]);
+                            } else {
+                              // Remove deselected item
+                              final updatedIds =
+                                  List<int>.from(state.selectedIds)
+                                    ..remove(productItem.id!);
+                              context.read<FoodBasketCubit>().emit(
+                                    state.copyWith(selectedIds: updatedIds),
+                                  );
+                            }
+                          },
                         ),
                         AppUtils.kGap8,
                         _buildProductImage(productItem),

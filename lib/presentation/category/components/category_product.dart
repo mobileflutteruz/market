@@ -8,7 +8,7 @@ import 'package:karmango/core/utils/app_layouts.dart';
 import 'package:karmango/core/constants/constants.dart'; // Import necessary constants
 import 'package:karmango/core/utils/utils.dart'; // Import necessary utilities
 
-class CategoryProductItemWidget extends StatelessWidget {
+class CategoryProductItemWidget extends StatefulWidget {
   const CategoryProductItemWidget({
     super.key,
     required this.product,
@@ -27,9 +27,32 @@ class CategoryProductItemWidget extends StatelessWidget {
   final bool isNew;
 
   @override
+  State<CategoryProductItemWidget> createState() =>
+      _CategoryProductItemWidgetState();
+}
+
+class _CategoryProductItemWidgetState extends State<CategoryProductItemWidget> {
+  late bool _isLiked;
+
+  @override
+  void initState() {
+    super.initState();
+    _isLiked = widget.isLiked;
+  }
+
+  void _toggleLike() {
+    setState(() {
+      if (widget.likeTapped != null) {
+        widget.likeTapped();
+      }
+      _isLiked = !_isLiked;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
@@ -57,7 +80,7 @@ class CategoryProductItemWidget extends StatelessWidget {
                         padding: const EdgeInsets.only(
                             left: 36, right: 36, top: 36, bottom: 10),
                         child: ImageViewWidget(
-                          imageLink: product.image ??
+                          imageLink: widget.product.image ??
                               '', // Handle null case for imageLink
                           isNetImg: true,
                         ),
@@ -70,7 +93,7 @@ class CategoryProductItemWidget extends StatelessWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          if (isNew)
+                          if (widget.isNew)
                             Container(
                               height: AppLayout.getHeight(24, context),
                               padding: AppUtils.kPaddingHor8Ver2,
@@ -88,7 +111,7 @@ class CategoryProductItemWidget extends StatelessWidget {
                               ),
                             ),
                           AppUtils.kGap4,
-                          if (product.discount != null)
+                          if (widget.product.discount != null)
                             Container(
                               padding: AppUtils.kPaddingHor8Ver2,
                               height: AppLayout.getHeight(24, context),
@@ -100,18 +123,24 @@ class CategoryProductItemWidget extends StatelessWidget {
                                 ),
                               ),
                               child: Text(
-                                '-${product.discount}%', // Use product.discount directly
+                                '-${widget.product.discount}%',
+                                // Use product.discount directly
                                 style: Styles.manropeMedium13
                                     .copyWith(color: FoodColors.cffffff),
                               ),
                             ),
                           const Spacer(),
                           InkWell(
-                            onTap: likeTapped,
-                            child: isLiked
-                                ? Icon(CupertinoIcons.heart_fill,
-                                    color: FoodColors.cF83333)
-                                : const Icon(CupertinoIcons.heart),
+                            onTap: _toggleLike,
+                            // child: widget.isLiked
+                            child: _isLiked
+                                ? Icon(
+                                    CupertinoIcons.heart_fill,
+                                    color: FoodColors.cF83333,
+                                  )
+                                : const Icon(
+                                    CupertinoIcons.heart,
+                                  ),
                           ),
                         ],
                       ),
@@ -122,29 +151,32 @@ class CategoryProductItemWidget extends StatelessWidget {
             ),
             AppUtils.kGap8, // Ensure proper gap between image and text
             Text(
-              product.name ?? "", // Handle null case for product.name
+              widget.product.name ?? "", // Handle null case for product.name
               style: Styles.manropeMedium12.copyWith(color: FoodColors.c0E1923),
               maxLines: 2,
               textAlign: TextAlign.start,
             ),
             Text(
-              '${product.discount ?? 0}%', // Handle null case for product.discount
+              '${widget.product.discount ?? 0}%',
+              // Handle null case for product.discount
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: Styles.manropeBold14.copyWith(
-                color: isNew ? FoodColors.primaryColor : FoodColors.cA6AEBF,
+                color:
+                    widget.isNew ? FoodColors.primaryColor : FoodColors.cA6AEBF,
               ),
             ),
             AppUtils.kGap4,
             Text(
-              '${product.price?.toInt() ?? 0} ${context.l10n.sum}', // Handle null case for product.price
+              '${widget.product.price?.toInt() ?? 0} ${context.l10n.sum}',
+              // Handle null case for product.price
               style: Styles.interSemiBold14.copyWith(
                 color: FoodColors.c0E1923,
                 fontWeight: FontWeight.w600,
               ),
             ),
             AppUtils.kGap8,
-            SmallButton(onTap: smallButton),
+            SmallButton(onTap: widget.smallButton),
           ],
         ),
       ),

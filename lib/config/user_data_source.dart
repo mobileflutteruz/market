@@ -26,9 +26,26 @@ class UserDataDataSource {
     }
   }
 
-  Future<void> saveUserId(String userId) async {
+  Future<bool> isFirstRunClear() async {
     try {
-      await _secureStorage.write(key: _userIdKey, value: userId);
+      // Check if the 'first run' key is already set
+      final isFirstRun = _sharedPreferences.getBool(_firstRunKey) ?? true;
+      if (isFirstRun) {
+        print("Is First Run: $isFirstRun");
+        await _sharedPreferences.clear(); // Clear all data if it's the first run
+        await _sharedPreferences.setBool(_firstRunKey, false); // Set 'first run' key to false
+      }
+      return isFirstRun;
+    } catch (e) {
+      print("Error checking first run: $e");
+      return true;
+    }
+  }
+
+
+  Future<void> saveUserId(int userId) async {
+    try {
+      await _secureStorage.write(key: _userIdKey, value: userId.toString());
     } catch (e) {
       print("Error saving user ID: $e");
     }

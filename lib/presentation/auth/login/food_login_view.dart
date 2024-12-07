@@ -32,6 +32,7 @@ class _FoodLoginView extends State<FoodLoginView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -59,6 +60,7 @@ class _FoodLoginView extends State<FoodLoginView> {
                             },
                           ),
                           AppUtils.kGap24,
+                          
                           PasswordInputWidget(
                             textEditingController: passwordController,
                             hintText: context.l10n.enterPassword,

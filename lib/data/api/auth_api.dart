@@ -35,7 +35,6 @@ class AuthApi {
     var data = await _api.post(path: "/logout");
     return data;
   }
- 
 
   // Future<Response> verfy(String phone, String code) async {
   //   final body = {"code": code, "phone": phone};
@@ -46,17 +45,18 @@ class AuthApi {
     final body = {"code": code, "phone": phone};
     var data = await _api.post(path: "/insert-code", body: body);
     return data;
-  } 
+  }
 
   Future<Response> resetPassword(
-      String password, String confirmPassword, String userId) async {
+      String password, String confirmPassword,  userId) async {
     final body = {
       "password": password, // Parol
       "confirm_password": confirmPassword // Parolni tasdiqlash
     };
     print('USER ID IS HEREEEEEEEE: ${userId}');
     // POST so'rovini "/restore-password/$userId" endpointiga yuborish
-    var data = await _api.postWithToken(path: "/restore-password/$userId", body: body);
+    var data =
+        await _api.postWithToken(path: "/restore-password/$userId", body: body);
 
     // So'rov natijasini konsolga chiqarish
     print("RESET PASSWORD: $data");
@@ -65,7 +65,7 @@ class AuthApi {
   }
 
   Future<Response> updatePassword(
-      String newPass, String confirmPass, String userId) async {
+      String newPass, String confirmPass, dynamic userId) async {
     final Map<String, Object> params = {
       'password': newPass,
       'password_confirmation': confirmPass

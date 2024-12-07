@@ -76,11 +76,11 @@ class _FoodChangePasswordViewState extends State<FoodChangePasswordView> {
                                       passwordController.text,
                                       repasswordController.text,
                                     );
-                                // Navigator.pushNamed(
-                                //   context,
-                                //   FoodNavigatorConst.foodLoginScreen,
-                                //   arguments: passwordController.text,
-                                // );
+                                Navigator.pushNamed(
+                                  context,
+                                  FoodNavigatorConst.foodLoginScreen,
+                                  arguments: passwordController.text,
+                                );
                               }
                             },
                           ),

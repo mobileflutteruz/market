@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:injectable/injectable.dart';
-import '../../data/preferences/token_preferences.dart';
+import '../../config/token_data_source.dart';
 
 @Injectable()
 class MainRepository {
@@ -19,13 +19,13 @@ class MainRepository {
   getCategory() async {}
 
   /// Furniture Shop
-  getFurnitureLikeIds() async {
-    return await _preference.getFurnitureFavourites();
-  }
+  // getFurnitureLikeIds() async {
+  //   return await _preference.getFurnitureFavourites();
+  // }
 
-  setFurnitureLikeIds(List<String> likeIds) async {
-    await _preference.setFurnitureFavourites(values: likeIds);
-  }
+  // setFurnitureLikeIds(List<String> likeIds) async {
+  //   await _preference.setFurnitureFavourites(values: likeIds);
+  // }
 
   Future<Map<int, int>> getBasketIds() async {
     final String? jsonString = await _preference.getBaskets();
@@ -44,7 +44,7 @@ class MainRepository {
     final String jsonString = json.encode(basketIds.map(
       (key, value) => MapEntry(key.toString(), value),
     ));
-    await _preference.setBaskets(value: jsonString);
+    await _preference.setBaskets(jsonString);
   }
 
   Future<Map<int, int>> getMyOrderIds() async {
@@ -64,6 +64,6 @@ class MainRepository {
     final String jsonString = json.encode(basketIds.map(
       (key, value) => MapEntry(key.toString(), value),
     ));
-    await _preference.setMyOrder(value: jsonString);
+    await _preference.setMyOrder(jsonString);
   }
 }

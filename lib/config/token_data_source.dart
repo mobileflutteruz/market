@@ -4,108 +4,217 @@ import 'package:injectable/injectable.dart';
 import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
 
 @Injectable()
-class TokenDataSource {
+class TokenPreference {
   final FlutterSecureStorage _secureStorage;
 
-  TokenDataSource(this._secureStorage);
+  TokenPreference(this._secureStorage);
 
   final String _tokenKey = "token";
-  final String _favouritesKey = "favourites";
-  final String _basketsKey = "baskets";
-  final String _ordersKey = "orders";
+  final String _tokenUserKey = "tokenUserKey";
   final String _guestKey = "guest";
   final String _userKey = "user";
+  final String _favouritesKey = "favourites";
+  final String _furnitureFavouritesKey = "furnitureFavourites";
+  final String _basketsKey = "baskets";
+  final String _ordersKey = "orders";
+  final String _userIdKey = "user_id_to_restore_password";
 
+  // Guest Token
   Future<void> saveGuestToken(String value) async {
-    print("Saving guest token: $value");
-    await _secureStorage.write(key: _guestKey, value: value);
+    try {
+      await _secureStorage.write(key: _guestKey, value: value);
+    } catch (e) {
+      print("Error saving guest token: $e");
+    }
   }
 
   Future<String?> getGuestToken() async {
-    print("Retrieving guest token: $_guestKey");
-    return await _secureStorage.read(key: _guestKey);
+    try {
+      return await _secureStorage.read(key: _guestKey);
+    } catch (e) {
+      print("Error reading guest token: $e");
+      return null;
+    }
   }
 
+  Future<void> clearGuest() async {
+    try {
+      await _secureStorage.delete(key: _guestKey);
+    } catch (e) {
+      print("Error clearing guest token: $e");
+    }
+  }
 
-  // Future<void> saveGuestUser(String value) async {
-  //   print("Saving guest token: $value");
-  //   await _secureStorage.write(key: _guestKey, value: value);
-  // }
+  Future<void> saveUserToken(String value) async {
+    try {
+      await _secureStorage.write(key: _tokenUserKey, value: value);
+    } catch (e) {
+      print("Error saving user token: $e");
+    }
+  }
 
-  // Future<String?> getGuestUser() async {
-  //   print("Retrieving guest token: $_guestKey");
-  //   return await _secureStorage.read(key: _guestKey);
-  // }
+  Future<String?> getUserToken() async {
+    try {
+      return await _secureStorage.read(key: _tokenUserKey);
+    } catch (e) {
+      print("Error reading user token: $e");
+      return null;
+    }
+  }
 
-  Future<void> setUser(Map<String, dynamic> json) async {
-    String user = jsonEncode(json);
-    await _secureStorage.write(key: _userKey, value: user);
+  Future<void> clearUserToken() async {
+    try {
+      await _secureStorage.delete(key: _tokenUserKey);
+    } catch (e) {
+      print("Error clearing user token: $e");
+    }
+  }
+
+  // User Data
+  Future<void> saveUser(Map<String, dynamic> json) async {
+    try {
+      String user = jsonEncode(json);
+      await _secureStorage.write(key: _userKey, value: user);
+    } catch (e) {
+      print("Error saving user data: $e");
+    }
   }
 
   Future<AuthResponse?> getUser() async {
-    String? userString = await _secureStorage.read(key: _userKey);
-    if (userString != null) {
-      try {
+    try {
+      String? userString = await _secureStorage.read(key: _userKey);
+      if (userString != null) {
         Map<String, dynamic> json = jsonDecode(userString);
         return AuthResponse.fromJson(json);
-      } catch (e) {
-        print("Error decoding user data: $e");
-        return null;
       }
+    } catch (e) {
+      print("Error decoding user data: $e");
     }
     return null;
   }
 
   Future<void> clearUser() async {
-    await _secureStorage.delete(key: _userKey);
+    try {
+      await _secureStorage.delete(key: _userKey);
+    } catch (e) {
+      print("Error clearing user data: $e");
+    }
   }
 
+  // Favourites
   Future<List<String>?> getFavourites() async {
-    String? favouritesString = await _secureStorage.read(key: _favouritesKey);
-    if (favouritesString != null) {
-      try {
+    try {
+      String? favouritesString = await _secureStorage.read(key: _favouritesKey);
+      if (favouritesString != null) {
         return List<String>.from(jsonDecode(favouritesString));
-      } catch (e) {
-        print("Error decoding favourites: $e");
-        return null;
       }
+    } catch (e) {
+      print("Error decoding favourites: $e");
     }
     return null;
   }
 
   Future<void> setFavourites({required List<String> values}) async {
-    await _secureStorage.write(key: _favouritesKey, value: jsonEncode(values));
+    try {
+      await _secureStorage.write(key: _favouritesKey, value: jsonEncode(values));
+    } catch (e) {
+      print("Error saving favourites: $e");
+    }
   }
 
   Future<void> clearFavourites() async {
-    await _secureStorage.delete(key: _favouritesKey);
+    try {
+      await _secureStorage.delete(key: _favouritesKey);
+    } catch (e) {
+      print("Error clearing favourites: $e");
+    }
   }
 
-  Future<void> setBaskets({required String value}) async {
-    await _secureStorage.write(key: _basketsKey, value: value);
+  // Baskets
+  Future<void> setBaskets(String value) async {
+    try {
+      await _secureStorage.write(key: _basketsKey, value: value);
+    } catch (e) {
+      print("Error saving baskets: $e");
+    }
   }
 
   Future<String?> getBaskets() async {
-    return await _secureStorage.read(key: _basketsKey);
+    try {
+      return await _secureStorage.read(key: _basketsKey);
+    } catch (e) {
+      print("Error reading baskets: $e");
+      return null;
+    }
   }
 
-  Future<void> setMyOrder({required String value}) async {
-    await _secureStorage.write(key: _ordersKey, value: value);
+  // Orders
+  Future<void> setMyOrder(String value) async {
+    try {
+      await _secureStorage.write(key: _ordersKey, value: value);
+    } catch (e) {
+      print("Error saving order: $e");
+    }
   }
 
   Future<String?> getMyOrder() async {
-    return await _secureStorage.read(key: _ordersKey);
+    try {
+      return await _secureStorage.read(key: _ordersKey);
+    } catch (e) {
+      print("Error reading order: $e");
+      return null;
+    }
   }
 
+  // Token
   Future<void> saveToken(String token) async {
-    await _secureStorage.write(key: _tokenKey, value: token);
+    try {
+      await _secureStorage.write(key: _tokenKey, value: token);
+    } catch (e) {
+      print("Error saving token: $e");
+    }
   }
 
   Future<String?> getToken() async {
-    return await _secureStorage.read(key: _tokenKey);
+    try {
+      return await _secureStorage.read(key: _tokenKey);
+    } catch (e) {
+      print("Error reading token: $e");
+      return null;
+    }
   }
 
   Future<void> clearToken() async {
-    await _secureStorage.delete(key: _tokenKey);
+    try {
+      await _secureStorage.delete(key: _tokenKey);
+    } catch (e) {
+      print("Error clearing token: $e");
+    }
+  }
+
+  // User ID for password reset
+  Future<void> saveUserId(String? userId) async {
+    try {
+      await _secureStorage.write(key: _userIdKey, value: userId);
+    } catch (e) {
+      print("Error saving user ID: $e");
+    }
+  }
+
+  Future<String?> getUserId() async {
+    try {
+      return await _secureStorage.read(key: _userIdKey);
+    } catch (e) {
+      print("Error reading user ID: $e");
+      return null;
+    }
+  }
+
+  Future<void> clearUserId() async {
+    try {
+      await _secureStorage.delete(key: _userIdKey);
+    } catch (e) {
+      print("Error clearing user ID: $e");
+    }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../core/constants/constants.dart';
+import 'package:karmango/core/constants/image_const.dart';
+
 import '../../core/utils/app_options.dart';
 
 const List regions = [

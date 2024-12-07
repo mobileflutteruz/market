@@ -3,32 +3,36 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:karmango/config/app_init/cubit/app_init_state.dart';
-import 'package:karmango/config/user_session_manager.dart';
 import 'package:karmango/data/api/api.dart';
+import '../../token_data_source.dart';
 
 @Injectable()
 class AppInitCubit extends Cubit<AppInitState> {
-  final UserSessionManager _userSessionManager;
+  // final UserSessionManager _userSessionManager;
+  final TokenPreference tokenPreference;
   final Api _api;
 
   AppInitCubit(
-    this._userSessionManager,
-    this._api,
-  ) : super(const AppInitLoadingState());
+      // this._userSessionManager,
+      this._api,
+      this.tokenPreference)
+      : super(const AppInitLoadingState());
 
   Future<void> checkAuth() async {
     emit(const AppInitLoadingState());
 
     try {
       // Foydalanuvchi tokenini tekshirish
-      final userToken = await _userSessionManager.getToken();
+      // final userToken = await _userSessionManager.getToken();
+      final userToken = await tokenPreference.getToken();
       if (userToken != null && userToken.isNotEmpty) {
         emit(const AuthorizedState());
         return;
       }
 
       // Mehmon tokenini tekshirish
-      final guestToken = await _userSessionManager.getGuestToken();
+      // final guestToken = await _userSessionManager.getGuestToken();
+      final guestToken = await tokenPreference.getGuestToken();
       if (guestToken != null && guestToken.isNotEmpty) {
         emit(const AuthorizedState());
         return;
@@ -54,7 +58,8 @@ class AppInitCubit extends Cubit<AppInitState> {
         if (responseBody['status'] == true) {
           final guestToken = responseBody['token'];
           print("Saving guest token (AppInit): $guestToken");
-          await _userSessionManager.saveGuestToken(guestToken);
+          await tokenPreference.saveGuestToken(guestToken);
+          // await _userSessionManager.saveGuestToken(guestToken);
           emit(const AuthorizedState());
         } else {
           emit(const UnauthorizedState());
@@ -83,7 +88,9 @@ class AppInitCubit extends Cubit<AppInitState> {
         final userToken = responseBody['token'];
 
         if (userToken != null) {
-          await _userSessionManager.saveUserToken(userToken);
+          // await _userSessionManager.saveUserToken(userToken);
+          await tokenPreference.saveUserToken(userToken);
+          print("LOG IN TOKEN SAQLANDI FOR PROFILE");
           emit(const AuthorizedState());
         } else {
           emit(const UnauthorizedState());

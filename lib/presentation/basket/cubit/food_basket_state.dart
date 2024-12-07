@@ -8,6 +8,8 @@ class FoodBasketBuildableState extends FoodBasketState
   const factory FoodBasketBuildableState({
     @Default(0) int currentIndex,
     @Default([]) List<int> selectedIds,
+    @Default([]) List<int> chooseIds,
+
     @Default({}) Map<int, int> cardProducts,
     @Default([]) List<int> cardProductIds,
     @Default('') String errorMessage,

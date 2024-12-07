@@ -4,12 +4,10 @@ import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'dart:convert';
 
-import 'package:karmango/config/user_session_manager.dart';
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/core/constants/logger_service.dart';
 import 'package:karmango/data/api/api.dart';
 import 'package:karmango/data/api/auth_api.dart';
-import 'package:karmango/data/preferences/token_preferences.dart';
 import 'package:karmango/domain/expections/invalid_credentials_exceptions.dart';
 import 'package:karmango/domain/model/auth/auth_resposne/auth_response.dart';
 import 'package:uuid/uuid.dart';
@@ -18,16 +16,21 @@ import 'package:karmango/domain/model/auth/change_password/change_password_model
 import 'package:karmango/domain/model/auth/register/register.dart';
 import 'package:karmango/domain/model/mobile/user/user.dart';
 
+import '../../config/token_data_source.dart';
+
 @Injectable()
 class AuthRepository {
   AuthRepository(
-      this._token, this._api, this.authApi, this._userSessionManager);
+    this._token,
+    this._api,
+    this.authApi,
+  );
 
   final Api _api;
   final AuthApi authApi;
   final TokenPreference _token;
   final LoggingService log = LoggingService();
-  final UserSessionManager _userSessionManager;
+  // final UserSessionManager _userSessionManager;
 
   Future<RegisterModel> register({
     required String password,
@@ -40,7 +43,7 @@ class AuthRepository {
       "name": name,
     };
     try {
-      final response = await _api.post(path: "/register", body: query);
+      final response = await _api.postWithToken(path: "/register", body: query);
       if (response.statusCode == 200) {
         final result = jsonDecode(response.body);
         final RegisterModel data =
@@ -56,33 +59,62 @@ class AuthRepository {
     }
   }
 
-  Future<ChangePasswordModel> updatePassword(String newPass, String confirmPass) async {
-  try {
-    final String? userId = await _token.getUserId();
-    print("__________________________USER ID: $userId");
-
-    if (userId == null) {
-      print("User ID mavjud emas.");
-      throw AuthenticationException('User ID topilmadi');
+  Future<ChangePasswordModel> updatePassword(
+      String newPass, String confirmPass) async {
+    try {
+      // final  userId = await _userSessionManager.getUserId();
+      final userId = await _token.getUserId();
+      print("__________________________USER ID: $userId");
+      if (userId == null) {
+        throw AuthenticationException('User not found');
+      }
+      final response = await authApi.resetPassword(
+        newPass,
+        confirmPass,
+        userId,
+      );
+      final Map<String, dynamic> result =
+          Map<String, dynamic>.from(jsonDecode(response.body));
+      return ChangePasswordModel.fromJson(result);
+    } catch (e) {
+      print('Error updating password: $e');
+      rethrow;
     }
-
-    final response = await authApi.resetPassword(newPass, confirmPass, userId);
-    final Map<String, dynamic> result = jsonDecode(response.body);
-
-    return ChangePasswordModel.fromJson(result);
-  } catch (e) {
-    print('Error updating password: $e');
-    rethrow;
   }
-}
-
-
 
   bool isValidPassword(String password, String confirmPassword) {
     return password.length >= 8 && password == confirmPassword;
   }
 
-  Future<void> login({
+  // Future<void> login({
+  //   required String phone,
+  //   required String password,
+  // }) async {
+  //   final body = {
+  //     "phone": phone,
+  //     "password": password,
+  //   };
+  //   final response = await _api.postWithToken(path: Urls.login, body: body);
+  //   if (response != null) {
+  //     final authResponse = AuthResponse.fromJson(jsonDecode(response.body));
+  //     if (authResponse.token != null) {
+  //       await _saveUserToken(authResponse.token!);
+  //       await _onAuthResponse(authResponse); // Remove the type cast
+  //     } else {
+  //       throw Exception('Login muvaffaqiyatsiz: Token topilmadi');
+  //     }
+  //   } else {
+  //     throw Exception('Login muvaffaqiyatsiz: Javob yo\'q');
+  //   }
+  // }
+
+// Tokenni saqlash funksiyasi
+  Future<void> _saveUserToken(String token) async {
+    // await _userSessionManager.saveUsersToken(token);
+    await _token.saveUserToken(token);
+  }
+
+  Future<AuthResponse> login({
     required String phone,
     required String password,
   }) async {
@@ -91,50 +123,75 @@ class AuthRepository {
       "password": password,
     };
     final response = await _api.postWithToken(path: Urls.login, body: body);
-    await _onAuthResponse(response);
+
+    final responseBody = jsonDecode(response.body);
+    final authResponse = AuthResponse.fromJson(responseBody);
+
+    if (authResponse.status == true) {
+      if (authResponse.token != null) {
+        await _token.saveUserToken(authResponse.token!);
+
+        log.logInfo('USERS TOKEN successfully TAKEN: ${authResponse.token}');
+      } else {
+        log.logError('Token not found in the response');
+      }
+    } else {
+      log.logError('Login failed: ${authResponse.message}');
+    }
+
+    return authResponse;
   }
+
 
   Future<Response> logout() async {
     var data = await _api.post(path: "/logout");
-    // try {
-    //   await _token.clear();
-    //   await _token.clearUser();
-    // } catch (e) {
-    //   log.logError("Error logging out", error: e);
-    // }
+    log.logInfo("LOOOOOOG OOUT");
+    try {
+      await _token.clearUserToken();
+      await _token.clearUserId();
+      await _token.clearUser();
+      await _token.clearToken();
+      log.logInfo(" CLEAR TOKEN IN getUser:${ _token.clearUserToken()}");
+      log.logInfo(" CLEAR TOKEN IN clearUser:${_token.clearUserId()}");
+      log.logInfo(" CLEAR TOKEN IN clearUser:${_token.clearUser()}");
+      log.logInfo(" CLEAR TOKEN IN clearUserId :${_token.clearToken()}");
+    } catch (e) {
+      log.logError("Error logging out", error: e);
+    }
     return data;
   }
 
-  // Future<void> verify(String phone, String code) async {
-  //   try {
-  //     final response = await authApi.verfy(phone, code);
-  //     final responseBody = jsonDecode(response.body);
-
-  //     if (responseBody['status'] == true) {
-  //       final userId = responseBody['user_id_to_restore_password'];
-
-  //       // Saqlangan User ID
-  //       await _token
-  //           .saveUserId(userId); // _token obyekti orqali user_id ni saqlaymiz
-
-  //       log.logInfo('User verified successfully: ${responseBody['message']}');
-  //     } else {
-  //       throw AuthenticationException(
-  //           'Verification failed: ${responseBody['message']}');
-  //     }
-  //   } catch (e) {
-  //     log.logError("Error verifying user", error: e);
-  //     rethrow;
-  //   }
-  // }
   Future<void> verifySms(String phone, String code) async {
     try {
       final response = await authApi.verfy(phone, code);
-      await _onAuthResponse(response);
+      final responseBody = jsonDecode(response.body);
+
+      if (responseBody['status'] == true) {
+        final String? userId = responseBody['user_id_to_restore_password'];
+
+        // Saqlangan User ID
+        // await _userSessionManager.saveUserId(userId);
+        await _token.saveUserId(userId);
+
+        log.logInfo('User verified successfully: ${responseBody['message']}');
+      } else {
+        throw AuthenticationException(
+            'Verification failed: ${responseBody['message']}');
+      }
     } catch (e) {
       log.logError("Error verifying user", error: e);
+      rethrow;
     }
-  } 
+  }
+
+  // Future<void> verifySms(String phone, String code) async {
+  //   try {
+  //     final response = await authApi.verfy(phone, code);
+  //     await _onAuthResponse(response);
+  //   } catch (e) {
+  //     log.logError("Error verifying user", error: e);
+  //   }
+  // }
 
   Future<void> loginAsGuest() async {
     try {
@@ -243,9 +300,11 @@ class AuthRepository {
     final body = jsonDecode(response.body);
 
     if (body["token"] == null) {
-      throw Exception(body);
+      // throw Exception(body);
+      log.logInfo(body);
     } else {
-      await _userSessionManager.saveUserToken(body["token"]);
+      // await _userSessionManager.saveUserToken(body["token"]);
+      await _token.saveUserToken(body["token"]);
     }
   }
 
@@ -255,8 +314,9 @@ class AuthRepository {
       if (body["token"] == null) {
         log.logDebug("ACCESS_TOKEN: $body");
       } else {
-        await _userSessionManager.saveUserToken(body["token"]);
-        await _token.saveGuestUser(body["token"]);
+        // await _userSessionManager.saveUserToken(body["token"]);
+        await _token.saveUserToken(body["token"]);
+        await _token.saveGuestToken(body["token"]);
       }
     } else {
       log.logError(

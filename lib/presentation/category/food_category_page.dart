@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/config/di/injection.dart';
-import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/presentation/category/category_item_view/category_item_view.dart';
 import 'package:karmango/presentation/category/components/category_item_widget.dart';
 import 'package:karmango/presentation/category/cubit/category_cubit.dart';
@@ -15,9 +14,9 @@ class FoodCategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.categories),
-      ),
+      // appBar: AppBar(
+      //   title: Text(context.l10n.categories),
+      // ),
       body: BlocProvider(
         create: (context) {
           var bloc = locator<CategoryCubit>();

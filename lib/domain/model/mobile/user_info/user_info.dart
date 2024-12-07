@@ -22,6 +22,7 @@ class Result with _$Result {
         required String name,
         required String phone,
         required String image,
+        required String token,
     }) = _Result;
 
     factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);

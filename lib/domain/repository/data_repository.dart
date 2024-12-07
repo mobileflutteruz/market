@@ -10,6 +10,7 @@ import 'package:karmango/domain/model/mobile/cart_product/cart_product.dart';
 import 'package:karmango/domain/model/mobile/category/category.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
 import 'package:karmango/domain/model/mobile/product/product.dart';
+import 'package:karmango/domain/model/mobile/profile/profile_model.dart';
 
 @Injectable()
 class DataRepository {
@@ -18,19 +19,100 @@ class DataRepository {
   final LoggingService log = LoggingService();
   LoggingService logg = LoggingService();
   DataRepository(this.api, this.mainApi);
-  // Home
+  //
 
-  Future getHomeProducts() async {
-    final response = await api.getWithToken(path: "/HomePage");
-    var data = jsonDecode(response.body);
-    return MobileHomeProducts.fromJson(data);
+  Future<MobileHomeProducts> getHomeProducts() async {
+    try {
+      final response = await api.getWithToken(path: "/HomePage");
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        // log.logInfo("HOMEEEEEEEEEEEEE: ${data}");
+        return MobileHomeProducts.fromJson(data);
+      } else {
+        log.logWarning(
+            "Failed to fetch homepage products: ${response.statusCode}");
+        throw Exception("Failed to load homepage products");
+      }
+    } catch (e) {
+      log.logError("Error fetching homepage products: $e");
+      rethrow; // Shu yerda xatolikni tashqariga chiqaramiz
+    }
   }
+  // Future getHomeProducts() async {
+  //   final response = await api.getWithToken(path: "/HomePage");
+  //   var data = jsonDecode(response.body);
+  //   log.logInfo("HOMEEEEEEEEEEEEE: ${data}");
+  //   return MobileHomeProducts.fromJson(data);
+  // }
 
   Future<ProductDataModel> getProduct(int id) async {
     final response = await api.getWithToken(path: Urls.product(id));
     final data = jsonDecode(response.body);
+    // log.logInfo("Product: ${data}");
     return ProductDataModel.fromJson(data);
   }
+
+//   Future<ProfileModel> getProfile() async {
+//   final response = await api.getWithToken(path: "/user/info");
+//   final data = jsonDecode(response.body);
+
+//   final profile = ProfileModel.fromJson(data);
+//   // print("Profileeeeeeeeeeeeeeeeeeeeeeeeeee: ${profile.result.}, ${profile.result.phone}");
+
+//   return profile;
+// }
+
+
+Future<ProfileModel> getProfile() async {
+  try {
+    // API chaqiruvini amalga oshirish
+    final response = await api.getWithToken(path: "/user/info");
+
+    // HTTP status kodini tekshirish
+    if (response.statusCode == 200) {
+      // JSONni parse qilish
+      final data = jsonDecode(response.body);
+
+      // ProfileModel'ni yaratish
+      final profile = ProfileModel.fromJson(data);
+
+      return profile;
+    } else {
+      // Xatolikni tashlash
+      throw Exception("Failed to fetch profile: ${response.statusCode}");
+    }
+  } catch (e) {
+    // Xatolikni qayta ishlash
+    print("Error fetching profile: $e");
+    rethrow; // Xatolikni qayta tashlash
+  }
+}
+
+
+
+  //Profile
+//  Future<ProfileModel> getProfile() async {
+//   try {
+//     // Send GET request to the API endpoint
+//     final response = await api.getWithToken(path: "/user/info");
+
+//     // Check if the response is successful
+//     if (response.statusCode == 200) {
+//       final data = jsonDecode(response.body);
+
+//       // Parse JSON response into ProfileModel
+//       return ProfileModel.fromJson(data);
+//     } else {
+//       print("Failed to load profile data, Status Code: ${response.statusCode}");
+//       print("Response Body: ${response.body}");
+//       throw Exception("Failed to load profile data");
+//     }
+//   } catch (e) {
+//     // Handle any errors that may occur
+//     print("Error fetching profile: $e");
+//     rethrow;
+//   }
+// }
 
   // Category
   Future<List<CategoryModel>> getCategories() async {
@@ -42,7 +124,7 @@ class DataRepository {
   Future<ProductModel> getCategoryProducts(int id) async {
     final response = await api.getWithToken(path: Urls.productsByCategory(id));
     var data = jsonDecode(response.body);
-    print(response.body);
+    // print(response.body);
     return ProductModel.fromJson(data);
   }
 
@@ -132,7 +214,7 @@ class DataRepository {
     }
   }
 
- //Todo ishlavotdi shu
+  //Todo ishlavotdi shu
   Future<bool> createBasket({required int product_id}) async {
     try {
       final response = await api.post(
@@ -143,7 +225,7 @@ class DataRepository {
       print('Response body: ${response.body}');
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        print('Response data: $data');
+        // print('Response data: $data');
         return true;
       } else {
         print('Failed to create basket: ${response.body}');
@@ -155,7 +237,7 @@ class DataRepository {
     }
   }
 
- Future<bool> deleteBasketById({required int product_id}) async {
+  Future<bool> deleteBasketById({required int product_id}) async {
     try {
       final response =
           await api.deleteWithToken(path: "/cart/delete/$product_id");
@@ -179,10 +261,10 @@ class DataRepository {
     }
   }
 
-  Future<bool> deleteAllBasket() async {
+  Future<bool> deleteAllBasket(List prod_id) async {
     try {
       final response =
-          await api.deleteWithToken(path: "/del-sel-prod-user-cart");
+          await api.deleteWithToken(path: "del-sel-prod-user-cart",  body: {'prod_id': prod_id},);
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
@@ -202,33 +284,6 @@ class DataRepository {
       rethrow;
     }
   }
-
-  // /// Cart
-  // getAllCarts() async {
-  //   final response = await api.getWithToken(path: "/cart");
-  //   // Ensure the response body is not null
-  //   if (response.body != null) {
-  //     var data = jsonDecode(response.body);
-  //     // Check if 'data' is not null and is a list
-  //     if (data != null && data["data"] != null && data["data"] is List) {
-  //       return (data["data"] as List)
-  //           .map((e) => BasketProducts.fromJson(e) )
-  //           .toList();
-  //     } else {
-  //       // If the 'data' key is null or not a list, return an empty list
-  //       return [];
-  //     }
-  //   } else {
-
-  //     throw Exception('Response body is null');
-  //   }
-  // }
-
-  // Future<List<BasketProducts>> getAllCarts() async {
-  //   final response = await api.getWithToken(path: "/cart");
-  //   var data = jsonDecode(response.body) as List;
-  //   return data.map((json) => BasketProducts.fromJson(json)).toList();
-  // }
 
   //? Create Cart
   Future<BasketProducts> createCart({

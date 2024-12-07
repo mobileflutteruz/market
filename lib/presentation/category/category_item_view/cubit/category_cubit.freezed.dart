@@ -20,6 +20,8 @@ mixin _$CategoryProductBuildableState {
   bool get success => throw _privateConstructorUsedError;
   bool get failed => throw _privateConstructorUsedError;
   ProductModel? get categoryProduct => throw _privateConstructorUsedError;
+  List<String> get likeIds => throw _privateConstructorUsedError;
+  String get errorMessage => throw _privateConstructorUsedError;
   dynamic get error => throw _privateConstructorUsedError;
 
   /// Create a copy of CategoryProductBuildableState
@@ -42,6 +44,8 @@ abstract class $CategoryProductBuildableStateCopyWith<$Res> {
       bool success,
       bool failed,
       ProductModel? categoryProduct,
+      List<String> likeIds,
+      String errorMessage,
       dynamic error});
 
   $ProductModelCopyWith<$Res>? get categoryProduct;
@@ -67,6 +71,8 @@ class _$CategoryProductBuildableStateCopyWithImpl<$Res,
     Object? success = null,
     Object? failed = null,
     Object? categoryProduct = freezed,
+    Object? likeIds = null,
+    Object? errorMessage = null,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -86,6 +92,14 @@ class _$CategoryProductBuildableStateCopyWithImpl<$Res,
           ? _value.categoryProduct
           : categoryProduct // ignore: cast_nullable_to_non_nullable
               as ProductModel?,
+      likeIds: null == likeIds
+          ? _value.likeIds
+          : likeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -122,6 +136,8 @@ abstract class _$$CategoryProductBuildableStateImplCopyWith<$Res>
       bool success,
       bool failed,
       ProductModel? categoryProduct,
+      List<String> likeIds,
+      String errorMessage,
       dynamic error});
 
   @override
@@ -147,6 +163,8 @@ class __$$CategoryProductBuildableStateImplCopyWithImpl<$Res>
     Object? success = null,
     Object? failed = null,
     Object? categoryProduct = freezed,
+    Object? likeIds = null,
+    Object? errorMessage = null,
     Object? error = freezed,
   }) {
     return _then(_$CategoryProductBuildableStateImpl(
@@ -166,6 +184,14 @@ class __$$CategoryProductBuildableStateImplCopyWithImpl<$Res>
           ? _value.categoryProduct
           : categoryProduct // ignore: cast_nullable_to_non_nullable
               as ProductModel?,
+      likeIds: null == likeIds
+          ? _value._likeIds
+          : likeIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      errorMessage: null == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -183,7 +209,10 @@ class _$CategoryProductBuildableStateImpl
       this.success = false,
       this.failed = false,
       this.categoryProduct,
-      this.error});
+      final List<String> likeIds = const [],
+      this.errorMessage = '',
+      this.error})
+      : _likeIds = likeIds;
 
   @override
   @JsonKey()
@@ -196,12 +225,24 @@ class _$CategoryProductBuildableStateImpl
   final bool failed;
   @override
   final ProductModel? categoryProduct;
+  final List<String> _likeIds;
+  @override
+  @JsonKey()
+  List<String> get likeIds {
+    if (_likeIds is EqualUnmodifiableListView) return _likeIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_likeIds);
+  }
+
+  @override
+  @JsonKey()
+  final String errorMessage;
   @override
   final dynamic error;
 
   @override
   String toString() {
-    return 'CategoryProductBuildableState(loading: $loading, success: $success, failed: $failed, categoryProduct: $categoryProduct, error: $error)';
+    return 'CategoryProductBuildableState(loading: $loading, success: $success, failed: $failed, categoryProduct: $categoryProduct, likeIds: $likeIds, errorMessage: $errorMessage, error: $error)';
   }
 
   @override
@@ -214,12 +255,22 @@ class _$CategoryProductBuildableStateImpl
             (identical(other.failed, failed) || other.failed == failed) &&
             (identical(other.categoryProduct, categoryProduct) ||
                 other.categoryProduct == categoryProduct) &&
+            const DeepCollectionEquality().equals(other._likeIds, _likeIds) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage) &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, success, failed,
-      categoryProduct, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(
+      runtimeType,
+      loading,
+      success,
+      failed,
+      categoryProduct,
+      const DeepCollectionEquality().hash(_likeIds),
+      errorMessage,
+      const DeepCollectionEquality().hash(error));
 
   /// Create a copy of CategoryProductBuildableState
   /// with the given fields replaced by the non-null parameter values.
@@ -239,6 +290,8 @@ abstract class _CategoryProductBuildableState
       final bool success,
       final bool failed,
       final ProductModel? categoryProduct,
+      final List<String> likeIds,
+      final String errorMessage,
       final dynamic error}) = _$CategoryProductBuildableStateImpl;
 
   @override
@@ -249,6 +302,10 @@ abstract class _CategoryProductBuildableState
   bool get failed;
   @override
   ProductModel? get categoryProduct;
+  @override
+  List<String> get likeIds;
+  @override
+  String get errorMessage;
   @override
   dynamic get error;
 

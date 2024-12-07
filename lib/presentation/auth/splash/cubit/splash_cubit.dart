@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:karmango/presentation/components/buildable_cubit.dart';
-import 'package:karmango/data/preferences/token_preferences.dart';
+
+import '../../../../config/token_data_source.dart';
 
 part 'splash_state.dart';
 part 'splash_cubit.freezed.dart';
@@ -17,7 +18,7 @@ class SplashCubit extends BuildableCubit<SplashState, SplashState> {
   Future<void> checkAndNavigate() async {
     build((buildable) => buildable.copyWith(loading: true));
     try {
-      final accessToken = await _tokenPreference.getGuestUser();
+      final accessToken = await _tokenPreference.getGuestToken();
       if (accessToken != null) {
         // Access token mavjud, foydalanuvchini home pagega o'tkazamiz
         build((buildable) => buildable.copyWith(

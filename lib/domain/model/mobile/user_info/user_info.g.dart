@@ -23,6 +23,7 @@ _$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
       name: json['name'] as String,
       phone: json['phone'] as String,
       image: json['image'] as String,
+      token: json['token'] as String,
     );
 
 Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
@@ -31,4 +32,5 @@ Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
       'name': instance.name,
       'phone': instance.phone,
       'image': instance.image,
+      'token': instance.token,
     };

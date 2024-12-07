@@ -5,7 +5,7 @@ part 'text_styles.dart';
 
 part 'icon_constants.dart';
 
-part 'image_const.dart';
+
 
 part 'color_const.dart';
 

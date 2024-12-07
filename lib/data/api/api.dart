@@ -10,7 +10,7 @@ import 'package:pretty_http_logger/pretty_http_logger.dart';
 
 @Injectable()
 class Api {
-  final TokenDataSource _token;
+  final TokenPreference _token;
 
   Api(this._token);
 
@@ -32,7 +32,7 @@ class Api {
     final headers = await headerswithToken;
     try {
       final result =
-          await _httpClient.get(uri, headers: headers).timeout(_timeout);
+      await _httpClient.get(uri, headers: headers).timeout(_timeout);
       return propagateErrors(result);
     } on TimeoutException {
       throw Exception('Request timed out');
@@ -46,14 +46,14 @@ class Api {
   }) async {
     final uri = Uri.https(_host, "$_root$path",
         params?.map((key, value) => MapEntry(key, value.toString())));
-    final token = await gettokens();
+    final token = await "187|Zt3LVdLQgrm5zVgiGIACpAcSgv7KA03QEfYwI3TD0efec88c";
     final headers = {
       "Content-Type": "application/json",
       if (token != null) "Authorization": "Bearer $token",
     };
     try {
       final result =
-          await _httpClient.get(uri, headers: headers).timeout(_timeout);
+      await _httpClient.get(uri, headers: headers).timeout(_timeout);
       return propagateErrors(result);
     } on TimeoutException {
       throw Exception('Request timed out');
@@ -71,26 +71,6 @@ class Api {
     try {
       final result = await _httpClient
           .post(uri, headers: headers, body: jsonEncode(body))
-          .timeout(_timeout);
-      return propagateErrors(result);
-    } on TimeoutException {
-      throw Exception('Request timed out');
-    }
-  }
-
-//! delete
-  Future<Response> delete({
-    required String path,
-    Map<String, Object>? params,
-    Map<String, dynamic>? body, // Optional body if needed for delete requests
-  }) async {
-    final uri = Uri.https(_host, "$_root$path", params);
-    final headers = await headerswithToken;
-    try {
-      final result = await _httpClient
-          .delete(uri,
-              headers: headers,
-              body: jsonEncode(body)) // Use .delete instead of .post
           .timeout(_timeout);
       return propagateErrors(result);
     } on TimeoutException {
@@ -126,7 +106,7 @@ class Api {
     final headers = await headerswithToken;
     try {
       final result =
-          await _httpClient.post(uri, headers: headers, body: jsonEncode(body));
+      await _httpClient.post(uri, headers: headers, body: jsonEncode(body));
       return propagateErrors(result);
     } on TimeoutException {
       throw Exception('Request timed out');
@@ -204,9 +184,7 @@ class Api {
             "Unknown error: ${response.statusCode} - ${response.body}");
     }
   }
-
-  //!gettokens
-  Future<String?> gettokens() async {
+    Future<String?> gettokens() async {
     var token = await _token.getToken();
     if (token == null) {
       print("Token mavjud emas, guest token olinmoqda...");
@@ -221,6 +199,21 @@ class Api {
 
     return token;
   }
+
+  //!gettokens
+  // Future<String?> gettokens() async {
+  //   var token = await _token.getToken();
+  //   if (token == null) {
+  //     print("Token mavjud emas, guest token olinmoqda...");
+  //     token = await _token.getGuestToken();
+  //   }
+  //   if (token == null) {
+  //     print("Guest token ham mavjud emas.");
+  //   } else {
+  //     print("Token olingan: $token");
+  //   }
+  //   return token;
+  // }
 
   //!putWithToken
   Future<Response> putWithToken({
