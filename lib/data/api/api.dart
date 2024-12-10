@@ -32,7 +32,7 @@ class Api {
     final headers = await headerswithToken;
     try {
       final result =
-      await _httpClient.get(uri, headers: headers).timeout(_timeout);
+          await _httpClient.get(uri, headers: headers).timeout(_timeout);
       return propagateErrors(result);
     } on TimeoutException {
       throw Exception('Request timed out');
@@ -46,14 +46,15 @@ class Api {
   }) async {
     final uri = Uri.https(_host, "$_root$path",
         params?.map((key, value) => MapEntry(key, value.toString())));
-    final token = await "187|Zt3LVdLQgrm5zVgiGIACpAcSgv7KA03QEfYwI3TD0efec88c";
+    final token = await gettokens();
+    // final token = await _token.getToken();
     final headers = {
       "Content-Type": "application/json",
       if (token != null) "Authorization": "Bearer $token",
     };
     try {
       final result =
-      await _httpClient.get(uri, headers: headers).timeout(_timeout);
+          await _httpClient.get(uri, headers: headers).timeout(_timeout);
       return propagateErrors(result);
     } on TimeoutException {
       throw Exception('Request timed out');
@@ -106,7 +107,7 @@ class Api {
     final headers = await headerswithToken;
     try {
       final result =
-      await _httpClient.post(uri, headers: headers, body: jsonEncode(body));
+          await _httpClient.post(uri, headers: headers, body: jsonEncode(body));
       return propagateErrors(result);
     } on TimeoutException {
       throw Exception('Request timed out');
@@ -184,36 +185,49 @@ class Api {
             "Unknown error: ${response.statusCode} - ${response.body}");
     }
   }
-    Future<String?> gettokens() async {
+
+//   Future<String?> getTokens() async {
+//   try {
+//     // Foydalanuvchi tokenini olishga urinish
+//     var token = await _token.getToken();
+//     if (token == null) {
+//       print("Token mavjud emas, guest token olinmoqda...");
+      
+//       // Mehmon tokenini olishga urinish
+//       token = await _token.getGuestToken();
+//     }
+
+//     if (token == null) {
+//       // Ikkala token mavjud emasligi haqida ogohlantirish
+//       print("Guest token ham mavjud emas.");
+//     } else {
+//       // Muvaffaqiyatli token olish
+//       print("Token olingan: $token");
+//     }
+
+//     return token;
+//   } catch (e) {
+//     // Istisnolarni boshqarish
+//     print("Token olish jarayonida xatolik yuz berdi: $e");
+//     return null;
+//   }
+// }
+
+
+  //!gettokens
+  Future<String?> gettokens() async {
     var token = await _token.getToken();
     if (token == null) {
       print("Token mavjud emas, guest token olinmoqda...");
-      token = await _token.getGuestToken();
+      token = await _token.getUserToken();
     }
-
     if (token == null) {
       print("Guest token ham mavjud emas.");
     } else {
       print("Token olingan: $token");
     }
-
     return token;
   }
-
-  //!gettokens
-  // Future<String?> gettokens() async {
-  //   var token = await _token.getToken();
-  //   if (token == null) {
-  //     print("Token mavjud emas, guest token olinmoqda...");
-  //     token = await _token.getGuestToken();
-  //   }
-  //   if (token == null) {
-  //     print("Guest token ham mavjud emas.");
-  //   } else {
-  //     print("Token olingan: $token");
-  //   }
-  //   return token;
-  // }
 
   //!putWithToken
   Future<Response> putWithToken({

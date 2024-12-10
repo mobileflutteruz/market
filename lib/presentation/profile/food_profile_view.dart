@@ -21,32 +21,45 @@ class FoodProfileView extends StatefulWidget {
 class _FoodProfileViewState extends State<FoodProfileView> {
   final tokenPreference = GetIt.instance<TokenPreference>();
   String? userToken;
+  String? token;
 
   @override
   void initState() {
     super.initState();
-    context.read<FoodProfileCubit>().prfileEditor();
-    _loadUserToken();
+    _loadUserToken(); // User tokenni yuklaymiz
+    context
+        .read<FoodProfileCubit>()
+        .prfileEditor(); // Profilni tahrirlashni boshlaymiz
+  }
+
+  @override
+  void dispose() {
+  
+    super.dispose();
   }
 
   Future<void> _loadUserToken() async {
-    final token = await tokenPreference.getUserToken();
-    if (token != userToken) {
-      setState(() {
-        userToken = token;
-      });
-    }
+  final token = await tokenPreference.getUserToken();
+
+  if (token != userToken) {
+    setState(() {
+      userToken = token;
+       
+    });
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => locator<FoodProfileCubit>()..prfileEditor(),
+      create: (context) => locator<FoodProfileCubit>(),
       child: Buildable<FoodProfileCubit, FoodProfileState,
           FoodProfileBuildableState>(
         properties: (buildable) => [
           buildable.userInfo,
           buildable.token,
+        
           buildable.loading,
           buildable.error,
         ],
@@ -64,13 +77,16 @@ class _FoodProfileViewState extends State<FoodProfileView> {
           }
 
           final user = state.userInfo;
+            print("TEKSHIIIIIIIIIIIIIIIIIIIIR NAMEEEEEEEEEEEE: ${user?.result!.name.toString()}");
+                print("TEKSHIIIIIIIIIIIIIIIIIIIIR USERNAME: ${userToken}");
+                print("TEKSHIIIIIIIIIIIIIIIIIIIIR USER DATAAA: ${user.toString()}");
 
-          if (user!.result != null && userToken != null && userToken!.isNotEmpty) {
-            print("USSSSSSSSSSSSSSSSSSSSSEEEEEEEEEEEEEER TOOOOOOOOOOOKEN: $userToken");
-            return _buildUserProfilePage(context, user);
+
+          if (user?.result != null &&
+              _loadUserToken() != null) {
+              
+            return _buildUserProfilePage(context, user!);
           } else {
-          
-            print("TOKEN VA USER DATA YOOOOOOQ");
             return _buildRegisterPage(context);
           }
         },

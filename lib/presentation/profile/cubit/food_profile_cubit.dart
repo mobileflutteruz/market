@@ -50,11 +50,15 @@ class FoodProfileCubit
       ),
     );
     try {
-      final user = await data.getProfile();
-      print("_________SUCCESSS_____: ${data.getProfile()}");
+      final ProfileModel user = await data.getProfile();
+      print("_________SUCCESSS_____: ${user.result}");
       build(
         (buildable) => buildable.copyWith(
-            success: true, loading: false, failure: false, userInfo: user),
+          success: true,
+          loading: false,
+          failure: false,
+          userInfo: user,
+        ),
       );
     } catch (e) {
       print("_________ERROOOOOOOOOOOOOOORRRRRRRRRRRRR____: ${e}");
