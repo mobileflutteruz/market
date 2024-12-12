@@ -113,10 +113,10 @@ Future<_i174.GetIt> $initGetIt(
         gh<_i614.AuthRepository>(),
         gh<_i985.TokenPreference>(),
       ));
-  gh.factory<_i569.CategoryProductCubit>(
-      () => _i569.CategoryProductCubit(gh<_i98.DataRepository>()));
   gh.factory<_i1068.CategoryCubit>(
       () => _i1068.CategoryCubit(gh<_i98.DataRepository>()));
+  gh.factory<_i569.CategoryProductCubit>(
+      () => _i569.CategoryProductCubit(gh<_i98.DataRepository>()));
   gh.factory<_i702.FavouritesCubit>(
       () => _i702.FavouritesCubit(gh<_i98.DataRepository>()));
   gh.factory<_i205.FoodProfileCubit>(() => _i205.FoodProfileCubit(

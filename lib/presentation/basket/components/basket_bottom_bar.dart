@@ -10,28 +10,26 @@ class FoodBasketBottomBarWidget extends StatelessWidget {
   const FoodBasketBottomBarWidget({
     super.key,
     required this.currentIndex,
-    required this.product,
+    this.response,
   });
 
   final int currentIndex;
-  final List<BasketProducts>? product;
+  final CartResponse? response;
 
   @override
   Widget build(BuildContext context) {
     return Buildable<FoodBasketCubit, FoodBasketState,
         FoodBasketBuildableState>(
       properties: (buildable) => [
-        buildable.failed,
-        buildable.loading,
-        buildable.success,
+        buildable.status,
         buildable.products,
       ],
       builder: (context, state) {
         // Agar state.products bo'sh bo'lsa yoki currentIndex noto'g'ri bo'lsa, default qiymatlarni ko'rsatamiz
-        final totalQuantity = state.products![currentIndex].total_quantity;
+        final totalQuantity = response?.total_quantity;
         print("TOTAL QUANTITY:${totalQuantity}");
-        final totalPayment = state.products![currentIndex].total_payment;
-         print("TOTAL PAYMENT:${totalPayment}");
+        final totalPayment = response?.total_payment;
+        print("TOTAL PAYMENT:${totalPayment}");
 
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -58,18 +56,18 @@ class FoodBasketBottomBarWidget extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          '$totalQuantity ${context.l10n.products}',
-                          style: Styles.manropeMedium12.copyWith(
-                            color: const Color(0xFFA6AEBF),
-                          ),
-                        ),
-                        Text(
-                          '$totalPayment',
-                          style: Styles.manropeBold16.copyWith(
-                            color: const Color(0xFF162B4C),
-                          ),
-                        ),
+                        // Text(
+                        //   '$totalQuantity ${context.l10n.products}',
+                        //   style: Styles.manropeMedium12.copyWith(
+                        //     color: const Color(0xFFA6AEBF),
+                        //   ),
+                        // ),
+                        // Text(
+                        //   '$totalPayment',
+                        //   style: Styles.manropeBold16.copyWith(
+                        //     color: const Color(0xFF162B4C),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

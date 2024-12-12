@@ -116,7 +116,8 @@ class TokenPreference {
 
   Future<void> setFavourites({required List<String> values}) async {
     try {
-      await _secureStorage.write(key: _favouritesKey, value: jsonEncode(values));
+      await _secureStorage.write(
+          key: _favouritesKey, value: jsonEncode(values));
     } catch (e) {
       print("Error saving favourites: $e");
     }
@@ -163,32 +164,6 @@ class TokenPreference {
     } catch (e) {
       print("Error reading order: $e");
       return null;
-    }
-  }
-
-  // Token
-  Future<void> saveToken(String token) async {
-    try {
-      await _secureStorage.write(key: _tokenKey, value: token);
-    } catch (e) {
-      print("Error saving token: $e");
-    }
-  }
-
-  Future<String?> getToken() async {
-    try {
-      return await _secureStorage.read(key: _tokenKey);
-    } catch (e) {
-      print("Error reading token: $e");
-      return null;
-    }
-  }
-
-  Future<void> clearToken() async {
-    try {
-      await _secureStorage.delete(key: _tokenKey);
-    } catch (e) {
-      print("Error clearing token: $e");
     }
   }
 

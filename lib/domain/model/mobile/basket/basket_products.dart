@@ -4,21 +4,21 @@ part 'basket_products.freezed.dart';
 part 'basket_products.g.dart';
 
 @freezed
-class BasketProducts with _$BasketProducts {
-  const factory BasketProducts({
+class CartResponse with _$CartResponse {
+  const factory CartResponse({
     bool? status,
-    List<Result>? result,
+    List<ProductData>? result,
     double? total_payment,
     int? total_quantity,
-  }) = _BasketProducts;
+  }) = _CartResponse;
 
-  factory BasketProducts.fromJson(Map<String, dynamic> json) =>
-      _$BasketProductsFromJson(json);
+  factory CartResponse.fromJson(Map<String, dynamic> json) =>
+      _$CartResponseFromJson(json);
 }
 
 @freezed
-class Result with _$Result {
-  const factory Result({
+class ProductData with _$ProductData {
+  const factory ProductData({
     int? id,
     int? product_id,
     String? name,
@@ -28,7 +28,7 @@ class Result with _$Result {
     int? warehouse_product_quantity,
     double? price_to_pay,
     String? image,
-  }) = _Result;
+  }) = _ProductData;
 
-  factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
+  factory ProductData.fromJson(Map<String, dynamic> json) => _$ProductDataFromJson(json);
 }

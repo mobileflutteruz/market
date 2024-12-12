@@ -30,7 +30,6 @@ class AuthRepository {
   final AuthApi authApi;
   final TokenPreference _token;
   final LoggingService log = LoggingService();
-  // final UserSessionManager _userSessionManager;
 
   Future<RegisterModel> register({
     required String password,
@@ -135,8 +134,6 @@ class AuthRepository {
       } else {
         log.logError('Token not found in the response');
       }
-    } else {
-      log.logError('Login failed: ${authResponse.message}');
     }
 
     return authResponse;
@@ -150,11 +147,9 @@ class AuthRepository {
       await _token.clearUserToken();
       await _token.clearUserId();
       await _token.clearUser();
-      await _token.clearToken();
       log.logInfo(" CLEAR TOKEN IN getUser:${ _token.clearUserToken()}");
       log.logInfo(" CLEAR TOKEN IN clearUser:${_token.clearUserId()}");
       log.logInfo(" CLEAR TOKEN IN clearUser:${_token.clearUser()}");
-      log.logInfo(" CLEAR TOKEN IN clearUserId :${_token.clearToken()}");
     } catch (e) {
       log.logError("Error logging out", error: e);
     }

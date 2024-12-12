@@ -26,13 +26,10 @@ mixin _$FoodBasketBuildableState {
   int get quantity => throw _privateConstructorUsedError;
   bool get isAllSelected => throw _privateConstructorUsedError;
   bool get isChoosedAll => throw _privateConstructorUsedError;
-  bool get loading => throw _privateConstructorUsedError;
   Map<int, bool> get checkboxState => throw _privateConstructorUsedError;
-  List<BasketProducts>? get products =>
-      throw _privateConstructorUsedError; // @Default(false) bool isModal_hud,
-  bool get success => throw _privateConstructorUsedError;
-  bool get failed => throw _privateConstructorUsedError;
-  bool get error => throw _privateConstructorUsedError;
+  List<ProductData>? get products => throw _privateConstructorUsedError;
+  CartResponse? get response => throw _privateConstructorUsedError;
+  FoodBasketStatus get status => throw _privateConstructorUsedError;
 
   /// Create a copy of FoodBasketBuildableState
   /// with the given fields replaced by the non-null parameter values.
@@ -58,12 +55,12 @@ abstract class $FoodBasketBuildableStateCopyWith<$Res> {
       int quantity,
       bool isAllSelected,
       bool isChoosedAll,
-      bool loading,
       Map<int, bool> checkboxState,
-      List<BasketProducts>? products,
-      bool success,
-      bool failed,
-      bool error});
+      List<ProductData>? products,
+      CartResponse? response,
+      FoodBasketStatus status});
+
+  $CartResponseCopyWith<$Res>? get response;
 }
 
 /// @nodoc
@@ -92,12 +89,10 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
     Object? quantity = null,
     Object? isAllSelected = null,
     Object? isChoosedAll = null,
-    Object? loading = null,
     Object? checkboxState = null,
     Object? products = freezed,
-    Object? success = null,
-    Object? failed = null,
-    Object? error = null,
+    Object? response = freezed,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       currentIndex: null == currentIndex
@@ -140,10 +135,6 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
           ? _value.isChoosedAll
           : isChoosedAll // ignore: cast_nullable_to_non_nullable
               as bool,
-      loading: null == loading
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
       checkboxState: null == checkboxState
           ? _value.checkboxState
           : checkboxState // ignore: cast_nullable_to_non_nullable
@@ -151,20 +142,30 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
       products: freezed == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<BasketProducts>?,
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
-      failed: null == failed
-          ? _value.failed
-          : failed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as List<ProductData>?,
+      response: freezed == response
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as CartResponse?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FoodBasketStatus,
     ) as $Val);
+  }
+
+  /// Create a copy of FoodBasketBuildableState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CartResponseCopyWith<$Res>? get response {
+    if (_value.response == null) {
+      return null;
+    }
+
+    return $CartResponseCopyWith<$Res>(_value.response!, (value) {
+      return _then(_value.copyWith(response: value) as $Val);
+    });
   }
 }
 
@@ -188,12 +189,13 @@ abstract class _$$FoodBasketBuildableStateImplCopyWith<$Res>
       int quantity,
       bool isAllSelected,
       bool isChoosedAll,
-      bool loading,
       Map<int, bool> checkboxState,
-      List<BasketProducts>? products,
-      bool success,
-      bool failed,
-      bool error});
+      List<ProductData>? products,
+      CartResponse? response,
+      FoodBasketStatus status});
+
+  @override
+  $CartResponseCopyWith<$Res>? get response;
 }
 
 /// @nodoc
@@ -221,12 +223,10 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
     Object? quantity = null,
     Object? isAllSelected = null,
     Object? isChoosedAll = null,
-    Object? loading = null,
     Object? checkboxState = null,
     Object? products = freezed,
-    Object? success = null,
-    Object? failed = null,
-    Object? error = null,
+    Object? response = freezed,
+    Object? status = null,
   }) {
     return _then(_$FoodBasketBuildableStateImpl(
       currentIndex: null == currentIndex
@@ -269,10 +269,6 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
           ? _value.isChoosedAll
           : isChoosedAll // ignore: cast_nullable_to_non_nullable
               as bool,
-      loading: null == loading
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
-              as bool,
       checkboxState: null == checkboxState
           ? _value._checkboxState
           : checkboxState // ignore: cast_nullable_to_non_nullable
@@ -280,19 +276,15 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
       products: freezed == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<BasketProducts>?,
-      success: null == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool,
-      failed: null == failed
-          ? _value.failed
-          : failed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      error: null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as List<ProductData>?,
+      response: freezed == response
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as CartResponse?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FoodBasketStatus,
     ));
   }
 }
@@ -313,12 +305,10 @@ class _$FoodBasketBuildableStateImpl
       this.quantity = 0,
       this.isAllSelected = false,
       this.isChoosedAll = false,
-      this.loading = false,
       final Map<int, bool> checkboxState = const {},
-      final List<BasketProducts>? products,
-      this.success = false,
-      this.failed = false,
-      this.error = false})
+      final List<ProductData>? products,
+      this.response,
+      this.status = FoodBasketStatus.initial})
       : _selectedIds = selectedIds,
         _chooseIds = chooseIds,
         _cardProducts = cardProducts,
@@ -380,9 +370,6 @@ class _$FoodBasketBuildableStateImpl
   @override
   @JsonKey()
   final bool isChoosedAll;
-  @override
-  @JsonKey()
-  final bool loading;
   final Map<int, bool> _checkboxState;
   @override
   @JsonKey()
@@ -392,9 +379,9 @@ class _$FoodBasketBuildableStateImpl
     return EqualUnmodifiableMapView(_checkboxState);
   }
 
-  final List<BasketProducts>? _products;
+  final List<ProductData>? _products;
   @override
-  List<BasketProducts>? get products {
+  List<ProductData>? get products {
     final value = _products;
     if (value == null) return null;
     if (_products is EqualUnmodifiableListView) return _products;
@@ -402,20 +389,15 @@ class _$FoodBasketBuildableStateImpl
     return EqualUnmodifiableListView(value);
   }
 
-// @Default(false) bool isModal_hud,
+  @override
+  final CartResponse? response;
   @override
   @JsonKey()
-  final bool success;
-  @override
-  @JsonKey()
-  final bool failed;
-  @override
-  @JsonKey()
-  final bool error;
+  final FoodBasketStatus status;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FoodBasketBuildableState(currentIndex: $currentIndex, selectedIds: $selectedIds, chooseIds: $chooseIds, cardProducts: $cardProducts, cardProductIds: $cardProductIds, errorMessage: $errorMessage, tabIndex: $tabIndex, quantity: $quantity, isAllSelected: $isAllSelected, isChoosedAll: $isChoosedAll, loading: $loading, checkboxState: $checkboxState, products: $products, success: $success, failed: $failed, error: $error)';
+    return 'FoodBasketBuildableState(currentIndex: $currentIndex, selectedIds: $selectedIds, chooseIds: $chooseIds, cardProducts: $cardProducts, cardProductIds: $cardProductIds, errorMessage: $errorMessage, tabIndex: $tabIndex, quantity: $quantity, isAllSelected: $isAllSelected, isChoosedAll: $isChoosedAll, checkboxState: $checkboxState, products: $products, response: $response, status: $status)';
   }
 
   @override
@@ -433,12 +415,10 @@ class _$FoodBasketBuildableStateImpl
       ..add(DiagnosticsProperty('quantity', quantity))
       ..add(DiagnosticsProperty('isAllSelected', isAllSelected))
       ..add(DiagnosticsProperty('isChoosedAll', isChoosedAll))
-      ..add(DiagnosticsProperty('loading', loading))
       ..add(DiagnosticsProperty('checkboxState', checkboxState))
       ..add(DiagnosticsProperty('products', products))
-      ..add(DiagnosticsProperty('success', success))
-      ..add(DiagnosticsProperty('failed', failed))
-      ..add(DiagnosticsProperty('error', error));
+      ..add(DiagnosticsProperty('response', response))
+      ..add(DiagnosticsProperty('status', status));
   }
 
   @override
@@ -466,13 +446,12 @@ class _$FoodBasketBuildableStateImpl
                 other.isAllSelected == isAllSelected) &&
             (identical(other.isChoosedAll, isChoosedAll) ||
                 other.isChoosedAll == isChoosedAll) &&
-            (identical(other.loading, loading) || other.loading == loading) &&
             const DeepCollectionEquality()
                 .equals(other._checkboxState, _checkboxState) &&
             const DeepCollectionEquality().equals(other._products, _products) &&
-            (identical(other.success, success) || other.success == success) &&
-            (identical(other.failed, failed) || other.failed == failed) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.response, response) ||
+                other.response == response) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
@@ -488,12 +467,10 @@ class _$FoodBasketBuildableStateImpl
       quantity,
       isAllSelected,
       isChoosedAll,
-      loading,
       const DeepCollectionEquality().hash(_checkboxState),
       const DeepCollectionEquality().hash(_products),
-      success,
-      failed,
-      error);
+      response,
+      status);
 
   /// Create a copy of FoodBasketBuildableState
   /// with the given fields replaced by the non-null parameter values.
@@ -517,12 +494,10 @@ abstract class _FoodBasketBuildableState implements FoodBasketBuildableState {
       final int quantity,
       final bool isAllSelected,
       final bool isChoosedAll,
-      final bool loading,
       final Map<int, bool> checkboxState,
-      final List<BasketProducts>? products,
-      final bool success,
-      final bool failed,
-      final bool error}) = _$FoodBasketBuildableStateImpl;
+      final List<ProductData>? products,
+      final CartResponse? response,
+      final FoodBasketStatus status}) = _$FoodBasketBuildableStateImpl;
 
   @override
   int get currentIndex;
@@ -545,17 +520,13 @@ abstract class _FoodBasketBuildableState implements FoodBasketBuildableState {
   @override
   bool get isChoosedAll;
   @override
-  bool get loading;
-  @override
   Map<int, bool> get checkboxState;
   @override
-  List<BasketProducts>? get products; // @Default(false) bool isModal_hud,
+  List<ProductData>? get products;
   @override
-  bool get success;
+  CartResponse? get response;
   @override
-  bool get failed;
-  @override
-  bool get error;
+  FoodBasketStatus get status;
 
   /// Create a copy of FoodBasketBuildableState
   /// with the given fields replaced by the non-null parameter values.

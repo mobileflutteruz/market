@@ -6,18 +6,17 @@ part of 'basket_products.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BasketProductsImpl _$$BasketProductsImplFromJson(Map<String, dynamic> json) =>
-    _$BasketProductsImpl(
+_$CartResponseImpl _$$CartResponseImplFromJson(Map<String, dynamic> json) =>
+    _$CartResponseImpl(
       status: json['status'] as bool?,
       result: (json['result'] as List<dynamic>?)
-          ?.map((e) => Result.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ProductData.fromJson(e as Map<String, dynamic>))
           .toList(),
       total_payment: (json['total_payment'] as num?)?.toDouble(),
       total_quantity: (json['total_quantity'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$$BasketProductsImplToJson(
-        _$BasketProductsImpl instance) =>
+Map<String, dynamic> _$$CartResponseImplToJson(_$CartResponseImpl instance) =>
     <String, dynamic>{
       'status': instance.status,
       'result': instance.result,
@@ -25,7 +24,8 @@ Map<String, dynamic> _$$BasketProductsImplToJson(
       'total_quantity': instance.total_quantity,
     };
 
-_$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
+_$ProductDataImpl _$$ProductDataImplFromJson(Map<String, dynamic> json) =>
+    _$ProductDataImpl(
       id: (json['id'] as num?)?.toInt(),
       product_id: (json['product_id'] as num?)?.toInt(),
       name: json['name'] as String?,
@@ -38,7 +38,7 @@ _$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
       image: json['image'] as String?,
     );
 
-Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
+Map<String, dynamic> _$$ProductDataImplToJson(_$ProductDataImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'product_id': instance.product_id,

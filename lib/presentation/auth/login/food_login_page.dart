@@ -19,7 +19,6 @@ class FoodLoginPage extends StatelessWidget {
         listener: (context, state) {
           if (state is LoginBuildableState) {
             if (state.success == true) {
-              // Muvaffaqiyatli login
               AppUtils.msg(context, state.message ?? "Success",
                   color: Colors.green);
               Navigator.pushNamedAndRemoveUntil(
@@ -30,7 +29,6 @@ class FoodLoginPage extends StatelessWidget {
             }
 
             if (state.failure == true) {
-              // Login muvaffaqiyatsiz
               AppUtils.msg(context, state.message ?? "Something went wrong",
                   color: Colors.red);
             }

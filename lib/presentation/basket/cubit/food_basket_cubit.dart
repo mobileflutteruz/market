@@ -9,6 +9,7 @@ import 'package:karmango/presentation/components/buildable_cubit.dart';
 import '../../../config/token_data_source.dart';
 
 part 'food_basket_state.dart';
+
 part 'food_basket_cubit.freezed.dart';
 
 @Injectable()
@@ -18,49 +19,66 @@ class FoodBasketCubit
       : super(const FoodBasketBuildableState()) {
     getBasketIds();
   }
+
   final TokenPreference tokenPreference;
   final MainRepository _repo;
   final DataRepository _dataRepo;
 
-  // Fetch basket products and handle loading states
-  Future<void> basketProducts() async {
-    build((buildable) => buildable.copyWith(loading: true));
+  Future<void> fetchBasketProducts() async {
+
     try {
-      final List<BasketProducts> products = await _dataRepo.getBasketProducts();
-      build((buildable) => buildable.copyWith(
-          loading: false, success: true, products: products));
+      final response = await _dataRepo.getBasketProducts();
+      build(
+        (buildable) => buildable.copyWith(
+          status: FoodBasketStatus.success,
+          products: response.result,
+        ),
+      );
     } catch (e) {
       debugPrint("Error fetching basket products: $e");
-      build((buildable) =>
-          buildable.copyWith(loading: false, failed: true, error: true));
+      build(
+        (buildable) => buildable.copyWith(
+          status: FoodBasketStatus.failure,
+        ),
+      );
     }
   }
 
-  // Add a product to the basket
   Future<void> setBasketProducts(int productId) async {
-    build((buildable) => buildable.copyWith(loading: true));
+    build(
+      (buildable) => buildable.copyWith(
+        status: FoodBasketStatus.loading,
+      ),
+    );
     try {
       final bool success = await _dataRepo.createBasket(product_id: productId);
       build(
-          (buildable) => buildable.copyWith(loading: false, success: success));
+        (buildable) => buildable.copyWith(
+          status: FoodBasketStatus.success,
+        ),
+      );
     } catch (e) {
       debugPrint("Error creating basket: $e");
-      build((buildable) =>
-          buildable.copyWith(loading: false, failed: true, error: true));
+      build(
+        (buildable) => buildable.copyWith(
+          status: FoodBasketStatus.failure,
+        ),
+      );
     }
   }
 
-  Future<void> removeBasketProductsById(int product_id) async {
-    build((buildable) => buildable.copyWith(loading: true));
+  Future<void> removeByProductId(int productId) async {
+
     try {
-      final bool success =
-          await _dataRepo.deleteBasketById(product_id: product_id);
-      build(
-          (buildable) => buildable.copyWith(loading: false, success: success));
+      final bool success = await _dataRepo.deleteBasketById(productId);
+
+      fetchBasketProducts();
     } catch (e) {
-      debugPrint("Error creating basket: $e");
-      build((buildable) =>
-          buildable.copyWith(loading: false, failed: true, error: true));
+      build(
+        (buildable) => buildable.copyWith(
+          status: FoodBasketStatus.failure,
+        ),
+      );
     }
   }
 
@@ -121,20 +139,20 @@ class FoodBasketCubit
   // Set selected product IDs
 
   void setSelectIds(List<int> productIds) {
-  final updatedIds = List<int>.from(buildable.selectedIds)..addAll(productIds);
-  print("setSelectIds called. Updated IDs: $updatedIds");
-  build(
-    (buildable) => buildable.copyWith(selectedIds: updatedIds),
-  );
-}
+    final updatedIds = List<int>.from(buildable.selectedIds)
+      ..addAll(productIds);
+    print("setSelectIds called. Updated IDs: $updatedIds");
+    build(
+      (buildable) => buildable.copyWith(selectedIds: updatedIds),
+    );
+  }
 
-void clearSelectIds() {
-  print("clearSelectIds called. Clearing all IDs.");
-  build(
-    (buildable) => buildable.copyWith(selectedIds: []),
-  );
-}
-
+  void clearSelectIds() {
+    print("clearSelectIds called. Clearing all IDs.");
+    build(
+      (buildable) => buildable.copyWith(selectedIds: []),
+    );
+  }
 
   // void setSelectIds(List<int> productIds) {
   //   List<int> resultIds = [];
@@ -160,45 +178,47 @@ void clearSelectIds() {
   // State management for "select all"
   void chooseAllItem(bool value) {
     build(
-    (buildable) => buildable.copyWith(isChoosedAll: value),
-  );
+      (buildable) => buildable.copyWith(isChoosedAll: value),
+    );
     print("ISCHOOOCE: ${value}");
   }
 
   // Increase the quantity of a product
   void increaseQuantity(int id) {
-    final products = buildable.products?.map((product) {
-      final updatedResults = product.result?.map((result) {
-        if (result.id == id) {
-          return result.copyWith(click_quantity: result.click_quantity! + 1);
-        }
-        return result;
-      }).toList();
+    // final products = buildable.products?.map((product) {
+    //   final updatedResults = product.result?.map((result) {
+    //     if (result.id == id) {
+    //       return result.copyWith(click_quantity: result.click_quantity! + 1);
+    //     }
+    //     return result;
+    //   }).toList();
+    //
+    //   return product.copyWith(products: updatedResults);
+    // }).toList();
 
-      return product.copyWith(result: updatedResults);
-    }).toList();
-
-    if (products != null) {
-      build((buildable) => buildable.copyWith(products: products));
-    }
+    // if (products != null) {
+    //   build((buildable) => buildable.copyWith(products: products));
+    // }
   }
 
   // Decrease the quantity of a product
-  void decreaseQuantity(int id) {
-    final products = buildable.products?.map((product) {
-      final updatedResults = product.result?.map((result) {
-        if (result.id == id && result.click_quantity! > 0) {
-          return result.copyWith(click_quantity: result.click_quantity! - 1);
-        }
-        return result;
-      }).toList();
+  Future<void> decreaseQuantity(int id) async {
+    bool isDeleted = await _dataRepo.deleteAllBasket(buildable.chooseIds);
 
-      return product.copyWith(result: updatedResults);
-    }).toList();
-
-    if (products != null) {
-      build((buildable) => buildable.copyWith(products: products));
-    }
+    // final products = buildable.products?.map((product) {
+    //   final updatedResults = product.result?.map((result) {
+    //     if (result.id == id && result.click_quantity! > 0) {
+    //       return result.copyWith(click_quantity: result.click_quantity! - 1);
+    //     }
+    //     return result;
+    //   }).toList();
+    //
+    //   return product.copyWith(result: updatedResults);
+    // }).toList();
+    //
+    // if (products != null) {
+    //   build((buildable) => buildable.copyWith(products: products));
+    // }
   }
 
   // Remove all items from the basket

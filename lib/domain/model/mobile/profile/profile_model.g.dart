@@ -8,10 +8,8 @@ part of 'profile_model.dart';
 
 _$ProfileModelImpl _$$ProfileModelImplFromJson(Map<String, dynamic> json) =>
     _$ProfileModelImpl(
-      status: json['status'] as bool?,
-      result: json['result'] == null
-          ? null
-          : Result.fromJson(json['result'] as Map<String, dynamic>),
+      status: json['status'] as bool,
+      result: Result.fromJson(json['result'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ProfileModelImplToJson(_$ProfileModelImpl instance) =>
@@ -21,9 +19,9 @@ Map<String, dynamic> _$$ProfileModelImplToJson(_$ProfileModelImpl instance) =>
     };
 
 _$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
-      user_id: (json['user_id'] as num?)?.toInt(),
-      name: json['name'] as String?,
-      phone: json['phone'] as String?,
+      user_id: (json['user_id'] as num).toInt(),
+      name: json['name'] as String,
+      phone: json['phone'] as String,
       image: json['image'] as String?,
     );
 

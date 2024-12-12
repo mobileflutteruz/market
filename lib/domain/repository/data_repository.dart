@@ -18,7 +18,9 @@ class DataRepository {
   final MainApi mainApi;
   final LoggingService log = LoggingService();
   LoggingService logg = LoggingService();
+
   DataRepository(this.api, this.mainApi);
+
   //
 
   Future<MobileHomeProducts> getHomeProducts() async {
@@ -38,6 +40,7 @@ class DataRepository {
       rethrow; // Shu yerda xatolikni tashqariga chiqaramiz
     }
   }
+
   // Future getHomeProducts() async {
   //   final response = await api.getWithToken(path: "/HomePage");
   //   var data = jsonDecode(response.body);
@@ -62,33 +65,30 @@ class DataRepository {
 //   return profile;
 // }
 
+  Future<ProfileModel> getProfile() async {
+    try {
+      // API chaqiruvini amalga oshirish
+      final response = await api.getWithToken(path: "/user/info");
 
-Future<ProfileModel> getProfile() async {
-  try {
-    // API chaqiruvini amalga oshirish
-    final response = await api.getWithToken(path: "/user/info");
+      // HTTP status kodini tekshirish
+      if (response.statusCode == 200) {
+        // JSONni parse qilish
+        final data = jsonDecode(response.body);
 
-    // HTTP status kodini tekshirish
-    if (response.statusCode == 200) {
-      // JSONni parse qilish
-      final data = jsonDecode(response.body);
+        // ProfileModel'ni yaratish
+        final profile = ProfileModel.fromJson(data);
 
-      // ProfileModel'ni yaratish
-      final profile = ProfileModel.fromJson(data);
-
-      return profile;
-    } else {
-      // Xatolikni tashlash
-      throw Exception("Failed to fetch profile: ${response.statusCode}");
+        return profile;
+      } else {
+        // Xatolikni tashlash
+        throw Exception("Failed to fetch profile: ${response.statusCode}");
+      }
+    } catch (e) {
+      // Xatolikni qayta ishlash
+      print("Error fetching profile: $e");
+      rethrow; // Xatolikni qayta tashlash
     }
-  } catch (e) {
-    // Xatolikni qayta ishlash
-    print("Error fetching profile: $e");
-    rethrow; // Xatolikni qayta tashlash
   }
-}
-
-
 
   //Profile
 //  Future<ProfileModel> getProfile() async {
@@ -188,26 +188,11 @@ Future<ProfileModel> getProfile() async {
   }
 
   //Basket
-  Future<List<BasketProducts>> getBasketProducts() async {
+  Future<CartResponse> getBasketProducts() async {
     try {
       final response = await api.getWithToken(path: "/cart");
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        print('Response body data: $data');
-        if (data is List) {
-          return data
-              .map<BasketProducts>((item) => BasketProducts.fromJson(item))
-              .toList();
-        } else if (data is Map<String, dynamic>) {
-          return [BasketProducts.fromJson(data)];
-        } else {
-          throw Exception(
-              'Unexpected data format: Expected a list or an object');
-        }
-      } else {
-        print('Failed to fetch basket products: ${response.body}');
-        throw Exception('Failed to fetch basket products: ${response.body}');
-      }
+      final data = jsonDecode(response.body);
+      return CartResponse.fromJson(data);
     } catch (e) {
       print('Error fetching basket products: $e');
       rethrow;
@@ -237,10 +222,10 @@ Future<ProfileModel> getProfile() async {
     }
   }
 
-  Future<bool> deleteBasketById({required int product_id}) async {
+  Future<bool> deleteBasketById( int productId) async {
     try {
       final response =
-          await api.deleteWithToken(path: "/cart/delete/$product_id");
+          await api.deleteWithToken(path: "cart/delete/$productId");
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
@@ -263,8 +248,10 @@ Future<ProfileModel> getProfile() async {
 
   Future<bool> deleteAllBasket(List prod_id) async {
     try {
-      final response =
-          await api.deleteWithToken(path: "del-sel-prod-user-cart",  body: {'prod_id': prod_id},);
+      final response = await api.deleteWithToken(
+        path: "del-sel-prod-user-cart",
+        body: {'prod_id': prod_id},
+      );
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
@@ -286,7 +273,7 @@ Future<ProfileModel> getProfile() async {
   }
 
   //? Create Cart
-  Future<BasketProducts> createCart({
+  Future<CartResponse> createCart({
     required int product_id,
   }) async {
     final response = await api.post(
@@ -296,7 +283,7 @@ Future<ProfileModel> getProfile() async {
     var data = jsonDecode(response.body);
     final products = data['products'] as List<
         dynamic>; // Assuming 'products' is the key for the list of products
-    return BasketProducts.fromJson(products as Map<String, dynamic>);
+    return CartResponse.fromJson(products as Map<String, dynamic>);
   }
 
   Future<bool> deleteCartById({required int productId}) async {

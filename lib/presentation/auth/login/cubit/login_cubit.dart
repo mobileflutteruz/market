@@ -43,7 +43,6 @@ class LoginCubit extends BuildableCubit<LoginState, LoginBuildableState> {
         ),
       );
     } catch (e) {
-      print('error----------------------------------------');
       print(e.toString());
       build(
         (buildable) => buildable.copyWith(

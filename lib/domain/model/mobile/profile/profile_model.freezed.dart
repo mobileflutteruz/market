@@ -20,8 +20,8 @@ ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProfileModel {
-  bool? get status => throw _privateConstructorUsedError;
-  Result? get result => throw _privateConstructorUsedError;
+  bool get status => throw _privateConstructorUsedError;
+  Result get result => throw _privateConstructorUsedError;
 
   /// Serializes this ProfileModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,9 +39,9 @@ abstract class $ProfileModelCopyWith<$Res> {
           ProfileModel value, $Res Function(ProfileModel) then) =
       _$ProfileModelCopyWithImpl<$Res, ProfileModel>;
   @useResult
-  $Res call({bool? status, Result? result});
+  $Res call({bool status, Result result});
 
-  $ResultCopyWith<$Res>? get result;
+  $ResultCopyWith<$Res> get result;
 }
 
 /// @nodoc
@@ -59,18 +59,18 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? result = freezed,
+    Object? status = null,
+    Object? result = null,
   }) {
     return _then(_value.copyWith(
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      result: freezed == result
+              as bool,
+      result: null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
-              as Result?,
+              as Result,
     ) as $Val);
   }
 
@@ -78,12 +78,8 @@ class _$ProfileModelCopyWithImpl<$Res, $Val extends ProfileModel>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ResultCopyWith<$Res>? get result {
-    if (_value.result == null) {
-      return null;
-    }
-
-    return $ResultCopyWith<$Res>(_value.result!, (value) {
+  $ResultCopyWith<$Res> get result {
+    return $ResultCopyWith<$Res>(_value.result, (value) {
       return _then(_value.copyWith(result: value) as $Val);
     });
   }
@@ -97,10 +93,10 @@ abstract class _$$ProfileModelImplCopyWith<$Res>
       __$$ProfileModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool? status, Result? result});
+  $Res call({bool status, Result result});
 
   @override
-  $ResultCopyWith<$Res>? get result;
+  $ResultCopyWith<$Res> get result;
 }
 
 /// @nodoc
@@ -116,18 +112,18 @@ class __$$ProfileModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? status = freezed,
-    Object? result = freezed,
+    Object? status = null,
+    Object? result = null,
   }) {
     return _then(_$ProfileModelImpl(
-      status: freezed == status
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      result: freezed == result
+              as bool,
+      result: null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
-              as Result?,
+              as Result,
     ));
   }
 }
@@ -135,15 +131,15 @@ class __$$ProfileModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProfileModelImpl implements _ProfileModel {
-  const _$ProfileModelImpl({this.status, this.result});
+  const _$ProfileModelImpl({required this.status, required this.result});
 
   factory _$ProfileModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProfileModelImplFromJson(json);
 
   @override
-  final bool? status;
+  final bool status;
   @override
-  final Result? result;
+  final Result result;
 
   @override
   String toString() {
@@ -180,16 +176,17 @@ class _$ProfileModelImpl implements _ProfileModel {
 }
 
 abstract class _ProfileModel implements ProfileModel {
-  const factory _ProfileModel({final bool? status, final Result? result}) =
-      _$ProfileModelImpl;
+  const factory _ProfileModel(
+      {required final bool status,
+      required final Result result}) = _$ProfileModelImpl;
 
   factory _ProfileModel.fromJson(Map<String, dynamic> json) =
       _$ProfileModelImpl.fromJson;
 
   @override
-  bool? get status;
+  bool get status;
   @override
-  Result? get result;
+  Result get result;
 
   /// Create a copy of ProfileModel
   /// with the given fields replaced by the non-null parameter values.
@@ -205,9 +202,9 @@ Result _$ResultFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Result {
-  int? get user_id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get phone => throw _privateConstructorUsedError;
+  int get user_id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
 
   /// Serializes this Result to a JSON map.
@@ -224,7 +221,7 @@ abstract class $ResultCopyWith<$Res> {
   factory $ResultCopyWith(Result value, $Res Function(Result) then) =
       _$ResultCopyWithImpl<$Res, Result>;
   @useResult
-  $Res call({int? user_id, String? name, String? phone, String? image});
+  $Res call({int user_id, String name, String phone, String? image});
 }
 
 /// @nodoc
@@ -242,24 +239,24 @@ class _$ResultCopyWithImpl<$Res, $Val extends Result>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user_id = freezed,
-    Object? name = freezed,
-    Object? phone = freezed,
+    Object? user_id = null,
+    Object? name = null,
+    Object? phone = null,
     Object? image = freezed,
   }) {
     return _then(_value.copyWith(
-      user_id: freezed == user_id
+      user_id: null == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
+              as int,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
+              as String,
+      phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -275,7 +272,7 @@ abstract class _$$ResultImplCopyWith<$Res> implements $ResultCopyWith<$Res> {
       __$$ResultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? user_id, String? name, String? phone, String? image});
+  $Res call({int user_id, String name, String phone, String? image});
 }
 
 /// @nodoc
@@ -291,24 +288,24 @@ class __$$ResultImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user_id = freezed,
-    Object? name = freezed,
-    Object? phone = freezed,
+    Object? user_id = null,
+    Object? name = null,
+    Object? phone = null,
     Object? image = freezed,
   }) {
     return _then(_$ResultImpl(
-      user_id: freezed == user_id
+      user_id: null == user_id
           ? _value.user_id
           : user_id // ignore: cast_nullable_to_non_nullable
-              as int?,
-      name: freezed == name
+              as int,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
+              as String,
+      phone: null == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -320,17 +317,21 @@ class __$$ResultImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ResultImpl implements _Result {
-  const _$ResultImpl({this.user_id, this.name, this.phone, this.image});
+  const _$ResultImpl(
+      {required this.user_id,
+      required this.name,
+      required this.phone,
+      this.image});
 
   factory _$ResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResultImplFromJson(json);
 
   @override
-  final int? user_id;
+  final int user_id;
   @override
-  final String? name;
+  final String name;
   @override
-  final String? phone;
+  final String phone;
   @override
   final String? image;
 
@@ -372,19 +373,19 @@ class _$ResultImpl implements _Result {
 
 abstract class _Result implements Result {
   const factory _Result(
-      {final int? user_id,
-      final String? name,
-      final String? phone,
+      {required final int user_id,
+      required final String name,
+      required final String phone,
       final String? image}) = _$ResultImpl;
 
   factory _Result.fromJson(Map<String, dynamic> json) = _$ResultImpl.fromJson;
 
   @override
-  int? get user_id;
+  int get user_id;
   @override
-  String? get name;
+  String get name;
   @override
-  String? get phone;
+  String get phone;
   @override
   String? get image;
 

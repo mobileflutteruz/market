@@ -8,7 +8,6 @@ import '../../token_data_source.dart';
 
 @Injectable()
 class AppInitCubit extends Cubit<AppInitState> {
-  // final UserSessionManager _userSessionManager;
   final TokenPreference tokenPreference;
   final Api _api;
 
@@ -23,8 +22,7 @@ class AppInitCubit extends Cubit<AppInitState> {
 
     try {
       // Foydalanuvchi tokenini tekshirish
-      // final userToken = await _userSessionManager.getToken();
-      final userToken = await tokenPreference.getToken();
+      final userToken = await tokenPreference.getUserToken();
       if (userToken != null && userToken.isNotEmpty) {
         emit(const AuthorizedState());
         return;
@@ -88,7 +86,6 @@ class AppInitCubit extends Cubit<AppInitState> {
         final userToken = responseBody['token'];
 
         if (userToken != null) {
-          // await _userSessionManager.saveUserToken(userToken);
           await tokenPreference.saveUserToken(userToken);
           print("LOG IN TOKEN SAQLANDI FOR PROFILE");
           emit(const AuthorizedState());

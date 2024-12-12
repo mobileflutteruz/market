@@ -35,7 +35,7 @@ mixin _$FoodHomeBuildableState {
   MobileHomeProducts? get homeProducts => throw _privateConstructorUsedError;
   MobileHomeProducts? get banner => throw _privateConstructorUsedError;
   ProductDataModel? get product => throw _privateConstructorUsedError;
-  BasketProducts? get basket => throw _privateConstructorUsedError;
+  CartResponse? get basket => throw _privateConstructorUsedError;
 
   /// Create a copy of FoodHomeBuildableState
   /// with the given fields replaced by the non-null parameter values.
@@ -70,12 +70,12 @@ abstract class $FoodHomeBuildableStateCopyWith<$Res> {
       MobileHomeProducts? homeProducts,
       MobileHomeProducts? banner,
       ProductDataModel? product,
-      BasketProducts? basket});
+      CartResponse? basket});
 
   $MobileHomeProductsCopyWith<$Res>? get homeProducts;
   $MobileHomeProductsCopyWith<$Res>? get banner;
   $ProductDataModelCopyWith<$Res>? get product;
-  $BasketProductsCopyWith<$Res>? get basket;
+  $CartResponseCopyWith<$Res>? get basket;
 }
 
 /// @nodoc
@@ -195,7 +195,7 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
       basket: freezed == basket
           ? _value.basket
           : basket // ignore: cast_nullable_to_non_nullable
-              as BasketProducts?,
+              as CartResponse?,
     ) as $Val);
   }
 
@@ -245,12 +245,12 @@ class _$FoodHomeBuildableStateCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $BasketProductsCopyWith<$Res>? get basket {
+  $CartResponseCopyWith<$Res>? get basket {
     if (_value.basket == null) {
       return null;
     }
 
-    return $BasketProductsCopyWith<$Res>(_value.basket!, (value) {
+    return $CartResponseCopyWith<$Res>(_value.basket!, (value) {
       return _then(_value.copyWith(basket: value) as $Val);
     });
   }
@@ -285,7 +285,7 @@ abstract class _$$FoodHomeBuildableStateImplCopyWith<$Res>
       MobileHomeProducts? homeProducts,
       MobileHomeProducts? banner,
       ProductDataModel? product,
-      BasketProducts? basket});
+      CartResponse? basket});
 
   @override
   $MobileHomeProductsCopyWith<$Res>? get homeProducts;
@@ -294,7 +294,7 @@ abstract class _$$FoodHomeBuildableStateImplCopyWith<$Res>
   @override
   $ProductDataModelCopyWith<$Res>? get product;
   @override
-  $BasketProductsCopyWith<$Res>? get basket;
+  $CartResponseCopyWith<$Res>? get basket;
 }
 
 /// @nodoc
@@ -413,7 +413,7 @@ class __$$FoodHomeBuildableStateImplCopyWithImpl<$Res>
       basket: freezed == basket
           ? _value.basket
           : basket // ignore: cast_nullable_to_non_nullable
-              as BasketProducts?,
+              as CartResponse?,
     ));
   }
 }
@@ -511,7 +511,7 @@ class _$FoodHomeBuildableStateImpl implements _FoodHomeBuildableState {
   @override
   final ProductDataModel? product;
   @override
-  final BasketProducts? basket;
+  final CartResponse? basket;
 
   @override
   String toString() {
@@ -613,7 +613,7 @@ abstract class _FoodHomeBuildableState implements FoodHomeBuildableState {
       final MobileHomeProducts? homeProducts,
       final MobileHomeProducts? banner,
       final ProductDataModel? product,
-      final BasketProducts? basket}) = _$FoodHomeBuildableStateImpl;
+      final CartResponse? basket}) = _$FoodHomeBuildableStateImpl;
 
   @override
   bool get loading;
@@ -654,7 +654,7 @@ abstract class _FoodHomeBuildableState implements FoodHomeBuildableState {
   @override
   ProductDataModel? get product;
   @override
-  BasketProducts? get basket;
+  CartResponse? get basket;
 
   /// Create a copy of FoodHomeBuildableState
   /// with the given fields replaced by the non-null parameter values.

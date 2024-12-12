@@ -11,12 +11,11 @@ import 'package:karmango/presentation/components/image_view.dart';
 import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 
 class FoodBasketCartItem extends StatefulWidget {
-  const FoodBasketCartItem({
-    super.key,
-    required this.product,
-  });
+  const FoodBasketCartItem(
+      {super.key, required this.product, this.onDeleteTap});
 
-  final List<Result?> product;
+  final ProductData product;
+  final void Function()? onDeleteTap;
 
   @override
   State<FoodBasketCartItem> createState() => _FoodBasketCartItemState();
@@ -29,154 +28,137 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
 
     return Buildable<FoodBasketCubit, FoodBasketState,
         FoodBasketBuildableState>(
-      properties: (buildable) =>
-          [buildable.selectedIds, buildable.cardProductIds],
+      properties: (buildable) => [
+        buildable.selectedIds,
+        buildable.cardProductIds,
+      ],
       builder: (context, state) {
+        final product = widget.product;
         return Padding(
-          padding: AppUtils.kPaddingAll16,
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: widget.product.length,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              final productItem = widget.product[index];
-              final isSelected = state.selectedIds
-                  .contains(widget.product[index]!.product_id!);
-              print("IS SELECTED: ${isSelected}");
-              return GestureDetector(
-                child: Column(
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Checkbox.adaptive(
-                          value: state.selectedIds.contains(productItem!.id!),
-                          activeColor: const Color(0xFF2473F2),
-                          side: const BorderSide(
-                              color: Color(0xFF8D909B), width: 1),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4)),
-                          onChanged: (value) {
-                            if (value == true) {
-                              context
-                                  .read<FoodBasketCubit>()
-                                  .setSelectIds([productItem.id!]);
-                            } else {
-                              // Remove deselected item
-                              final updatedIds =
-                                  List<int>.from(state.selectedIds)
-                                    ..remove(productItem.id!);
-                              context.read<FoodBasketCubit>().emit(
-                                    state.copyWith(selectedIds: updatedIds),
-                                  );
-                            }
-                          },
-                        ),
-                        AppUtils.kGap8,
-                        _buildProductImage(productItem),
-                        AppUtils.kGap16,
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _buildProductTitle(
-                                  context, productItem, screenWidth),
-                              AppUtils.kGap8,
-                              _buildProductPrices(productItem, screenWidth),
-                              AppUtils.kGap20,
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  //! bu remove cart item
-                                  GestureDetector(
-                                    onTap: () {
-                                      print(
-                                          "REMOVE ITEEEM:: ${productItem.product_id}");
-                                      BlocProvider.of<FoodBasketCubit>(context)
-                                          .removeBasketProductsById(
-                                              productItem.product_id!);
-                                      context
-                                          .read<FoodBasketCubit>()
-                                          .basketProducts();
-                                    },
-                                    child: Row(
-                                      children: [
-                                        IconConstants.trash,
-                                        AppUtils.kGap8,
-                                        Text(
-                                          context.l10n.delete,
-                                          style:
-                                              Styles.manropeMedium14.copyWith(
-                                            color: ColorConstants.c8D909B,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+            padding: AppUtils.kPaddingAll16,
+            child: GestureDetector(
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Checkbox.adaptive(
+                        value: state.selectedIds.contains(product.id!),
+                        activeColor: const Color(0xFF2473F2),
+                        side: const BorderSide(
+                            color: Color(0xFF8D909B), width: 1),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4)),
+                        onChanged: (value) {
+                          if (value == true) {
+                            context
+                                .read<FoodBasketCubit>()
+                                .setSelectIds([product.id!]);
+                          } else {
+                            final updatedIds = List<int>.from(state.selectedIds)
+                              ..remove(product.id!);
+                            context.read<FoodBasketCubit>().emit(
+                                  state.copyWith(selectedIds: updatedIds),
+                                );
+                          }
+                        },
+                      ),
+                      AppUtils.kGap8,
+                      _buildProductImage(product),
+                      AppUtils.kGap16,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildProductTitle(context, product, screenWidth),
+                            AppUtils.kGap8,
+                            _buildProductPrices(product, screenWidth),
+                            AppUtils.kGap20,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: widget.onDeleteTap,
+                                  child: Row(
                                     children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            print("MINUUUUUUUUS");
-                                            context
-                                                .read<FoodBasketCubit>()
-                                                .decreaseQuantity(
-                                                    productItem.product_id!);
-                                          });
-                                        },
-                                        child: _buildIconButton(
-                                            icon: Icons.remove),
-                                      ),
-                                      AppUtils.kGap16,
+                                      IconConstants.trash,
+                                      AppUtils.kGap8,
                                       Text(
-                                        productItem.click_quantity!
-                                            .toString(), // Display the current quantity
+                                        context.l10n.delete,
                                         style: Styles.manropeMedium14.copyWith(
-                                          color: ColorConstants.c0E1A23,
+                                          color: ColorConstants.c8D909B,
                                         ),
-                                      ),
-                                      AppUtils.kGap16,
-                                      GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            print("PLUUUUUUUUUUS");
-                                            context
-                                                .read<FoodBasketCubit>()
-                                                .increaseQuantity(
-                                                    productItem.product_id!);
-                                          });
-                                        },
-                                        child:
-                                            _buildIconButton(icon: Icons.add),
                                       ),
                                     ],
                                   ),
-                                  // _buildCounter(productItem), // Updated here
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        context
+                                            .read<FoodBasketCubit>()
+                                            .removeByProductId(
+                                                product.product_id!);
+                                      },
+                                      child:
+                                          _buildIconButton(icon: Icons.remove),
+                                    ),
+                                    AppUtils.kGap16,
+                                    Text(
+                                      product.click_quantity!.toString(),
+                                      style: Styles.manropeMedium14.copyWith(
+                                        color: ColorConstants.c0E1A23,
+                                      ),
+                                    ),
+                                    AppUtils.kGap16,
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          print("PLUUUUUUUUUUS");
+                                          context
+                                              .read<FoodBasketCubit>()
+                                              .increaseQuantity(
+                                                  product.product_id!);
+                                        });
+                                      },
+                                      child: _buildIconButton(icon: Icons.add),
+                                    ),
+                                  ],
+                                ),
+                                // _buildCounter(productItem), // Updated here
+                              ],
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    AppUtils.kGap20,
-                    Divider(color: ColorConstants.cE3E3E3, height: 1),
-                    AppUtils.kGap20,
-                  ],
-                ),
-              );
-            },
-          ),
-        );
+                      ),
+                    ],
+                  ),
+                  AppUtils.kGap20,
+                  Divider(color: ColorConstants.cE3E3E3, height: 1),
+                  AppUtils.kGap20,
+                ],
+              ),
+            )
+            // ListView.builder(
+            //   shrinkWrap: true,
+            //   itemCount: widget.products.length,
+            //   physics: const NeverScrollableScrollPhysics(),
+            //   itemBuilder: (context, index) {
+            //     final productItem = widget.product[index];
+            //     final isSelected = state.selectedIds
+            //         .contains(widget.product[index]!.product_id!);
+            //
+            //   },
+            // ),
+            );
       },
     );
   }
 
   // Product image widget
-  Container _buildProductImage(Result? productItem) {
+  Container _buildProductImage(ProductData? productItem) {
     return Container(
       width: AppLayout.getHeight(72, context),
       height: AppLayout.getHeight(80, context),
@@ -191,7 +173,7 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
 
   // Product title and like button
   Row _buildProductTitle(
-      BuildContext context, Result? productItem, double screenWidth) {
+      BuildContext context, ProductData? productItem, double screenWidth) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -225,7 +207,7 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
   }
 
   // Product price display
-  Row _buildProductPrices(Result? productItem, double screenWidth) {
+  Row _buildProductPrices(ProductData? productItem, double screenWidth) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -255,7 +237,7 @@ class _FoodBasketCartItemState extends State<FoodBasketCartItem> {
   }
 
   // Counter buttons (increment/decrement)
-  Row _buildCounter(Result? productItem) {
+  Row _buildCounter(ProductData? productItem) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
