@@ -28,11 +28,11 @@ class InputPhone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var maskFormatter = MaskTextInputFormatter(
-      mask: '##-###-##-##',
-      filter: {"#": RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy,
-    );
+    // var maskFormatter = MaskTextInputFormatter(
+    //   mask: '###-##-###-##-##',
+    //   filter: {"#": RegExp(r'[0-9]')},
+    //   type: MaskAutoCompletionType.lazy,
+    // );
     return SizedBox(
       height: AppLayout.getHeight(65, context),
       child: TextFormField(
@@ -42,9 +42,9 @@ class InputPhone extends StatelessWidget {
         enabled: true,
 
         inputFormatters: [
-          FilteringTextInputFormatter.digitsOnly,
-          LengthLimitingTextInputFormatter(9),
-          maskFormatter
+          // FilteringTextInputFormatter.digitsOnly,
+          // LengthLimitingTextInputFormatter(12),
+          // maskFormatter
         ],
         validator: (value) {
           if (value == null || value.isEmpty) {

@@ -16,17 +16,17 @@ class FoodProfileBuildableState extends FoodProfileState
     dynamic token,
     dynamic error,
     UserModel? user,
-    ProfileModel? userInfo,
+    UserResponse? userInfo,
+    ProfileEditModel? userEdit,
+    @Default(FoodProfileStatus.initial) FoodProfileStatus status,
     List? cards,
- 
-
     @Default('') String imagePath,
   }) = _FoodProfileBuildableState;
-  
 }
-class FoodProfileInitial extends FoodProfileState {}
-class FoodProfileGuest extends FoodProfileState {}
-class FoodProfileLoggedIn extends FoodProfileState {
-  final UserModel user;
-  FoodProfileLoggedIn({required this.user});
+
+enum FoodProfileStatus {
+  initial,
+  loading,
+  success,
+  failure,
 }

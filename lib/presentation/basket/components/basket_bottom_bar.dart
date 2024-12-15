@@ -22,11 +22,13 @@ class FoodBasketBottomBarWidget extends StatelessWidget {
         FoodBasketBuildableState>(
       properties: (buildable) => [
         buildable.status,
-        buildable.products,
+        // buildable.products,
+        buildable.response,
       ],
       builder: (context, state) {
         // Agar state.products bo'sh bo'lsa yoki currentIndex noto'g'ri bo'lsa, default qiymatlarni ko'rsatamiz
-        final totalQuantity = response?.total_quantity;
+        final totalQuantity = response?.total_payment;
+
         print("TOTAL QUANTITY:${totalQuantity}");
         final totalPayment = response?.total_payment;
         print("TOTAL PAYMENT:${totalPayment}");
@@ -56,18 +58,18 @@ class FoodBasketBottomBarWidget extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Text(
-                        //   '$totalQuantity ${context.l10n.products}',
-                        //   style: Styles.manropeMedium12.copyWith(
-                        //     color: const Color(0xFFA6AEBF),
-                        //   ),
-                        // ),
-                        // Text(
-                        //   '$totalPayment',
-                        //   style: Styles.manropeBold16.copyWith(
-                        //     color: const Color(0xFF162B4C),
-                        //   ),
-                        // ),
+                        Text(
+                          '${totalQuantity!.toInt()} ${context.l10n.products}',
+                          style: Styles.manropeMedium12.copyWith(
+                            color: const Color(0xFFA6AEBF),
+                          ),
+                        ),
+                        Text(
+                          '${totalQuantity!.toInt()}',
+                          style: Styles.manropeBold16.copyWith(
+                            color: const Color(0xFF162B4C),
+                          ),
+                        ),
                       ],
                     ),
                   ),

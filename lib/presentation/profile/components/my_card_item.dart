@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:karmango/core/utils/app_layouts.dart';
 
 class FoodProfileCardWidget extends StatelessWidget {
   final String balance;
@@ -14,18 +15,17 @@ class FoodProfileCardWidget extends StatelessWidget {
     this.isProfileCard = false,
   });
 
-  // Karta raqamini yulduzchalar bilan yashirish funksiyasi
   String maskCardNumber(String cardNumber) {
     if (cardNumber.length >= 16) {
       return '${cardNumber.substring(0, 4)} **** **** ${cardNumber.substring(cardNumber.length - 4)}';
     }
-    return cardNumber; // Agar raqam noto'g'ri formatda bo'lsa, aslini qaytaradi.
+    return cardNumber;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: isProfileCard ? 96 : 136,
+      height: 96,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: Colors.red.shade700,
@@ -65,7 +65,6 @@ class FoodProfileCardWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              // Karta raqami yulduzchalar bilan formatlanadi
               Text(
                 maskCardNumber(cardNumber),
                 style: TextStyle(

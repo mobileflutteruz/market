@@ -25,13 +25,12 @@ class FoodBasketCubit
   final DataRepository _dataRepo;
 
   Future<void> fetchBasketProducts() async {
-
     try {
       final response = await _dataRepo.getBasketProducts();
       build(
         (buildable) => buildable.copyWith(
           status: FoodBasketStatus.success,
-          products: response.result,
+          response: response,
         ),
       );
     } catch (e) {
@@ -68,7 +67,6 @@ class FoodBasketCubit
   }
 
   Future<void> removeByProductId(int productId) async {
-
     try {
       final bool success = await _dataRepo.deleteBasketById(productId);
 

@@ -28,6 +28,7 @@ import 'package:karmango/presentation/notification/notification_page.dart';
 import 'package:karmango/presentation/order/food_order_view.dart';
 
 import 'package:flutter/material.dart';
+import 'package:karmango/presentation/profile/profile_otp/food_otp_page.dart';
 
 class OngenerateRoutes {
   static final OngenerateRoutes _instance = OngenerateRoutes._init();
@@ -109,6 +110,9 @@ class OngenerateRoutes {
         return sampleRoute(const FoodProfileView());
       case FoodNavigatorConst.allProducts:
         return sampleRoute(AllProdact((args as TopProduct)));
+      case FoodNavigatorConst.profileOtp:
+       final phoneNumber = settings.arguments as String;
+        return sampleRoute(FoodProfileOtpScreen(phoneNumber: phoneNumber,));
     }
     return null;
   }

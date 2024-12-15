@@ -30,5 +30,6 @@ class ProductData with _$ProductData {
     String? image,
   }) = _ProductData;
 
-  factory ProductData.fromJson(Map<String, dynamic> json) => _$ProductDataFromJson(json);
+  factory ProductData.fromJson(Map<String, dynamic> json) =>
+      _$ProductDataFromJson(json);
 }

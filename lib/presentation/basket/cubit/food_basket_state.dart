@@ -17,10 +17,10 @@ class FoodBasketBuildableState extends FoodBasketState
     @Default(false) bool isAllSelected,
     @Default(false) bool isChoosedAll,
     @Default({}) Map<int, bool> checkboxState,
-    List<ProductData>? products,
+    // List<ProductData>? products,
     CartResponse? response,
     @Default(FoodBasketStatus.initial) FoodBasketStatus status,
   }) = _FoodBasketBuildableState;
 }
 
-enum FoodBasketStatus { initial, loading, success, failure }
+enum FoodBasketStatus { initial, loading, success, failure, empty}

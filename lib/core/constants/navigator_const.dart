@@ -52,4 +52,6 @@ sealed class FoodNavigatorConst {
   static const String foodBasket = "/foodBasket";
   static const String categoryDetailView = "/categoryDetailView";
   static const String allProducts = "/allProducts";
+  static const String profileOtp = "/profileOtp";
+
 }

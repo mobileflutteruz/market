@@ -10,6 +10,7 @@ import 'package:karmango/domain/model/mobile/cart_product/cart_product.dart';
 import 'package:karmango/domain/model/mobile/category/category.dart';
 import 'package:karmango/domain/model/mobile/home/home.dart';
 import 'package:karmango/domain/model/mobile/product/product.dart';
+import 'package:karmango/domain/model/mobile/profile/profile_edit/profile_edit_model.dart';
 import 'package:karmango/domain/model/mobile/profile/profile_model.dart';
 
 @Injectable()
@@ -65,54 +66,51 @@ class DataRepository {
 //   return profile;
 // }
 
-  Future<ProfileModel> getProfile() async {
+  Future<UserResponse> getProfile() async {
     try {
-      // API chaqiruvini amalga oshirish
       final response = await api.getWithToken(path: "/user/info");
+      print('API Response: ${response.body}');
 
-      // HTTP status kodini tekshirish
       if (response.statusCode == 200) {
-        // JSONni parse qilish
         final data = jsonDecode(response.body);
-
-        // ProfileModel'ni yaratish
-        final profile = ProfileModel.fromJson(data);
-
-        return profile;
+        print('Decoded JSON: $data');
+        return UserResponse.fromJson(data);
+        // return true;
       } else {
-        // Xatolikni tashlash
         throw Exception("Failed to fetch profile: ${response.statusCode}");
       }
     } catch (e) {
-      // Xatolikni qayta ishlash
       print("Error fetching profile: $e");
-      rethrow; // Xatolikni qayta tashlash
+      rethrow;
     }
   }
 
-  //Profile
-//  Future<ProfileModel> getProfile() async {
-//   try {
-//     // Send GET request to the API endpoint
-//     final response = await api.getWithToken(path: "/user/info");
+  Future<ProfileEditModel> profileEdit({
+    required String surname,
+    required String name,
+    required String phone,
+  }) async {
+    final body = {
+      "surname": surname,
+      "name": name,
+      "phone": phone,
+    };
 
-//     // Check if the response is successful
-//     if (response.statusCode == 200) {
-//       final data = jsonDecode(response.body);
+    final response =
+        await api.postWithToken(path: "/change-personal-info", body: body);
 
-//       // Parse JSON response into ProfileModel
-//       return ProfileModel.fromJson(data);
-//     } else {
-//       print("Failed to load profile data, Status Code: ${response.statusCode}");
-//       print("Response Body: ${response.body}");
-//       throw Exception("Failed to load profile data");
-//     }
-//   } catch (e) {
-//     // Handle any errors that may occur
-//     print("Error fetching profile: $e");
-//     rethrow;
-//   }
-// }
+    final responseBody = jsonDecode(response.body);
+
+    final profileEditResponse = ProfileEditModel.fromJson(responseBody);
+
+    if (profileEditResponse.status) {
+      log.logInfo('Request successful: ${profileEditResponse.message}');
+    } else {
+      log.logError('Request failed: ${profileEditResponse.message}');
+    }
+
+    return profileEditResponse;
+  }
 
   // Category
   Future<List<CategoryModel>> getCategories() async {
@@ -222,7 +220,7 @@ class DataRepository {
     }
   }
 
-  Future<bool> deleteBasketById( int productId) async {
+  Future<bool> deleteBasketById(int productId) async {
     try {
       final response =
           await api.deleteWithToken(path: "cart/delete/$productId");

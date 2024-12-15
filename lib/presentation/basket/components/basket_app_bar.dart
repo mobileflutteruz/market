@@ -15,7 +15,7 @@ class FoodBasketAppBarWidget extends StatelessWidget
               buildable.cardProductIds,
               buildable.selectedIds,
               buildable.isChoosedAll,
-              buildable.products,
+              buildable.response,
             ],
         builder: (context, state) {
           return AppBar(

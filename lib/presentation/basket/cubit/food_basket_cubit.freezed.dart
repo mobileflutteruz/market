@@ -26,8 +26,8 @@ mixin _$FoodBasketBuildableState {
   int get quantity => throw _privateConstructorUsedError;
   bool get isAllSelected => throw _privateConstructorUsedError;
   bool get isChoosedAll => throw _privateConstructorUsedError;
-  Map<int, bool> get checkboxState => throw _privateConstructorUsedError;
-  List<ProductData>? get products => throw _privateConstructorUsedError;
+  Map<int, bool> get checkboxState =>
+      throw _privateConstructorUsedError; // List<ProductData>? products,
   CartResponse? get response => throw _privateConstructorUsedError;
   FoodBasketStatus get status => throw _privateConstructorUsedError;
 
@@ -56,7 +56,6 @@ abstract class $FoodBasketBuildableStateCopyWith<$Res> {
       bool isAllSelected,
       bool isChoosedAll,
       Map<int, bool> checkboxState,
-      List<ProductData>? products,
       CartResponse? response,
       FoodBasketStatus status});
 
@@ -90,7 +89,6 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
     Object? isAllSelected = null,
     Object? isChoosedAll = null,
     Object? checkboxState = null,
-    Object? products = freezed,
     Object? response = freezed,
     Object? status = null,
   }) {
@@ -139,10 +137,6 @@ class _$FoodBasketBuildableStateCopyWithImpl<$Res,
           ? _value.checkboxState
           : checkboxState // ignore: cast_nullable_to_non_nullable
               as Map<int, bool>,
-      products: freezed == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductData>?,
       response: freezed == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
@@ -190,7 +184,6 @@ abstract class _$$FoodBasketBuildableStateImplCopyWith<$Res>
       bool isAllSelected,
       bool isChoosedAll,
       Map<int, bool> checkboxState,
-      List<ProductData>? products,
       CartResponse? response,
       FoodBasketStatus status});
 
@@ -224,7 +217,6 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
     Object? isAllSelected = null,
     Object? isChoosedAll = null,
     Object? checkboxState = null,
-    Object? products = freezed,
     Object? response = freezed,
     Object? status = null,
   }) {
@@ -273,10 +265,6 @@ class __$$FoodBasketBuildableStateImplCopyWithImpl<$Res>
           ? _value._checkboxState
           : checkboxState // ignore: cast_nullable_to_non_nullable
               as Map<int, bool>,
-      products: freezed == products
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductData>?,
       response: freezed == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
@@ -306,15 +294,13 @@ class _$FoodBasketBuildableStateImpl
       this.isAllSelected = false,
       this.isChoosedAll = false,
       final Map<int, bool> checkboxState = const {},
-      final List<ProductData>? products,
       this.response,
       this.status = FoodBasketStatus.initial})
       : _selectedIds = selectedIds,
         _chooseIds = chooseIds,
         _cardProducts = cardProducts,
         _cardProductIds = cardProductIds,
-        _checkboxState = checkboxState,
-        _products = products;
+        _checkboxState = checkboxState;
 
   @override
   @JsonKey()
@@ -379,16 +365,7 @@ class _$FoodBasketBuildableStateImpl
     return EqualUnmodifiableMapView(_checkboxState);
   }
 
-  final List<ProductData>? _products;
-  @override
-  List<ProductData>? get products {
-    final value = _products;
-    if (value == null) return null;
-    if (_products is EqualUnmodifiableListView) return _products;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+// List<ProductData>? products,
   @override
   final CartResponse? response;
   @override
@@ -397,7 +374,7 @@ class _$FoodBasketBuildableStateImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'FoodBasketBuildableState(currentIndex: $currentIndex, selectedIds: $selectedIds, chooseIds: $chooseIds, cardProducts: $cardProducts, cardProductIds: $cardProductIds, errorMessage: $errorMessage, tabIndex: $tabIndex, quantity: $quantity, isAllSelected: $isAllSelected, isChoosedAll: $isChoosedAll, checkboxState: $checkboxState, products: $products, response: $response, status: $status)';
+    return 'FoodBasketBuildableState(currentIndex: $currentIndex, selectedIds: $selectedIds, chooseIds: $chooseIds, cardProducts: $cardProducts, cardProductIds: $cardProductIds, errorMessage: $errorMessage, tabIndex: $tabIndex, quantity: $quantity, isAllSelected: $isAllSelected, isChoosedAll: $isChoosedAll, checkboxState: $checkboxState, response: $response, status: $status)';
   }
 
   @override
@@ -416,7 +393,6 @@ class _$FoodBasketBuildableStateImpl
       ..add(DiagnosticsProperty('isAllSelected', isAllSelected))
       ..add(DiagnosticsProperty('isChoosedAll', isChoosedAll))
       ..add(DiagnosticsProperty('checkboxState', checkboxState))
-      ..add(DiagnosticsProperty('products', products))
       ..add(DiagnosticsProperty('response', response))
       ..add(DiagnosticsProperty('status', status));
   }
@@ -448,7 +424,6 @@ class _$FoodBasketBuildableStateImpl
                 other.isChoosedAll == isChoosedAll) &&
             const DeepCollectionEquality()
                 .equals(other._checkboxState, _checkboxState) &&
-            const DeepCollectionEquality().equals(other._products, _products) &&
             (identical(other.response, response) ||
                 other.response == response) &&
             (identical(other.status, status) || other.status == status));
@@ -468,7 +443,6 @@ class _$FoodBasketBuildableStateImpl
       isAllSelected,
       isChoosedAll,
       const DeepCollectionEquality().hash(_checkboxState),
-      const DeepCollectionEquality().hash(_products),
       response,
       status);
 
@@ -495,7 +469,6 @@ abstract class _FoodBasketBuildableState implements FoodBasketBuildableState {
       final bool isAllSelected,
       final bool isChoosedAll,
       final Map<int, bool> checkboxState,
-      final List<ProductData>? products,
       final CartResponse? response,
       final FoodBasketStatus status}) = _$FoodBasketBuildableStateImpl;
 
@@ -520,9 +493,7 @@ abstract class _FoodBasketBuildableState implements FoodBasketBuildableState {
   @override
   bool get isChoosedAll;
   @override
-  Map<int, bool> get checkboxState;
-  @override
-  List<ProductData>? get products;
+  Map<int, bool> get checkboxState; // List<ProductData>? products,
   @override
   CartResponse? get response;
   @override

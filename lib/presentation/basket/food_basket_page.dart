@@ -3,6 +3,7 @@ import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/core/utils/utils.dart';
+import 'package:karmango/domain/model/mobile/basket/basket_products.dart';
 import 'package:karmango/presentation/basket/components/basket_bottom_bar.dart';
 import 'package:karmango/presentation/basket/components/basket_cart_item.dart';
 import 'package:karmango/presentation/basket/cubit/food_basket_cubit.dart';
@@ -53,7 +54,7 @@ class _BasketViewState extends State<FoodBasketPage>
             FoodBasketBuildableState>(
           properties: (buildable) => [
             buildable.status,
-            buildable.products,
+            buildable.response,
           ],
           builder: (context, state) {
             // Common AppBar for all states
@@ -161,16 +162,15 @@ class _BasketViewState extends State<FoodBasketPage>
                 FoodBasketStatus.initial => LoaderWidget(),
                 FoodBasketStatus.loading => LoaderWidget(),
                 FoodBasketStatus.success => ListView.builder(
-                    itemCount: state.products?.length ?? 0,
+                    itemCount: state.response?.result!.length ?? 0,
                     itemBuilder: (BuildContext context, int index) {
-                      final product = state.products?[index];
+                      final product = state.response!.result;
 
                       return FoodBasketCartItem(
-                        product: product!,
-                        onDeleteTap: () => context
-                            .read<FoodBasketCubit>()
-                            .removeByProductId(1),
-                      );
+                          products: product!,
+                          onDeleteTap: (product) => context
+                              .read<FoodBasketCubit>()
+                              .removeByProductId(product.id!));
                     },
                   ),
                 FoodBasketStatus.failure => Column(
@@ -190,6 +190,8 @@ class _BasketViewState extends State<FoodBasketPage>
                       ),
                     ],
                   ),
+                // TODO: Handle this case.
+                FoodBasketStatus.empty => throw UnimplementedError(),
               },
               bottomNavigationBar: state.status == FoodBasketStatus.success
                   ? FoodBasketBottomBarWidget(

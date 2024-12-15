@@ -59,6 +59,25 @@ class Api {
       throw Exception('Request timed out');
     }
   }
+    Future<Response> getWithGToken({
+    required String path,
+    Map<String, Object>? params,
+  }) async {
+    final uri = Uri.https(_host, "$_root$path",
+        params?.map((key, value) => MapEntry(key, value.toString())));
+    final token = await gettokens();
+    // final token = await _token.getToken();
+    final headers = {
+      "Content-Type": "application/json",
+      if (token != null) "Authorization": "Bearer $token",
+    };
+    try {
+      final result = await _httpClient.get(uri, headers: headers);
+      return propagateErrors(result);
+    } on TimeoutException {
+      throw Exception('Request timed out');
+    }
+  }
 
   //!post
   Future<Response> post({
@@ -212,11 +231,11 @@ class Api {
   Future<String?> gettokens() async {
     var token = await _token.getUserToken();
 
-    // if (token == null) {
-    //   print("Guest token ham mavjud emas.");
-    // } else {
-    //   print("Token olingan: $token");
-    // }
+    if (token == null) {
+      print("Guest token ham mavjud emas.");
+    } else {
+      print("Token olingan: $token");
+    }
     return token;
   }
 

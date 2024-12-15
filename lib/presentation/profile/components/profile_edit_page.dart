@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/core/constants/constants.dart';
 import 'package:karmango/core/constants/image_const.dart';
+import 'package:karmango/core/constants/navigator_const.dart';
 import 'package:karmango/core/extension/context_extension.dart';
 import 'package:karmango/domain/model/user/user_model.dart';
 import 'package:karmango/domain/repository/auth_repository.dart';
@@ -220,10 +221,13 @@ class _FoodProfileEditPageState extends State<FoodProfileEditPage> {
                                         .copyWith(color: FoodColors.c0E1923),
                                   ),
                                   AppUtils.kGap8,
-                                  InputWidget(
-                                    keyboardType: TextInputType.text,
-                                    textEditingController: surnameController,
-                                    hintText: context.l10n.surname,
+                                  SizedBox(
+                                    height: 48,
+                                    child: InputWidget(
+                                      keyboardType: TextInputType.text,
+                                      textEditingController: surnameController,
+                                      hintText: context.l10n.surname,
+                                    ),
                                   ),
                                   AppUtils.kGap20,
                                   Text(
@@ -259,6 +263,21 @@ class _FoodProfileEditPageState extends State<FoodProfileEditPage> {
                                     title: context.l10n.save,
                                     onTap: () {
                                       // _saveProfile(context,),
+                                      if (formKey.currentState!.validate()) {
+                                        BlocProvider.of<FoodProfileCubit>(
+                                                context)
+                                            .prfileEditData(
+                                          name: nameController.text,
+                                          phone: phoneController.text,
+                                          surname: surnameController.text,
+                                        );
+                                       
+                                      }
+                                       Navigator.pushNamed(
+                                          context,
+                                          FoodNavigatorConst.profileOtp,
+                                          arguments: phoneController.text,
+                                        );
                                     }),
                               ),
                             ],

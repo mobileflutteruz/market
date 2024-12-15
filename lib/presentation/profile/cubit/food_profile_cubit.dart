@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:karmango/config/token_data_source.dart';
+import 'package:karmango/domain/model/mobile/profile/profile_edit/profile_edit_model.dart';
 import 'package:karmango/domain/model/mobile/profile/profile_model.dart';
 import 'package:karmango/domain/model/mobile/user/user.dart';
 import 'package:karmango/domain/repository/auth_repository.dart';
@@ -33,7 +34,7 @@ class FoodProfileCubit
     );
   }
 
-  foodSetUser(ProfileModel? userInfo) {
+  foodSetUser(UserResponse? userInfo) {
     build(
       (buildable) => buildable.copyWith(
         userInfo: userInfo,
@@ -43,29 +44,47 @@ class FoodProfileCubit
   }
 
   Future<void> prfileEditor() async {
-    build(
-      (buildable) => buildable.copyWith(
-        loading: true,
-        failure: false,
-      ),
-    );
+    build((buildable) => buildable.copyWith(loading: true));
     try {
-      final ProfileModel user = await data.getProfile();
-      print("_________SUCCESSS_____: ${user.result}");
+      final profile = await data.getProfile(); // Repo'dan ma'lumotni olish
       build(
         (buildable) => buildable.copyWith(
-          success: true,
           loading: false,
-          failure: false,
-          userInfo: user,
+          success: true,
+          userInfo: profile,
+          status: FoodProfileStatus.success,
         ),
       );
     } catch (e) {
-      print("_________ERROOOOOOOOOOOOOOORRRRRRRRRRRRR____: ${e}");
       build(
         (buildable) => buildable.copyWith(
           loading: false,
           failure: true,
+          status: FoodProfileStatus.failure,
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
+
+    Future<void> prfileEditData({String? name, String? phone, String? surname}) async {
+    build((buildable) => buildable.copyWith(loading: true));
+    try {
+      final profile = await data.profileEdit(name: name!,phone: phone!,surname: surname!); 
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          success: true,
+         userEdit: profile,
+          status: FoodProfileStatus.success,
+        ),
+      );
+    } catch (e) {
+      build(
+        (buildable) => buildable.copyWith(
+          loading: false,
+          failure: true,
+          status: FoodProfileStatus.failure,
           errorMessage: e.toString(),
         ),
       );
