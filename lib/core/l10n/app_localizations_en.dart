@@ -149,7 +149,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get standard => 'Standard';
-
+   @override
+  String get standard4050min => 'Standard  40-50 min';
   @override
   String get inInstallments => 'In installments';
 

@@ -12,13 +12,12 @@ import 'package:karmango/core/utils/utils.dart';
 import 'package:karmango/domain/model/mobile/profile/profile_model.dart';
 import 'package:karmango/presentation/components/buildable.dart';
 import 'package:karmango/presentation/my_order/my_order_page.dart';
-import 'package:karmango/presentation/profile/components/about_app_page.dart';
 import 'package:karmango/presentation/profile/components/exit_button.dart';
 import 'package:karmango/presentation/profile/components/my_card_item.dart';
 import 'package:karmango/presentation/profile/components/profile_app_bar.dart';
 import 'package:karmango/presentation/profile/components/profile_card_item.dart';
 import 'package:karmango/presentation/profile/cubit/food_profile_cubit.dart';
-import 'package:lottie/lottie.dart';
+
 
 class FoodProfileView extends StatefulWidget {
   const FoodProfileView({super.key});

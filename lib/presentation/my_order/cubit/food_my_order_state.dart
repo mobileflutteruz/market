@@ -14,5 +14,14 @@ class FoodMyOrderBuildableState extends FoodMyOrderState
     @Default({}) Map<int, int> cardProducts,
     @Default([]) List<int> cardProductIds,
     @Default(0) int tabIndex,
+    @Default(FoodMyOrderStatus.initial) FoodMyOrderStatus status,
+
   }) = _FoodMyOrderBuildableState;
+}
+
+enum FoodMyOrderStatus {
+  initial,
+  loading,
+  success,
+  failure,
 }

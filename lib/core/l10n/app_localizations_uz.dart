@@ -149,6 +149,9 @@ class AppLocalizationsUz extends AppLocalizations {
   @override
   String get standard => 'Standart';
 
+   @override
+  String get standard4050min => 'Standart  40-50 min';
+
   @override
   String get inInstallments => 'Muddatli';
 

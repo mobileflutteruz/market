@@ -11,64 +11,69 @@ import 'package:karmango/presentation/components/image_view.dart';
 import 'package:karmango/presentation/favourites/cubit/favourites_cubit.dart';
 
 class FoodBasketCartItem extends StatelessWidget {
-  const FoodBasketCartItem({super.key, required this.products, this.onDeleteTap});
+  const FoodBasketCartItem(
+      {super.key, required this.products, this.onDeleteTap});
 
   final List<ProductData>? products; // Ro'yxat sifatida o'zgartirdik
-  final void Function(ProductData product)? onDeleteTap; // Passed product to delete function
+  final void Function(ProductData product)?
+      onDeleteTap; // Passed product to delete function
 
   @override
-Widget build(BuildContext context) {
-  return SizedBox(
-    height: MediaQuery.of(context).size.height * 0.8, // Cheklangan balandlik
-    child: ListView.builder(
-      shrinkWrap: true, // Balandlikni moslash
-      physics: NeverScrollableScrollPhysics(), // Scroll xatti-harakatlarini boshqarish
-      itemCount: products!.length ?? 0,
-      itemBuilder: (context, index) {
-        final product = products![index];
-        return Padding(
-          padding: AppUtils.kPaddingAll16,
-          child: GestureDetector(
-            child: Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildSelectCheckbox(context, product),
-                    SizedBox(width: 8),
-                    _buildProductImage(product, context),
-                    SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildProductTitle(context, product),
-                          SizedBox(height: 8),
-                          _buildProductPrices(product),
-                          SizedBox(height: 20),
-                          _buildActions(context, product),
-                        ],
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.8,
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: products!.length ?? 0,
+        itemBuilder: (context, index) {
+          final product = products![index];
+          return Padding(
+            padding: AppUtils.kPaddingAll16,
+            child: GestureDetector(
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildSelectCheckbox(context, product),
+                      SizedBox(width: 8),
+                      _buildProductImage(product, context),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildProductTitle(context, product),
+                            SizedBox(height: 8),
+                            _buildProductPrices(product),
+                            SizedBox(height: 20),
+                            _buildActions(context, product),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                Divider(color: ColorConstants.cE3E3E3, height: 1),
-                SizedBox(height: 20),
-              ],
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Divider(color: ColorConstants.cE3E3E3, height: 1),
+                  SizedBox(height: 20),
+                ],
+              ),
             ),
-          ),
-        );
-      },
-    ),
-  );
-}
-
+          );
+        },
+      ),
+    );
+  }
 
   // Mahsulotni tanlash checkbox
   Checkbox _buildSelectCheckbox(BuildContext context, ProductData product) {
     return Checkbox(
-      value: context.read<FoodBasketCubit>().buildable.selectedIds.contains(product.id!),
+      value: context
+          .read<FoodBasketCubit>()
+          .buildable
+          .selectedIds
+          .contains(product.id!),
       onChanged: (value) {
         if (value == true) {
           context.read<FoodBasketCubit>().setSelectIds([product.id!]);
@@ -93,7 +98,7 @@ Widget build(BuildContext context) {
     );
   }
 
-  // Mahsulot nomini va like tugmasini ko'rsatish
+
   Row _buildProductTitle(BuildContext context, ProductData product) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,6 +119,13 @@ Widget build(BuildContext context) {
             return GestureDetector(
               onTap: () {
                 context.read<FavouritesCubit>().setLikeId(product.id ?? 0);
+                final favouritesCubit = context.read<FavouritesCubit>();
+
+                if (state.likeIds.contains(product.product_id!)) {
+                  favouritesCubit.deleteLikeId(product.product_id!);
+                } else {
+                  favouritesCubit.setLikeId(product.product_id!);
+                }
               },
               child: state.likeIds.contains("${product.id ?? 0}")
                   ? IconConstants.heartSelect
@@ -181,9 +193,11 @@ Widget build(BuildContext context) {
           children: [
             GestureDetector(
               onTap: () {
-                context.read<FoodBasketCubit>().decreaseQuantity(product.product_id!);
+                context
+                    .read<FoodBasketCubit>()
+                    .decreaseQuantity(product.product_id!);
               },
-              child: _buildIconButton(icon: Icons.remove),
+              child: _buildIconButton(context, Icons.remove),
             ),
             SizedBox(width: 16), // Replaced AppUtils.kGap16 with SizedBox
             Text(
@@ -195,9 +209,11 @@ Widget build(BuildContext context) {
             SizedBox(width: 16), // Replaced AppUtils.kGap16 with SizedBox
             GestureDetector(
               onTap: () {
-                context.read<FoodBasketCubit>().increaseQuantity(product.product_id!);
+                context
+                    .read<FoodBasketCubit>()
+                    .increaseQuantity(product.product_id!);
               },
-              child: _buildIconButton(icon: Icons.add),
+              child: _buildIconButton(context, Icons.add),
             ),
           ],
         ),
@@ -206,7 +222,10 @@ Widget build(BuildContext context) {
   }
 
   // Custom button for counter actions (increment/decrement)
-  Container _buildIconButton({required IconData icon, context}) {
+  Container _buildIconButton(
+    BuildContext context,
+    IconData icon,
+  ) {
     return Container(
       height: AppLayout.getHeight(32, context),
       width: AppLayout.getHeight(32, context),

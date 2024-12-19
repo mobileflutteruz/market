@@ -56,8 +56,8 @@ class _BasketViewState extends State<FoodBasketPage>
             buildable.status,
             buildable.response,
           ],
-          builder: (context, state) {
-            // Common AppBar for all states
+          builder: (context, buildable) {
+         
             final appBar = AppBar(
               automaticallyImplyLeading: false,
               backgroundColor: Colors.white,
@@ -76,7 +76,7 @@ class _BasketViewState extends State<FoodBasketPage>
                     ),
                   ),
                   Text(
-                    '${state.cardProductIds.length} ${context.l10n.products}',
+                    '${buildable.cardProductIds.length} ${context.l10n.products}',
                     textAlign: TextAlign.right,
                     style: Styles.manropeRegular14.copyWith(
                       color: ColorConstants.c8B96A5,
@@ -102,14 +102,14 @@ class _BasketViewState extends State<FoodBasketPage>
                           shape: const RoundedRectangleBorder(
                             borderRadius: AppUtils.kBorderRadius4,
                           ),
-                          value: state.isChoosedAll,
+                          value: buildable.isChoosedAll,
                           onChanged: (value) {
                             if (value != null) {
                               final foodBasketCubit =
                                   context.read<FoodBasketCubit>();
                               if (value) {
                                 foodBasketCubit
-                                    .setSelectIds(state.cardProductIds);
+                                    .setSelectIds(buildable.cardProductIds);
                                 foodBasketCubit.chooseAllItem(false);
                                 setState(() {
                                   print("1");
@@ -131,7 +131,7 @@ class _BasketViewState extends State<FoodBasketPage>
                         child: Text(
                           context.l10n.chooseAll,
                           style: Styles.manropeRegular14.copyWith(
-                            color: state.isChoosedAll
+                            color: buildable.isChoosedAll
                                 ? FoodColors.c0E1923
                                 : FoodColors.c8B96A5,
                             overflow: TextOverflow.ellipsis,
@@ -143,7 +143,7 @@ class _BasketViewState extends State<FoodBasketPage>
                         child: Text(
                           context.l10n.deleteEverything,
                           style: Styles.manropeRegular14.copyWith(
-                            color: state.cardProductIds.isEmpty
+                            color: buildable.cardProductIds.isEmpty
                                 ? FoodColors.c8B96A5
                                 : FoodColors.cF83333,
                           ),
@@ -158,19 +158,21 @@ class _BasketViewState extends State<FoodBasketPage>
             return Scaffold(
               appBar: appBar,
               backgroundColor: Colors.white,
-              body: switch (state.status) {
+              body: switch (buildable.status) {
                 FoodBasketStatus.initial => LoaderWidget(),
                 FoodBasketStatus.loading => LoaderWidget(),
                 FoodBasketStatus.success => ListView.builder(
-                    itemCount: state.response?.result!.length ?? 0,
+                    itemCount: buildable.response?.result?.length ?? 0,
                     itemBuilder: (BuildContext context, int index) {
-                      final product = state.response!.result;
+                      final product = buildable.response?.result;
+                      print("PRODUCT DATAAA: ${product}");
 
                       return FoodBasketCartItem(
-                          products: product!,
-                          onDeleteTap: (product) => context
-                              .read<FoodBasketCubit>()
-                              .removeByProductId(product.id!));
+                        products: product,
+                        onDeleteTap: (product) => context
+                            .read<FoodBasketCubit>()
+                            .removeByProductId(product.id!),
+                      );
                     },
                   ),
                 FoodBasketStatus.failure => Column(
@@ -190,13 +192,11 @@ class _BasketViewState extends State<FoodBasketPage>
                       ),
                     ],
                   ),
-                // TODO: Handle this case.
-                FoodBasketStatus.empty => throw UnimplementedError(),
               },
-              bottomNavigationBar: state.status == FoodBasketStatus.success
+              bottomNavigationBar: buildable.status == FoodBasketStatus.success
                   ? FoodBasketBottomBarWidget(
-                      currentIndex: state.tabIndex,
-                      response: state.response,
+                      currentIndex: buildable.tabIndex,
+                      response: buildable.response,
                     )
                   : null,
             );

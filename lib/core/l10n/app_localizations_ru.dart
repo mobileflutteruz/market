@@ -148,6 +148,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get standard => 'Стандарт';
+  
+  @override
+  String get standard4050min => 'Стандарт  40-50 мин';
 
   @override
   String get inInstallments => 'В рассрочку';

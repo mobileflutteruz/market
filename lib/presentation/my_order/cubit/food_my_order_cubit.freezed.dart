@@ -24,6 +24,7 @@ mixin _$FoodMyOrderBuildableState {
   Map<int, int> get cardProducts => throw _privateConstructorUsedError;
   List<int> get cardProductIds => throw _privateConstructorUsedError;
   int get tabIndex => throw _privateConstructorUsedError;
+  FoodMyOrderStatus get status => throw _privateConstructorUsedError;
 
   /// Create a copy of FoodMyOrderBuildableState
   /// with the given fields replaced by the non-null parameter values.
@@ -46,7 +47,8 @@ abstract class $FoodMyOrderBuildableStateCopyWith<$Res> {
       List<int> selectedIds,
       Map<int, int> cardProducts,
       List<int> cardProductIds,
-      int tabIndex});
+      int tabIndex,
+      FoodMyOrderStatus status});
 }
 
 /// @nodoc
@@ -73,6 +75,7 @@ class _$FoodMyOrderBuildableStateCopyWithImpl<$Res,
     Object? cardProducts = null,
     Object? cardProductIds = null,
     Object? tabIndex = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       notificationValue: null == notificationValue
@@ -107,6 +110,10 @@ class _$FoodMyOrderBuildableStateCopyWithImpl<$Res,
           ? _value.tabIndex
           : tabIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FoodMyOrderStatus,
     ) as $Val);
   }
 }
@@ -128,7 +135,8 @@ abstract class _$$FoodMyOrderBuildableStateImplCopyWith<$Res>
       List<int> selectedIds,
       Map<int, int> cardProducts,
       List<int> cardProductIds,
-      int tabIndex});
+      int tabIndex,
+      FoodMyOrderStatus status});
 }
 
 /// @nodoc
@@ -154,6 +162,7 @@ class __$$FoodMyOrderBuildableStateImplCopyWithImpl<$Res>
     Object? cardProducts = null,
     Object? cardProductIds = null,
     Object? tabIndex = null,
+    Object? status = null,
   }) {
     return _then(_$FoodMyOrderBuildableStateImpl(
       notificationValue: null == notificationValue
@@ -188,6 +197,10 @@ class __$$FoodMyOrderBuildableStateImplCopyWithImpl<$Res>
           ? _value.tabIndex
           : tabIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as FoodMyOrderStatus,
     ));
   }
 }
@@ -203,7 +216,8 @@ class _$FoodMyOrderBuildableStateImpl implements _FoodMyOrderBuildableState {
       final List<int> selectedIds = const [],
       final Map<int, int> cardProducts = const {},
       final List<int> cardProductIds = const [],
-      this.tabIndex = 0})
+      this.tabIndex = 0,
+      this.status = FoodMyOrderStatus.initial})
       : _selectedIds = selectedIds,
         _cardProducts = cardProducts,
         _cardProductIds = cardProductIds;
@@ -250,10 +264,13 @@ class _$FoodMyOrderBuildableStateImpl implements _FoodMyOrderBuildableState {
   @override
   @JsonKey()
   final int tabIndex;
+  @override
+  @JsonKey()
+  final FoodMyOrderStatus status;
 
   @override
   String toString() {
-    return 'FoodMyOrderBuildableState(notificationValue: $notificationValue, agreementCardIndex: $agreementCardIndex, agreementPaymentIndex: $agreementPaymentIndex, currentIndex: $currentIndex, selectedIds: $selectedIds, cardProducts: $cardProducts, cardProductIds: $cardProductIds, tabIndex: $tabIndex)';
+    return 'FoodMyOrderBuildableState(notificationValue: $notificationValue, agreementCardIndex: $agreementCardIndex, agreementPaymentIndex: $agreementPaymentIndex, currentIndex: $currentIndex, selectedIds: $selectedIds, cardProducts: $cardProducts, cardProductIds: $cardProductIds, tabIndex: $tabIndex, status: $status)';
   }
 
   @override
@@ -276,7 +293,8 @@ class _$FoodMyOrderBuildableStateImpl implements _FoodMyOrderBuildableState {
             const DeepCollectionEquality()
                 .equals(other._cardProductIds, _cardProductIds) &&
             (identical(other.tabIndex, tabIndex) ||
-                other.tabIndex == tabIndex));
+                other.tabIndex == tabIndex) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
@@ -289,7 +307,8 @@ class _$FoodMyOrderBuildableStateImpl implements _FoodMyOrderBuildableState {
       const DeepCollectionEquality().hash(_selectedIds),
       const DeepCollectionEquality().hash(_cardProducts),
       const DeepCollectionEquality().hash(_cardProductIds),
-      tabIndex);
+      tabIndex,
+      status);
 
   /// Create a copy of FoodMyOrderBuildableState
   /// with the given fields replaced by the non-null parameter values.
@@ -310,7 +329,8 @@ abstract class _FoodMyOrderBuildableState implements FoodMyOrderBuildableState {
       final List<int> selectedIds,
       final Map<int, int> cardProducts,
       final List<int> cardProductIds,
-      final int tabIndex}) = _$FoodMyOrderBuildableStateImpl;
+      final int tabIndex,
+      final FoodMyOrderStatus status}) = _$FoodMyOrderBuildableStateImpl;
 
   @override
   bool get notificationValue;
@@ -328,6 +348,8 @@ abstract class _FoodMyOrderBuildableState implements FoodMyOrderBuildableState {
   List<int> get cardProductIds;
   @override
   int get tabIndex;
+  @override
+  FoodMyOrderStatus get status;
 
   /// Create a copy of FoodMyOrderBuildableState
   /// with the given fields replaced by the non-null parameter values.

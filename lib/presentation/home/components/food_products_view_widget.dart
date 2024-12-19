@@ -81,12 +81,8 @@ class _FoodProductsViewWidgetState extends State<FoodProductsViewWidget> {
                         final favouritesCubit = context.read<FavouritesCubit>();
 
                         if (state.likeIds.contains(product.product_id!)) {
-                          // Agar mahsulot allaqachon sevimlilar ro'yxatida bo'lsa, uni olib tashlaymiz
-
                           favouritesCubit.deleteLikeId(product.product_id!);
                         } else {
-                          // Agar mahsulot sevimlilar ro'yxatida bo'lmasa, uni qo'shamiz
-
                           favouritesCubit.setLikeId(product.product_id!);
                         }
                       },

@@ -13,6 +13,9 @@ class FoodBasketBuildableState extends FoodBasketState
     @Default([]) List<int> cardProductIds,
     @Default('') String errorMessage,
     @Default(0) int tabIndex,
+        @Default(false) bool loading,
+    @Default(false) bool success,
+    @Default(false) bool failure,
     @Default(0) int quantity,
     @Default(false) bool isAllSelected,
     @Default(false) bool isChoosedAll,
@@ -23,4 +26,9 @@ class FoodBasketBuildableState extends FoodBasketState
   }) = _FoodBasketBuildableState;
 }
 
-enum FoodBasketStatus { initial, loading, success, failure, empty}
+enum FoodBasketStatus {
+  initial,
+  loading,
+  success,
+  failure,
+}

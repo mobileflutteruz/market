@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karmango/config/di/injection.dart';
 import 'package:karmango/core/extension/context_extension.dart';
+import 'package:karmango/presentation/basket/cubit/food_basket_cubit.dart';
 import 'package:karmango/presentation/components/common_app_bar.dart';
 import 'package:karmango/presentation/components/loader_widget.dart';
 import 'package:karmango/presentation/favourites/components/food_info.dart';
@@ -40,13 +41,11 @@ class FavouritesView extends StatelessWidget {
         },
         child: BlocBuilder<FavouritesCubit, FavouritesState>(
           buildWhen: (previous, current) {
-            // Faqat holat o'zgarganda UI yangilanishini cheklash
             return previous != current;
           },
           builder: (context, state) {
             if (state is FavouritesBuildableState) {
               if (state.loading) {
-                // Orqa fonni yangilamasdan, loader ko'rsatish
                 return Stack(
                   children: [
                     _buildMainContent(context, state, crossAxisCount),
@@ -58,7 +57,6 @@ class FavouritesView extends StatelessWidget {
               return _buildMainContent(context, state, crossAxisCount);
             }
 
-            // Default loader
             return const LoaderWidget();
           },
         ),
@@ -70,7 +68,7 @@ class FavouritesView extends StatelessWidget {
       int crossAxisCount) {
     if (state.favourites?.result?.isNotEmpty ?? false) {
       return Scaffold(
-        backgroundColor: Colors.white, // Orqa fon rangini o'zgarmas qoldirish
+        backgroundColor: Colors.white,
         appBar: CommonAppBar(title: context.l10n.favorites),
         body: CustomScrollView(
           slivers: [
@@ -78,8 +76,7 @@ class FavouritesView extends StatelessWidget {
               padding: AppUtils.kPaddingHorizontal16,
               sliver: SliverGrid.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount:
-                      crossAxisCount.clamp(2, 4), // Min/max qiymatlar
+                  crossAxisCount: crossAxisCount.clamp(2, 4),
                   mainAxisSpacing: 16,
                   crossAxisSpacing: 16,
                   childAspectRatio: .52,
@@ -87,18 +84,19 @@ class FavouritesView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final product = state.favourites!.result![index];
                   return FoodFavoriteItemWidget(
-                    productList: [product],
-                    onTap: () {},
-                    likeTapped: () async {
-                      context
-                          .read<FavouritesCubit>()
-                          .deleteLikeId(product.product_id!);
-                      if (!context.mounted) return;
-                      context.read<FavouritesCubit>().fetchFavourites();
-                    },
-                    isLiked: state.likeIds.contains(product.id!),
-                    smallButton: () {},
-                  );
+                      productList: [product],
+                      onTap: () {},
+                      likeTapped: () async {
+                        context
+                            .read<FavouritesCubit>()
+                            .deleteLikeId(product.product_id!);
+                        if (!context.mounted) return;
+                        context.read<FavouritesCubit>().fetchFavourites();
+                      },
+                      isLiked: state.likeIds.contains(product.id!),
+                      smallButton: () => context
+                          .read<FoodBasketCubit>()
+                          .setBasketProducts(product.product_id!));
                 },
                 itemCount: state.favourites!.result!.length,
               ),
